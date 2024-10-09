@@ -2,47 +2,105 @@
 <html lang="en">
 
 <head>
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/logos/5.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/logos/5.png') }}">
-    <title>
-        @yield('title')
-    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('title')" />
 
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <!-- Favicon Tags Start -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+        href="{{ asset('img/favicon/apple-touch-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{{ asset('img/favicon/apple-touch-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{{ asset('img/favicon/apple-touch-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60"
+        href="{{ asset('img/favicon/apple-touch-icon-60x60.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+        href="{{ asset('img/favicon/apple-touch-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+        href="{{ asset('img/favicon/apple-touch-icon-76x76.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+        href="{{ asset('img/favicon/apple-touch-icon-152x152.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-196x196.png') }}" sizes="196x196" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-96x96.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-16x16.png') }}" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-128.png') }}" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ asset('img/favicon/mstile-144x144.png') }}" />
+    <meta name="msapplication-square70x70logo" content="{{ asset('img/favicon/mstile-70x70.png') }}" />
+    <meta name="msapplication-square150x150logo" content="{{ asset('img/favicon/mstile-150x150.png') }}" />
+    <meta name="msapplication-wide310x150logo" content="{{ asset('img/favicon/mstile-310x150.png') }}" />
+    <meta name="msapplication-square310x310logo" content="{{ asset('img/favicon/mstile-310x310.png') }}" />
+    <!-- Favicon Tags End -->
 
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="{{ asset('assets/css/styles.css?v=1.1.1') }}" rel="stylesheet" />
-    @yield('styles')
+    <!-- Font Tags Start -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('font/CS-Interface/style.css') }}" />
+    <!-- Font Tags End -->
+
+    <!-- Vendor Styles Start -->
+    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
+    <!-- Vendor Styles End -->
+
+    <!-- Template Base Styles Start -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <!-- Template Base Styles End -->
+
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <script src="{{ asset('js/base/loader.js') }}"></script>
 </head>
 
-<body class="">
+<body class="h-100">
+    <div id="root" class="h-100">
+        <!-- Background Start -->
+        <div class="fixed-background"></div>
+        <!-- Background End -->
 
-    <main class="main-content  mt-0">
-        @yield('content')
-    </main>
+        <div class="container-fluid p-0 h-100 position-relative">
+            <div class="row g-0 h-100">
+                @yield('content')
+            </div>
+        </div>
+    </div>
 
-    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <!-- Vendor Scripts Start -->
+    <script src="js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="js/vendor/OverlayScrollbars.min.js"></script>
+    <script src="js/vendor/autoComplete.min.js"></script>
+    <script src="js/vendor/clamp.min.js"></script>
 
-    <script src="{{ asset('assets/js/plugins/dragula/dragula.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/jkanban/jkanban.js') }}"></script>
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
+    <script src="icon/acorn-icons.js"></script>
+    <script src="icon/acorn-icons-interface.js"></script>
 
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="js/vendor/jquery.validate/jquery.validate.min.js"></script>
 
-    <script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.1.1') }}"></script>
-    @yield('scripts')
+    <script src="js/vendor/jquery.validate/additional-methods.min.js"></script>
+
+    <!-- Vendor Scripts End -->
+
+    <!-- Template Base Scripts Start -->
+    <script src="js/base/helpers.js"></script>
+    <script src="js/base/globals.js"></script>
+    <script src="js/base/nav.js"></script>
+    <script src="js/base/search.js"></script>
+    <script src="js/base/settings.js"></script>
+    <!-- Template Base Scripts End -->
+    <!-- Page Specific Scripts Start -->
+
+    <script src="js/pages/auth.login.js"></script>
+
+    <script src="js/common.js"></script>
+    <script src="js/scripts.js"></script>
+    <!-- Page Specific Scripts End -->
 </body>
 
 </html>

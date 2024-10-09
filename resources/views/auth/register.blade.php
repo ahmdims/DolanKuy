@@ -1,89 +1,104 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.auth')
 
-        <!-- Username -->
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input 
-                id="username" 
-                class="block mt-1 w-full" 
-                type="text" 
-                name="username" 
-                :value="old('username')" 
-                required 
-                autofocus 
-                autocomplete="username" 
-            />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+@section('title', 'Daftar')
+
+@section('content')
+<div class="offset-0 col-12 d-none d-lg-flex offset-md-1 col-lg h-lg-100">
+    <div class="min-h-100 d-flex align-items-center">
+        <div class="w-100 w-lg-75 w-xxl-50">
+            <div>
+                <div class="mb-5">
+                    <h1 class="display-3 text-white">Multiple Niches</h1>
+                    <h1 class="display-3 text-white">Ready for Your Project</h1>
+                </div>
+                <p class="h6 text-white lh-1-5 mb-5">
+                    Dynamically target high-payoff intellectual capital for customized technologies.
+                    Objectively integrate emerging core competencies before process-centric communities...
+                </p>
+                <div class="mb-5">
+                    <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <!-- Name -->
-        <div class="mt-4">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input 
-                id="name" 
-                class="block mt-1 w-full" 
-                type="text" 
-                name="name" 
-                :value="old('name')" 
-                required 
-                autocomplete="name" 
-            />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<div class="col-12 col-lg-auto h-100 pb-4 px-4 pt-0 p-lg-0">
+    <div
+        class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-right-border">
+        <div class="sw-lg-50 px-5">
+            <div class="sh-11">
+                <a href="index.html">
+                    <div class="logo-default"></div>
+                </a>
+            </div>
+            <div class="mb-5">
+                <h2 class="cta-1 mb-0 text-primary">Welcome,</h2>
+                <h2 class="cta-1 text-primary">let's get the ball rolling!</h2>
+            </div>
+            <div class="mb-5">
+                <p class="h6">Please use the form to register.</p>
+                <p class="h6">
+                    If you are a member, please
+                    <a href="{{ route('login') }}">login</a>.
+                </p>
+            </div>
+            <div>
+                <form method="POST" action="{{ route('register') }}" id="registerForm" class="tooltip-end-bottom"
+                    novalidate>
+                    @csrf
+                    <div class="mb-3 filled form-group tooltip-end-top">
+                        <i data-acorn-icon="user"></i>
+                        <input class="form-control" placeholder="Username" name="username" value="{{ old('username') }}"
+                            required autofocus />
+                        @error('username')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 filled form-group tooltip-end-top">
+                        <i data-acorn-icon="user"></i>
+                        <input class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required />
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 filled form-group tooltip-end-top">
+                        <i data-acorn-icon="email"></i>
+                        <input class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"
+                            required />
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 filled form-group tooltip-end-top">
+                        <i data-acorn-icon="lock-off"></i>
+                        <input class="form-control" name="password" type="password" placeholder="Password" required />
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 filled form-group tooltip-end-top">
+                        <i data-acorn-icon="lock-off"></i>
+                        <input class="form-control" name="password_confirmation" type="password"
+                            placeholder="Confirm Password" required />
+                        @error('password_confirmation')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mb-3 position-relative form-group">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="registerCheck" name="registerCheck"
+                                required />
+                            <label class="form-check-label" for="registerCheck">
+                                I have read and accept the
+                                <a href="index.html" target="_blank">terms and conditions.</a>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-primary">Signup</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input 
-                id="email" 
-                class="block mt-1 w-full" 
-                type="email" 
-                name="email" 
-                :value="old('email')" 
-                required 
-                autocomplete="email" 
-            />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input 
-                id="password" 
-                class="block mt-1 w-full" 
-                type="password" 
-                name="password" 
-                required 
-                autocomplete="new-password" 
-            />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input 
-                id="password_confirmation" 
-                class="block mt-1 w-full" 
-                type="password" 
-                name="password_confirmation" 
-                required 
-                autocomplete="new-password" 
-            />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>
+@endsection

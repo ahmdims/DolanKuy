@@ -54,7 +54,7 @@ class UsersController extends Controller
         $request->validate([
             'username' => [
                 'string',
-                'unique:users,username',
+                'unique:users,username,' . $id,
                 'max:255',
                 'regex:/^[a-zA-Z0-9_.]+$/',
             ],
@@ -63,15 +63,15 @@ class UsersController extends Controller
             'role' => 'string|in:admin,manager,seller',
         ]);
 
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user = User::where('id', $id)->firstOrFail();
+        $user->update($request->only(['username', 'name', 'email', 'role']));
 
         return redirect()->route('users.index')->with('success', 'Updated successfully.');
     }
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->firstOrFail();
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'Deleted successfully.');

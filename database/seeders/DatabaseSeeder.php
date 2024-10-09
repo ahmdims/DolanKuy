@@ -14,17 +14,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Menambahkan user admin
         DB::table('users')->insert([
-            'id' => (string) Str::uuid(),
             'name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
-            'role' => 'admin',
+            'role' => 'superadmin',
             'remember_token' => '',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        for ($i = 1; $i <= 20; $i++) {
+            DB::table('users')->insert([
+                'name' => 'User ' . $i,
+                'username' => 'user' . $i,
+                'email' => 'user' . $i . '@example.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('12345678'),
+                'role' => 'pengunjung',
+                'remember_token' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
