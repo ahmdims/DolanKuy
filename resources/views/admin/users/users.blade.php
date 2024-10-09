@@ -80,13 +80,13 @@
             aria-expanded="false" data-bs-offset="0,3">
             <span class="btn btn-foreground-alternate dropdown-toggle" data-bs-toggle="tooltip" data-bs-placement="top"
               data-bs-delay="0" title="Item Count">
-              10 Items
+              <span id="itemCountText">10 Items</span>
             </span>
           </button>
           <div class="dropdown-menu shadow dropdown-menu-end">
-            <a class="dropdown-item" href="#">5 Items</a>
-            <a class="dropdown-item active" href="#">10 Items</a>
-            <a class="dropdown-item" href="#">20 Items</a>
+            <a class="dropdown-item" href="#" data-count="5">5 Items</a>
+            <a class="dropdown-item active" href="#" data-count="10">10 Items</a>
+            <a class="dropdown-item" href="#" data-count="20">20 Items</a>
           </div>
         </div>
         <!-- Length End -->
@@ -109,7 +109,7 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive-sm mb-5">
-            <table class="table">
+            <table class="table" id="userTable">
               <thead>
                 <tr>
                   <th class="text-center">#</th>
@@ -166,7 +166,6 @@
       </div>
     </section>
   </div>
-
 </div>
 
 <!-- Create Modal -->
@@ -183,16 +182,16 @@
         <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
           @csrf
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" name="email" required>
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" required />
           </div>
           <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" required>
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" required />
           </div>
           <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" required>
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" type="text" id="name" name="name" required />
           </div>
           <div class="mb-3">
             <label for="role" class="form-label">Role</label>
@@ -206,8 +205,7 @@
             <label for="password" class="form-label">Password</label>
             <input type="text" class="form-control" name="password" required>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <div class="mb-3 text-end">
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
@@ -215,4 +213,41 @@
     </div>
   </div>
 </div>
+
+<script>
+  const searchInput = document.querySelector('.search-input-container input');
+  const userTable = document.getElementById('userTable');
+
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const rows = userTable.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
+      row.style.display = match ? '' : 'none';
+    });
+  });
+
+  const filterLinks = document.querySelectorAll('.dropdown-menu a[data-count]');
+  const itemCountText = document.getElementById('itemCountText');
+
+  filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const itemCount = e.target.dataset.count;
+
+      itemCountText.textContent = `${itemCount} Items`;
+
+      const rows = userTable.querySelectorAll('tbody tr');
+      rows.forEach((row, index) => {
+        if (index < itemCount) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
 @endsection

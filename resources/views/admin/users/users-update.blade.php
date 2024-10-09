@@ -1,10 +1,9 @@
-<!-- Update Modal -->
-<div class="modal fade" id="updateModal-{{ $user_data->id }}" tabindex="-1" aria-labelledby="updateModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade modal-close-out" id="updateModal-{{ $user_data->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel">Update User</h5>
+                <h5 class="modal-title" id="Modal">Ubah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" action="{{ route('users.update', $user_data->id) }}" enctype="multipart/form-data">
@@ -12,21 +11,29 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" value="{{ $user_data->name }}" required>
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $user_data->name }}"
+                            required>
                     </div>
                     <div class="mb-3">
-                        <label for="role" class="form-label">Role</label>
-                        <select class="form-select" name="role" required>
-                            <option value="admin" {{ $user_data->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="manager" {{ $user_data->role == 'manager' ? 'selected' : '' }}>Manager</option>
-                            <option value="seller" {{ $user_data->role == 'seller' ? 'selected' : '' }}>Seller</option>
+                        <label for="role" class="form-label">Peran</label>
+                        <select class="form-select" id="role" name="role" required>
+                            <option value="superadmin" {{ $user_data->role == 'superadmin' ? 'selected' : '' }}>Superadmin
+                            </option>
+                            <option value="admin_wisata" {{ $user_data->role == 'admin_wisata' ? 'selected' : '' }}>Admin
+                                Wisata</option>
+                            <option value="admin_umkm" {{ $user_data->role == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM
+                            </option>
+                            <option value="admin_budaya" {{ $user_data->role == 'admin_budaya' ? 'selected' : '' }}>Admin
+                                Budaya</option>
+                            <option value="pengunjung" {{ $user_data->role == 'pengunjung' ? 'selected' : '' }}>Pengunjung
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

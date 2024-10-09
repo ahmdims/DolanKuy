@@ -112,7 +112,7 @@
   // Settings initialization
   _initSettings() {
     if (typeof Settings !== 'undefined') {
-      const settings = new Settings({attributes: {placement: 'vertical', layout: 'boxed', color: 'light-green' }, showSettings: true, storagePrefix: 'acorn-ecommerce-platform-'});
+      const settings = new Settings({attributes: {placement: 'vertical', layout: 'boxed', color: 'light-blue' }, showSettings: true, storagePrefix: 'acorn-ecommerce-platform-'});
     }
   }
 

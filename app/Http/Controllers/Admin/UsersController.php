@@ -53,20 +53,21 @@ class UsersController extends Controller
     {
         $request->validate([
             'username' => [
+                'required',
                 'string',
-                'unique:users,username,' . $id,
+                'unique:users,username,',
                 'max:255',
                 'regex:/^[a-zA-Z0-9_.]+$/',
             ],
-            'name' => 'string|max:255',
-            'email' => 'string|max:255',
-            'role' => 'string|in:admin,manager,seller',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'role' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
         ]);
 
-        $user = User::where('id', $id)->firstOrFail();
-        $user->update($request->only(['username', 'name', 'email', 'role']));
+        $user = user::find($id);
+        $user->update($request->all());
 
-        return redirect()->route('users.index')->with('success', 'Updated successfully.');
+        return redirect()->route('user.index')->with('success', 'Updated successfully.');
     }
 
     public function destroy($id)
