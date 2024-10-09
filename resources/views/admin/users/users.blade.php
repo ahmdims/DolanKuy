@@ -216,40 +216,4 @@
   </div>
 </div>
 
-<script>
-  const searchInput = document.querySelector('.search-input-container input');
-  const userTable = document.getElementById('userTable');
-
-  searchInput.addEventListener('input', () => {
-    const searchValue = searchInput.value.toLowerCase();
-    const rows = userTable.querySelectorAll('tbody tr');
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
-      row.style.display = match ? '' : 'none';
-    });
-  });
-
-  const filterLinks = document.querySelectorAll('.dropdown-menu a[data-count]');
-  const itemCountText = document.getElementById('itemCountText');
-
-  filterLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const itemCount = e.target.dataset.count;
-
-      itemCountText.textContent = `${itemCount} Items`;
-
-      const rows = userTable.querySelectorAll('tbody tr');
-      rows.forEach((row, index) => {
-        if (index < itemCount) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
-
 @endsection
