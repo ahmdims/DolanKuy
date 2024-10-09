@@ -130,18 +130,24 @@
             <td class="text-center">{{ $user_data->role }}</td>
             <td class="text-center">
             <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-              <a class="btn btn-icon btn-icon-only btn-info mb-1 me-1" type="button" title="Detail">
+              <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
+              class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
               <i data-acorn-icon="search"></i>
               </a>
-              <a class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" type="button" title="Update">
+              <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
+              class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
               <i data-acorn-icon="edit"></i>
               </a>
-              <a class="btn btn-icon btn-icon-only btn-danger mb-1" type="button" title="Delete">
+              <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
+              class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
               <i data-acorn-icon="bin"></i>
               </a>
             </div>
             </td>
           </tr>
+          @include('admin.users.users-detail', ['user_data' => $user_data])
+          @include('admin.users.users-update', ['user_data' => $user_data])
+          @include('admin.users.users-delete', ['user_data' => $user_data])
         @endforeach
               </tbody>
               <tfoot>

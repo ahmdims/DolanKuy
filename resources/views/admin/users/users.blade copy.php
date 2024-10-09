@@ -7,11 +7,11 @@
 
   <!-- Check message -->
   @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-      class="fa fa-close"></i></button>
-    </div>
+        class="fa fa-close"></i></button>
+  </div>
   @endif
 
   <div class="row">
@@ -46,38 +46,38 @@
               </thead>
               <tbody>
                 @foreach($users as $user_data)
-          <tr>
-          <td class="text-sm font-weight-bold">{{ $user_data->id }}</td>
-            <td class="text-sm font-weight-bold">{{ $user_data->email }}</td>
-            <td class="text-sm font-weight-bold">{{ $loop->iteration }}.</td>
-            <td class="text-sm font-weight-bold">{{ $user_data->email }}</td>
-            <td class="text-sm font-weight-bold">{{ $user_data->username }}</td>
-            <td class="text-sm font-weight-bold">{{ $user_data->name }}</td>
-            <td class="text-sm font-weight-bold">{{ $user_data->role }}</td>
-            <td class="text-sm">
-            <div class="btn-group" role="group" aria-label="action buttons">
-              <button data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}"
-              class="btn bg-gradient-success btn-icon-only" type="button" data-bs-toggle="tooltip"
-              data-bs-placement="top" title="Detail">
-              <i class="fas fa-search"></i>
-              </button>
-              <button data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}"
-              class="btn bg-gradient-primary btn-icon-only" type="button" data-bs-toggle="tooltip"
-              data-bs-placement="top" title="Update">
-              <i class="fas fa-pen"></i>
-              </button>
-              <button data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}"
-              class="btn bg-gradient-danger btn-icon-only" type="button" data-bs-toggle="tooltip"
-              data-bs-placement="top" title="Delete">
-              <i class="fas fa-trash"></i>
-              </button>
-            </div>
-            </td>
-          </tr>
-          @include('admin.users.users-detail', ['user_data' => $user_data])
-          @include('admin.users.users-update', ['user_data' => $user_data])
-          @include('admin.users.users-delete', ['user_data' => $user_data])
-        @endforeach
+                <tr>
+                  <td class="text-sm font-weight-bold">{{ $user_data->id }}</td>
+                  <td class="text-sm font-weight-bold">{{ $user_data->email }}</td>
+                  <td class="text-sm font-weight-bold">{{ $loop->iteration }}.</td>
+                  <td class="text-sm font-weight-bold">{{ $user_data->email }}</td>
+                  <td class="text-sm font-weight-bold">{{ $user_data->username }}</td>
+                  <td class="text-sm font-weight-bold">{{ $user_data->name }}</td>
+                  <td class="text-sm font-weight-bold">{{ $user_data->role }}</td>
+                  <td class="text-sm">
+                    <div class="btn-group" role="group" aria-label="action buttons">
+                      <button data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}"
+                        class="btn bg-gradient-success btn-icon-only" type="button" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Detail">
+                        <i class="fas fa-search"></i>
+                      </button>
+                      <button data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}"
+                        class="btn bg-gradient-primary btn-icon-only" type="button" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Update">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                      <button data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}"
+                        class="btn bg-gradient-danger btn-icon-only" type="button" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                @include('admin.users.users-detail', ['user_data' => $user_data])
+                @include('admin.users.users-update', ['user_data' => $user_data])
+                @include('admin.users.users-delete', ['user_data' => $user_data])
+                @endforeach
               </tbody>
             </table>
           </div>
