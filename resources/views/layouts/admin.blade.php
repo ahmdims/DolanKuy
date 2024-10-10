@@ -161,8 +161,33 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('destinasi.index') }}">
+                                        <span class="label">Destinasi Wisata</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="/">
-                                        <span class="label">Detail</span>
+                                        <span class="label">Galeri Foto</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/">
+                                        <span class="label">Kategori</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/">
+                                        <span class="label">Kontak</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/">
+                                        <span class="label">Ulasan</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/">
+                                        <span class="label">UMKM</span>
                                     </a>
                                 </li>
                             </ul>

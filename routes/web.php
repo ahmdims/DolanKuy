@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\ProdukController;
-use App\Http\Controllers\Admin\SupplierController;
+use App\Http\Controllers\Admin\DestinasiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,19 +22,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
 
-    //PRODUK
-    Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
-    Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::put('/produk/{produk}', [ProdukController::class, 'detail'])->name('produk.detail');
-    Route::put('/produk/{produk}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::delete('/produk/{produk}', [ProdukController::class, 'destroy'])->name('produk.destroy');
-
-    //SUPPLIER
-    Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
-    Route::post('/supplier', [SupplierController::class, 'store'])->name('supplier.store');
-    Route::put('/supplier/{supplier}', [SupplierController::class, 'detail'])->name('supplier.detail');
-    Route::put('/supplier/{supplier}', [SupplierController::class, 'update'])->name('supplier.update');
-    Route::delete('/supplier/{supplier}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+    //DESTINASI
+    Route::get('/destinasi', [DestinasiController::class, 'index'])->name('destinasi.index');
+    Route::post('/destinasi', [DestinasiController::class, 'store'])->name('destinasi.store');
+    Route::put('/destinasi/{id}', [DestinasiController::class, 'detail'])->name('destinasi.detail');
+    Route::put('/destinasi/{id}', [DestinasiController::class, 'update'])->name('destinasi.update');
+    Route::delete('/destinasi/{id}', [DestinasiController::class, 'destroy'])->name('destinasi.destroy');
 });
 
 Route::middleware('auth')->group(function () {
