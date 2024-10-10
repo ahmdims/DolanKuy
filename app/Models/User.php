@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -53,4 +54,11 @@ class User extends Authenticatable
     {
         $this->attributes['username'] = strtolower($value);
     }
+
+    public function setRoleAttribute($value)
+{
+    $this->attributes['role'] = $value; // Jangan set default jadi 'superadmin' di sini
+}
+
+
 }

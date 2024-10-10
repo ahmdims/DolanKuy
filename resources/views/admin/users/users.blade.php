@@ -194,13 +194,14 @@
           </div>
           <div class="mb-3">
             <label for="role" class="form-label">Role</label>
-            <select class="form-select" name="role" required>
-              <option value="superadmin">Superadmin</option>
-              <option value="admin_wisata">Admin Wisata</option>
-              <option value="admin_umkm">Admin UMKM</option>
-              <option value="admin_budaya">Admin Budaya</option>
-              <option value="pengunjung">Pengunjung</option>
+            <select class="form-select" id="role" name="role" required>
+                <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
+                <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
+                <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
+                <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
             </select>
+
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
@@ -215,5 +216,41 @@
     </div>
   </div>
 </div>
+
+<script>
+  const searchInput = document.querySelector('.search-input-container input');
+  const userTable = document.getElementById('userTable');
+
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const rows = userTable.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
+      row.style.display = match ? '' : 'none';
+    });
+  });
+
+  const filterLinks = document.querySelectorAll('.dropdown-menu a[data-count]');
+  const itemCountText = document.getElementById('itemCountText');
+
+  filterLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const itemCount = e.target.dataset.count;
+
+      itemCountText.textContent = `${itemCount} Items`;
+
+      const rows = userTable.querySelectorAll('tbody tr');
+      rows.forEach((row, index) => {
+        if (index < itemCount) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 
 @endsection

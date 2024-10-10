@@ -27,27 +27,31 @@ class UsersController extends Controller
                 'regex:/^[a-zA-Z0-9_.]+$/',
             ],
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',  // Tambahkan validasi unique
             'role' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
             'password' => 'required|string|max:255',
-
         ], [
             'username.required' => 'The username is required.',
             'username.unique' => 'The username has already been taken.',
             'username.regex' => 'The username may only contain letters, numbers, underscores, and periods, and cannot have spaces.',
         ]);
 
+        // Tambahkan debug untuk melihat data yang dikirim
+        // dd($request->all());
+
         $user = User::create([
             'username' => strtolower($request->username),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,  // Role diambil dari request
         ]);
-
+        
         event(new Registered($user));
 
         return redirect()->route('users.index')->with('success', 'Created successfully.');
     }
+
 
     public function update(Request $request, $id)
     {
@@ -55,7 +59,7 @@ class UsersController extends Controller
             'username' => [
                 'nullable',
                 'string',
-                'unique:users,username,',
+                'unique:users,username,' . $id,
                 'max:255',
                 'regex:/^[a-zA-Z0-9_.]+$/',
             ],
@@ -64,11 +68,15 @@ class UsersController extends Controller
             'role' => 'nullable|string',
         ]);
 
-        $user = user::find($id);
-        $user->update($request->all());
-
-        return redirect()->route('users.index')->with('success', 'Updated successfully.');
+        $user = User::find($id);  // Pastikan nama model dimulai dengan huruf kapital
+        if ($user) {
+            $user->update($request->all());
+            return redirect()->route('users.index')->with('success', 'Updated successfully.');
+        } else {
+            return redirect()->route('users.index')->with('error', 'User not found.');
+        }
     }
+
 
     public function destroy($id)
     {
