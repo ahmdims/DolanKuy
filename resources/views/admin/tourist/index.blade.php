@@ -97,11 +97,11 @@
 
   <!-- Check message -->
   @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-      class="fa fa-close"></i></button>
-    </div>
+        class="fa fa-close"></i></button>
+  </div>
   @endif
 
   <div class="row g-0">
@@ -122,33 +122,35 @@
               </thead>
               <tbody>
                 @foreach($users as $user_data)
-          <tr>
-            <td class="text-center">{{ $loop->iteration }}.</td>
-            <td class="text-center">{{ $user_data->email }}</td>
-            <td class="text-center">{{ $user_data->username }}</td>
-            <td class="text-center">{{ $user_data->name }}</td>
-            <td class="text-center">{{ $user_data->utype }}</td>
-            <td class="text-center">
-            <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-              <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
-              <i data-acorn-icon="search"></i>
-              </a>
-              <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
-              <i data-acorn-icon="edit"></i>
-              </a>
-              <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
-              <i data-acorn-icon="bin"></i>
-              </a>
-            </div>
-            </td>
-          </tr>
-          @include('admin.tourist.detail', ['user_data' => $user_data])
-          @include('admin.tourist.update', ['user_data' => $user_data])
-          @include('admin.tourist.delete', ['user_data' => $user_data])
-        @endforeach
+                @if($user_data->utype === 'pengunjung')
+                <tr>
+                  <td class="text-center">{{ $loop->iteration }}.</td>
+                  <td class="text-center">{{ $user_data->email }}</td>
+                  <td class="text-center">{{ $user_data->username }}</td>
+                  <td class="text-center">{{ $user_data->name }}</td>
+                  <td class="text-center">{{ $user_data->utype }}</td>
+                  <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                      <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+                        <i data-acorn-icon="search"></i>
+                      </a>
+                      <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+                        <i data-acorn-icon="edit"></i>
+                      </a>
+                      <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+                        <i data-acorn-icon="bin"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                @include('admin.tourist.detail', ['user_data' => $user_data])
+                @include('admin.tourist.update', ['user_data' => $user_data])
+                @include('admin.tourist.delete', ['user_data' => $user_data])
+                @endif
+                @endforeach
               </tbody>
               <tfoot>
                 <tr>
@@ -177,7 +179,7 @@
         <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
           <div class="mb-3">
@@ -193,25 +195,14 @@
             <input type="text" class="form-control" name="name" required>
           </div>
           <div class="mb-3">
-            <<<<<<< HEAD:resources/views/admin/tourist/index.blade.php <label for="utype" class="form-label">
-              Role</label>
-              <select class="form-select" name="utype" required>
-                <option value="superadmin">Superadmin</option>
-                <option value="admin_wisata">Admin Wisata</option>
-                <option value="admin_umkm">Admin UMKM</option>
-                <option value="admin_budaya">Admin Budaya</option>
-                <option value="pengunjung">Pengunjung</option>
-                =======
-                <label for="role" class="form-label">Role</label>
-                <select class="form-select" id="role" name="role" required>
-                  <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                  <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
-                  <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
-                  <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
-                  <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
-                  >>>>>>> 860b61aed6781a2df125de4cc91df13655591e80:resources/views/admin/users/users.blade.php
-                </select>
-
+            <label for="utype" class="form-label">Role</label>
+            <select class="form-select" name="utype" required>
+              <option value="superadmin">Superadmin</option>
+              <option value="admin_wisata">Admin Wisata</option>
+              <option value="admin_umkm">Admin UMKM</option>
+              <option value="admin_budaya">Admin Budaya</option>
+              <option value="pengunjung">Pengunjung</option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>

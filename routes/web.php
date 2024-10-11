@@ -26,10 +26,10 @@ Route::middleware('auth.admin')->group(function () {
 
     //USER
     Route::get('/tourist', [UserController::class, 'index'])->name('admin.tourist.index');
-    Route::post('/tourist', [UserController::class, 'store'])->name('users.store');
-    Route::get('/tourist/{id}', [UserController::class, 'detail'])->name('users.detail');
-    Route::put('/tourist/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/tourist/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::post('/tourist', [UserController::class, 'store'])->name('tourist.store');
+    Route::get('/tourist/{id}', [UserController::class, 'detail'])->name('tourist.detail');
+    Route::put('/tourist/{id}', [UserController::class, 'update'])->name('tourist.update');
+    Route::delete('/tourist/{id}', [UserController::class, 'destroy'])->name('tourist.destroy');
 
     //DESTINASI WISATA
     Route::get('/destination', [DestinationController::class, 'index'])->name('admin.destination.index');

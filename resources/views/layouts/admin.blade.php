@@ -56,7 +56,7 @@
             <div class="nav-content d-flex">
                 <!-- Logo Start -->
                 <div class="logo position-relative">
-                    <a href="Dashboards.Default.html">
+                    <a href="{{ route('admin.dashboard.index') }}">
                         <!-- Logo can be added directly -->
                         <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 
@@ -230,56 +230,28 @@
                         <div class="page-title-container">
                             <div class="row">
                                 <!-- Title Start -->
-                                <div class="col-12 col-md-7">
-                                    <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
-                                    <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
-                                        <ul class="breadcrumb pt-0">
-                                            <li class="breadcrumb-item"><a href="/dashboard">Beranda</a></li>
-                                        </ul>
-                                    </nav>
+                                <div class="col-auto mb-3 mb-md-0 me-auto">
+                                    <div class="w-auto sw-md-30">
+                                        <a href="{{ route('admin.dashboard.index') }}"
+                                            class="muted-link pb-1 d-inline-block breadcrumb-back">
+                                            <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
+                                            <span class="text-small align-middle">Beranda</span>
+                                        </a>
+                                        <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
+                                    </div>
                                 </div>
                                 <!-- Title End -->
 
                                 <!-- Top Buttons Start -->
                                 <div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
                                     <!-- Add New Button Start -->
-                                    <button type="button"
-                                        class="btn btn-outline-primary btn-icon btn-icon-start w-100 w-md-auto add-datatable">
+                                    <a data-bs-toggle="modal" data-bs-target="#createModal" type="button"
+                                        class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto">
                                         <i data-acorn-icon="plus"></i>
-                                        <span>Add New</span>
-                                    </button>
+                                        <span>Tambah @yield('title')</span>
+                                    </a>
                                     <!-- Add New Button End -->
 
-                                    <!-- Check Button Start -->
-                                    <div class="btn-group ms-1 check-all-container">
-                                        <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
-                                            id="datatableCheckAllButton">
-                                            <span class="form-check float-end">
-                                                <input type="checkbox" class="form-check-input"
-                                                    id="datatableCheckAll" />
-                                            </span>
-                                        </div>
-                                        <button type="button"
-                                            class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
-                                            data-bs-offset="0,3" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-submenu></button>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <div class="dropdown dropstart dropdown-submenu">
-                                                <button
-                                                    class="dropdown-item dropdown-toggle tag-datatable caret-absolute disabled"
-                                                    type="button">Tag</button>
-                                                <div class="dropdown-menu">
-                                                    <button class="dropdown-item tag-done" type="button">Done</button>
-                                                    <button class="dropdown-item tag-new" type="button">New</button>
-                                                    <button class="dropdown-item tag-sale" type="button">Sale</button>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown-divider"></div>
-                                            <button class="dropdown-item disabled delete-datatable"
-                                                type="button">Delete</button>
-                                        </div>
-                                    </div>
-                                    <!-- Check Button End -->
                                 </div>
                                 <!-- Top Buttons End -->
                             </div>

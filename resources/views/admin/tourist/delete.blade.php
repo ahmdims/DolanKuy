@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="Modal">Hapus @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('users.destroy', $user_data->id) }}">
+            <form method="POST" action="{{ route('tourist.destroy', $user_data->id) }}">
                 @csrf <!-- Token CSRF -->
                 @method('DELETE') <!-- Metode DELETE -->
                 <div class="modal-body">
