@@ -8,54 +8,46 @@
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57"
-        href="{{ asset('img/favicon/apple-touch-icon-57x57.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-        href="{{ asset('img/favicon/apple-touch-icon-114x114.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-        href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-        href="{{ asset('img/favicon/apple-touch-icon-144x144.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60"
-        href="{{ asset('img/favicon/apple-touch-icon-60x60.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120"
-        href="{{ asset('img/favicon/apple-touch-icon-120x120.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76"
-        href="{{ asset('img/favicon/apple-touch-icon-76x76.png') }}" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152"
-        href="{{ asset('img/favicon/apple-touch-icon-152x152.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-196x196.png') }}" sizes="196x196" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-96x96.png') }}" sizes="96x96" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-32x32.png') }}" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-16x16.png') }}" sizes="16x16" />
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-128.png') }}" sizes="128x128" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="{{ asset('img/favicon/mstile-144x144.png') }}" />
-    <meta name="msapplication-square70x70logo" content="{{ asset('img/favicon/mstile-70x70.png') }}" />
-    <meta name="msapplication-square150x150logo" content="{{ asset('img/favicon/mstile-150x150.png') }}" />
-    <meta name="msapplication-wide310x150logo" content="{{ asset('img/favicon/mstile-310x150.png') }}" />
-    <meta name="msapplication-square310x310logo" content="{{ asset('img/favicon/mstile-310x310.png') }}" />
+    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
     <!-- Favicon Tags End -->
-
     <!-- Font Tags Start -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('font/CS-Interface/style.css') }}" />
+    <link rel="stylesheet" href="font/CS-Interface/style.css" />
     <!-- Font Tags End -->
-
     <!-- Vendor Styles Start -->
-    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
-    <!-- Vendor Styles End -->
+    <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/vendor/OverlayScrollbars.min.css" />
 
+    <link rel="stylesheet" href="css/vendor/datatables.min.css" />
+
+    <!-- Vendor Styles End -->
     <!-- Template Base Styles Start -->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="css/styles.css" />
     <!-- Template Base Styles End -->
 
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-    <script src="{{ asset('js/base/loader.js') }}"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/base/loader.js"></script>
 </head>
 
 <body>
@@ -64,7 +56,7 @@
             <div class="nav-content d-flex">
                 <!-- Logo Start -->
                 <div class="logo position-relative">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="Dashboards.Default.html">
                         <!-- Logo can be added directly -->
                         <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 
@@ -74,15 +66,83 @@
                 </div>
                 <!-- Logo End -->
 
+                <!-- Language Switch Start -->
+                <div class="language-switch-container">
+                    <button class="btn btn-empty language-button dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">EN</button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">DE</a>
+                        <a href="#" class="dropdown-item active">EN</a>
+                        <a href="#" class="dropdown-item">ES</a>
+                    </div>
+                </div>
+                <!-- Language Switch End -->
+
                 <!-- User Menu Start -->
                 <div class="user-container d-flex">
                     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img class="profile" alt="profile" src="img/profile/profile-1.webp" />
-                        <div class="name">DIMUAS</div>
+                        <img class="profile" alt="profile" src="img/profile/profile-9.webp" />
+                        <div class="name">Lisa Jackson</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end user-menu wide">
+                        <div class="row mb-3 ms-0 me-0">
+                            <div class="col-12 ps-1 mb-2">
+                                <div class="text-extra-small text-primary">ACCOUNT</div>
+                            </div>
+                            <div class="col-6 ps-1 pe-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">User Info</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Preferences</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Calendar</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6 pe-1 ps-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Security</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Billing</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <div class="row mb-1 ms-0 me-0">
+                            <div class="col-12 p-1 mb-2 pt-2">
+                                <div class="text-extra-small text-primary">APPLICATION</div>
+                            </div>
+                            <div class="col-6 ps-1 pe-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Themes</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Language</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-6 pe-1 ps-1">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Devices</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Storage</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mb-1 ms-0 me-0">
+                            <div class="col-12 p-1 mb-3 pt-3">
+                                <div class="separator-light"></div>
+                            </div>
                             <div class="col-6 ps-1 pe-1">
                                 <ul class="list-unstyled">
                                     <li>
@@ -108,12 +168,14 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
+                                            <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
+                                            <span class="align-middle">Logout</span>
+                                        </a>
+                                        <form action="{{ route('logout') }}" id="frmlogout" method="POST"
+                                            style="display: none;">
                                             @csrf
-                                            <button type="submit" class="btn btn-link p-0">
-                                                <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                                                <span class="align-middle">Logout</span>
-                                            </button>
                                         </form>
                                     </li>
                                 </ul>
@@ -126,6 +188,11 @@
                 <!-- Icons Menu Start -->
                 <ul class="list-unstyled list-inline text-center menu-icons">
                     <li class="list-inline-item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#searchPagesModal">
+                            <i data-acorn-icon="search" data-acorn-size="18"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
                         <a href="#" id="pinButton" class="pin-button">
                             <i data-acorn-icon="lock-on" class="unpin" data-acorn-size="18"></i>
                             <i data-acorn-icon="lock-off" class="pin" data-acorn-size="18"></i>
@@ -137,6 +204,50 @@
                             <i data-acorn-icon="light-off" class="dark" data-acorn-size="18"></i>
                         </a>
                     </li>
+                    <li class="list-inline-item">
+                        <a href="#" data-bs-toggle="dropdown" data-bs-target="#notifications" aria-haspopup="true"
+                            aria-expanded="false" class="notification-button">
+                            <div class="position-relative d-inline-flex">
+                                <i data-acorn-icon="bell" data-acorn-size="18"></i>
+                                <span class="position-absolute notification-dot rounded-xl"></span>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end wide notification-dropdown scroll-out"
+                            id="notifications">
+                            <div class="scroll">
+                                <ul class="list-unstyled border-last-none">
+                                    <li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+                                        <img src="img/profile/profile-1.webp"
+                                            class="me-3 sw-4 sh-4 rounded-xl align-self-center" alt="..." />
+                                        <div class="align-self-center">
+                                            <a href="#">Joisse Kaycee just sent a new comment!</a>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+                                        <img src="img/profile/profile-2.webp"
+                                            class="me-3 sw-4 sh-4 rounded-xl align-self-center" alt="..." />
+                                        <div class="align-self-center">
+                                            <a href="#">New order received! It is total $147,20.</a>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3 pb-3 border-bottom border-separator-light d-flex">
+                                        <img src="img/profile/profile-3.webp"
+                                            class="me-3 sw-4 sh-4 rounded-xl align-self-center" alt="..." />
+                                        <div class="align-self-center">
+                                            <a href="#">3 items just added to wish list by a user!</a>
+                                        </div>
+                                    </li>
+                                    <li class="pb-3 pb-3 border-bottom border-separator-light d-flex">
+                                        <img src="img/profile/profile-6.webp"
+                                            class="me-3 sw-4 sh-4 rounded-xl align-self-center" alt="..." />
+                                        <div class="align-self-center">
+                                            <a href="#">Kirby Peters just sent a new message!</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <!-- Icons Menu End -->
 
@@ -144,149 +255,61 @@
                 <div class="menu-container flex-grow-1">
                     <ul id="menu" class="menu">
                         <li>
-                            <a href="{{ route('dashboard') }}">
-                                <i data-acorn-icon="shop" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Dashboard</span>
+                            <a href="{{ route('admin.dashboard.dashboard') }}">
+                                <i data-acorn-icon="home" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Dashboards</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#pengguna">
-                                <i data-acorn-icon="cupcake" class="icon" data-acorn-size="18"></i>
+                            <a href="#apps" data-href="Apps.html">
+                                <i data-acorn-icon="screen" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Pengguna</span>
                             </a>
-                            <ul id="pengguna">
+                            <ul id="apps">
                                 <li>
-                                    <a href="{{ route('users.index') }}">
-                                        <span class="label">Pengunjung</span>
+                                    <a href="Apps.Calendar.html">
+                                        <span class="label">Admin Wisata</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('destinasi.index') }}">
-                                        <span class="label">Destinasi Wisata</span>
+                                    <a href="Apps.Chat.html">
+                                        <span class="label">Admin UMKM</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/">
-                                        <span class="label">Galeri Foto</span>
+                                    <a href="Apps.Contacts.html">
+                                        <span class="label">Admin Budaya</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/">
-                                        <span class="label">Kategori</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/">
-                                        <span class="label">Kontak</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/">
-                                        <span class="label">Ulasan</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/">
-                                        <span class="label">UMKM</span>
+                                    <a href="{{ route('admin.tourist.index') }}">
+                                        <span class="label">Pengguna</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#orders" data-href="Orders.html">
-                                <i data-acorn-icon="cart" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Orders</span>
-                            </a>
-                            <ul id="orders">
-                                <li>
-                                    <a href="Orders.List.html">
-                                        <span class="label">List</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Orders.Detail.html">
-                                        <span class="label">Detail</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#customers" data-href="Customers.html">
-                                <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Customers</span>
-                            </a>
-                            <ul id="customers">
-                                <li>
-                                    <a href="Customers.List.html">
-                                        <span class="label">List</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Customers.Detail.html">
-                                        <span class="label">Detail</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#storefront" data-href="Storefront.html">
-                                <i data-acorn-icon="screen" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Storefront</span>
-                            </a>
-                            <ul id="storefront">
-                                <li>
-                                    <a href="Storefront.Home.html">
-                                        <span class="label">Home</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Filters.html">
-                                        <span class="label">Filters</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Categories.html">
-                                        <span class="label">Categories</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Detail.html">
-                                        <span class="label">Detail</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Cart.html">
-                                        <span class="label">Cart</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Checkout.html">
-                                        <span class="label">Checkout</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Storefront.Invoice.html">
-                                        <span class="label">Invoice</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="Shipping.html">
-                                <i data-acorn-icon="shipping" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Shipping</span>
+                            <a href="#pages">
+                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Kategori</span>
                             </a>
                         </li>
                         <li>
-                            <a href="Discount.html">
-                                <i data-acorn-icon="tag" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Discount</span>
+                            <a href="{{ route('admin.destination.index') }}">
+                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Destinasi Wisata</span>
                             </a>
                         </li>
                         <li>
-                            <a href="Settings.html">
-                                <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Settings</span>
+                            <a href="#pages">
+                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Budaya</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pages">
+                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <span class="label">UMKM</span>
                             </a>
                         </li>
                     </ul>
@@ -295,6 +318,16 @@
 
                 <!-- Mobile Buttons Start -->
                 <div class="mobile-buttons-container">
+                    <!-- Scrollspy Mobile Button Start -->
+                    <a href="#" id="scrollSpyButton" class="spy-button" data-bs-toggle="dropdown">
+                        <i data-acorn-icon="menu-dropdown"></i>
+                    </a>
+                    <!-- Scrollspy Mobile Button End -->
+
+                    <!-- Scrollspy Mobile Dropdown Start -->
+                    <div class="dropdown-menu dropdown-menu-end" id="scrollSpyDropdown"></div>
+                    <!-- Scrollspy Mobile Dropdown End -->
+
                     <!-- Menu Button Start -->
                     <a href="#" id="mobileMenuButton" class="menu-button">
                         <i data-acorn-icon="menu"></i>
@@ -307,7 +340,151 @@
         </div>
 
         <main>
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <!-- Title and Top Buttons Start -->
+                        <div class="page-title-container">
+                            <div class="row">
+                                <!-- Title Start -->
+                                <div class="col-12 col-md-7">
+                                    <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
+                                    <nav class="breadcrumb-container d-inline-block" aria-label="breadcrumb">
+                                        <ul class="breadcrumb pt-0">
+                                            <li class="breadcrumb-item"><a href="/dashboard">Beranda</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Title End -->
+
+                                <!-- Top Buttons Start -->
+                                <div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
+                                    <!-- Add New Button Start -->
+                                    <button type="button"
+                                        class="btn btn-outline-primary btn-icon btn-icon-start w-100 w-md-auto add-datatable">
+                                        <i data-acorn-icon="plus"></i>
+                                        <span>Add New</span>
+                                    </button>
+                                    <!-- Add New Button End -->
+
+                                    <!-- Check Button Start -->
+                                    <div class="btn-group ms-1 check-all-container">
+                                        <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
+                                            id="datatableCheckAllButton">
+                                            <span class="form-check float-end">
+                                                <input type="checkbox" class="form-check-input"
+                                                    id="datatableCheckAll" />
+                                            </span>
+                                        </div>
+                                        <button type="button"
+                                            class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
+                                            data-bs-offset="0,3" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" data-submenu></button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <div class="dropdown dropstart dropdown-submenu">
+                                                <button
+                                                    class="dropdown-item dropdown-toggle tag-datatable caret-absolute disabled"
+                                                    type="button">Tag</button>
+                                                <div class="dropdown-menu">
+                                                    <button class="dropdown-item tag-done" type="button">Done</button>
+                                                    <button class="dropdown-item tag-new" type="button">New</button>
+                                                    <button class="dropdown-item tag-sale" type="button">Sale</button>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item disabled delete-datatable"
+                                                type="button">Delete</button>
+                                        </div>
+                                    </div>
+                                    <!-- Check Button End -->
+                                </div>
+                                <!-- Top Buttons End -->
+                            </div>
+                        </div>
+                        <!-- Title and Top Buttons End -->
+
+                        <!-- Content Start -->
+                        <div class="data-table-rows slim">
+
+                            @yield('content')
+                        </div>
+                        <!-- Content End -->
+
+                        <!-- Add Edit Modal Start -->
+                        <div class="modal modal-right fade" id="addEditModal" tabindex="-1" role="dialog"
+                            aria-labelledby="modalTitle" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitle">Add New</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label class="form-label">Name</label>
+                                                <input name="Name" type="text" class="form-control" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Sales</label>
+                                                <input name="Sales" type="number" class="form-control" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Stock</label>
+                                                <input name="Stock" type="number" class="form-control" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Category</label>
+                                                <div class="form-check">
+                                                    <input type="radio" id="category1" name="Category"
+                                                        value="Whole Wheat" class="form-check-input" />
+                                                    <label class="form-check-label" for="category1">Whole Wheat</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="category2" name="Category" value="Sourdough"
+                                                        class="form-check-input" />
+                                                    <label class="form-check-label" for="category2">Sourdough</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="category3" name="Category"
+                                                        value="Multigrain" class="form-check-input" />
+                                                    <label class="form-check-label" for="category3">Multigrain</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Tag</label>
+                                                <div class="form-check">
+                                                    <input type="radio" id="tag1" name="Tag" value="New"
+                                                        class="form-check-input" />
+                                                    <label class="form-check-label" for="tag1">New</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="tag2" name="Tag" value="Sale"
+                                                        class="form-check-input" />
+                                                    <label class="form-check-label" for="tag2">Sale</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="radio" id="tag3" name="Tag" value="Done"
+                                                        class="form-check-input" />
+                                                    <label class="form-check-label" for="tag3">Done</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-primary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary"
+                                            id="addEditConfirmButton">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Edit Modal End -->
+                    </div>
+                </div>
+            </div>
         </main>
 
         <!-- Layout Footer Start -->
@@ -340,15 +517,591 @@
         <!-- Layout Footer End -->
     </div>
 
+    <!-- Theme Settings Modal Start -->
+    <div class="modal fade modal-right scroll-out-negative" id="settings" data-bs-backdrop="true" tabindex="-1"
+        role="dialog" aria-labelledby="settings" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Theme Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="scroll-track-visible">
+                        <div class="mb-5" id="color">
+                            <label class="mb-3 d-inline-block form-label">Color</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-blue"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="blue-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT BLUE</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-blue"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="blue-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK BLUE</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-teal"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="teal-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT TEAL</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-teal"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="teal-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK TEAL</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-sky"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="sky-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT SKY</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-sky"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="sky-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK SKY</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-red"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="red-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT RED</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-red"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="red-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK RED</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-green"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="green-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT GREEN</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-green"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="green-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK GREEN</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-lime"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="lime-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT LIME</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-lime"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="lime-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK LIME</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-pink"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="pink-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT PINK</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-pink"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="pink-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK PINK</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="light-purple"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="purple-light"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT PURPLE</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-purple"
+                                    data-parent="color">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                                        <div class="purple-dark"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK PURPLE</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mb-5" id="navcolor">
+                            <label class="mb-3 d-inline-block form-label">Override Nav Palette</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap">
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="default"
+                                    data-parent="navcolor">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DEFAULT</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="light"
+                                    data-parent="navcolor">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-secondary figure-light top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">LIGHT</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="dark"
+                                    data-parent="navcolor">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-muted figure-dark top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">DARK</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mb-5" id="placement">
+                            <label class="mb-3 d-inline-block form-label">Menu Placement</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="horizontal"
+                                    data-parent="placement">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">HORIZONTAL</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="vertical"
+                                    data-parent="placement">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary left"></div>
+                                        <div class="figure figure-secondary right"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">VERTICAL</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mb-5" id="behaviour">
+                            <label class="mb-3 d-inline-block form-label">Menu Behaviour</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="pinned"
+                                    data-parent="behaviour">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary left large"></div>
+                                        <div class="figure figure-secondary right small"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">PINNED</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="unpinned"
+                                    data-parent="behaviour">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary left"></div>
+                                        <div class="figure figure-secondary right"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">UNPINNED</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mb-5" id="layout">
+                            <label class="mb-3 d-inline-block form-label">Layout</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap">
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="fluid" data-parent="layout">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">FLUID</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-50 option col" data-value="boxed" data-parent="layout">
+                                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom small"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">BOXED</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="mb-5" id="radius">
+                            <label class="mb-3 d-inline-block form-label">Radius</label>
+                            <div class="row d-flex g-3 justify-content-between flex-wrap">
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="rounded"
+                                    data-parent="radius">
+                                    <div class="card rounded-md radius-rounded p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">ROUNDED</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="standard"
+                                    data-parent="radius">
+                                    <div class="card rounded-md radius-regular p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">STANDARD</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex-grow-1 w-33 option col" data-value="flat" data-parent="radius">
+                                    <div class="card rounded-md radius-flat p-3 mb-1 no-shadow">
+                                        <div class="figure figure-primary top"></div>
+                                        <div class="figure figure-secondary bottom"></div>
+                                    </div>
+                                    <div class="text-muted text-part">
+                                        <span class="text-extra-small align-middle">FLAT</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Theme Settings Modal End -->
+
+    <!-- Niches Modal Start -->
+    <div class="modal fade modal-right scroll-out-negative" id="niches" data-bs-backdrop="true" tabindex="-1"
+        role="dialog" aria-labelledby="niches" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Niches</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="scroll-track-visible">
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Classic Dashboard</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/classic-dashboard.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Medical Assistant</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/medical-assistant.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Service Provider</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/service-provider.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Elearning Portal</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/elearning-portal.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Ecommerce Platform</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/ecommerce-platform.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Starter Project</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/starter-project.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Niches Modal End -->
+
+    <!-- Theme Settings & Niches Buttons Start -->
+    <div class="settings-buttons-container">
+        <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal"
+            data-bs-target="#settings" id="settingsButton">
+            <span class="d-inline-block no-delay" data-bs-delay="0" data-bs-offset="0,3" data-bs-toggle="tooltip"
+                data-bs-placement="left" title="Settings">
+                <i data-acorn-icon="paint-roller" class="position-relative"></i>
+            </span>
+        </button>
+        <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal"
+            data-bs-target="#niches" id="nichesButton">
+            <span class="d-inline-block no-delay" data-bs-delay="0" data-bs-offset="0,3" data-bs-toggle="tooltip"
+                data-bs-placement="left" title="Niches">
+                <i data-acorn-icon="toy" class="position-relative"></i>
+            </span>
+        </button>
+    </div>
+    <!-- Theme Settings & Niches Buttons End -->
+
+    <!-- Search Modal Start -->
+    <div class="modal fade modal-under-nav modal-search modal-close-out" id="searchPagesModal" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 p-0">
+                    <button type="button" class="btn-close btn btn-icon btn-icon-only btn-foreground"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body ps-5 pe-5 pb-0 border-0">
+                    <input id="searchPagesInput"
+                        class="form-control form-control-xl borderless ps-0 pe-0 mb-1 auto-complete" type="text"
+                        autocomplete="off" />
+                </div>
+                <div class="modal-footer border-top justify-content-start ps-5 pe-5 pb-3 pt-3 border-0">
+                    <span class="text-alternate d-inline-block m-0 me-3">
+                        <i data-acorn-icon="arrow-bottom" data-acorn-size="15"
+                            class="text-alternate align-middle me-1"></i>
+                        <span class="align-middle text-medium">Navigate</span>
+                    </span>
+                    <span class="text-alternate d-inline-block m-0 me-3">
+                        <i data-acorn-icon="arrow-bottom-left" data-acorn-size="15"
+                            class="text-alternate align-middle me-1"></i>
+                        <span class="align-middle text-medium">Select</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Modal End -->
+
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
     <script src="js/vendor/OverlayScrollbars.min.js"></script>
     <script src="js/vendor/autoComplete.min.js"></script>
     <script src="js/vendor/clamp.min.js"></script>
+
     <script src="icon/acorn-icons.js"></script>
     <script src="icon/acorn-icons-interface.js"></script>
-    <script src="icon/acorn-icons-commerce.js"></script>
+
+    <script src="js/vendor/bootstrap-submenu.js"></script>
+
+    <script src="js/vendor/datatables.min.js"></script>
+
+    <script src="js/vendor/mousetrap.min.js"></script>
 
     <!-- Vendor Scripts End -->
 
@@ -361,48 +1114,12 @@
     <!-- Template Base Scripts End -->
     <!-- Page Specific Scripts Start -->
 
-    <script src="js/cs/checkall.js"></script>
+    <script src="js/cs/datatable.extend.js"></script>
 
-    <script src="js/pages/pengguna.list.js"></script>
+    <script src="js/plugins/datatable.editablerows.js"></script>
 
     <script src="js/common.js"></script>
     <script src="js/scripts.js"></script>
-
-    <script>
-        const searchInput = document.querySelector('.search-input-container input');
-        const userTable = document.getElementById('userTable');
-
-        searchInput.addEventListener('input', () => {
-            const searchValue = searchInput.value.toLowerCase();
-            const rows = userTable.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
-                row.style.display = match ? '' : 'none';
-            });
-        });
-
-        const filterLinks = document.querySelectorAll('.dropdown-menu a[data-count]');
-        const itemCountText = document.getElementById('itemCountText');
-
-        filterLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const itemCount = e.target.dataset.count;
-
-                itemCountText.textContent = `${itemCount} Items`;
-
-                const rows = userTable.querySelectorAll('tbody tr');
-                rows.forEach((row, index) => {
-                    if (index < itemCount) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
     <!-- Page Specific Scripts End -->
 </body>
 

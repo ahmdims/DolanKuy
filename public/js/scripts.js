@@ -7,7 +7,7 @@
  *
  */
 
- class Scripts {
+class Scripts {
   constructor() {
     this._initSettings();
     this._initVariables();
@@ -23,7 +23,12 @@
       document.body.classList.remove('spinner');
       this._initBase();
       this._initCommon();
+      this._initIcons();
+      this._initComponents();
+      this._initApps();
       this._initPages();
+      this._initForms();
+      this._initPlugins();
     }, 100);
   }
 
@@ -53,66 +58,287 @@
     }
   }
 
+  // Icon pages initialization
+  _initIcons() {
+    // interface.icons.js initialization
+    if (typeof Icons !== 'undefined') {
+      const icons = new Icons();
+    }
+  }
+
+  // Components pages initialization
+  _initComponents() {
+    // cards.js initialization
+    if (typeof ComponentsCards !== 'undefined') {
+      const componentsCards = new ComponentsCards();
+    }
+
+    // navs.js initialization
+    if (typeof ComponentsNavs !== 'undefined') {
+      const componentsNavs = new ComponentsNavs();
+    }
+
+    // progress.js initialization
+    if (typeof ComponentsProgress !== 'undefined') {
+      const componentsProgress = new ComponentsProgress();
+    }
+
+    // spinners.js initialization
+    if (typeof ComponentsSpinners !== 'undefined') {
+      const componentsSpinners = new ComponentsSpinners();
+    }
+
+    // toasts.js initialization
+    if (typeof ComponentsToasts !== 'undefined') {
+      const componentsToasts = new ComponentsToasts();
+    }
+  }
+
+  // Application pages initialization
+  _initApps() {
+    // calendar.js initialization
+    if (typeof Calendar !== 'undefined') {
+      let calendar = new Calendar();
+    }
+    // mailbox.js initialization
+    if (typeof Mailbox !== 'undefined') {
+      let mailbox = new Mailbox();
+    }
+    // contacts.js initialization
+    if (typeof Contacts !== 'undefined') {
+      let contacts = new Contacts();
+    }
+    // chat.js initialization
+    if (typeof Chat !== 'undefined') {
+      const chat = new Chat();
+    }
+    // task.js initialization
+    if (typeof Tasks !== 'undefined') {
+      const tasks = new Tasks();
+    }
+  }
+
+  // Form and form controls pages initialization
+  _initForms() {
+    // layouts.js initialization
+    if (typeof FormLayouts !== 'undefined') {
+      const formLayouts = new FormLayouts();
+    }
+    // validation.js initialization
+    if (typeof FormValidation !== 'undefined') {
+      const formValidation = new FormValidation();
+    }
+    // wizards.js initialization
+    if (typeof FormWizards !== 'undefined') {
+      const formWizards = new FormWizards();
+    }
+    // inputmask.js initialization
+    if (typeof InputMask !== 'undefined') {
+      const inputMask = new InputMask();
+    }
+    // controls.autocomplete.js initialization
+    if (typeof GenericForms !== 'undefined') {
+      const genericForms = new GenericForms();
+    }
+    // controls.autocomplete.js initialization
+    if (typeof AutocompleteControls !== 'undefined') {
+      const autocompleteControls = new AutocompleteControls();
+    }
+    // controls.datepicker.js initialization
+    if (typeof DatePickerControls !== 'undefined') {
+      const datePickerControls = new DatePickerControls();
+    }
+    // controls.datepicker.js initialization
+    if (typeof DropzoneControls !== 'undefined') {
+      const dropzoneControls = new DropzoneControls();
+    }
+    // controls.editor.js initialization
+    if (typeof EditorControls !== 'undefined') {
+      const editorControls = new EditorControls();
+    }
+    // controls.spinner.js initialization
+    if (typeof SpinnerControls !== 'undefined') {
+      const spinnerControls = new SpinnerControls();
+    }
+    // controls.rating.js initialization
+    if (typeof RatingControls !== 'undefined') {
+      const ratingControls = new RatingControls();
+    }
+    // controls.select2.js initialization
+    if (typeof Select2Controls !== 'undefined') {
+      const select2Controls = new Select2Controls();
+    }
+    // controls.slider.js initialization
+    if (typeof SliderControls !== 'undefined') {
+      const sliderControls = new SliderControls();
+    }
+    // controls.tag.js initialization
+    if (typeof TagControls !== 'undefined') {
+      const tagControls = new TagControls();
+    }
+    // controls.timepicker.js initialization
+    if (typeof TimePickerControls !== 'undefined') {
+      const timePickerControls = new TimePickerControls();
+    }
+  }
+
+  // Plugin pages initialization
+  _initPlugins() {
+    // carousels.js initialization
+    if (typeof Carousels !== 'undefined') {
+      const carousels = new Carousels();
+    }
+    // charts.js initialization
+    if (typeof Charts !== 'undefined') {
+      const charts = new Charts();
+    }
+    // contextmenu.js initialization
+    if (typeof ContextMenu !== 'undefined') {
+      const contextMenu = new ContextMenu();
+    }
+    // lightbox.js initialization
+    if (typeof Lightbox !== 'undefined') {
+      const lightbox = new Lightbox();
+    }
+
+    // lists.js initialization
+    if (typeof Lists !== 'undefined') {
+      const lists = new Lists();
+    }
+    // notifies.js initialization
+    if (typeof Notifies !== 'undefined') {
+      const notifies = new Notifies();
+    }
+    // players.js initialization
+    if (typeof Players !== 'undefined') {
+      const players = new Players();
+    }
+    // progressbars.js initialization
+    if (typeof ProgressBars !== 'undefined') {
+      const progressBars = new ProgressBars();
+    }
+    // shortcuts.js initialization
+    if (typeof Shortcuts !== 'undefined') {
+      const shortcuts = new Shortcuts();
+    }
+    // sortables.js initialization
+    if (typeof Sortables !== 'undefined') {
+      const sortables = new Sortables();
+    }
+    // datatable.editablerows.js initialization
+    if (typeof EditableRows !== 'undefined') {
+      const editableRows = new EditableRows();
+    }
+    // datatable.editableboxed.js initialization
+    if (typeof EditableBoxed !== 'undefined') {
+      const editableBoxed = new EditableBoxed();
+    }
+    // datatable.ajax.js initialization
+    if (typeof RowsAjax !== 'undefined') {
+      const rowsAjax = new RowsAjax();
+    }
+    // datatable.serverside.js initialization
+    if (typeof RowsServerSide !== 'undefined') {
+      const rowsServerSide = new RowsServerSide();
+    }
+    // datatable.serverside.js initialization
+    if (typeof BoxedVariations !== 'undefined') {
+      const boxedVariations = new BoxedVariations();
+    }
+  }
+
   // Pages initialization
   _initPages() {
-    // customers.detail.js initialization
-    if (typeof CustomersDetail !== 'undefined') {
-      const customersDetail = new CustomersDetail();
+    // dashboard.default.js initialization
+    if (typeof DashboardDefault !== 'undefined') {
+      let dashboardDefault = new DashboardDefault();
     }
-    // customers.list.js initialization
-    if (typeof CustomersList !== 'undefined') {
-      const customersList = new CustomersList();
+    // dashboard.analytic.js initialization
+    if (typeof DashboardAnalytic !== 'undefined') {
+      let dashboardAnalytic = new DashboardAnalytic();
     }
-    // dashboard.js initialization
-    if (typeof Dashboard !== 'undefined') {
-      const dashboard = new Dashboard();
+    // dashboard.visual.js initialization
+    if (typeof DashboardVisual !== 'undefined') {
+      let dashboardVisual = new DashboardVisual();
     }
-    // discount.js initialization
-    if (typeof Discount !== 'undefined') {
-      const discount = new Discount();
+    // auth.login.js initialization
+    if (typeof AuthLogin !== 'undefined') {
+      const authLogin = new AuthLogin();
     }
-    // orders.list.js initialization
-    if (typeof OrdersList !== 'undefined') {
-      const ordersList = new OrdersList();
+    // auth.register.js initialization
+    if (typeof AuthRegister !== 'undefined') {
+      const authRegister = new AuthRegister();
     }
-    // products.detail.js initialization
-    if (typeof ProductsDetail !== 'undefined') {
-      const productsDetail = new ProductsDetail();
+    // auth.forgotpassword.js initialization
+    if (typeof AuthForgotPassword !== 'undefined') {
+      const authForgotPassword = new AuthForgotPassword();
     }
-    // products.list.js initialization
-    if (typeof ProductsList !== 'undefined') {
-      const productsList = new ProductsList();
+    // auth.resetpassword.js initialization
+    if (typeof AuthResetPassword !== 'undefined') {
+      const authResetPassword = new AuthResetPassword();
     }
-    // settings.general.js initialization
-    if (typeof SettingsGeneral !== 'undefined') {
-      const settingsGeneral = new SettingsGeneral();
+    // blocks.details.js initialization
+    if (typeof BlocksDetails !== 'undefined') {
+      const blocksDetails = new BlocksDetails();
     }
-    // storefront.categories.js initialization
-    if (typeof StorefrontCategories !== 'undefined') {
-      const storefrontCategories = new StorefrontCategories();
+    // blocks.gallery.js initialization
+    if (typeof BlocksGallery !== 'undefined') {
+      const blocksGallery = new BlocksGallery();
     }
-    // storefront.checkout.js initialization
-    if (typeof StorefrontCheckout !== 'undefined') {
-      const storefrontCheckout = new StorefrontCheckout();
+    // blocks.list.js initialization
+    if (typeof BlocksList !== 'undefined') {
+      const blocksList = new BlocksList();
     }
-    // storefront.detail.js initialization
-    if (typeof StorefrontDetail !== 'undefined') {
-      const storefrontDetail = new StorefrontDetail();
+    // blocks.stats.js initialization
+    if (typeof BlocksStats !== 'undefined') {
+      const blocksStats = new BlocksStats();
     }
-    // storefront.filters.js initialization
-    if (typeof StorefrontFilters !== 'undefined') {
-      const storefrontFilters = new StorefrontFilters();
+    // blocks.tabulardata.js initialization
+    if (typeof BlocksTabularData !== 'undefined') {
+      const blocksTabularData = new BlocksTabularData();
     }
-    // storefront.home.js initialization
-    if (typeof StorefrontHome !== 'undefined') {
-      const storefrontHome = new StorefrontHome();
+    // blocks.thumbnails.js initialization
+    if (typeof BlocksThumbnails !== 'undefined') {
+      const blocksThumbnails = new BlocksThumbnails();
+    }
+    // blocks.users.js initialization
+    if (typeof BlocksUsers !== 'undefined') {
+      const blocksUsers = new BlocksUsers();
+    }
+    // blog.home.js initialization
+    if (typeof BlogHome !== 'undefined') {
+      const blogHome = new BlogHome();
+    }
+    // blog.detail.js initialization
+    if (typeof BlogDetail !== 'undefined') {
+      const blogDetail = new BlogDetail();
+    }
+    // misc.comingsoon.js initialization
+    if (typeof ComingSoon !== 'undefined') {
+      const comingSoon = new ComingSoon();
+    }
+    // portfolio.detail.js initialization
+    if (typeof PortfolioDetail !== 'undefined') {
+      const portfolioDetail = new PortfolioDetail();
+    }
+    // portfolio.home.js initialization
+    if (typeof PortfolioHome !== 'undefined') {
+      const portfolioHome = new PortfolioHome();
+    }
+    // profile.settings.js initialization
+    if (typeof ProfileSettings !== 'undefined') {
+      const profileSettings = new ProfileSettings();
+    }
+    // profile.standard.js initialization
+    if (typeof ProfileStandard !== 'undefined') {
+      const profileStandard = new ProfileStandard();
     }
   }
 
   // Settings initialization
   _initSettings() {
     if (typeof Settings !== 'undefined') {
-      const settings = new Settings({attributes: {placement: 'vertical', layout: 'boxed', color: 'light-blue' }, showSettings: true, storagePrefix: 'acorn-ecommerce-platform-'});
+      const settings = new Settings({attributes: {placement: 'horizontal'}, showSettings: true, storagePrefix: 'acorn-classic-dashboard-'});
     }
   }
 

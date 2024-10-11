@@ -17,7 +17,7 @@
                     process-centric communities...
                 </p>
                 <div class="mb-5">
-                    <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
+                    <a class="btn btn-lg btn-outline-white" href="/">Learn More</a>
                 </div>
             </div>
         </div>
@@ -34,35 +34,38 @@
                 </a>
             </div>
             <div class="mb-5">
-                <h2 class="cta-1 mb-0 text-primary">Welcome,</h2>
-                <h2 class="cta-1 text-primary">let's get started!</h2>
+                <h2 class="cta-1 mb-0 text-primary">Selamat datang,</h2>
+                <h2 class="cta-1 text-primary">Mari kita mulai!</h2>
             </div>
             <div class="mb-5">
-                <p class="h6">Please use your credentials to login.</p>
+                <p class="h6">Silakan gunakan kredensial Anda untuk masuk.</p>
                 <p class="h6">
-                    If you are not a member, please
-                    <a href="{{ route('register') }}">register</a>.
+                    Jika Anda bukan anggota, silakan
+                    <a href="{{ route('register') }}">daftar</a>.
                 </p>
             </div>
             <div>
-                <form method="POST" action="{{ route('login') }}" id="loginForm" class="tooltip-end-bottom" novalidate>
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="email"></i>
-                        <input class="form-control" placeholder="Email" name="email" required />
+                        <input type="email" id="name" name="email"
+                            class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"
+                            required autofocus autocomplete="name">
                         @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="lock-off"></i>
-                        <input class="form-control pe-7" name="password" type="password" placeholder="Password"
+                        <input type="password" id="password" name="password"
+                            class="form-control @error('password') is-invalid @enderror" placeholder="Kata Sandi"
                             required />
                         @error('password')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                    <button type="submit" class="btn btn-lg btn-primary">Masuk</button>
                 </form>
             </div>
         </div>

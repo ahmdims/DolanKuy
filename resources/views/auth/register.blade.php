@@ -12,11 +12,12 @@
                     <h1 class="display-3 text-white">Ready for Your Project</h1>
                 </div>
                 <p class="h6 text-white lh-1-5 mb-5">
-                    Dynamically target high-payoff intellectual capital for customized technologies.
-                    Objectively integrate emerging core competencies before process-centric communities...
+                    Dynamically target high-payoff intellectual capital for customized technologies. Objectively
+                    integrate emerging core competencies before
+                    process-centric communities...
                 </p>
                 <div class="mb-5">
-                    <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
+                    <a class="btn btn-lg btn-outline-white" href="/">Learn More</a>
                 </div>
             </div>
         </div>
@@ -33,69 +34,73 @@
                 </a>
             </div>
             <div class="mb-5">
-                <h2 class="cta-1 mb-0 text-primary">Welcome,</h2>
-                <h2 class="cta-1 text-primary">let's get the ball rolling!</h2>
+                <h2 class="cta-1 mb-0 text-primary">Selamat datang,</h2>
+                <h2 class="cta-1 text-primary">Mari kita mulai!</h2>
             </div>
             <div class="mb-5">
-                <p class="h6">Please use the form to register.</p>
+                <p class="h6">Silakan gunakan formulir untuk mendaftar.</p>
                 <p class="h6">
-                    If you are a member, please
-                    <a href="{{ route('login') }}">login</a>.
+                    Jika Anda sudah menjadi anggota, silakan
+                    <a href="{{ route('login') }}">masuk</a>.
                 </p>
             </div>
             <div>
-                <form method="POST" action="{{ route('register') }}" id="registerForm" class="tooltip-end-bottom"
+                <form id="registerForm" method="POST" action="{{ route('register') }}" class="tooltip-end-bottom"
                     novalidate>
                     @csrf
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="user"></i>
-                        <input class="form-control" placeholder="Username" name="username" value="{{ old('username') }}"
-                            required autofocus />
-                        @error('username')
-                            <span class="text-danger">{{ $message }}</span>
+                        <input class="form-control @error('name') is-invalid @enderror" type="text" id="name"
+                            name="name" placeholder="Nama" value="{{ old('name') }}" required autofocus
+                            autocomplete="name">
+                        @error('name')
+                            <span class="text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
+
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="user"></i>
-                        <input class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required />
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
+                        <input class="form-control @error('username') is-invalid @enderror" type="text" id="username"
+                            name="username" placeholder="Nama Pengguna" value="{{ old('username') }}" required
+                            autocomplete="username">
+                        @error('username')
+                            <span class="text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
+
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="email"></i>
-                        <input class="form-control" placeholder="Email" name="email" value="{{ old('email') }}"
-                            required />
+                        <input class="form-control @error('email') is-invalid @enderror" type="email" id="emailname"
+                            name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
-                            <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
+
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="lock-off"></i>
-                        <input class="form-control" name="password" type="password" placeholder="Password" required />
+                        <input class="form-control @error('password') is-invalid @enderror" type="password" id="pass"
+                            name="password" placeholder="Kata Sandi" required autocomplete="new-password">
                         @error('password')
-                            <span class="text-danger">{{ $message }}</span>
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
+
                     <div class="mb-3 filled form-group tooltip-end-top">
                         <i data-acorn-icon="lock-off"></i>
-                        <input class="form-control" name="password_confirmation" type="password"
-                            placeholder="Confirm Password" required />
-                        @error('password_confirmation')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <input class="form-control" type="password" id="compass" name="password_confirmation"
+                            placeholder="Konfirmasi Kata Sandi" required autocomplete="new-password">
                     </div>
-                    <div class="mb-3 position-relative form-group">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="registerCheck" name="registerCheck"
-                                required />
-                            <label class="form-check-label" for="registerCheck">
-                                I have read and accept the
-                                <a href="index.html" target="_blank">terms and conditions.</a>
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Signup</button>
+
+                    <button type="submit" class="btn btn-lg btn-primary">Daftar</button>
                 </form>
             </div>
         </div>

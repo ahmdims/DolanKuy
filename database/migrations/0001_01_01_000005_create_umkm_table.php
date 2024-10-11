@@ -26,8 +26,8 @@ return new class extends Migration {
             $table->text('fasilitas');
             $table->string('kontak', 255);
             $table->text('foto_profil');
-            $table->decimal('rating_rata_rata', 3, 2);
-            $table->unsignedBigInteger('id_destinasi');
+            $table->decimal('rating', 3, 2);
+            $table->integer('rating')->nullable()->change();
 
             $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
 

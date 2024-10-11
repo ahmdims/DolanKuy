@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'utype',
     ];
 
     /**
@@ -53,4 +54,11 @@ class User extends Authenticatable
     {
         $this->attributes['username'] = strtolower($value);
     }
+
+    public function setutypeAttribute($value)
+{
+    $this->attributes['utype'] = $value;
+}
+
+
 }

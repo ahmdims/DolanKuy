@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->integer('harga_tiket');
             $table->string('fasilitas', 255);
             $table->string('kontak', 255);
-            $table->decimal('rating_rata_rata', 3, 2);
+            $table->integer('rating')->nullable()->change();
 
             $table->rememberToken();
             $table->timestamps();

@@ -12,12 +12,12 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['superadmin', 'admin_wisata', 'admin_umkm', 'admin_budaya', 'pengunjung']);
+            $table->enum('utype', ['superadmin', 'admin_wisata', 'admin_umkm', 'admin_budaya', 'pengunjung'])->default('pengunjung');
             $table->rememberToken();
             $table->timestamps();
         });
