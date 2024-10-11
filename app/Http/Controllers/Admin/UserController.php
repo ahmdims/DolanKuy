@@ -46,7 +46,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request->role,  // Role diambil dari request
         ]);
-
+        
         event(new Registered($user));
 
         return redirect()->route('admin.tourist.index')->with('success', 'Created successfully.');
@@ -71,9 +71,15 @@ class UserController extends Controller
         $user = User::find($id);  // Pastikan nama model dimulai dengan huruf kapital
         if ($user) {
             $user->update($request->all());
+<<<<<<< HEAD:app/Http/Controllers/Admin/UserController.php
             return redirect()->route('admin.tourist.index')->with('success', 'Updated successfully.');
         } else {
             return redirect()->route('admin.tourist.index')->with('error', 'User not found.');
+=======
+            return redirect()->route('users.index')->with('success', 'Updated successfully.');
+        } else {
+            return redirect()->route('users.index')->with('error', 'User not found.');
+>>>>>>> 860b61aed6781a2df125de4cc91df13655591e80:app/Http/Controllers/Admin/UsersController.php
         }
     }
 
