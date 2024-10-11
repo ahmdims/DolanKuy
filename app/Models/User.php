@@ -21,11 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
         'utype',
-=======
-        'role',
->>>>>>> 860b61aed6781a2df125de4cc91df13655591e80
     ];
 
     /**
@@ -59,19 +55,9 @@ class User extends Authenticatable
         $this->attributes['username'] = strtolower($value);
     }
 
-<<<<<<< HEAD
     public function setutypeAttribute($value)
-{
-    $this->attributes['utype'] = $value;
-=======
-    public function setRoleAttribute($value)
-{
-    $this->attributes['role'] = $value; // Jangan set default jadi 'superadmin' di sini
-}
-
-
->>>>>>> 860b61aed6781a2df125de4cc91df13655591e80
-}
-
+    {
+        $this->attributes['utype'] = $value;
+    }
 
 }
