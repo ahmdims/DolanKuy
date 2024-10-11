@@ -10,7 +10,7 @@
       <!-- Title Start -->
       <div class="col-auto mb-3 mb-md-0 me-auto">
         <div class="w-auto sw-md-30">
-          <a href="{{ route('admin.dashboard.dashboard') }}" class="muted-link pb-1 d-inline-block breadcrumb-back">
+          <a href="{{ route('admin.dashboard.index') }}" class="muted-link pb-1 d-inline-block breadcrumb-back">
             <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
             <span class="text-small align-middle">Beranda</span>
           </a>
@@ -193,24 +193,24 @@
             <input type="text" class="form-control" name="name" required>
           </div>
           <div class="mb-3">
-<<<<<<< HEAD:resources/views/admin/tourist/index.blade.php
-            <label for="utype" class="form-label">Role</label>
-            <select class="form-select" name="utype" required>
-              <option value="superadmin">Superadmin</option>
-              <option value="admin_wisata">Admin Wisata</option>
-              <option value="admin_umkm">Admin UMKM</option>
-              <option value="admin_budaya">Admin Budaya</option>
-              <option value="pengunjung">Pengunjung</option>
-=======
-            <label for="role" class="form-label">Role</label>
-            <select class="form-select" id="role" name="role" required>
-                <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
-                <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
-                <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
-                <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
->>>>>>> 860b61aed6781a2df125de4cc91df13655591e80:resources/views/admin/users/users.blade.php
-            </select>
+            <<<<<<< HEAD:resources/views/admin/tourist/index.blade.php <label for="utype" class="form-label">
+              Role</label>
+              <select class="form-select" name="utype" required>
+                <option value="superadmin">Superadmin</option>
+                <option value="admin_wisata">Admin Wisata</option>
+                <option value="admin_umkm">Admin UMKM</option>
+                <option value="admin_budaya">Admin Budaya</option>
+                <option value="pengunjung">Pengunjung</option>
+                =======
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" required>
+                  <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                  <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
+                  <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
+                  <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
+                  <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
+                  >>>>>>> 860b61aed6781a2df125de4cc91df13655591e80:resources/views/admin/users/users.blade.php
+                </select>
 
           </div>
           <div class="mb-3">

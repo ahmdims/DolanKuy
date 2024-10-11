@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth.admin')->group(function () {
 
     //DASHBOARD
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard.dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
     //USER
     Route::get('/tourist', [UserController::class, 'index'])->name('admin.tourist.index');

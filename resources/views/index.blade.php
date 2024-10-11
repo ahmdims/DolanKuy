@@ -21,7 +21,7 @@
             @if (Route::has('login'))
                 @auth
                     @if (Auth::user()->utype === 'superadmin')
-                        <a href="{{ route('admin.dashboard.dashboard') }}" class="btn btn-primary mx-2">Dashboard</a>
+                        <a href="{{ route('admin.dashboard.index') }}" class="btn btn-primary mx-2">Dashboard</a>
                         <a href="{{ route('app.profile.index') }}" class="btn btn-secondary mx-2">My Account</a>
                     @else
                         <a href="{{ route('app.profile.index') }}" class="btn btn-secondary mx-2">My Account</a>
