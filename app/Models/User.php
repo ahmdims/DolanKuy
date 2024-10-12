@@ -60,4 +60,10 @@ class User extends Authenticatable
         $this->attributes['utype'] = $value;
     }
 
+    public function setRoleAttribute($value)
+    {
+        $this->attributes['role'] = $value; // Jangan set default jadi 'superadmin' di sini
+    }
+
+
 }

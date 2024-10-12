@@ -196,12 +196,12 @@
           </div>
           <div class="mb-3">
             <label for="utype" class="form-label">Role</label>
-            <select class="form-select" name="utype" required>
-              <option value="superadmin">Superadmin</option>
-              <option value="admin_wisata">Admin Wisata</option>
-              <option value="admin_umkm">Admin UMKM</option>
-              <option value="admin_budaya">Admin Budaya</option>
-              <option value="pengunjung">Pengunjung</option>
+            <select class="form-select" id="role" name="role" required>
+                <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
+                <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
+                <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
+                <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
             </select>
           </div>
           <div class="mb-3">
