@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-footer="true">
+<html lang="en" data-footer="true" data-scrollspy="true">
 
 <head>
     <meta charset="UTF-8" />
@@ -29,19 +29,20 @@
     <meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
     <!-- Favicon Tags End -->
+
     <!-- Font Tags Start -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="font/CS-Interface/style.css" />
     <!-- Font Tags End -->
+
     <!-- Vendor Styles Start -->
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
     <link rel="stylesheet" href="css/vendor/OverlayScrollbars.min.css" />
-
     <link rel="stylesheet" href="css/vendor/datatables.min.css" />
-
     <!-- Vendor Styles End -->
+
     <!-- Template Base Styles Start -->
     <link rel="stylesheet" href="css/styles.css" />
     <!-- Template Base Styles End -->
@@ -79,14 +80,14 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="/">
-                                            <i data-acorn-icon="file-text" class="me-2" data-acorn-size="17"></i>
+                                            <i data-acorn-icon="home" class="me-2" data-acorn-size="17"></i>
                                             <span class="align-middle">Beranda</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i data-acorn-icon="file-text" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Docs</span>
+                                            <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
+                                            <span class="align-middle">Setelan</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -95,7 +96,7 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a href="{{ route('app.profile.index') }}">
-                                            <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
+                                            <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                                             <span class="align-middle">Profil</span>
                                         </a>
                                     </li>
@@ -139,18 +140,18 @@
                     <ul id="menu" class="menu">
                         <li>
                             <a href="{{ route('admin.dashboard.index') }}">
-                                <i data-acorn-icon="home" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Dashboards</span>
+                                <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Beranda</span>
                             </a>
                         </li>
                         <li>
                             <a href="#apps" data-href="Apps.html">
-                                <i data-acorn-icon="screen" class="icon" data-acorn-size="18"></i>
+                                <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Pengguna</span>
                             </a>
                             <ul id="apps">
                                 <li>
-                                    <a href="Apps.Calendar.html">
+                                    <a href="{{ route('admin.adminwisata.index') }}">
                                         <span class="label">Admin Wisata</span>
                                     </a>
                                 </li>
@@ -173,25 +174,25 @@
                         </li>
                         <li>
                             <a href="#pages">
-                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <i data-acorn-icon="category" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Kategori</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.destination.index') }}">
-                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Destinasi Wisata</span>
                             </a>
                         </li>
                         <li>
                             <a href="#pages">
-                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <i data-acorn-icon="destination" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Budaya</span>
                             </a>
                         </li>
                         <li>
                             <a href="#pages">
-                                <i data-acorn-icon="notebook-1" class="icon" data-acorn-size="18"></i>
+                                <i data-acorn-icon="help" class="icon" data-acorn-size="18"></i>
                                 <span class="label">UMKM</span>
                             </a>
                         </li>
@@ -226,117 +227,54 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <!-- Title and Top Buttons Start -->
-                        <div class="page-title-container">
-                            <div class="row">
-                                <!-- Title Start -->
-                                <div class="col-auto mb-3 mb-md-0 me-auto">
-                                    <div class="w-auto sw-md-30">
-                                        <a href="{{ route('admin.dashboard.index') }}"
-                                            class="muted-link pb-1 d-inline-block breadcrumb-back">
-                                            <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
-                                            <span class="text-small align-middle">Beranda</span>
-                                        </a>
-                                        <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
+                        <!-- Title Start -->
+                        <section class="scroll-section" id="title">
+                            <div class="page-title-container">
+                                <div class="row">
+                                    <!-- Title Start -->
+                                    <div class="col-auto mb-3 mb-md-0 me-auto">
+                                        <div class="w-auto sw-md-30">
+                                            <a href="{{ route('admin.dashboard.index') }}"
+                                                class="muted-link pb-1 d-inline-block breadcrumb-back">
+                                                <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
+                                                <span class="text-small align-middle">Beranda</span>
+                                            </a>
+                                            <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
+                                        </div>
                                     </div>
+                                    <!-- Title End -->
                                 </div>
-                                <!-- Title End -->
-
-                                <!-- Top Buttons Start -->
-                                <div class="col-12 col-md-5 d-flex align-items-start justify-content-end">
-                                    <!-- Add New Button Start -->
-                                    <a data-bs-toggle="modal" data-bs-target="#createModal" type="button"
-                                        class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto">
-                                        <i data-acorn-icon="plus"></i>
-                                        <span>Tambah @yield('title')</span>
-                                    </a>
-                                    <!-- Add New Button End -->
-
-                                </div>
-                                <!-- Top Buttons End -->
                             </div>
-                        </div>
-                        <!-- Title and Top Buttons End -->
+                        </section>
+                        <!-- Title End -->
+
+                        <!-- Check message -->
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                                        class="fa fa-close"></i></button>
+                            </div>
+                        @endif
+
+                        @if($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        @endif
+                        <!-- End message -->
 
                         <!-- Content Start -->
-                        <div class="data-table-rows slim">
-
+                        <div>
                             @yield('content')
                         </div>
-                        <!-- Content End -->
-
-                        <!-- Add Edit Modal Start -->
-                        <div class="modal modal-right fade" id="addEditModal" tabindex="-1" role="dialog"
-                            aria-labelledby="modalTitle" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="modalTitle">Add New</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="mb-3">
-                                                <label class="form-label">Name</label>
-                                                <input name="Name" type="text" class="form-control" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Sales</label>
-                                                <input name="Sales" type="number" class="form-control" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Stock</label>
-                                                <input name="Stock" type="number" class="form-control" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Category</label>
-                                                <div class="form-check">
-                                                    <input type="radio" id="category1" name="Category"
-                                                        value="Whole Wheat" class="form-check-input" />
-                                                    <label class="form-check-label" for="category1">Whole Wheat</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="category2" name="Category" value="Sourdough"
-                                                        class="form-check-input" />
-                                                    <label class="form-check-label" for="category2">Sourdough</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="category3" name="Category"
-                                                        value="Multigrain" class="form-check-input" />
-                                                    <label class="form-check-label" for="category3">Multigrain</label>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Tag</label>
-                                                <div class="form-check">
-                                                    <input type="radio" id="tag1" name="Tag" value="New"
-                                                        class="form-check-input" />
-                                                    <label class="form-check-label" for="tag1">New</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="tag2" name="Tag" value="Sale"
-                                                        class="form-check-input" />
-                                                    <label class="form-check-label" for="tag2">Sale</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" id="tag3" name="Tag" value="Done"
-                                                        class="form-check-input" />
-                                                    <label class="form-check-label" for="tag3">Done</label>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-primary"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary"
-                                            id="addEditConfirmButton">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add Edit Modal End -->
                     </div>
                 </div>
             </div>
@@ -700,199 +638,7 @@
     </div>
     <!-- Theme Settings Modal End -->
 
-    <!-- Niches Modal Start -->
-    <div class="modal fade modal-right scroll-out-negative" id="niches" data-bs-backdrop="true" tabindex="-1"
-        role="dialog" aria-labelledby="niches" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable full" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Niches</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="scroll-track-visible">
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Classic Dashboard</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/classic-dashboard.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-classic-dashboard.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-classic-dashboard.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-classic-dashboard.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Medical Assistant</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/medical-assistant.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-medical-assistant.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-medical-assistant.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-medical-assistant.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Service Provider</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/service-provider.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-service-provider.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-service-provider.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-service-provider.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Elearning Portal</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/elearning-portal.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-elearning-portal.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-elearning-portal.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-elearning-portal.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Ecommerce Platform</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/ecommerce-platform.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-ecommerce-platform.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-ecommerce-platform.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-ecommerce-platform.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-5">
-                            <label class="mb-2 d-inline-block form-label">Starter Project</label>
-                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
-                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
-                                    <img src="https://acorn.coloredstrategies.com/img/page/starter-project.webp"
-                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
-                                        alt="card image" />
-                                    <div
-                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
-                                        <a target="_blank"
-                                            href="https://acorn-html-starter-project.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Html
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-laravel-starter-project.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            Laravel
-                                        </a>
-                                        <a target="_blank"
-                                            href="https://acorn-dotnet-starter-project.coloredstrategies.com/"
-                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
-                                            .Net5
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Niches Modal End -->
-
-    <!-- Theme Settings & Niches Buttons Start -->
+    <!-- Theme Settings Buttons Start -->
     <div class="settings-buttons-container">
         <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal"
             data-bs-target="#settings" id="settingsButton">
@@ -901,46 +647,8 @@
                 <i data-acorn-icon="paint-roller" class="position-relative"></i>
             </span>
         </button>
-        <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal"
-            data-bs-target="#niches" id="nichesButton">
-            <span class="d-inline-block no-delay" data-bs-delay="0" data-bs-offset="0,3" data-bs-toggle="tooltip"
-                data-bs-placement="left" title="Niches">
-                <i data-acorn-icon="toy" class="position-relative"></i>
-            </span>
-        </button>
     </div>
-    <!-- Theme Settings & Niches Buttons End -->
-
-    <!-- Search Modal Start -->
-    <div class="modal fade modal-under-nav modal-search modal-close-out" id="searchPagesModal" tabindex="-1"
-        role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header border-0 p-0">
-                    <button type="button" class="btn-close btn btn-icon btn-icon-only btn-foreground"
-                        data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body ps-5 pe-5 pb-0 border-0">
-                    <input id="searchPagesInput"
-                        class="form-control form-control-xl borderless ps-0 pe-0 mb-1 auto-complete" type="text"
-                        autocomplete="off" />
-                </div>
-                <div class="modal-footer border-top justify-content-start ps-5 pe-5 pb-3 pt-3 border-0">
-                    <span class="text-alternate d-inline-block m-0 me-3">
-                        <i data-acorn-icon="arrow-bottom" data-acorn-size="15"
-                            class="text-alternate align-middle me-1"></i>
-                        <span class="align-middle text-medium">Navigate</span>
-                    </span>
-                    <span class="text-alternate d-inline-block m-0 me-3">
-                        <i data-acorn-icon="arrow-bottom-left" data-acorn-size="15"
-                            class="text-alternate align-middle me-1"></i>
-                        <span class="align-middle text-medium">Select</span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Search Modal End -->
+    <!-- Theme Settings Buttons End -->
 
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
@@ -952,11 +660,9 @@
     <script src="icon/acorn-icons.js"></script>
     <script src="icon/acorn-icons-interface.js"></script>
 
-    <script src="js/vendor/bootstrap-submenu.js"></script>
+    <script src="js/cs/scrollspy.js"></script>
 
     <script src="js/vendor/datatables.min.js"></script>
-
-    <script src="js/vendor/mousetrap.min.js"></script>
 
     <!-- Vendor Scripts End -->
 
@@ -967,11 +673,10 @@
     <script src="js/base/search.js"></script>
     <script src="js/base/settings.js"></script>
     <!-- Template Base Scripts End -->
+
     <!-- Page Specific Scripts Start -->
-
     <script src="js/cs/datatable.extend.js"></script>
-
-    <script src="js/plugins/datatable.editablerows.js"></script>
+    <script src="js/plugins/datatable.boxedvariations.js"></script>
 
     <script src="js/common.js"></script>
     <script src="js/scripts.js"></script>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengunjung')
+@section('title', 'Admin Wisata')
 
 @section('content')
 
@@ -72,7 +72,7 @@
         <tbody>
           @php $iteration = 1; @endphp
           @foreach($users as $user_data)
-        @if($user_data->utype === 'pengunjung')
+        @if($user_data->utype === 'admin_wisata')
       <tr>
       <td>{{ $iteration }}.</td>
       <td>{{ $user_data->email }}</td>
@@ -95,9 +95,9 @@
         </div>
       </td>
       </tr>
-      @include('admin.tourist.detail', ['user_data' => $user_data])
-      @include('admin.tourist.update', ['user_data' => $user_data])
-      @include('admin.tourist.delete', ['user_data' => $user_data])
+      @include('admin.adminwisata.detail', ['user_data' => $user_data])
+      @include('admin.adminwisata.update', ['user_data' => $user_data])
+      @include('admin.adminwisata.delete', ['user_data' => $user_data])
       @php    $iteration++; @endphp
     @endif
       @endforeach
@@ -113,9 +113,12 @@
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('adminwisata.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
+
+                <input type="hidden" id="utype" name="utype" value="admin_wisata">
+
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -127,18 +130,6 @@
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
-                </div>
-                <div class="mb-3">
-                  <label for="utype" class="form-label">Role</label>
-                  <select class="form-select" id="utype" name="utype" required>
-                    <option value="superadmin" {{ old('utype') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                    <option value="admin_wisata" {{ old('utype') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata
-                    </option>
-                    <option value="admin_umkm" {{ old('utype') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
-                    <option value="admin_budaya" {{ old('utype') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya
-                    </option>
-                    <option value="pengunjung" {{ old('utype') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
-                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>

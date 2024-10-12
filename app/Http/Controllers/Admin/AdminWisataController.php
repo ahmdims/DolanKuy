@@ -8,12 +8,12 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class TouristController extends Controller
+class AdminWisataController extends Controller
 {
     public function index()
     {
         $users = User::all();
-        return view('admin.tourist.index', compact('users'));
+        return view('admin.adminwisata.index', compact('users'));
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class TouristController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('admin.tourist.index')->with('success', 'Berhasil dibuat, bro!');
+        return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil dibuat, bro!');
     }
 
     public function update(Request $request, $id)
@@ -83,9 +83,9 @@ class TouristController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->update($request->all());
-            return redirect()->route('admin.tourist.index')->with('success', 'Berhasil diperbarui, bro!');
+            return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil diperbarui, bro!');
         } else {
-            return redirect()->route('admin.tourist.index')->with('error', 'Pengguna tidak ditemukan, cuy!');
+            return redirect()->route('admin.adminwisata.index')->with('error', 'Pengguna tidak ditemukan, cuy!');
         }
     }
 
@@ -94,6 +94,6 @@ class TouristController extends Controller
         $user = User::where('id', $id)->firstOrFail();
         $user->delete();
 
-        return redirect()->route('admin.tourist.index')->with('success', 'Berhasil dihapus, sob!');
+        return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil dihapus, sob!');
     }
 }

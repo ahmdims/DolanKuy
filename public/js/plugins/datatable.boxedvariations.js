@@ -57,15 +57,6 @@ class BoxedVariations {
       paging: true,
       buttons: ['copy', 'excel', 'csv', 'print'],
       length: 10,
-      columnDefs: [
-        // Adding Name content as an anchor with a target #
-        {
-          targets: 0,
-          render: function (data, type, row, meta) {
-            return '<a class="list-item-heading body" href="#">' + data + '</a>';
-          },
-        },
-      ],
       sDom: '<"row"<"col-sm-12"<"table-container"t>r>><"row"<"col-12"p>>',
       responsive: true,
       language: {

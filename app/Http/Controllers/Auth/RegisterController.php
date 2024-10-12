@@ -30,7 +30,7 @@ class RegisterController extends Controller
             'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
             'email.unique' => 'Waduh, email ini udah terdaftar. Cari email lain deh!',
             'password.required' => 'Password-nya kudu diisi, sob!',
-            'password.min' => 'Password minimal :min karakter biar aman, oke!',
+            'password.min' => 'Password minimal 8 karakter biar aman, oke!',
             'password.confirmed' => 'Konfirmasi password-nya ga cocok nih, hati-hati ya!',
         ];
 
