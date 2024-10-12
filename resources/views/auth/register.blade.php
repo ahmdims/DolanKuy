@@ -54,9 +54,7 @@
                             name="name" placeholder="Nama" value="{{ old('name') }}" required autofocus
                             autocomplete="name">
                         @error('name')
-                            <span class="text-danger">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -66,9 +64,7 @@
                             name="username" placeholder="Nama Pengguna" value="{{ old('username') }}" required
                             autocomplete="username">
                         @error('username')
-                            <span class="text-danger">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -77,9 +73,7 @@
                         <input class="form-control @error('email') is-invalid @enderror" type="email" id="emailname"
                             name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
-                            <span class="text-danger">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -88,9 +82,7 @@
                         <input class="form-control @error('password') is-invalid @enderror" type="password" id="pass"
                             name="password" placeholder="Kata Sandi" required autocomplete="new-password">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 

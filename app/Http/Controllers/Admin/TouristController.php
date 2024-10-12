@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class TouristController extends Controller
 {
     public function index()
     {
@@ -24,16 +24,23 @@ class UserController extends Controller
                 'string',
                 'unique:users,username',
                 'max:255',
-                'regex:/^[a-zA-Z0-9_.]+$/',
+                'regex:/^[a-z0-9_.]+$/',
             ],
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',  // Tambahkan validasi unique
+            'email' => 'required|string|email|max:255|unique:users,email',
             'role' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
             'password' => 'required|string|max:255',
         ], [
-            'username.required' => 'The username is required.',
-            'username.unique' => 'The username has already been taken.',
-            'username.regex' => 'The username may only contain letters, numbers, underscores, and periods, and cannot have spaces.',
+            'username.required' => 'Nama Pengguna wajib diisi, bro!',
+            'username.unique' => 'Aduh, username ini udah dipakai yang lain.',
+            'username.regex' => 'Nama Pengguna cuma boleh pakai a-z, 0-9, _ , . (tanpa spasi ya!)',
+            'name.required' => 'Nama wajib diisi, bro!',
+            'email.required' => 'Emailnya jangan lupa diisi dong!',
+            'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
+            'email.unique' => 'Waduh, email ini udah terdaftar. Cari email lain deh!',
+            'password.required' => 'Password-nya kudu diisi, sob!',
+            'password.min' => 'Password minimal :min karakter biar aman, oke!',
+            'password.confirmed' => 'Konfirmasi password-nya ga cocok nih, hati-hati ya!',
         ]);
 
         // Tambahkan debug untuk melihat data yang dikirim
@@ -46,7 +53,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request->role,  // Role diambil dari request
         ]);
-        
+
         event(new Registered($user));
 
         return redirect()->route('admin.tourist.index')->with('success', 'Created successfully.');
@@ -76,7 +83,6 @@ class UserController extends Controller
             return redirect()->route('admin.tourist.index')->with('error', 'User not found.');
         }
     }
-
 
     public function destroy($id)
     {
