@@ -25,8 +25,6 @@ return new class extends Migration {
             $table->string('fasilitas', 255);
             $table->string('kontak', 255);
             $table->integer('rating', )->nullable();
-
-            $table->rememberToken();
             $table->timestamps();
         });
     }

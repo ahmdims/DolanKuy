@@ -21,8 +21,6 @@ return new class extends Migration {
             $table->foreign('id_pengunjung')->references('id')->on('users')->onDelete('cascade');
 
             $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
-
-            $table->rememberToken();
             $table->timestamps();
         });
     }

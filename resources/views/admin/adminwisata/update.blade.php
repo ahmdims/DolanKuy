@@ -6,7 +6,8 @@
                 <h5 class="modal-title" id="Modal">Ubah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('adminwisata.update', $user_data->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('adminwisata.update', $user_data->id) }}"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -23,15 +24,18 @@
                     <div class="mb-3">
                         <label for="utype" class="form-label">Peran</label>
                         <select class="form-select" id="utype" name="utype" required>
-                            <option value="superadmin" {{ $user_data->utype == 'superadmin' ? 'selected' : '' }}>Superadmin
+                            <option value="pengunjung" {{ $user_data->utype == 'pengunjung' ? 'selected' : '' }}>
+                                Pengunjung
                             </option>
                             <option value="admin_wisata" {{ $user_data->utype == 'admin_wisata' ? 'selected' : '' }}>Admin
                                 Wisata</option>
-                            <option value="admin_umkm" {{ $user_data->utype == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM
+                            <option value="admin_umkm" {{ $user_data->utype == 'admin_umkm' ? 'selected' : '' }}>Admin
+                                UMKM
                             </option>
                             <option value="admin_budaya" {{ $user_data->utype == 'admin_budaya' ? 'selected' : '' }}>Admin
                                 Budaya</option>
-                            <option value="pengunjung" {{ $user_data->utype == 'pengunjung' ? 'selected' : '' }}>Pengunjung
+                            <option value="superadmin" {{ $user_data->utype == 'superadmin' ? 'selected' : '' }}>
+                                Superadmin
                             </option>
                         </select>
                     </div>

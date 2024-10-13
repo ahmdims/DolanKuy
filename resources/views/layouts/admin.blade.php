@@ -173,7 +173,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#pages">
+                            <a href="{{ route('admin.category.index') }}">
                                 <i data-acorn-icon="category" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Kategori</span>
                             </a>

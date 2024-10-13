@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminWisataController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\TouristController;
 use App\Http\Controllers\AdminController;
@@ -40,6 +41,15 @@ Route::middleware('auth.admin')->group(function () {
         'update' => 'adminwisata.update',
         'destroy' => 'adminwisata.destroy',
     ])->parameters(['adminwisata' => 'id']);
+
+    // Kategori
+    Route::resource('category', CategoryController::class)->names([
+        'index' => 'admin.category.index',
+        'store' => 'category.store',
+        'show' => 'category.detail',
+        'update' => 'category.update',
+        'destroy' => 'category.destroy',
+    ])->parameters(['category' => 'id']);
 
     // Destinasi Wisata
     Route::resource('destination', DestinationController::class)->names([

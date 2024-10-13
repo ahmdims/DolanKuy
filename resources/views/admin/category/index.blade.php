@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengunjung')
+@section('title', 'Kategori')
 
 @section('content')
 
@@ -63,43 +63,37 @@
         <thead>
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
-            <th class="text-muted text-small text-uppercase">Email</th>
-            <th class="text-muted text-small text-uppercase">Username</th>
-            <th class="text-muted text-small text-uppercase">Name</th>
-            <th class="text-muted text-small text-uppercase">Action</th>
+            <th class="text-muted text-small text-uppercase">Kategori</th>
+            <th class="text-muted text-small text-uppercase">Aksi/th>
           </tr>
         </thead>
         <tbody>
           @php $iteration = 1; @endphp
-          @foreach($users as $user_data)
-        @if($user_data->utype === 'pengunjung')
-      <tr>
-      <td>{{ $iteration }}.</td>
-      <td>{{ $user_data->email }}</td>
-      <td>{{ $user_data->username }}</td>
-      <td>{{ $user_data->name }}</td>
-      <td>
-        <div class="d-flex align-items-center" style="height: 100%;">
-        <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
-        <i data-acorn-icon="search"></i>
-        </a>
-        <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
-        <i data-acorn-icon="edit"></i>
-        </a>
-        <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
-        <i data-acorn-icon="bin"></i>
-        </a>
-        </div>
-      </td>
-      </tr>
-      @include('admin.tourist.detail', ['user_data' => $user_data])
-      @include('admin.tourist.update', ['user_data' => $user_data])
-      @include('admin.tourist.delete', ['user_data' => $user_data])
-      @php    $iteration++; @endphp
-    @endif
+          @foreach($category as $category_data)
+        <tr>
+        <td>{{ $iteration }}.</td>
+        <td>{{ $category_data->nama_kategori }}</td>
+        <td>
+          <div class="d-flex align-items-center" style="height: 100%;">
+          <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $category_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+            <i data-acorn-icon="search"></i>
+          </a>
+          <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $category_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+            <i data-acorn-icon="edit"></i>
+          </a>
+          <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $category_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+            <i data-acorn-icon="bin"></i>
+          </a>
+          </div>
+        </td>
+        </tr>
+        @include('admin.category.detail', ['category_data' => $category_data])
+        @include('admin.category.update', ['category_data' => $category_data])
+        @include('admin.category.delete', ['category_data' => $category_data])
+        @php  $iteration++; @endphp
       @endforeach
         </tbody>
       </table>
@@ -113,42 +107,18 @@
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('category.store') }}">
               @csrf
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                  <label for="nama_kategori" class="form-label">Name</label>
+                  <input type="text" class="form-control" name="nama_kategori" value="{{ old('nama_kategori') }}"
+                    required>
                 </div>
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
-                </div>
-                <div class="mb-3">
-                  <label for="utype" class="form-label">Role</label>
-                  <select class="form-select" id="utype" name="utype" required>
-                    <option value="pengunjung" {{ old('utype') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
-                    <option value="admin_wisata" {{ old('utype') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata
-                    </option>
-                    <option value="admin_umkm" {{ old('utype') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
-                    <option value="admin_budaya" {{ old('utype') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya
-                    </option>
-                    <option value="superadmin" {{ old('utype') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="password" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
             </form>
           </div>
         </div>

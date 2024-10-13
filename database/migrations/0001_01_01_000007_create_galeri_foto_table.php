@@ -17,8 +17,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('id_destinasi');
 
             $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
-
-            $table->rememberToken();
             $table->timestamps();
         });
     }
