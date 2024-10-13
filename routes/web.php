@@ -7,42 +7,48 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Dashboard
+Route::get('/', fn() => view('index'))->name('dashboard');
 
+// Profil
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Admin
+// Admin
 Route::middleware('auth.admin')->group(function () {
 
-    //DASHBOARD
+    // Dashboard Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
-    //PENGUNJUNG
-    Route::get('/tourist', [TouristController::class, 'index'])->name('admin.tourist.index');
-    Route::post('/tourist', [TouristController::class, 'store'])->name('tourist.store');
-    Route::get('/tourist/{id}', [TouristController::class, 'detail'])->name('tourist.detail');
-    Route::put('/tourist/{id}', [TouristController::class, 'update'])->name('tourist.update');
-    Route::delete('/tourist/{id}', [TouristController::class, 'destroy'])->name('tourist.destroy');
+    // Pengunjung
+    Route::resource('tourist', TouristController::class)->names([
+        'index' => 'admin.tourist.index',
+        'store' => 'tourist.store',
+        'show' => 'tourist.detail',
+        'update' => 'tourist.update',
+        'destroy' => 'tourist.destroy',
+    ])->parameters(['tourist' => 'id']);
 
-    //ADMIN WISATA
-    Route::get('/adminwisata', [AdminWisataController::class, 'index'])->name('admin.adminwisata.index');
-    Route::post('/adminwisata', [AdminWisataController::class, 'store'])->name('adminwisata.store');
-    Route::get('/adminwisata/{id}', [AdminWisataController::class, 'detail'])->name('adminwisata.detail');
-    Route::put('/adminwisata/{id}', [AdminWisataController::class, 'update'])->name('adminwisata.update');
-    Route::delete('/adminwisata/{id}', [AdminWisataController::class, 'destroy'])->name('adminwisata.destroy');
+    // Admin Wisata
+    Route::resource('adminwisata', AdminWisataController::class)->names([
+        'index' => 'admin.adminwisata.index',
+        'store' => 'adminwisata.store',
+        'show' => 'adminwisata.detail',
+        'update' => 'adminwisata.update',
+        'destroy' => 'adminwisata.destroy',
+    ])->parameters(['adminwisata' => 'id']);
 
-    //DESTINASI WISATA
-    Route::get('/destination', [DestinationController::class, 'index'])->name('admin.destination.index');
-    Route::post('/destination', [DestinationController::class, 'store'])->name('destination.store');
-    Route::put('/destination/{id}', [DestinationController::class, 'detail'])->name('destination.detail');
-    Route::put('/destination/{id}', [DestinationController::class, 'update'])->name('destination.update');
-    Route::delete('/destination/{id}', [DestinationController::class, 'destroy'])->name('destination.destroy');
+    // Destinasi Wisata
+    Route::resource('destination', DestinationController::class)->names([
+        'index' => 'admin.destination.index',
+        'store' => 'destination.store',
+        'show' => 'destination.detail',
+        'update' => 'destination.update',
+        'destroy' => 'destination.destroy',
+    ])->parameters(['destination' => 'id']);
 });
 
 require __DIR__ . '/auth.php';

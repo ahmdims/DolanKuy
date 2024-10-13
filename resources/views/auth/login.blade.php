@@ -69,6 +69,10 @@
                             @error('password')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
+                            <!-- Forgot Password Link -->
+                            <div class="mt-2 text-end">
+                                <a href="{{ route('password.request') }}" class="text-decoration-none">Lupa Kata Sandi?</a>
+                            </div>
                         </div>
 
                         <!-- Login Button -->
