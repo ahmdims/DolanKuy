@@ -22,26 +22,30 @@ class SocialiteController extends Controller
         $socialUser = Socialite::driver('google')->user();
         $registeredUser = User::where("google_id", $socialUser->id)->first();
 
+        $password = Str::random(12);
+
         do {
             $username = 'pengguna' . str_pad(random_int(0, 999999999999), 12, '0', STR_PAD_LEFT);
         } while (User::where('username', $username)->exists());
 
         if (!$registeredUser) {
-            $password = Str::random(12);
-
-            $user = User::create([
-                'google_id' => $socialUser->id,
-                'username' => $username,
-                'name' => $socialUser->name,
-                'email' => $socialUser->email,
-                'password' => Hash::make($password),
-                'google_token' => $socialUser->token,
-                'google_refresh_token' => $socialUser->refreshToken,
-            ]);
+            $user = User::updateOrCreate(
+                [
+                    'google_id' => $socialUser->id,
+                ],
+                [
+                    'username' => $username,
+                    'name' => $socialUser->name,
+                    'email' => $socialUser->email,
+                    'password' => Hash::make($password),
+                    'google_token' => $socialUser->token,
+                    'google_refresh_token' => $socialUser->refreshToken,
+                ]
+            );
 
             Auth::login($user);
 
-            return redirect()->route('set-password');
+            return redirect('/');
         }
 
         Auth::login($registeredUser);
