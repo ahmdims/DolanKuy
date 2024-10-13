@@ -1,29 +1,27 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\AppController;
-use App\Http\Controllers\ProfileController;
-
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Admin\TouristController;
 use App\Http\Controllers\Admin\AdminWisataController;
 use App\Http\Controllers\Admin\DestinationController;
+use App\Http\Controllers\Admin\TouristController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AppController::class, 'index'])->name('index');
-
-Auth::routes();
+Route::get('/', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('app.profile.index');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 //Admin
 Route::middleware('auth.admin')->group(function () {
 
     //DASHBOARD
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
     //PENGUNJUNG
     Route::get('/tourist', [TouristController::class, 'index'])->name('admin.tourist.index');
@@ -46,3 +44,5 @@ Route::middleware('auth.admin')->group(function () {
     Route::put('/destination/{id}', [DestinationController::class, 'update'])->name('destination.update');
     Route::delete('/destination/{id}', [DestinationController::class, 'destroy'])->name('destination.destroy');
 });
+
+require __DIR__ . '/auth.php';

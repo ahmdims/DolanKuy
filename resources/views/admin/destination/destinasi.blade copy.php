@@ -38,7 +38,7 @@
     <!-- Search Start -->
     <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
       <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-        <input class="form-control" placeholder="Search" />
+        <input class="form-control" placeholder="Cari" />
         <span class="search-magnifier-icon">
           <i data-acorn-icon="search"></i>
         </span>
@@ -80,13 +80,13 @@
             aria-expanded="false" data-bs-offset="0,3">
             <span class="btn btn-foreground-alternate dropdown-toggle" data-bs-toggle="tooltip" data-bs-placement="top"
               data-bs-delay="0" title="Item Count">
-              <span id="itemCountText">10 Items</span>
+              <span id="itemCountText">10 Item</span>
             </span>
           </button>
           <div class="dropdown-menu shadow dropdown-menu-end">
-            <a class="dropdown-item" href="#" data-count="5">5 Items</a>
-            <a class="dropdown-item active" href="#" data-count="10">10 Items</a>
-            <a class="dropdown-item" href="#" data-count="20">20 Items</a>
+            <a class="dropdown-item" href="#" data-count="5">10 Item</a>
+            <a class="dropdown-item active" href="#" data-count="10">10 Item</a>
+            <a class="dropdown-item" href="#" data-count="20">20 Item</a>
           </div>
         </div>
         <!-- Length End -->
@@ -97,11 +97,11 @@
 
   <!-- Check message -->
   @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-      class="fa fa-close"></i></button>
-    </div>
+        class="fa fa-close"></i></button>
+  </div>
   @endif
 
   <div class="row g-0">
@@ -125,36 +125,36 @@
               </thead>
               <tbody>
                 @foreach($destinasi as $destinasi_data)
-          <tr>
-            <td class="text-center">{{ $loop->iteration }}.</td>
-            <td class="text-center">{{ $destinasi_data->nama_destinasi }}</td>
-            <td class="text-center">{{ $destinasi_data->alamat }}</td>
-            <td class="text-center">{{ $destinasi_data->kota }}</td>
-            <td class="text-center">{{ $destinasi_data->provinsi }}</td>
-            <td class="text-center">{{ $destinasi_data->jam_buka }}</td>
-            <td class="text-center">{{ $destinasi_data->jam_tutup }}</td>
-            <td class="text-center">{{ number_format($destinasi_data->harga_tiket, 0, ',', '.') }}</td>
-            <td class="text-center">
-            <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-              <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destinasi_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
-              <i data-acorn-icon="search"></i>
-              </a>
-              <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $destinasi_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
-              <i data-acorn-icon="edit"></i>
-              </a>
-              <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $destinasi_data->id }}" type="button"
-              class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
-              <i data-acorn-icon="bin"></i>
-              </a>
-            </div>
-            </td>
-          </tr>
-          @include('admin.destinasi.destinasi-detail', ['destinasi_data' => $destinasi_data])
-          @include('admin.destinasi.destinasi-update', ['destinasi_data' => $destinasi_data])
-          @include('admin.destinasi.destinasi-delete', ['destinasi_data' => $destinasi_data])
-        @endforeach
+                <tr>
+                  <td class="text-center">{{ $loop->iteration }}.</td>
+                  <td class="text-center">{{ $destinasi_data->nama_destinasi }}</td>
+                  <td class="text-center">{{ $destinasi_data->alamat }}</td>
+                  <td class="text-center">{{ $destinasi_data->kota }}</td>
+                  <td class="text-center">{{ $destinasi_data->provinsi }}</td>
+                  <td class="text-center">{{ $destinasi_data->jam_buka }}</td>
+                  <td class="text-center">{{ $destinasi_data->jam_tutup }}</td>
+                  <td class="text-center">{{ number_format($destinasi_data->harga_tiket, 0, ',', '.') }}</td>
+                  <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                      <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destinasi_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+                        <i data-acorn-icon="search"></i>
+                      </a>
+                      <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $destinasi_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+                        <i data-acorn-icon="edit"></i>
+                      </a>
+                      <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $destinasi_data->id }}" type="button"
+                        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+                        <i data-acorn-icon="bin"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                @include('admin.destinasi.destinasi-detail', ['destinasi_data' => $destinasi_data])
+                @include('admin.destinasi.destinasi-update', ['destinasi_data' => $destinasi_data])
+                @include('admin.destinasi.destinasi-delete', ['destinasi_data' => $destinasi_data])
+                @endforeach
               </tbody>
               <tfoot>
                 <tr>

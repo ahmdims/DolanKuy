@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-footer="true" data-scrollspy="true">
+<html lang="id" data-footer="true" data-scrollspy="true">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>@yield('title')</title>
+    <title>@yield('title') | DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
@@ -95,7 +95,7 @@
                             <div class="col-6 pe-1 ps-1">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="{{ route('app.profile.index') }}">
+                                        <a href="{{ route('profile.update') }}">
                                             <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                                             <span class="align-middle">Profil</span>
                                         </a>
@@ -145,7 +145,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#apps" data-href="Apps.html">
+                            <a href="#apps">
                                 <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Pengguna</span>
                             </a>

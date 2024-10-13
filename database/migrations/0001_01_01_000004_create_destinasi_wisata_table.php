@@ -17,14 +17,14 @@ return new class extends Migration {
             $table->string('alamat', 255);
             $table->string('kota', 255);
             $table->string('provinsi', 255);
-            $table->decimal('latitude', 10, 8); 
+            $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->time('jam_buka');
             $table->time('jam_tutup');
             $table->integer('harga_tiket');
             $table->string('fasilitas', 255);
             $table->string('kontak', 255);
-            $table->integer('rating')->nullable()->change();
+            $table->integer('rating', )->nullable();
 
             $table->rememberToken();
             $table->timestamps();

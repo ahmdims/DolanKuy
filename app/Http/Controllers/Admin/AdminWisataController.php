@@ -31,10 +31,10 @@ class AdminWisataController extends Controller
             'utype' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
             'password' => 'required|string|min:8|max:255',
         ], [
-            'username.required' => 'Nama Pengguna wajib diisi, bro!',
+            'username.required' => 'Nama Pengguna wajib diisi, cuy!',
             'username.unique' => 'Aduh, username udah dipakai yang lain.',
             'username.regex' => 'Nama Pengguna cuma boleh pakai a-z, 0-9, _ , . (tanpa spasi ya!)',
-            'name.required' => 'Nama wajib diisi, bro!',
+            'name.required' => 'Nama wajib diisi, cuy!',
             'email.required' => 'Emailnya jangan lupa diisi dong!',
             'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
             'email.unique' => 'Waduh, email udah terdaftar. Cari email lain deh!',
@@ -52,7 +52,7 @@ class AdminWisataController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil dibuat, bro!');
+        return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil dibuat, cuy!');
     }
 
     public function update(Request $request, $id)
@@ -69,10 +69,10 @@ class AdminWisataController extends Controller
             'email' => 'nullable|email|max:255',
             'utype' => 'nullable|string',
         ], [
-            'username.required' => 'Nama Pengguna wajib diisi, bro!',
+            'username.required' => 'Nama Pengguna wajib diisi, cuy!',
             'username.unique' => 'Aduh, username udah dipakai yang lain.',
             'username.regex' => 'Nama Pengguna cuma boleh pakai a-z, 0-9, _ , . (tanpa spasi ya!)',
-            'name.required' => 'Nama wajib diisi, bro!',
+            'name.required' => 'Nama wajib diisi, cuy!',
             'email.required' => 'Emailnya jangan lupa diisi dong!',
             'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
             'email.unique' => 'Waduh, email udah terdaftar. Cari email lain deh!',
@@ -83,7 +83,7 @@ class AdminWisataController extends Controller
         $user = User::find($id);
         if ($user) {
             $user->update($request->all());
-            return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil diperbarui, bro!');
+            return redirect()->route('admin.adminwisata.index')->with('success', 'Berhasil diperbarui, cuy!');
         } else {
             return redirect()->route('admin.adminwisata.index')->with('error', 'Pengguna tidak ditemukan, cuy!');
         }

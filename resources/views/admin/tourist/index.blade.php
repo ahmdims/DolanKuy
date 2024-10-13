@@ -11,7 +11,7 @@
         <div class="col-12 col-sm-5 col-lg-3 col-xxl-2 mb-1">
           <div
             class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 border border-separator bg-foreground search-sm">
-            <input class="form-control form-control-sm datatable-search" placeholder="Search"
+            <input class="form-control form-control-sm datatable-search" placeholder="Cari"
               data-datatable="#datatableHover" />
             <span class="search-magnifier-icon">
               <i data-acorn-icon="search"></i>
@@ -39,7 +39,7 @@
                 <i data-acorn-icon="download"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                <button class="dropdown-item export-copy" type="button">Copy</button>
+                <button class="dropdown-item export-copy" type="button">Salin</button>
                 <button class="dropdown-item export-excel" type="button">Excel</button>
                 <button class="dropdown-item export-cvs" type="button">Cvs</button>
               </div>
@@ -47,12 +47,12 @@
             <div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#datatableHover">
               <button class="btn btn-outline-muted btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" data-bs-offset="0,3">
-                10 Items
+                10 Item
               </button>
               <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                <a class="dropdown-item" href="#">5 Items</a>
-                <a class="dropdown-item active" href="#">10 Items</a>
-                <a class="dropdown-item" href="#">20 Items</a>
+                <a class="dropdown-item active" href="#">5 Item</a>
+                <a class="dropdown-item" href="#">10 Item</a>
+                <a class="dropdown-item" href="#">20 Item</a>
               </div>
             </div>
           </div>
@@ -131,13 +131,13 @@
                 <div class="mb-3">
                   <label for="utype" class="form-label">Role</label>
                   <select class="form-select" id="utype" name="utype" required>
-                    <option value="superadmin" {{ old('utype') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                    <option value="pengunjung" {{ old('utype') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
                     <option value="admin_wisata" {{ old('utype') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata
                     </option>
                     <option value="admin_umkm" {{ old('utype') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
                     <option value="admin_budaya" {{ old('utype') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya
                     </option>
-                    <option value="pengunjung" {{ old('utype') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
+                    <option value="superadmin" {{ old('utype') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
                   </select>
                 </div>
                 <div class="mb-3">
