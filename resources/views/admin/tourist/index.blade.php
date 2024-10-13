@@ -3,255 +3,159 @@
 @section('title', 'Pengunjung')
 
 @section('content')
-<div class="container">
-  <!-- Title and Top Buttons Start -->
-  <div class="page-title-container">
-    <div class="row g-0">
-      <!-- Title Start -->
-      <div class="col-auto mb-3 mb-md-0 me-auto">
-        <div class="w-auto sw-md-30">
-          <a href="{{ route('admin.dashboard.index') }}" class="muted-link pb-1 d-inline-block breadcrumb-back">
-            <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
-            <span class="text-small align-middle">Beranda</span>
-          </a>
-          <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
+
+<section class="scroll-section" id="hover">
+  <div class="card mb-5">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-sm-5 col-lg-3 col-xxl-2 mb-1">
+          <div
+            class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 border border-separator bg-foreground search-sm">
+            <input class="form-control form-control-sm datatable-search" placeholder="Cari"
+              data-datatable="#datatableHover" />
+            <span class="search-magnifier-icon">
+              <i data-acorn-icon="search"></i>
+            </span>
+            <span class="search-delete-icon d-none">
+              <i data-acorn-icon="close"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-7 col-lg-9 col-xxl-10 text-end mb-1">
+          <div class="d-inline-block">
+            <button data-bs-toggle="modal" data-bs-target="#createModal"
+              class="btn btn-icon btn-outline-muted btn-sm datatable-print" type="button">
+              <i data-acorn-icon="plus"></i>
+              <span>Tambah @yield('title')</span>
+            </button>
+            <button class="btn btn-icon btn-icon-only btn-outline-muted btn-sm datatable-print" type="button"
+              data-datatable="#datatableHover">
+              <i data-acorn-icon="print"></i>
+            </button>
+
+            <div class="d-inline-block datatable-export" data-datatable="#datatableHover">
+              <button class="btn btn-icon btn-icon-only btn-outline-muted btn-sm dropdown" data-bs-toggle="dropdown"
+                type="button" data-bs-offset="0,3">
+                <i data-acorn-icon="download"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                <button class="dropdown-item export-copy" type="button">Salin</button>
+                <button class="dropdown-item export-excel" type="button">Excel</button>
+                <button class="dropdown-item export-cvs" type="button">Cvs</button>
+              </div>
+            </div>
+            <div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#datatableHover">
+              <button class="btn btn-outline-muted btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-bs-offset="0,3">
+                10 Item
+              </button>
+              <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                <a class="dropdown-item active" href="#">5 Item</a>
+                <a class="dropdown-item" href="#">10 Item</a>
+                <a class="dropdown-item" href="#">20 Item</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Title End -->
 
-      <!-- Top Buttons Start -->
-      <div class="w-100 d-md-none"></div>
-      <div class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
-        <a data-bs-toggle="modal" data-bs-target="#createModal" type="button"
-          class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto">
-          <i data-acorn-icon="plus"></i>
-          <span>Tambah @yield('title')</span>
+      <table class="data-table data-table-pagination data-table-standard responsive nowrap hover" id="datatableHover">
+        <thead>
+          <tr>
+            <th class="text-muted text-small text-uppercase">#</th>
+            <th class="text-muted text-small text-uppercase">Email</th>
+            <th class="text-muted text-small text-uppercase">Username</th>
+            <th class="text-muted text-small text-uppercase">Name</th>
+            <th class="text-muted text-small text-uppercase">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @php $iteration = 1; @endphp
+          @foreach($users as $user_data)
+        @if($user_data->utype === 'pengunjung')
+      <tr>
+      <td>{{ $iteration }}.</td>
+      <td>{{ $user_data->email }}</td>
+      <td>{{ $user_data->username }}</td>
+      <td>{{ $user_data->name }}</td>
+      <td>
+        <div class="d-flex align-items-center" style="height: 100%;">
+        <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
+        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+        <i data-acorn-icon="search"></i>
         </a>
+        <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
+        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+        <i data-acorn-icon="edit"></i>
+        </a>
+        <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
+        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+        <i data-acorn-icon="bin"></i>
+        </a>
+        </div>
+      </td>
+      </tr>
+      @include('admin.tourist.detail', ['user_data' => $user_data])
+      @include('admin.tourist.update', ['user_data' => $user_data])
+      @include('admin.tourist.delete', ['user_data' => $user_data])
+      @php    $iteration++; @endphp
+    @endif
+      @endforeach
+        </tbody>
+      </table>
+
+      <!-- Create Modal -->
+      <div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
+              @csrf
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                </div>
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                </div>
+                <div class="mb-3">
+                  <label for="utype" class="form-label">Role</label>
+                  <select class="form-select" id="utype" name="utype" required>
+                    <option value="pengunjung" {{ old('utype') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
+                    <option value="admin_wisata" {{ old('utype') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata
+                    </option>
+                    <option value="admin_umkm" {{ old('utype') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
+                    <option value="admin_budaya" {{ old('utype') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya
+                    </option>
+                    <option value="superadmin" {{ old('utype') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <!-- Top Buttons End -->
+
     </div>
   </div>
-  <!-- Title and Top Buttons End -->
-
-  <!-- Controls Start -->
-  <div class="row mb-2">
-    <!-- Search Start -->
-    <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
-      <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-        <input class="form-control" placeholder="Search" />
-        <span class="search-magnifier-icon">
-          <i data-acorn-icon="search"></i>
-        </span>
-        <span class="search-delete-icon d-none">
-          <i data-acorn-icon="close"></i>
-        </span>
-      </div>
-    </div>
-    <!-- Search End -->
-
-    <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
-      <div class="d-inline-block">
-        <!-- Print Button Start -->
-        <button class="btn btn-icon btn-icon-only btn-foreground-alternate shadow" data-bs-toggle="tooltip"
-          data-bs-placement="top" data-bs-delay="0" title="Print" type="button">
-          <i data-acorn-icon="print"></i>
-        </button>
-        <!-- Print Button End -->
-
-        <!-- Export Dropdown Start -->
-        <div class="d-inline-block">
-          <button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
-            <span class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown" data-bs-delay="0"
-              data-bs-placement="top" data-bs-toggle="tooltip" title="Export">
-              <i data-acorn-icon="download"></i>
-            </span>
-          </button>
-          <div class="dropdown-menu shadow dropdown-menu-end">
-            <button class="dropdown-item export-copy" type="button">Copy</button>
-            <button class="dropdown-item export-excel" type="button">Excel</button>
-            <button class="dropdown-item export-cvs" type="button">Cvs</button>
-          </div>
-        </div>
-        <!-- Export Dropdown End -->
-
-        <!-- Length Start -->
-        <div class="dropdown-as-select d-inline-block" data-childSelector="span">
-          <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" data-bs-offset="0,3">
-            <span class="btn btn-foreground-alternate dropdown-toggle" data-bs-toggle="tooltip" data-bs-placement="top"
-              data-bs-delay="0" title="Item Count">
-              <span id="itemCountText">10 Items</span>
-            </span>
-          </button>
-          <div class="dropdown-menu shadow dropdown-menu-end">
-            <a class="dropdown-item" href="#" data-count="5">5 Items</a>
-            <a class="dropdown-item active" href="#" data-count="10">10 Items</a>
-            <a class="dropdown-item" href="#" data-count="20">20 Items</a>
-          </div>
-        </div>
-        <!-- Length End -->
-      </div>
-    </div>
-  </div>
-  <!-- Controls End -->
-
-  <!-- Check message -->
-  @if(session('success'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session('success') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-        class="fa fa-close"></i></button>
-  </div>
-  @endif
-
-  <div class="row g-0">
-    <section class="scroll-section" id="breakpointSpecificResponsive">
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive-sm mb-5">
-            <table class="table" id="userTable">
-              <thead>
-                <tr>
-                  <th class="text-center">#</th>
-                  <th class="text-center">Email</th>
-                  <th class="text-center">Username</th>
-                  <th class="text-center">Name</th>
-                  <th class="text-center">Role</th>
-                  <th class="text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($users as $user_data)
-                @if($user_data->utype === 'pengunjung')
-                <tr>
-                  <td class="text-center">{{ $loop->iteration }}.</td>
-                  <td class="text-center">{{ $user_data->email }}</td>
-                  <td class="text-center">{{ $user_data->username }}</td>
-                  <td class="text-center">{{ $user_data->name }}</td>
-                  <td class="text-center">{{ $user_data->utype }}</td>
-                  <td class="text-center">
-                    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-                      <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
-                        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
-                        <i data-acorn-icon="search"></i>
-                      </a>
-                      <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
-                        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
-                        <i data-acorn-icon="edit"></i>
-                      </a>
-                      <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
-                        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
-                        <i data-acorn-icon="bin"></i>
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-                @include('admin.tourist.detail', ['user_data' => $user_data])
-                @include('admin.tourist.update', ['user_data' => $user_data])
-                @include('admin.tourist.delete', ['user_data' => $user_data])
-                @endif
-                @endforeach
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th class="text-center">#</th>
-                  <th class="text-center">Email</th>
-                  <th class="text-center">Username</th>
-                  <th class="text-center">Name</th>
-                  <th class="text-center">Role</th>
-                  <th class="text-center">Action</th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
-
-<!-- Create Modal -->
-<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
-        @csrf
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" name="email" required>
-          </div>
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" name="username" required>
-          </div>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" name="name" required>
-          </div>
-          <div class="mb-3">
-            <label for="utype" class="form-label">Role</label>
-            <select class="form-select" id="role" name="role" required>
-                <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Wisata</option>
-                <option value="admin_umkm" {{ old('role') == 'admin_umkm' ? 'selected' : '' }}>Admin UMKM</option>
-                <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Budaya</option>
-                <option value="pengunjung" {{ old('role') == 'pengunjung' ? 'selected' : '' }}>Pengunjung</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<script>
-  const searchInput = document.querySelector('.search-input-container input');
-  const userTable = document.getElementById('userTable');
-
-  searchInput.addEventListener('input', () => {
-    const searchValue = searchInput.value.toLowerCase();
-    const rows = userTable.querySelectorAll('tbody tr');
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
-      row.style.display = match ? '' : 'none';
-    });
-  });
-
-  const filterLinks = document.querySelectorAll('.dropdown-menu a[data-count]');
-  const itemCountText = document.getElementById('itemCountText');
-
-  filterLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const itemCount = e.target.dataset.count;
-
-      itemCountText.textContent = `${itemCount} Items`;
-
-      const rows = userTable.querySelectorAll('tbody tr');
-      rows.forEach((row, index) => {
-        if (index < itemCount) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
+</section>
 
 @endsection

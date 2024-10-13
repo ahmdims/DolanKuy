@@ -28,37 +28,32 @@ class TouristController extends Controller
             ],
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'role' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
-            'password' => 'required|string|max:255',
+            'utype' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
+            'password' => 'required|string|min:8|max:255',
         ], [
-            'username.required' => 'Nama Pengguna wajib diisi, bro!',
-            'username.unique' => 'Aduh, username ini udah dipakai yang lain.',
+            'username.required' => 'Nama Pengguna wajib diisi, cuy!',
+            'username.unique' => 'Aduh, username udah dipakai yang lain.',
             'username.regex' => 'Nama Pengguna cuma boleh pakai a-z, 0-9, _ , . (tanpa spasi ya!)',
-            'name.required' => 'Nama wajib diisi, bro!',
+            'name.required' => 'Nama wajib diisi, cuy!',
             'email.required' => 'Emailnya jangan lupa diisi dong!',
             'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
-            'email.unique' => 'Waduh, email ini udah terdaftar. Cari email lain deh!',
+            'email.unique' => 'Waduh, email udah terdaftar. Cari email lain deh!',
             'password.required' => 'Password-nya kudu diisi, sob!',
-            'password.min' => 'Password minimal :min karakter biar aman, oke!',
-            'password.confirmed' => 'Konfirmasi password-nya ga cocok nih, hati-hati ya!',
+            'password.min' => 'Password minimal 8 karakter biar aman, oke!',
         ]);
-
-        // Tambahkan debug untuk melihat data yang dikirim
-        // dd($request->all());
 
         $user = User::create([
             'username' => strtolower($request->username),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role,  // Role diambil dari request
+            'utype' => $request->utype,
         ]);
 
         event(new Registered($user));
 
-        return redirect()->route('admin.tourist.index')->with('success', 'Created successfully.');
+        return redirect()->route('admin.tourist.index')->with('success', 'Berhasil dibuat, cuy!');
     }
-
 
     public function update(Request $request, $id)
     {
@@ -72,15 +67,25 @@ class TouristController extends Controller
             ],
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
-            'role' => 'nullable|string',
+            'utype' => 'nullable|string',
+        ], [
+            'username.required' => 'Nama Pengguna wajib diisi, cuy!',
+            'username.unique' => 'Aduh, username udah dipakai yang lain.',
+            'username.regex' => 'Nama Pengguna cuma boleh pakai a-z, 0-9, _ , . (tanpa spasi ya!)',
+            'name.required' => 'Nama wajib diisi, cuy!',
+            'email.required' => 'Emailnya jangan lupa diisi dong!',
+            'email.email' => 'Hmm, format emailnya ga valid nih. Cek lagi!',
+            'email.unique' => 'Waduh, email udah terdaftar. Cari email lain deh!',
+            'password.required' => 'Password-nya kudu diisi, sob!',
+            'password.min' => 'Password minimal 8 karakter biar aman, oke!',
         ]);
 
-        $user = User::find($id);  // Pastikan nama model dimulai dengan huruf kapital
+        $user = User::find($id);
         if ($user) {
             $user->update($request->all());
-            return redirect()->route('admin.tourist.index')->with('success', 'Updated successfully.');
+            return redirect()->route('admin.tourist.index')->with('success', 'Berhasil diperbarui, cuy!');
         } else {
-            return redirect()->route('admin.tourist.index')->with('error', 'User not found.');
+            return redirect()->route('admin.tourist.index')->with('error', 'Pengguna tidak ditemukan, cuy!');
         }
     }
 
@@ -89,6 +94,6 @@ class TouristController extends Controller
         $user = User::where('id', $id)->firstOrFail();
         $user->delete();
 
-        return redirect()->route('admin.tourist.index')->with('success', 'Deleted successfully.');
+        return redirect()->route('admin.tourist.index')->with('success', 'Berhasil dihapus, sob!');
     }
 }

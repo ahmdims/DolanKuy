@@ -8,7 +8,7 @@
   <!-- Search Start -->
   <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
     <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-      <input class="form-control datatable-search" placeholder="Search" data-datatable="#datatableRows" />
+      <input class="form-control datatable-search" placeholder="Cari" data-datatable="#datatableRows" />
       <span class="search-magnifier-icon">
         <i data-acorn-icon="search"></i>
       </span>
@@ -22,7 +22,8 @@
   <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
     <div class="d-inline-block me-0 me-sm-3 float-start float-md-none">
       <!-- Add Button Start -->
-      <button data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-icon btn-icon-only btn-foreground-alternate shadow" data-bs-toggle="tooltip"
+      <button data-bs-toggle="modal" data-bs-target="#createModal"
+        class="btn btn-icon btn-icon-only btn-foreground-alternate shadow" data-bs-toggle="tooltip"
         data-bs-placement="top" title="Tambah" type="button" data-bs-delay="0">
         <i data-acorn-icon="plus"></i>
       </button>
@@ -60,7 +61,7 @@
           </span>
         </button>
         <div class="dropdown-menu shadow dropdown-menu-end">
-          <button class="dropdown-item export-copy" type="button">Copy</button>
+          <button class="dropdown-item export-copy" type="button">Salin</button>
           <button class="dropdown-item export-excel" type="button">Excel</button>
           <button class="dropdown-item export-cvs" type="button">Cvs</button>
         </div>
@@ -74,13 +75,13 @@
           aria-expanded="false" data-bs-offset="0,3">
           <span class="btn btn-foreground-alternate dropdown-toggle" data-bs-toggle="tooltip" data-bs-placement="top"
             data-bs-delay="0" title="Item Count">
-            10 Items
+            10 Item
           </span>
         </button>
         <div class="dropdown-menu shadow dropdown-menu-end">
-          <a class="dropdown-item" href="#">5 Items</a>
-          <a class="dropdown-item active" href="#">10 Items</a>
-          <a class="dropdown-item" href="#">20 Items</a>
+          <a class="dropdown-item" href="#">10 Item</a>
+          <a class="dropdown-item active" href="#">5 Item</a>
+          <a class="dropdown-item" href="#">20 Item</a>
         </div>
       </div>
       <!-- Length End -->

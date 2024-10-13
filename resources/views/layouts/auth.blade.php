@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>@yield('title')</title>
+    <title>@yield('title') | DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
@@ -47,6 +47,7 @@
 
     <!-- Vendor Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
     <!-- Vendor Styles End -->
 
