@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class SocialiteController extends Controller
 {
@@ -19,7 +20,6 @@ class SocialiteController extends Controller
     public function callback()
     {
         $socialUser = Socialite::driver('google')->user();
-
         $registeredUser = User::where("google_id", $socialUser->id)->first();
 
         do {
@@ -27,20 +27,21 @@ class SocialiteController extends Controller
         } while (User::where('username', $username)->exists());
 
         if (!$registeredUser) {
-            $user = User::updateOrCreate([
+            $password = Str::random(12);
+
+            $user = User::create([
                 'google_id' => $socialUser->id,
-            ], [
                 'username' => $username,
                 'name' => $socialUser->name,
                 'email' => $socialUser->email,
-                'password' => Hash::make('password'),
+                'password' => Hash::make($password),
                 'google_token' => $socialUser->token,
                 'google_refresh_token' => $socialUser->refreshToken,
             ]);
 
             Auth::login($user);
 
-            return redirect('/');
+            return redirect()->route('set-password');
         }
 
         Auth::login($registeredUser);
