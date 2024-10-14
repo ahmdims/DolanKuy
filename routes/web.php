@@ -10,7 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Pegunjung
+// Pengguna
 Route::get('/', fn() => view('app.dashboard.index'))->name('dashboard');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
