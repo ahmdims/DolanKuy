@@ -8,47 +8,55 @@
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/favicon/apple-touch-icon-120x120.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/favicon/apple-touch-icon-76x76.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png" />
-    <link rel="icon" type="image/png" href="img/favicon/favicon-196x196.png" sizes="196x196" />
-    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
-    <link rel="icon" type="image/png" href="img/favicon/favicon-128.png" sizes="128x128" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+        href="{{ asset('img/favicon/apple-touch-icon-57x57.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{{ asset('img/favicon/apple-touch-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{{ asset('img/favicon/apple-touch-icon-72x72.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{{ asset('img/favicon/apple-touch-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60"
+        href="{{ asset('img/favicon/apple-touch-icon-60x60.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+        href="{{ asset('img/favicon/apple-touch-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+        href="{{ asset('img/favicon/apple-touch-icon-76x76.png') }}" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+        href="{{ asset('img/favicon/apple-touch-icon-152x152.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-196x196.png') }}" sizes="196x196" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-96x96.png') }}" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-32x32.png') }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-16x16.png') }}" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon/favicon-128.png') }}" sizes="128x128" />
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png" />
-    <meta name="msapplication-square70x70logo" content="img/favicon/mstile-70x70.png" />
-    <meta name="msapplication-square150x150logo" content="img/favicon/mstile-150x150.png" />
-    <meta name="msapplication-wide310x150logo" content="img/favicon/mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="img/favicon/mstile-310x310.png" />
+    <meta name="msapplication-TileImage" content="{{ asset('img/favicon/mstile-144x144.png') }}" />
+    <meta name="msapplication-square70x70logo" content="{{ asset('img/favicon/mstile-70x70.png') }}" />
+    <meta name="msapplication-square150x150logo" content="{{ asset('img/favicon/mstile-150x150.png') }}" />
+    <meta name="msapplication-wide310x150logo" content="{{ asset('img/favicon/mstile-310x150.png') }}" />
+    <meta name="msapplication-square310x310logo" content="{{ asset('img/favicon/mstile-310x310.png') }}" />
     <!-- Favicon Tags End -->
 
     <!-- Font Tags Start -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="font/CS-Interface/style.css" />
+    <link rel="stylesheet" href="{{ asset('font/CS-Interface/style.css') }}" />
     <!-- Font Tags End -->
 
     <!-- Vendor Styles Start -->
-    <link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/vendor/OverlayScrollbars.min.css" />
-    <link rel="stylesheet" href="css/vendor/datatables.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
     <!-- Vendor Styles End -->
 
     <!-- Template Base Styles Start -->
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <!-- Template Base Styles End -->
 
-    <link rel="stylesheet" href="css/main.css" />
-    <script src="js/base/loader.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <script src="{{ asset('js/base/loader.js') }}"></script>
 </head>
 
 <body>
@@ -57,7 +65,7 @@
             <div class="nav-content d-flex">
                 <!-- Logo Start -->
                 <div class="logo position-relative">
-                    <a href="{{ route('admin.dashboard.index') }}">
+                    <a href="{{ asset('admin/dashboard') }}">
                         <!-- Logo can be added directly -->
                         <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 
@@ -71,7 +79,7 @@
                 <div class="user-container d-flex">
                     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img class="profile" alt="profile" src="img/profile/profile-9.webp" />
+                        <img class="profile" alt="profile" src="{{ asset('img/profile/profile-9.webp') }}" />
                         <div class="name">{{ Auth::user()->name }}</div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end user-menu wide">
@@ -139,7 +147,7 @@
                 <div class="menu-container flex-grow-1">
                     <ul id="menu" class="menu">
                         <li>
-                            <a href="{{ route('admin.dashboard.index') }}">
+                            <a href="{{ asset('admin/dashboard') }}">
                                 <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Beranda</span>
                             </a>
@@ -151,7 +159,7 @@
                             </a>
                             <ul id="apps">
                                 <li>
-                                    <a href="{{ route('admin.adminwisata.index') }}">
+                                    <a href="{{ asset('admin/adminwisata') }}">
                                         <span class="label">Admin Wisata</span>
                                     </a>
                                 </li>
@@ -166,14 +174,14 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.tourist.index') }}">
+                                    <a href="{{ asset('admin/tourist') }}">
                                         <span class="label">Pengunjung</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('admin.category.index') }}">
+                            <a href="{{ asset('admin/category') }}">
                                 <i data-acorn-icon="category" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Kategori</span>
                             </a>
@@ -234,7 +242,7 @@
                                     <!-- Title Start -->
                                     <div class="col-auto mb-3 mb-md-0 me-auto">
                                         <div class="w-auto sw-md-30">
-                                            <a href="{{ route('admin.dashboard.index') }}"
+                                            <a href="{{ asset('admin/dashboard') }}"
                                                 class="muted-link pb-1 d-inline-block breadcrumb-back">
                                                 <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
                                                 <span class="text-small align-middle">Beranda</span>
@@ -651,35 +659,34 @@
     <!-- Theme Settings Buttons End -->
 
     <!-- Vendor Scripts Start -->
-    <script src="js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="js/vendor/OverlayScrollbars.min.js"></script>
-    <script src="js/vendor/autoComplete.min.js"></script>
-    <script src="js/vendor/clamp.min.js"></script>
+    <script src="{{ asset('js/vendor/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/OverlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/autoComplete.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/clamp.min.js') }}"></script>
 
-    <script src="icon/acorn-icons.js"></script>
-    <script src="icon/acorn-icons-interface.js"></script>
+    <script src="{{ asset('icon/acorn-icons.js') }}"></script>
+    <script src="{{ asset('icon/acorn-icons-interface.js') }}"></script>
 
-    <script src="js/cs/scrollspy.js"></script>
+    <script src="{{ asset('js/cs/scrollspy.js') }}"></script>
 
-    <script src="js/vendor/datatables.min.js"></script>
-
+    <script src="{{ asset('js/vendor/datatables.min.js') }}"></script>
     <!-- Vendor Scripts End -->
 
     <!-- Template Base Scripts Start -->
-    <script src="js/base/helpers.js"></script>
-    <script src="js/base/globals.js"></script>
-    <script src="js/base/nav.js"></script>
-    <script src="js/base/search.js"></script>
-    <script src="js/base/settings.js"></script>
+    <script src="{{ asset('js/base/helpers.js') }}"></script>
+    <script src="{{ asset('js/base/globals.js') }}"></script>
+    <script src="{{ asset('js/base/nav.js') }}"></script>
+    <script src="{{ asset('js/base/search.js') }}"></script>
+    <script src="{{ asset('js/base/settings.js') }}"></script>
     <!-- Template Base Scripts End -->
 
     <!-- Page Specific Scripts Start -->
-    <script src="js/cs/datatable.extend.js"></script>
-    <script src="js/plugins/datatable.boxedvariations.js"></script>
+    <script src="{{ asset('js/cs/datatable.extend.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatable.boxedvariations.js') }}"></script>
 
-    <script src="js/common.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     <!-- Page Specific Scripts End -->
 </body>
 

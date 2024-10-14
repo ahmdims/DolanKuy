@@ -8,15 +8,13 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('kontak', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->integer('media');
-            $table->string('url_media', 255);
-            $table->unsignedBigInteger('id_destinasi');
-
-            $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('kontak');
+        Schema::dropIfExists('contacts');
     }
 };
