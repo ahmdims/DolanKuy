@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminWisataController;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\AdminWisataController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\DestinationController;
-use App\Http\Controllers\Admin\FaqController;
-use App\Http\Controllers\Admin\TouristController;
+use App\Http\Controllers\TouristController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Pegunjung
 Route::get('/', fn() => view('app.dashboard.index'))->name('dashboard');
-Route::get('/faq', fn() => view('app.faq.index'))->name('faq');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
 // Profil
 Route::middleware('auth')->group(function () {
@@ -24,34 +26,36 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth.admin')->group(function () {
 
     // Dashboard Admin
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard.index');
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/dashboard', [AdminController::class, 'adminIndex'])->name('admin.dashboard.index');
+    });
 
     // Pengunjung
-    Route::resource('tourist', TouristController::class)->names([
-        'index' => 'admin.tourist.index',
-        'store' => 'tourist.store',
-        'show' => 'tourist.detail',
-        'update' => 'tourist.update',
-        'destroy' => 'tourist.destroy',
-    ])->parameters(['tourist' => 'id']);
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/tourist', [TouristController::class, 'adminIndex'])->name('admin.tourist.index');
+        Route::post('/admin/tourist', [TouristController::class, 'store'])->name('tourist.store');
+        Route::get('/admin/tourist/{id}', [TouristController::class, 'show'])->name('tourist.detail');
+        Route::put('/admin/tourist/{id}', [TouristController::class, 'update'])->name('tourist.update');
+        Route::delete('/admin/tourist/{id}', [TouristController::class, 'destroy'])->name('tourist.destroy');
+    });
 
     // Admin Wisata
-    Route::resource('adminwisata', AdminWisataController::class)->names([
-        'index' => 'admin.adminwisata.index',
-        'store' => 'adminwisata.store',
-        'show' => 'adminwisata.detail',
-        'update' => 'adminwisata.update',
-        'destroy' => 'adminwisata.destroy',
-    ])->parameters(['adminwisata' => 'id']);
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/adminwisata', [AdminWisataController::class, 'adminIndex'])->name('admin.adminwisata.index');
+        Route::post('/admin/adminwisata', [AdminWisataController::class, 'store'])->name('adminwisata.store');
+        Route::get('/admin/adminwisata/{id}', [AdminWisataController::class, 'show'])->name('adminwisata.detail');
+        Route::put('/admin/adminwisata/{id}', [AdminWisataController::class, 'update'])->name('adminwisata.update');
+        Route::delete('/admin/adminwisata/{id}', [AdminWisataController::class, 'destroy'])->name('adminwisata.destroy');
+    });
 
     // Kategori
-    Route::resource('category', CategoryController::class)->names([
-        'index' => 'admin.category.index',
-        'store' => 'category.store',
-        'show' => 'category.detail',
-        'update' => 'category.update',
-        'destroy' => 'category.destroy',
-    ])->parameters(['category' => 'id']);
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/category', [CategoryController::class, 'adminIndex'])->name('admin.category.index');
+        Route::post('/admin/category', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/admin/category/{id}', [CategoryController::class, 'show'])->name('category.detail');
+        Route::put('/admin/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    });
 
     // Destinasi Wisata
     Route::resource('destination', DestinationController::class)->names([
@@ -62,14 +66,17 @@ Route::middleware('auth.admin')->group(function () {
         'destroy' => 'destination.destroy',
     ])->parameters(['destination' => 'id']);
 
+    //Kontak
+    Route::get('/admin/contact', [ContactController::class, 'adminIndex'])->middleware('auth.admin');
+
     // Bantuan
-    Route::resource('admin-faq', FaqController::class)->names([
-        'index' => 'admin.faq.index',
-        'store' => 'faq.store',
-        'show' => 'faq.detail',
-        'update' => 'faq.update',
-        'destroy' => 'faq.destroy',
-    ])->parameters(['faq' => 'id']);
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/faq', [FaqController::class, 'adminIndex'])->name('admin.faq.index');
+        Route::post('/admin/faq', [FaqController::class, 'store'])->name('faq.store');
+        Route::get('/admin/faq/{id}', [FaqController::class, 'show'])->name('faq.detail');
+        Route::put('/admin/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
+        Route::delete('/admin/faq/{id}', [FaqController::class, 'destroy'])->name('faq.destroy');
+    });
 });
 
 require __DIR__ . '/auth.php';

@@ -19,7 +19,7 @@ class AuthAdmin
         if (Auth::user()->utype != 'superadmin')
         {
             session()->flush();
-            return redirect()->route('login');
+            return redirect('/');
         }
         return $next($request);
     }

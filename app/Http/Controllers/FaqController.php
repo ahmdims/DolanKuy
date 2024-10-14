@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class FaqController extends Controller
 {
     public function index()
+    {
+        $faq = Faq::all();
+        return view('app.faq.index', compact('faq'));
+    }
+
+    public function adminIndex()
     {
         $faq = Faq::all();
         return view('admin.faq.index', compact('faq'));
