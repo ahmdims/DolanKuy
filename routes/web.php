@@ -3,13 +3,15 @@
 use App\Http\Controllers\Admin\AdminWisataController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DestinationController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TouristController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Dashboard
-Route::get('/', fn() => view('index'))->name('dashboard');
+// Pegunjung
+Route::get('/', fn() => view('app.dashboard.index'))->name('dashboard');
+Route::get('/faq', fn() => view('app.faq.index'))->name('faq');
 
 // Profil
 Route::middleware('auth')->group(function () {
@@ -22,7 +24,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth.admin')->group(function () {
 
     // Dashboard Admin
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard.index');
 
     // Pengunjung
     Route::resource('tourist', TouristController::class)->names([
@@ -59,6 +61,15 @@ Route::middleware('auth.admin')->group(function () {
         'update' => 'destination.update',
         'destroy' => 'destination.destroy',
     ])->parameters(['destination' => 'id']);
+
+    // Bantuan
+    Route::resource('admin-faq', FaqController::class)->names([
+        'index' => 'admin.faq.index',
+        'store' => 'faq.store',
+        'show' => 'faq.detail',
+        'update' => 'faq.update',
+        'destroy' => 'faq.destroy',
+    ])->parameters(['faq' => 'id']);
 });
 
 require __DIR__ . '/auth.php';
