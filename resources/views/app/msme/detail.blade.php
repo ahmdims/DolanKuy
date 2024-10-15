@@ -1,36 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.detail')
 
 @section('title', $msme->name)
 
 @section('content')
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<style>
-    /* Atur tinggi halaman penuh */
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-    }
-
-    /* Kontainer Flexbox */
-    .map-container {
-        display: flex;
-        justify-content: center;
-        /* Posisi horizontal di tengah */
-        align-items: center;
-        /* Posisi vertikal di tengah */
-        height: 100%;
-        /* Pastikan kontainer memenuhi halaman */
-    }
-
-    /* Atur ukuran peta */
-    #map {
-        height: 400px;
-    }
-</style>
-
 <div class="container">
 
     <div class="row">
@@ -164,51 +136,16 @@
                 <h2 class="small-title">Alamat</h2>
                 <div class="card mt-0 sh-100">
                     <div class="card-body h-50">
-                        <div class="col-6 text-muted">
-                            <!-- Anda dapat menambahkan konten lain di sini jika perlu -->
-                        </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
                                 <h5 class="mb-3">{{ $msme->address }}, {{ $msme->city }}, {{ $msme->province }}</h5>
                             </div>
                         </div>
 
-                        <div id="map" style="height: 100hv; border-radius: 15px;"></div>
-
-                        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-                        <script>
-                            var map = L.map('map', {
-                                center: [{{ $msme->latitude }}, {{ $msme->longitude }}],
-                                zoom: 15,
-                                zoomControl: false
-                            });
-
-                            // Menambahkan layer peta OpenStreetMap
-                            var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                maxZoom: 19,
-                                attribution: '© DolanKuy'
-                            }).addTo(map);
-
-                            L.control.zoom({
-                                position: 'bottomleft'
-                            }).addTo(map);
-
-                            L.control.scale({
-                                position: 'bottomright',
-                                imperial: false
-                            }).addTo(map);
-
-                            var marker = L.marker([{{ $msme->latitude }}, {{ $msme->longitude }}]).addTo(map);
-                            marker.bindPopup("<b>{{ $msme->name }}</b>").openPopup();
-
-                            var baseMaps = {
-                                "OpenStreetMap": osmLayer,
-                                "Satelit": satelliteLayer
-                            };
-                            L.control.layers(baseMaps).addTo(map);
-
-                            L.Control.geocoder().addTo(map);
-                        </script>
+                        <div class="mb-3">
+                            <label class="small-title">Peta Lokasi</label>
+                            <div class="map-detail" id="map-detail-{{ $msme->id }}"></div>
+                        </div>
 
                     </div>
                 </div>

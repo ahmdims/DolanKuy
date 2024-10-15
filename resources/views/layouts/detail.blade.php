@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-footer="true" data-scrollspy="true">
+<html lang="id" data-footer="true">
 
 <head>
     <meta charset="UTF-8" />
@@ -48,7 +48,11 @@
     <!-- Vendor Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/glide.core.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/introjs.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/select2-bootstrap4.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/plyr.css') }}" />
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     <!-- Vendor Styles End -->
 
@@ -58,6 +62,10 @@
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <script src="{{ asset('js/base/loader.js') }}"></script>
+
+    <style>
+        
+    </style>
 </head>
 
 <body>
@@ -66,7 +74,7 @@
             <div class="nav-content d-flex">
                 <!-- Logo Start -->
                 <div class="logo position-relative">
-                    <a href="{{ asset('admin/dashboard') }}">
+                    <a href="Dashboards.Default.html">
                         <!-- Logo can be added directly -->
                         <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
 
@@ -78,52 +86,87 @@
 
                 <!-- User Menu Start -->
                 <div class="user-container d-flex">
-                    <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <img class="profile" alt="profile" src="{{ asset('img/profile/profile-9.webp') }}" />
-                        <div class="name">{{ Auth::user()->name }}</div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end user-menu wide">
-                        <div class="row mb-1 ms-0 me-0">
-                            <div class="col-6 ps-1 pe-1">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="{{ asset('/') }}">
-                                            <i data-acorn-icon="home" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Beranda</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Setelan</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-6 pe-1 ps-1">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="{{ route('profile.update') }}">
-                                            <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Profil</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
-                                            <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                                            <span class="align-middle">Keluar</span>
-                                        </a>
-                                        <form action="{{ route('logout') }}" id="frmlogout" method="POST"
-                                            style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </li>
-                                </ul>
+
+                    @guest
+                        <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="profile" alt="profile" src="{{ asset('img/profile/profile.svg') }}" />
+                            <div class="name">Daftar</div>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end user-menu wide">
+                            <div class="row mb-1 ms-0 me-0">
+                                <div class="col-6 ps-1 pe-1">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{{ route('login') }}">
+                                                <span class="align-middle">Masuk</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('register') }}">
+                                                <span class="align-middle">Daftar</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endguest
+
+                    @auth
+                        <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="profile" alt="profile" src="{{ asset('img/profile/profile-9.webp') }}" />
+                            <div class="name">{{ Auth::user()->name }}</div>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end user-menu wide">
+                            <div class="row mb-1 ms-0 me-0">
+                                @if (Route::has('login'))
+                                        @if (Auth::user()->utype === 'superadmin')
+                                            <div class="col-6 ps-1 pe-1">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <a href="{{ route('admin.dashboard.index') }}">
+                                                            <i data-acorn-icon="home" class="me-2" data-acorn-size="17"></i>
+                                                            <span class="align-middle">Beranda</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
+                                                            <span class="align-middle">Setelan</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <div class="col-6 pe-1 ps-1">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a href="{{ route('profile.update') }}">
+                                                        <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
+                                                        <span class="align-middle">Profil</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
+                                                        <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
+                                                        <span class="align-middle">Keluar</span>
+                                                    </a>
+                                                    <form action="{{ route('logout') }}" id="frmlogout" method="POST"
+                                                        style="display: none;">
+                                                        @csrf
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
+                        </div>
+                    @endauth
                 </div>
                 <!-- User Menu End -->
 
@@ -148,80 +191,51 @@
                 <div class="menu-container flex-grow-1">
                     <ul id="menu" class="menu">
                         <li>
-                            <a href="{{ asset('admin/dashboard') }}">
-                                <i data-acorn-icon="home-garage" class="icon" data-acorn-size="18"></i>
+                            <a href="{{ asset('/') }}">
+                                <i data-acorn-icon="home" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Beranda</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#users">
-                                <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Pengguna</span>
-                            </a>
-                            <ul id="users">
-                                <li>
-                                    <a href="{{ asset('admin/adminwisata') }}">
-                                        <span class="label">Admin Wisata</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Apps.Chat.html">
-                                        <span class="label">Admin UMKM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="Apps.Contacts.html">
-                                        <span class="label">Admin Budaya</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('admin/tourist') }}">
-                                        <span class="label">Pengunjung</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ asset('admin/category') }}">
-                                <i data-acorn-icon="category" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Kategori</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ asset('admin/destination') }}">
+                            <a href="#apps" data-href="Apps.html">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Destinasi Wisata</span>
+                                <span class="label">Jelajahi</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#pages">
-                                <i data-acorn-icon="destination" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Budaya</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#pages">
-                                <i data-acorn-icon="help" class="icon" data-acorn-size="18"></i>
-                                <span class="label">UMKM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#settings">
-                                <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Setelan Webiste</span>
-                            </a>
-                            <ul id="settings">
+                            <ul id="Jelajahi">
                                 <li>
-                                    <a href="{{ asset('admin/contact') }}">
-                                        <span class="label">Kontak</span>
+                                    <a href="wisata.html">
+                                        <span class="label">Wisata</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ asset('admin/faq') }}">
-                                        <span class="label">Bantuan</span>
+                                    <a href="budaya.html">
+                                        <span class="label">Budaya</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="umkm.html">
+                                        <span class="label">UMKM</span>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="galeri.html" data-href="Pages.html">
+                                <i data-acorn-icon="image" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Galeri</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ asset('contact') }}">
+                                <i data-acorn-icon="phone" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Kontak</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ asset('faq') }}">
+                                <i data-acorn-icon="info-circle" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Bantuan</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -251,62 +265,8 @@
         </div>
 
         <main>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <!-- Title Start -->
-                        <section class="scroll-section" id="title">
-                            <div class="page-title-container">
-                                <div class="row">
-                                    <!-- Title Start -->
-                                    <div class="col-auto mb-3 mb-md-0 me-auto">
-                                        <div class="w-auto sw-md-30">
-                                            <a href="{{ asset('admin/dashboard') }}"
-                                                class="muted-link pb-1 d-inline-block breadcrumb-back">
-                                                <i data-acorn-icon="chevron-left" data-acorn-size="13"></i>
-                                                <span class="text-small align-middle">Beranda</span>
-                                            </a>
-                                            <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
-                                        </div>
-                                    </div>
-                                    <!-- Title End -->
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Title End -->
-
-                        <!-- Check message -->
-                        @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
-                                        class="fa fa-close"></i></button>
-                            </div>
-                        @endif
-
-                        @if($errors->any())
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                                    <i class="fa fa-close"></i>
-                                </button>
-                            </div>
-                        @endif
-                        <!-- End message -->
-
-                        <!-- Content Start -->
-                        <div>
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </main>
-
         <!-- Layout Footer Start -->
         <footer>
             <div class="footer-content">
@@ -665,7 +625,199 @@
     </div>
     <!-- Theme Settings Modal End -->
 
-    <!-- Theme Settings Buttons Start -->
+    <!-- Niches Modal Start -->
+    <div class="modal fade modal-right scroll-out-negative" id="niches" data-bs-backdrop="true" tabindex="-1"
+        role="dialog" aria-labelledby="niches" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable full" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Niches</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="scroll-track-visible">
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Classic Dashboard</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/classic-dashboard.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-classic-dashboard.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Medical Assistant</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/medical-assistant.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-medical-assistant.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Service Provider</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/service-provider.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-service-provider.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Elearning Portal</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/elearning-portal.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-elearning-portal.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Ecommerce Platform</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/ecommerce-platform.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-ecommerce-platform.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="mb-2 d-inline-block form-label">Starter Project</label>
+                            <div class="hover-reveal-buttons position-relative hover-reveal cursor-default">
+                                <div class="position-relative mb-3 mb-lg-5 rounded-sm">
+                                    <img src="https://acorn.coloredstrategies.com/img/page/starter-project.webp"
+                                        class="img-fluid rounded-sm lower-opacity border border-separator-light"
+                                        alt="card image" />
+                                    <div
+                                        class="position-absolute reveal-content rounded-sm absolute-center-vertical text-center w-100">
+                                        <a target="_blank"
+                                            href="https://acorn-html-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Html
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-laravel-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            Laravel
+                                        </a>
+                                        <a target="_blank"
+                                            href="https://acorn-dotnet-starter-project.coloredstrategies.com/"
+                                            class="btn btn-primary btn-sm sw-10 sw-lg-12 d-block mx-auto my-1">
+                                            .Net5
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Niches Modal End -->
+
+    <!-- Theme Settings & Niches Buttons Start -->
     <div class="settings-buttons-container">
         <button type="button" class="btn settings-button btn-primary p-0" data-bs-toggle="modal"
             data-bs-target="#settings" id="settingsButton">
@@ -675,7 +827,7 @@
             </span>
         </button>
     </div>
-    <!-- Theme Settings Buttons End -->
+    <!-- Theme Settings & Niches Buttons End -->
 
     <!-- Vendor Scripts Start -->
     <script src="{{ asset('js/vendor/jquery-3.5.1.min.js') }}"></script>
@@ -687,9 +839,19 @@
     <script src="{{ asset('icon/acorn-icons.js') }}"></script>
     <script src="{{ asset('icon/acorn-icons-interface.js') }}"></script>
 
-    <script src="{{ asset('js/cs/scrollspy.js') }}"></script>
+    <script src="{{ asset('js/vendor/Chart.bundle.min.js') }}"></script>
 
-    <script src="{{ asset('js/vendor/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/chartjs-plugin-datalabels.js') }}"></script>
+
+    <script src="{{ asset('js/vendor/chartjs-plugin-rounded-bar.min.js') }}"></script>
+
+    <script src="{{ asset('js/vendor/glide.min.js') }}"></script>
+
+    <script src="{{ asset('js/vendor/intro.min.js') }}"></script>
+
+    <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
+
+    <script src="{{ asset('js/vendor/plyr.min.js') }}"></script>
     <!-- Vendor Scripts End -->
 
     <!-- Template Base Scripts Start -->
@@ -701,14 +863,32 @@
     <!-- Template Base Scripts End -->
 
     <!-- Page Specific Scripts Start -->
-    <script src="{{ asset('js/cs/datatable.extend.js') }}"></script>
-    <script src="{{ asset('js/plugins/datatable.boxedvariations.js') }}"></script>
+    <script src="{{ asset('js/cs/glide.custom.js') }}"></script>
+
+    <script src="{{ asset('js/cs/charts.extend.js') }}"></script>
+
+    <script src="{{ asset('js/pages/dashboard.default.js') }}"></script>
 
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
     <script src="{{ asset('leaflet/leaflet.js') }}"></script>
     <!-- Page Specific Scripts End -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let latitude = "{{ $msme->latitude }}" || -6.24186355;
+            let longitude = "{{ $msme->longitude }}" || 106.99991249;
+
+            var map = L.map('map-detail-{{ $msme->id }}').setView([latitude, longitude], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© DolanKuy'
+            }).addTo(map);
+
+            var marker = L.marker([latitude, longitude]).addTo(map);
+        });
+    </script>
 </body>
 
 </html>

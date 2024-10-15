@@ -73,49 +73,49 @@
       </div>
 
       <table class="data-table data-table-pagination data-table-standard responsive nowrap hover" id="datatableHover">
-          <thead>
-            <tr>
-              <th class="text-muted text-small text-uppercase">#</th>
-              <th class="text-muted text-small text-uppercase">Nama Destinasi</th>
-              <th class="text-muted text-small text-uppercase">Alamat</th>
-              <th class="text-muted text-small text-uppercase">Kota</th>
-              <th class="text-muted text-small text-uppercase">Provinsi</th>
-              <th class="text-muted text-small text-uppercase">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($destination as $destinasi_data)
+        <thead>
+          <tr>
+            <th class="text-muted text-small text-uppercase">#</th>
+            <th class="text-muted text-small text-uppercase">Nama Destinasi</th>
+            <th class="text-muted text-small text-uppercase">Alamat</th>
+            <th class="text-muted text-small text-uppercase">Kota</th>
+            <th class="text-muted text-small text-uppercase">Provinsi</th>
+            <th class="text-muted text-small text-uppercase">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($destination as $destinasi_data)
 
-            <tr>
-            <td>{{ $loop->iteration }}.</td>
-            <td>{{ $destinasi_data->nama_destinasi }}</td>
-            <td>{{ $destinasi_data->alamat }}</td>
-            <td>{{ $destinasi_data->kota }}</td>
-            <td>{{ $destinasi_data->provinsi }}</td>
-            <td>
-                <div class="d-flex align-items-center" style="height: 100%;">
-                <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destinasi_data->id }}" type="button"
-                class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
-                <i data-acorn-icon="search"></i>
-                </a>
-                <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $destinasi_data->id }}" type="button"
-                class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
-                <i data-acorn-icon="edit"></i>
-                </a>
-                <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $destinasi_data->id }}" type="button"
-                class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
-                <i data-acorn-icon="bin"></i>
-                </a>
-                </div>
-              </td>
-            </tr>
-            @include('admin.destination.detail', ['destinasi_data' => $destinasi_data])
-            @include('admin.destination.update', ['destinasi_data' => $destinasi_data])
-            @include('admin.destination.delete', ['destinasi_data' => $destinasi_data])
+        <tr>
+        <td>{{ $loop->iteration }}.</td>
+        <td>{{ $destinasi_data->nama_destinasi }}</td>
+        <td>{{ $destinasi_data->alamat }}</td>
+        <td>{{ $destinasi_data->kota }}</td>
+        <td>{{ $destinasi_data->provinsi }}</td>
+        <td>
+          <div class="d-flex align-items-center" style="height: 100%;">
+          <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destinasi_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+            <i data-acorn-icon="search"></i>
+          </a>
+          <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $destinasi_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+            <i data-acorn-icon="edit"></i>
+          </a>
+          <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $destinasi_data->id }}" type="button"
+            class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+            <i data-acorn-icon="bin"></i>
+          </a>
+          </div>
+        </td>
+        </tr>
+        @include('admin.destination.detail', ['destinasi_data' => $destinasi_data])
+        @include('admin.destination.update', ['destinasi_data' => $destinasi_data])
+        @include('admin.destination.delete', ['destinasi_data' => $destinasi_data])
 
-          @endforeach
-          </tbody>
-        </table>
+      @endforeach
+        </tbody>
+      </table>
 
       <!-- Create Modal -->
       <div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
@@ -150,20 +150,22 @@
                   <input type="text" class="form-control" name="provinsi" required>
                 </div>
 
-                <!-- Map for location selection -->
                 <div class="mb-3">
-                    <label for="map" class="form-label">Cari Lokasi</label>
-                    <input type="text" id="location-search" class="form-control"/></div>
-
-                    <div class="mb-3" id="map" style="height: 300px;"></div>
-
-                <div class="mb-3">
-                  <label for="latitude" class="form-label">Latitude</label>
-                  <input type="text" class="form-control" name="latitude" id="latitude" readonly>
+                  <label for="map" class="form-label">Cari Lokasi</label>
+                  <input type="text" id="location-search" class="form-control" />
                 </div>
-                <div class="mb-3">
-                  <label for="longitude" class="form-label">Longitude</label>
-                  <input type="text" class="form-control" name="longitude" id="longitude" readonly>
+
+                <div class="map-edit mb-3" id="map"></div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="latitude" class="form-label">Latitude</label>
+                    <input type="text" class="form-control" name="latitude" id="latitude" readonly>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    <input type="text" class="form-control" name="longitude" id="longitude" readonly>
+                  </div>
                 </div>
 
                 <div class="mb-3">
@@ -199,44 +201,38 @@
   </div>
 </section>
 
-<!-- Leaflet JS & Map Initialization -->
+<!-- Page Insert Scripts Start -->
 <script>
-  var map = L.map('map').setView([-6.200000, 106.816666], 13); // Default location: Jakarta
+  var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
 
-  // Add OpenStreetMap tile layer
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+    attribution: '© DolanKuy'
   }).addTo(map);
 
   var marker;
 
-  // Handle map click event to get latitude and longitude
-  map.on('click', function(e) {
+  map.on('click', function (e) {
     var lat = e.latlng.lat;
     var lng = e.latlng.lng;
 
-    // If marker exists, move it, otherwise add a new marker
     if (marker) {
       marker.setLatLng(e.latlng);
     } else {
       marker = L.marker(e.latlng).addTo(map);
     }
 
-    // Set latitude and longitude in input fields
     document.getElementById('latitude').value = lat;
     document.getElementById('longitude').value = lng;
   });
 
-  // Adjust map size when modal is shown
   var createModal = document.getElementById('createModal');
   createModal.addEventListener('shown.bs.modal', function () {
-    setTimeout(function() {
+    setTimeout(function () {
       map.invalidateSize();
-    }, 500); // Wait for modal to fully open
+    }, 500);
   });
 
-  // Pencarian lokasi
-  document.getElementById('location-search').addEventListener('keyup', function() {
+  document.getElementById('location-search').addEventListener('keyup', function () {
     var query = this.value;
     if (query.length > 2) {
       fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
@@ -251,11 +247,9 @@
             var lat = data[0].lat;
             var lon = data[0].lon;
 
-            // Update map view
             map.setView([lat, lon], 13);
             marker = L.marker([lat, lon]).addTo(map);
 
-            // Set latitude and longitude in input fields
             document.getElementById('latitude').value = lat;
             document.getElementById('longitude').value = lon;
           }
@@ -266,31 +260,30 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        // Inisialisasi DataTable
-        var table = $('#datatableHover').DataTable({
-            paging: true,
-            searching: true, // Mengaktifkan fitur pencarian
-            order: [], // Tidak mengurutkan berdasarkan kolom apapun secara default
-            lengthMenu: [5, 10, 20], // Menentukan jumlah item per halaman
-            language: {
-                search: "Cari:",
-                lengthMenu: "Tampilkan _MENU_ item",
-                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
-                paginate: {
-                    first: "Pertama",
-                    last: "Terakhir",
-                    next: "Selanjutnya",
-                    previous: "Sebelumnya"
-                }
-            }
-        });
-
-        // Event listener untuk pencarian
-        $('.datatable-search').on('keyup change', function() {
-            table.search(this.value).draw();
-        });
+  $(document).ready(function () {
+    var table = $('#datatableHover').DataTable({
+      paging: true,
+      searching: true,
+      order: [],
+      lengthMenu: [5, 10, 20],
+      language: {
+        search: "Cari:",
+        lengthMenu: "Tampilkan _MENU_ item",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
+        paginate: {
+          first: "Pertama",
+          last: "Terakhir",
+          next: "Selanjutnya",
+          previous: "Sebelumnya"
+        }
+      }
     });
+
+    $('.datatable-search').on('keyup change', function () {
+      table.search(this.value).draw();
+    });
+  });
 </script>
+<!-- Page Insert Scripts End -->
 
 @endsection

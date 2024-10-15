@@ -1,1 +1,15 @@
-/* This file is reserved for overriding and extending the template styles. */
+.map-detail {
+    height: 300px;
+    width: 100%;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.map-edit {
+    height: 300px;
+    width: 100%;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}

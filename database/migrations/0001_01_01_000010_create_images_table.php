@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('galeri_foto', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->text('url_foto');
-            $table->string('keterangan_foto', 255);
-            $table->unsignedBigInteger('id_destinasi');
-
-            $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
+            $table->nullableMorphs('imageable');
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('galeri_foto');
+        Schema::dropIfExists('images');
     }
 };
