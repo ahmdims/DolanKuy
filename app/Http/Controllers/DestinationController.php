@@ -17,19 +17,19 @@ class DestinationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_destinasi' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'alamat' => 'required|string|max:255',
-            'kota' => 'required|string|max:255',
-            'provinsi' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
-            'jam_buka' => 'required|string|max:255',
-            'jam_tutup' => 'required|string|max:255',
-            'harga_tiket' => 'required|numeric',
-            'fasilitas' => 'nullable|string',
-            'kontak' => 'nullable|string|max:255',
-            'rating_rata_rata' => 'nullable|numeric',
+            'opening_time' => 'required|string|max:255',
+            'closing_time' => 'required|string|max:255',
+            'ticket_price' => 'required|numeric',
+            'facilities' => 'nullable|string',
+            'contact' => 'nullable|string|max:255',
+            'rating' => 'nullable|numeric',
         ]);
 
         Destination::create($request->all());
@@ -40,18 +40,18 @@ class DestinationController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_destinasi' => 'nullable|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'alamat' => 'nullable|string|max:255',
-            'kota' => 'nullable|string|max:255',
-            'provinsi' => 'nullable|string|max:255',
+            'name' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'address' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
-            'jam_buka' => 'nullable|string|max:255',
-            'jam_tutup' => 'nullable|string|max:255',
-            'harga_tiket' => 'nullable|numeric',
-            'fasilitas' => 'nullable|string',
-            'kontak' => 'nullable|string|max:255',
+            'opening_time' => 'nullable|string|max:255',
+            'closing_time' => 'nullable|string|max:255',
+            'ticket_price' => 'nullable|numeric',
+            'facilities' => 'nullable|string',
+            'contact' => 'nullable|string|max:255',
         ]);
 
         $destination = Destination::findOrFail($id);

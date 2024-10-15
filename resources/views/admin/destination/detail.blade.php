@@ -11,28 +11,28 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama_destinasi" class="form-label">Nama Destinasi</label>
-                        <input type="text" class="form-control" name="nama_destinasi"
-                            value="{{ $destinasi_data->nama_destinasi }}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" class="form-control" name="deskripsi"
-                            value="{{ $destinasi_data->deskripsi }}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" value="{{ $destinasi_data->alamat }}"
+                        <label for="name" class="form-label">Nama Destinasi</label>
+                        <input type="text" class="form-control" name="name" value="{{ $destinasi_data->name }}"
                             readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="kota" class="form-label">Kota</label>
-                        <input type="text" class="form-control" name="kota" value="{{ $destinasi_data->kota }}"
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" name="description"
+                            value="{{ $destinasi_data->description }}" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" name="address" value="{{ $destinasi_data->address }}"
                             readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="provinsi" class="form-label">Provinsi</label>
-                        <input type="text" class="form-control" name="provinsi" value="{{ $destinasi_data->provinsi }}"
+                        <label for="city" class="form-label">Kota</label>
+                        <input type="text" class="form-control" name="city" value="{{ $destinasi_data->city }}"
+                            readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="province" class="form-label">Provinsi</label>
+                        <input type="text" class="form-control" name="province" value="{{ $destinasi_data->province }}"
                             readonly>
                     </div>
                     <div class="row mb-3">
@@ -52,28 +52,28 @@
                         <div class="map-edit" id="map-detail-{{ $destinasi_data->id }}" style="height: 300px;"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam_buka" class="form-label">Jam Buka</label>
-                        <input type="time" class="form-control" name="jam_buka" value="{{ $destinasi_data->jam_buka }}"
-                            readonly>
+                        <label for="opening_time" class="form-label">Jam Buka</label>
+                        <input type="time" class="form-control" name="opening_time"
+                            value="{{ $destinasi_data->opening_time }}" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="jam_tutup" class="form-label">Jam Tutup</label>
-                        <input type="time" class="form-control" name="jam_tutup"
-                            value="{{ $destinasi_data->jam_tutup }}" readonly>
+                        <label for="closing_time" class="form-label">Jam Tutup</label>
+                        <input type="time" class="form-control" name="closing_time"
+                            value="{{ $destinasi_data->closing_time }}" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="harga_tiket" class="form-label">Harga Tiket</label>
-                        <input type="text" class="form-control" name="harga_tiket"
-                            value="{{ $destinasi_data->harga_tiket }}" readonly>
+                        <label for="ticket_price" class="form-label">Harga Tiket</label>
+                        <input type="text" class="form-control" name="ticket_price"
+                            value="{{ $destinasi_data->ticket_price }}" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="fasilitas" class="form-label">Fasilitas</label>
-                        <input type="text" class="form-control" name="fasilitas"
-                            value="{{ $destinasi_data->fasilitas }}" readonly>
+                        <label for="facilities" class="form-label">Fasilitas</label>
+                        <input type="text" class="form-control" name="facilities"
+                            value="{{ $destinasi_data->facilities }}" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="kontak" class="form-label">Kontak</label>
-                        <input type="text" class="form-control" name="kontak" value="{{ $destinasi_data->kontak }}"
+                        <label for="contact" class="form-label">Kontak</label>
+                        <input type="text" class="form-control" name="contact" value="{{ $destinasi_data->contact }}"
                             readonly>
                     </div>
                 </div>

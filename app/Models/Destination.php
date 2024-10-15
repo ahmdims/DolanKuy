@@ -9,21 +9,24 @@ class Destination extends Model
 {
     use HasFactory;
 
-    protected $table = 'destinasi_wisata';
+    protected $table = 'destinations';
 
     protected $fillable = [
-        'nama_destinasi',
-        'deskripsi',
-        'alamat',
-        'kota',
-        'provinsi',
+        'name',
+        'slug',
+        'msmes_type',
+        'description',
+        'address',
+        'city',
+        'province',
         'latitude',
         'longitude',
-        'jam_buka',
-        'jam_tutup',
-        'harga_tiket',
-        'fasilitas',
-        'kontak',
-        'rating_rata_rata',
+        'opening_time',
+        'closing_time',
+        'ticket_price',
+        'facilities',
+        'contact',
+        'rating',
+        'id_destination'
     ];
 }

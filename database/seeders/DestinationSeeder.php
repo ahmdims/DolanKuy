@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
-class MsmeSeeder extends Seeder
+class DestinationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +17,10 @@ class MsmeSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 1; $i <= 20; $i++) {
-            $name = $faker->company;
-            DB::table('msmes')->insert([
+            $name = $faker->company . ' Park';
+            DB::table('destinations')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name),
-                'msmes_type' => $faker->randomElement(['Food', 'Craft', 'Service', 'Retail']),
                 'description' => $faker->paragraph,
                 'address' => $faker->address,
                 'city' => $faker->city,
@@ -31,9 +30,8 @@ class MsmeSeeder extends Seeder
                 'opening_time' => $faker->time('H:i:s'),
                 'closing_time' => $faker->time('H:i:s'),
                 'ticket_price' => $faker->numberBetween(10000, 50000),
-                'facilities' => $faker->sentence,
+                'facilities' => implode(', ', $faker->words(3)), // Menghilangkan $asText
                 'contact' => $faker->phoneNumber,
-                'profile_photo' => $faker->imageUrl(640, 480, 'business', true, 'Faker'),
                 'rating' => $faker->numberBetween(1, 5),
                 'created_at' => now(),
                 'updated_at' => now(),

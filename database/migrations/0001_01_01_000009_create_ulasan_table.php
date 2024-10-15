@@ -15,12 +15,12 @@ return new class extends Migration {
             $table->text('komentar');
             $table->decimal('rating', 10, 0);
             $table->dateTime('tanggal_ulasan');
-            $table->unsignedBigInteger('id_pengunjung');
-            $table->unsignedBigInteger('id_destinasi');
+            $table->unsignedBigInteger('id_tourist');
+            $table->unsignedBigInteger('id_destination');
 
-            $table->foreign('id_pengunjung')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_tourist')->references('id')->on('users')->onDelete('cascade');
 
-            $table->foreign('id_destinasi')->references('id')->on('destinasi_wisata')->onDelete('cascade');
+            $table->foreign('id_destination')->references('id')->on('destinations')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('msmes', function (Blueprint $table) {
+        Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('slug', 255)->unique();
             $table->string('name', 255);
@@ -26,11 +26,7 @@ return new class extends Migration {
             $table->integer('ticket_price')->nullable();
             $table->text('facilities');
             $table->string('contact', 255);
-            $table->text('profile_photo');
             $table->integer('rating')->nullable();
-            $table->unsignedBigInteger('id_destination')->nullable();
-
-            $table->foreign('id_destination')->references('id')->on('destinations')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -40,6 +36,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('msmes');
+        Schema::dropIfExists('destinations');
     }
 };

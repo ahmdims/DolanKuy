@@ -13,29 +13,29 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama_destinasi" class="form-label">Nama Destinasi</label>
-                        <input type="text" class="form-control" id="nama_destinasi" name="nama_destinasi"
-                            value="{{ $destinasi_data->nama_destinasi }}" required>
+                        <label for="name" class="form-label">Nama Destinasi</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            value="{{ $destinasi_data->name }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                            value="{{ $destinasi_data->deskripsi }}" required>
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            value="{{ $destinasi_data->description }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" name="alamat"
-                            value="{{ $destinasi_data->alamat }}" required>
+                        <label for="address" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                            value="{{ $destinasi_data->address }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="kota" class="form-label">Kota</label>
-                        <input type="text" class="form-control" id="kota" name="kota"
-                            value="{{ $destinasi_data->kota }}" required>
+                        <label for="city" class="form-label">Kota</label>
+                        <input type="text" class="form-control" id="city" name="city"
+                            value="{{ $destinasi_data->city }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="provinsi" class="form-label">Provinsi</label>
-                        <input type="text" class="form-control" id="provinsi" name="provinsi"
-                            value="{{ $destinasi_data->provinsi }}" required>
+                        <label for="province" class="form-label">Provinsi</label>
+                        <input type="text" class="form-control" id="province" name="province"
+                            value="{{ $destinasi_data->province }}" required>
                     </div>
 
                     <div class="mb-3">
@@ -47,40 +47,40 @@
 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="latitude" class="form-label">Latitude</label>
+                            <label for="latitude-{{ $destinasi_data->id }}" class="form-label">Latitude</label>
                             <input type="text" class="form-control" id="latitude-{{ $destinasi_data->id }}"
                                 name="latitude" value="{{ $destinasi_data->latitude }}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="longitude" class="form-label">Longitude</label>
+                            <label for="longitude-{{ $destinasi_data->id }}" class="form-label">Longitude</label>
                             <input type="text" class="form-control" id="longitude-{{ $destinasi_data->id }}"
                                 name="longitude" value="{{ $destinasi_data->longitude }}" required>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam_buka" class="form-label">Jam Buka</label>
-                        <input type="time" class="form-control" id="jam_buka" name="jam_buka"
-                            value="{{ $destinasi_data->jam_buka }}" required>
+                        <label for="opening_time" class="form-label">Jam Buka</label>
+                        <input type="time" class="form-control" id="opening_time" name="opening_time"
+                            value="{{ $destinasi_data->opening_time }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="jam_tutup" class="form-label">Jam Tutup</label>
-                        <input type="time" class="form-control" id="jam_tutup" name="jam_tutup"
-                            value="{{ $destinasi_data->jam_tutup }}" required>
+                        <label for="closing_time" class="form-label">Jam Tutup</label>
+                        <input type="time" class="form-control" id="closing_time" name="closing_time"
+                            value="{{ $destinasi_data->closing_time }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="harga_tiket" class="form-label">Harga Tiket</label>
-                        <input type="text" class="form-control" id="harga_tiket" name="harga_tiket"
-                            value="{{ $destinasi_data->harga_tiket }}" required>
+                        <label for="ticket_price" class="form-label">Harga Tiket</label>
+                        <input type="text" class="form-control" id="ticket_price" name="ticket_price"
+                            value="{{ $destinasi_data->ticket_price }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="fasilitas" class="form-label">Fasilitas</label>
-                        <input type="text" class="form-control" id="fasilitas" name="fasilitas"
-                            value="{{ $destinasi_data->fasilitas }}" required>
+                        <label for="facilities" class="form-label">Fasilitas</label>
+                        <input type="text" class="form-control" id="facilities" name="facilities"
+                            value="{{ $destinasi_data->facilities }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="kontak" class="form-label">Kontak</label>
-                        <input type="text" class="form-control" id="kontak" name="kontak"
-                            value="{{ $destinasi_data->kontak }}" required>
+                        <label for="contact" class="form-label">Kontak</label>
+                        <input type="text" class="form-control" id="contact" name="contact"
+                            value="{{ $destinasi_data->contact }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">

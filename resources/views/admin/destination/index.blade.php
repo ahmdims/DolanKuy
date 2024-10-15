@@ -88,10 +88,10 @@
 
         <tr>
         <td>{{ $loop->iteration }}.</td>
-        <td>{{ $destinasi_data->nama_destinasi }}</td>
-        <td>{{ $destinasi_data->alamat }}</td>
-        <td>{{ $destinasi_data->kota }}</td>
-        <td>{{ $destinasi_data->provinsi }}</td>
+        <td>{{ $destinasi_data->name }}</td>
+        <td>{{ $destinasi_data->address }}</td>
+        <td>{{ $destinasi_data->city }}</td>
+        <td>{{ $destinasi_data->province }}</td>
         <td>
           <div class="d-flex align-items-center" style="height: 100%;">
           <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destinasi_data->id }}" type="button"
@@ -130,24 +130,24 @@
               @csrf
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="nama_destinasi" class="form-label">Nama Destinasi</label>
-                  <input type="text" class="form-control" name="nama_destinasi" required>
+                  <label for="name" class="form-label">Nama Destinasi</label>
+                  <input type="text" class="form-control" name="name" required>
                 </div>
                 <div class="mb-3">
-                  <label for="deskripsi" class="form-label">Deskripsi</label>
-                  <textarea class="form-control" name="deskripsi" required></textarea>
+                  <label for="description" class="form-label">Deskripsi</label>
+                  <textarea class="form-control" name="description" required></textarea>
                 </div>
                 <div class="mb-3">
-                  <label for="alamat" class="form-label">Alamat</label>
-                  <input type="text" class="form-control" name="alamat" required>
+                  <label for="address" class="form-label">Alamat</label>
+                  <input type="text" class="form-control" name="address" required>
                 </div>
                 <div class="mb-3">
-                  <label for="kota" class="form-label">Kota</label>
-                  <input type="text" class="form-control" name="kota" required>
+                  <label for="city" class="form-label">Kota</label>
+                  <input type="text" class="form-control" name="city" required>
                 </div>
                 <div class="mb-3">
-                  <label for="provinsi" class="form-label">Provinsi</label>
-                  <input type="text" class="form-control" name="provinsi" required>
+                  <label for="province" class="form-label">Provinsi</label>
+                  <input type="text" class="form-control" name="province" required>
                 </div>
 
                 <div class="mb-3">
@@ -169,24 +169,24 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="jam_buka" class="form-label">Jam Buka</label>
-                  <input type="time" class="form-control" name="jam_buka" required>
+                  <label for="opening_time" class="form-label">Jam Buka</label>
+                  <input type="time" class="form-control" name="opening_time" required>
                 </div>
                 <div class="mb-3">
-                  <label for="jam_tutup" class="form-label">Jam Tutup</label>
-                  <input type="time" class="form-control" name="jam_tutup" required>
+                  <label for="closing_time" class="form-label">Jam Tutup</label>
+                  <input type="time" class="form-control" name="closing_time" required>
                 </div>
                 <div class="mb-3">
-                  <label for="harga_tiket" class="form-label">Harga Tiket</label>
-                  <input type="number" class="form-control" name="harga_tiket" required>
+                  <label for="ticket_price" class="form-label">Harga Tiket</label>
+                  <input type="number" class="form-control" name="ticket_price" required>
                 </div>
                 <div class="mb-3">
-                  <label for="fasilitas" class="form-label">Fasilitas</label>
-                  <input type="text" class="form-control" name="fasilitas" placeholder="Optional">
+                  <label for="facilities" class="form-label">Fasilitas</label>
+                  <input type="text" class="form-control" name="facilities" placeholder="Optional">
                 </div>
                 <div class="mb-3">
-                  <label for="kontak" class="form-label">Kontak</label>
-                  <input type="text" class="form-control" name="kontak" placeholder="Optional">
+                  <label for="contact" class="form-label">Kontak</label>
+                  <input type="text" class="form-control" name="contact" placeholder="Optional">
                 </div>
               </div>
               <div class="modal-footer">
