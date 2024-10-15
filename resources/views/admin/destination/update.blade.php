@@ -107,7 +107,7 @@
             map = L.map('map-{{ $destinasi_data->id }}').setView([latitude, longitude], 15);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
+                attribution: '© DolanKuy'
             }).addTo(map);
 
             marker = L.marker([latitude, longitude], { draggable: true }).addTo(map);
