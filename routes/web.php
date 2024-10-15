@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminWisataController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Admin\DestinationController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AdminController;
@@ -63,13 +63,13 @@ Route::middleware('auth.admin')->group(function () {
     });
 
     // Destinasi Wisata
-    Route::resource('destination', DestinationController::class)->names([
-        'index' => 'admin.destination.index',
-        'store' => 'destination.store',
-        'show' => 'destination.detail',
-        'update' => 'destination.update',
-        'destroy' => 'destination.destroy',
-    ])->parameters(['destination' => 'id']);
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/destination', [DestinationController::class, 'admin'])->name('admin.destination.index');
+        Route::post('/admin/destination', [DestinationController::class, 'store'])->name('destination.store');
+        Route::get('/admin/destination/{id}', [DestinationController::class, 'show'])->name('destination.detail');
+        Route::put('/admin/destination/{id}', [DestinationController::class, 'update'])->name('destination.update');
+        Route::delete('/admin/destination/{id}', [DestinationController::class, 'destroy'])->name('destination.destroy');
+    });
 
     //Kontak
     Route::get('/admin/contact', [ContactController::class, 'admin'])->middleware('auth.admin');

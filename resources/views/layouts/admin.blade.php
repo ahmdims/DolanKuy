@@ -187,7 +187,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.destination.index') }}">
+                            <a href="{{ asset('admin/destination') }}">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Destinasi Wisata</span>
                             </a>

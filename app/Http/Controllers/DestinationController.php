@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
-    public function index()
+    public function admin()
     {
         $destination = Destination::all();
         return view('admin.destination.index', compact('destination'));
