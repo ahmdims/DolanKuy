@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DestinationController extends Controller
 {
@@ -32,7 +33,8 @@ class DestinationController extends Controller
             'rating' => 'nullable|numeric',
         ]);
 
-        Destination::create($request->all());
+        $slug = Str::slug($request->name);
+        Destination::create(array_merge($request->all(), ['slug' => $slug]));
 
         return redirect()->route('admin.destination.index')->with('success', 'Destination created successfully.');
     }
@@ -55,7 +57,12 @@ class DestinationController extends Controller
         ]);
 
         $destination = Destination::findOrFail($id);
+        if ($request->has('name') && !empty($request->name)) {
+            $destination->slug = Str::slug($request->name);
+        }
+
         $destination->update($request->all());
+        $destination->save();
 
         return redirect()->route('admin.destination.index')->with('success', 'Destination updated successfully.');
     }
