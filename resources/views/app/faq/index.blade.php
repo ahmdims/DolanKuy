@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda')
+@section('title', 'Bantuan')
 
 @section('content')
 
-<div class="container px-5">
-    <div class="row">
-        <div class="col-12 col-xl-8 col-xxl-9 mb-5 w-100">
-            <div id="accordionCards">
+<div class="container px-5 my-5">
+    <div class="container-fluid px-0">
+        <section class="main-content">
+            <div class="container-fluid p-0">
+                <div class="section-header mb-4">
+                    <h3 class="section-title">Bantuan</h3>
+                </div>
                 <div class="mb-n2">
                     @foreach($faq as $faq_data)
                         <div class="card d-flex mb-2">
@@ -15,13 +18,13 @@
                                 data-bs-target="#collapseTwoCards{{ $faq_data->id }}" aria-expanded="true"
                                 aria-controls="collapseTwoCards{{ $faq_data->id }}">
                                 <div class="card-body py-4">
-                                    <div class="btn btn-link list-item-heading p-0">{{ $faq_data->pertanyaan }}</div>
+                                    <div class="btn btn-link list-item-heading p-0">{{ $faq_data->question }}</div>
                                 </div>
                             </div>
                             <div id="collapseTwoCards{{ $faq_data->id }}" class="collapse" data-bs-parent="#accordionCards">
                                 <div class="card-body accordion-content pt-0">
                                     <div class="mb-2">
-                                        <p>{{ $faq_data->jawaban }}</p>
+                                        <p>{{ $faq_data->answer }}</p>
                                     </div>
                                     <div class="row">
                                         <div class="col">
@@ -45,7 +48,7 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </div>
 

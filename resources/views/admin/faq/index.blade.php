@@ -75,22 +75,22 @@
           @foreach($faq as $faq_data)
         <tr>
         <td>{{ $iteration }}.</td>
-        <td>{{ $faq_data->pertanyaan }}</td>
-        <td>{{ $faq_data->jawaban }}</td>
+        <td>{{ $faq_data->question }}</td>
+        <td>{{ $faq_data->answer }}</td>
         <td>{{ $faq_data->created_at }}</td>
         <td>{{ $faq_data->updated_at }}</td>
         <td>
           <div class="d-flex align-items-center" style="height: 100%;">
           <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $faq_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+            class="btn btn-icon btn-icon-only btn-info me-1" title="Detail">
             <i data-acorn-icon="search"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $faq_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+            class="btn btn-icon btn-icon-only btn-warning me-1" title="Update">
             <i data-acorn-icon="edit"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $faq_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+            class="btn btn-icon btn-icon-only btn-danger" title="Delete">
             <i data-acorn-icon="bin"></i>
           </a>
           </div>
@@ -117,12 +117,12 @@
               @csrf
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                  <input type="text" class="form-control" name="pertanyaan" value="{{ old('pertanyaan') }}" required>
+                  <label for="question" class="form-label">Pertanyaan</label>
+                  <input type="text" class="form-control" name="question" value="{{ old('question') }}" required>
                 </div>
                 <div class="mb-3">
-                  <label for="jawaban" class="form-label">Jawaban</label>
-                  <textarea placeholder="jawaban" type="text" class="form-control" name="jawaban" rows="3"></textarea>
+                  <label for="answer" class="form-label">Jawaban</label>
+                  <textarea placeholder="answer" type="text" class="form-control" name="answer" rows="3"></textarea>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>

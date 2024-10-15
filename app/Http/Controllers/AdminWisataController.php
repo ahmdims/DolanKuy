@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminWisataController extends Controller
 {
-    public function adminIndex()
+    public function admin()
     {
         $users = User::all();
         return view('admin.adminwisata.index', compact('users'));

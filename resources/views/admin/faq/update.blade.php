@@ -11,14 +11,14 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                        <input type="text" class="form-control" id="pertanyaan" name="pertanyaan"
-                            value="{{ $faq_data->pertanyaan }}" required>
+                        <label for="question" class="form-label">Pertanyaan</label>
+                        <input type="text" class="form-control" id="question" name="question"
+                            value="{{ $faq_data->question }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="jawaban" class="form-label">Jawaban</label>
-                        <textarea placeholder="jawaban" type="text" class="form-control" name="jawaban"
-                            rows="3">{{ $faq_data->jawaban }}</textarea>
+                        <label for="answer" class="form-label">Jawaban</label>
+                        <textarea placeholder="answer" type="text" class="form-control" name="answer"
+                            rows="3">{{ $faq_data->answer }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

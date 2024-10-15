@@ -7,11 +7,16 @@ use App\Http\Controllers\TouristController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Pengguna
 Route::get('/', fn() => view('app.dashboard.index'))->name('dashboard');
+
+Route::get('/msme', [MsmeController::class, 'index'])->name('admin.msme.index');
+Route::get('/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
+
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
@@ -27,12 +32,12 @@ Route::middleware('auth.admin')->group(function () {
 
     // Dashboard Admin
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/dashboard', [AdminController::class, 'adminIndex'])->name('admin.dashboard.index');
+        Route::get('/admin/dashboard', [AdminController::class, 'admin'])->name('admin.dashboard.index');
     });
 
     // Pengunjung
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/tourist', [TouristController::class, 'adminIndex'])->name('admin.tourist.index');
+        Route::get('/admin/tourist', [TouristController::class, 'admin'])->name('admin.tourist.index');
         Route::post('/admin/tourist', [TouristController::class, 'store'])->name('tourist.store');
         Route::get('/admin/tourist/{id}', [TouristController::class, 'show'])->name('tourist.detail');
         Route::put('/admin/tourist/{id}', [TouristController::class, 'update'])->name('tourist.update');
@@ -41,7 +46,7 @@ Route::middleware('auth.admin')->group(function () {
 
     // Admin Wisata
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/adminwisata', [AdminWisataController::class, 'adminIndex'])->name('admin.adminwisata.index');
+        Route::get('/admin/adminwisata', [AdminWisataController::class, 'admin'])->name('admin.adminwisata.index');
         Route::post('/admin/adminwisata', [AdminWisataController::class, 'store'])->name('adminwisata.store');
         Route::get('/admin/adminwisata/{id}', [AdminWisataController::class, 'show'])->name('adminwisata.detail');
         Route::put('/admin/adminwisata/{id}', [AdminWisataController::class, 'update'])->name('adminwisata.update');
@@ -50,7 +55,7 @@ Route::middleware('auth.admin')->group(function () {
 
     // Kategori
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/category', [CategoryController::class, 'adminIndex'])->name('admin.category.index');
+        Route::get('/admin/category', [CategoryController::class, 'admin'])->name('admin.category.index');
         Route::post('/admin/category', [CategoryController::class, 'store'])->name('category.store');
         Route::get('/admin/category/{id}', [CategoryController::class, 'show'])->name('category.detail');
         Route::put('/admin/category/{id}', [CategoryController::class, 'update'])->name('category.update');
@@ -67,11 +72,11 @@ Route::middleware('auth.admin')->group(function () {
     ])->parameters(['destination' => 'id']);
 
     //Kontak
-    Route::get('/admin/contact', [ContactController::class, 'adminIndex'])->middleware('auth.admin');
+    Route::get('/admin/contact', [ContactController::class, 'admin'])->middleware('auth.admin');
 
     // Bantuan
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/faq', [FaqController::class, 'adminIndex'])->name('admin.faq.index');
+        Route::get('/admin/faq', [FaqController::class, 'admin'])->name('admin.faq.index');
         Route::post('/admin/faq', [FaqController::class, 'store'])->name('faq.store');
         Route::get('/admin/faq/{id}', [FaqController::class, 'show'])->name('faq.detail');
         Route::put('/admin/faq/{id}', [FaqController::class, 'update'])->name('faq.update');

@@ -64,7 +64,7 @@
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
             <th class="text-muted text-small text-uppercase">Kategori</th>
-            <th class="text-muted text-small text-uppercase">Aksi/th>
+            <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -72,19 +72,19 @@
           @foreach($category as $category_data)
         <tr>
         <td>{{ $iteration }}.</td>
-        <td>{{ $category_data->nama_kategori }}</td>
+        <td>{{ $category_data->name }}</td>
         <td>
           <div class="d-flex align-items-center" style="height: 100%;">
           <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $category_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+            class="btn btn-icon btn-icon-only btn-info me-1" title="Detail">
             <i data-acorn-icon="search"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $category_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+            class="btn btn-icon btn-icon-only btn-warning me-1" title="Update">
             <i data-acorn-icon="edit"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $category_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+            class="btn btn-icon btn-icon-only btn-danger" title="Delete">
             <i data-acorn-icon="bin"></i>
           </a>
           </div>
@@ -111,9 +111,8 @@
               @csrf
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="nama_kategori" class="form-label">Name</label>
-                  <input type="text" class="form-control" name="nama_kategori" value="{{ old('nama_kategori') }}"
-                    required>
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>

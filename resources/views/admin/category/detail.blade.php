@@ -11,9 +11,8 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama_kategori" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" name="nama_kategori"
-                            value="{{ $category_data->nama_kategori }}" readonly>
+                        <label for="name" class="form-label">Kategori</label>
+                        <input type="text" class="form-control" name="name" value="{{ $category_data->name }}" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">

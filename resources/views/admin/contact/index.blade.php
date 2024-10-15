@@ -64,7 +64,7 @@
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
             <th class="text-muted text-small text-uppercase">Kategori</th>
-            <th class="text-muted text-small text-uppercase">Aksi/th>
+            <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -72,19 +72,19 @@
           @foreach($contact as $contact_data)
         <tr>
         <td>{{ $iteration }}.</td>
-        <td>{{ $contact_data->nama_kategori }}</td>
+        <td>{{ $contact_data->name }}</td>
         <td>
           <div class="d-flex align-items-center" style="height: 100%;">
           <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $contact_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+            class="btn btn-icon btn-icon-only btn-info me-1" title="Detail">
             <i data-acorn-icon="search"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $contact_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+            class="btn btn-icon btn-icon-only btn-warning me-1" title="Update">
             <i data-acorn-icon="edit"></i>
           </a>
           <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $contact_data->id }}" type="button"
-            class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+            class="btn btn-icon btn-icon-only btn-danger" title="Delete">
             <i data-acorn-icon="bin"></i>
           </a>
           </div>

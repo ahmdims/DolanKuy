@@ -81,15 +81,15 @@
       <td>
         <div class="d-flex align-items-center" style="height: 100%;">
         <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
+        class="btn btn-icon btn-icon-only btn-info me-1" title="Detail">
         <i data-acorn-icon="search"></i>
         </a>
         <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-warning mb-1 me-1" title="Update">
+        class="btn btn-icon btn-icon-only btn-warning me-1" title="Update">
         <i data-acorn-icon="edit"></i>
         </a>
         <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $user_data->id }}" type="button"
-        class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
+        class="btn btn-icon btn-icon-only btn-danger" title="Delete">
         <i data-acorn-icon="bin"></i>
         </a>
         </div>

@@ -153,11 +153,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#apps">
+                            <a href="#users">
                                 <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Pengguna</span>
                             </a>
-                            <ul id="apps">
+                            <ul id="users">
                                 <li>
                                     <a href="{{ asset('admin/adminwisata') }}">
                                         <span class="label">Admin Wisata</span>
@@ -203,6 +203,24 @@
                                 <i data-acorn-icon="help" class="icon" data-acorn-size="18"></i>
                                 <span class="label">UMKM</span>
                             </a>
+                        </li>
+                        <li>
+                            <a href="#settings">
+                                <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Setelan Webiste</span>
+                            </a>
+                            <ul id="settings">
+                                <li>
+                                    <a href="{{ asset('admin/contact') }}">
+                                        <span class="label">Kontak</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ asset('admin/faq') }}">
+                                        <span class="label">Bantuan</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

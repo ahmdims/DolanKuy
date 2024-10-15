@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda')
+@section('title', 'Kontak')
 
 @section('content')
 
@@ -12,10 +12,10 @@
                 <div class="section-header mb-4">
                     <h3 class="section-title">Kirim Pesan</h3>
                 </div>
-                <div class="row g-0"> <!-- Menghapus jarak antar kolom -->
+                <div class="row g-0">
                     <!-- Kirim Pesan -->
                     <div class="col-lg-8">
-                        <div class="card mb-0 me-4 ms-0"> <!-- Tambahkan margin kanan, hapus margin kiri -->
+                        <div class="card mb-0 me-4 ms-0">
                             <div class="card-body">
                                 <form class="row g-3">
                                     <div class="col-md-6">
@@ -52,7 +52,7 @@
                         <div class="card mb-4 text-start">
                             <div
                                 class="card-body text-center d-flex flex-column justify-content-center align-items-center">
-                                <i data-acorn-icon="email" class="text-primary mb-3 fs-5"></i>
+                                <i data-acorn-icon="phone" class="text-primary mb-3 fs-5"></i>
                                 <h5 class="card-text">{{ $contact->phone }}</h5>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                         <div class="card mb-4 text-start">
                             <div
                                 class="card-body text-center d-flex flex-column justify-content-center align-items-center">
-                                <i data-acorn-icon="email" class="text-primary mb-3 fs-5"></i>
+                                <i data-acorn-icon="compass" class="text-primary mb-3 fs-5"></i>
                                 <h5 class="card-text">{{ $contact->address }}</h5>
                             </div>
                         </div>

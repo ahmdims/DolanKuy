@@ -10,11 +10,11 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $faq = Faq::all();
+        $faq = Faq::orderBy('created_at', 'desc')->get();
         return view('app.faq.index', compact('faq'));
     }
 
-    public function adminIndex()
+    public function admin()
     {
         $faq = Faq::all();
         return view('admin.faq.index', compact('faq'));
@@ -23,8 +23,8 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'pertanyaan' => 'required|string|max:255',
-            'jawaban' => 'required|string',
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
         ]);
 
         Faq::create($request->all());
@@ -35,8 +35,8 @@ class FaqController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'pertanyaan' => 'nullable|string|max:255',
-            'jawaban' => 'nullable|string',
+            'question' => 'nullable|string|max:255',
+            'answer' => 'nullable|string',
         ]);
 
         $faq = Faq::findOrFail($id);

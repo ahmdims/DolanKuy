@@ -12,9 +12,9 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama_kategori" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" id="nama_kategori" name="nama_kategori"
-                            value="{{ $category_data->nama_kategori }}" required>
+                        <label for="name" class="form-label">Kategori</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $category_data->name }}"
+                            required>
                     </div>
                 </div>
                 <div class="modal-footer">

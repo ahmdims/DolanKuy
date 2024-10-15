@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function adminIndex()
+    public function admin()
     {
         $category = Category::all();
         return view('admin.category.index', compact('category'));
@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kategori' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
         Category::create($request->all());
@@ -28,7 +28,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_kategori' => 'nullable|string|max:255',
+            'name' => 'nullable|string|max:255',
         ]);
 
         $category = Category::findOrFail($id);

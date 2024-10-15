@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class TouristController extends Controller
 {
-    public function adminIndex()
+    public function admin()
     {
         $users = User::all();
         return view('admin.tourist.index', compact('users'));

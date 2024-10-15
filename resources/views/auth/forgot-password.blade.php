@@ -1,25 +1,82 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends('layouts.auth')
+
+@section('title', 'Lupa Password')
+
+@section('content')
+<div class="row g-0 h-100">
+    <!-- Left Side Start -->
+    <div class="offset-0 col-12 d-none d-lg-flex offset-md-1 col-lg h-lg-100">
+        <div class="min-h-100 d-flex align-items-center">
+            <div class="w-100 w-lg-75 w-xxl-50">
+                <div>
+                    <div class="mb-5">
+                        <h1 class="display-3 text-white">Multiple Niches</h1>
+                        <h1 class="display-3 text-white">Ready for Your Project</h1>
+                    </div>
+                    <p class="h6 text-white lh-1-5 mb-5">
+                        Dynamically target high-payoff intellectual capital for customized technologies. Objectively
+                        integrate emerging core competencies before process-centric communities...
+                    </p>
+                    <div class="mb-5">
+                        <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Left Side End -->
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!-- Right Side Start -->
+    <div class="col-12 col-lg-auto h-100 pb-4 px-4 pt-0 p-lg-0">
+        <div
+            class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-right-border">
+            <div class="sw-lg-50 px-5">
+                <div class="sh-11">
+                    <a href="index.html">
+                        <div class="logo-default"></div>
+                    </a>
+                </div>
+                <div class="mb-5">
+                    <h2 class="cta-1 mb-0 text-primary">Password is gone?</h2>
+                    <h2 class="cta-1 text-primary">Let's reset it!</h2>
+                </div>
+                <div class="mb-5">
+                    <p class="h6">Please enter your email to receive a link to reset your password.</p>
+                    <p class="h6">
+                        If you are a member, please
+                        <a href="{{ route('login') }}">login</a>.
+                    </p>
+                </div>
 
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
+                <!-- Display Success or Error Message -->
+                @if (session('status'))
+                    <div class="mb-4 text-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                @if ($errors->any())
+                    <div class="mb-4 text-danger">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
+                <div>
+                    <form method="POST" action="{{ route('password.email') }}" class="tooltip-end-bottom" novalidate>
+                        @csrf
+                        <div class="mb-3 filled form-group tooltip-end-top">
+                            <i data-acorn-icon="email"></i>
+                            <input class="form-control" id="email" type="email" name="email" :value="old('email')"
+                                required autofocus placeholder="Email" />
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-primary">Send Reset Email</button>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+    <!-- Right Side End -->
+</div>
+@endsection
