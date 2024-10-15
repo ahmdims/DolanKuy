@@ -3,6 +3,19 @@
 @section('title', 'Destinasi Wisata')
 
 @section('content')
+<script src="{{ asset('leaflet/leaflet-src.esm.js') }}"></script>
+<script src="{{ asset('leaflet/leaflet-src.esm.js.map') }}"></script>
+<script src="{{ asset('leaflet/leaflet-src.js') }}"></script>
+<script src="{{ asset('leaflet/leaflet-src.js.map') }}"></script>
+<style src="{{ asset('leaflet/leaflet.css') }}"></style>
+<script src="{{ asset('leaflet/leaflet.js') }}"></script>
+<script src="{{ asset('leaflet/leaflet.js.map') }}"></script>
+<!-- Include jQuery -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-geosearch/dist/leaves.js"></script>
+<script src="https://unpkg.com/leaflet-geosearch/dist/geosearch.umd.js"></script>
+
 
 <section class="scroll-section" id="hover">
   <div class="card mb-5">
@@ -139,17 +152,18 @@
 
                 <!-- Map for location selection -->
                 <div class="mb-3">
-                  <label for="map" class="form-label">Pilih Lokasi</label>
-                  <input type="text" id="location-search" class="form-control" placeholder="Cari lokasi" />
-                  <div id="map" style="height: 300px;"></div>
-                </div>
+                    <label for="map" class="form-label">Cari Lokasi</label>
+                    <input type="text" id="location-search" class="form-control"/></div>
+
+                    <div class="mb-3" id="map" style="height: 300px;"></div>
+
                 <div class="mb-3">
                   <label for="latitude" class="form-label">Latitude</label>
-                  <input type="text" class="form-control" name="latitude" id="latitude" placeholder="Latitude" readonly>
+                  <input type="text" class="form-control" name="latitude" id="latitude" readonly>
                 </div>
                 <div class="mb-3">
                   <label for="longitude" class="form-label">Longitude</label>
-                  <input type="text" class="form-control" name="longitude" id="longitude" placeholder="Longitude" readonly>
+                  <input type="text" class="form-control" name="longitude" id="longitude" readonly>
                 </div>
 
                 <div class="mb-3">
