@@ -57,6 +57,7 @@
 
     <!-- Template Base Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- Template Base Styles End -->
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
@@ -208,7 +209,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="umkm.html">
+                                    <a href="{{ asset('msme') }}">
                                         <span class="label">UMKM</span>
                                     </a>
                                 </li>

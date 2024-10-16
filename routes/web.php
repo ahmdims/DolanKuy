@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminWisataController;
+use App\Http\Controllers\DestinationAdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\TouristController;
@@ -16,6 +16,8 @@ Route::get('/', fn() => view('app.dashboard.index'))->name('dashboard');
 
 Route::get('/msme', [MsmeController::class, 'index'])->name('admin.msme.index');
 Route::get('/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
+Route::middleware('auth')->post('/msme/{slug}/like', [MsmeController::class, 'like'])->name('msme.like');
+Route::middleware('auth')->post('/msme/{slug}/history', [MsmeController::class, 'history'])->name('msme.history');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
@@ -46,11 +48,11 @@ Route::middleware('auth.admin')->group(function () {
 
     // Admin Wisata
     Route::group(['middleware' => 'auth.admin'], function () {
-        Route::get('/admin/adminwisata', [AdminWisataController::class, 'admin'])->name('admin.adminwisata.index');
-        Route::post('/admin/adminwisata', [AdminWisataController::class, 'store'])->name('adminwisata.store');
-        Route::get('/admin/adminwisata/{id}', [AdminWisataController::class, 'show'])->name('adminwisata.detail');
-        Route::put('/admin/adminwisata/{id}', [AdminWisataController::class, 'update'])->name('adminwisata.update');
-        Route::delete('/admin/adminwisata/{id}', [AdminWisataController::class, 'destroy'])->name('adminwisata.destroy');
+        Route::get('/admin/destination-admin', [DestinationAdminController::class, 'admin'])->name('admin.destination-admin.index');
+        Route::post('/admin/destination-admin', [DestinationAdminController::class, 'store'])->name('destination-admin.store');
+        Route::get('/admin/destination-admin/{id}', [DestinationAdminController::class, 'show'])->name('destination-admin.detail');
+        Route::put('/admin/destination-admin/{id}', [DestinationAdminController::class, 'update'])->name('destination-admin.update');
+        Route::delete('/admin/destination-admin/{id}', [DestinationAdminController::class, 'destroy'])->name('destination-admin.destroy');
     });
 
     // Kategori

@@ -27,7 +27,10 @@ return new class extends Migration {
             $table->text('facilities');
             $table->string('contact', 255);
             $table->text('profile_photo');
-            $table->integer('rating')->nullable();
+            $table->integer('view_count')->default(0);
+            $table->unsignedInteger('likes_count')->default(0);
+            $table->unsignedInteger('histories_count')->default(0);
+            $table->text('style')->nullable();
             $table->unsignedBigInteger('id_destination')->nullable();
 
             $table->foreign('id_destination')->references('id')->on('destinations')->onDelete('cascade');
@@ -41,5 +44,14 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('msmes');
+
+        Schema::table('msmes', function (Blueprint $table) {
+            $table->dropColumn('view_count');
+        });
+
+        Schema::table('msmes', function (Blueprint $table) {
+            $table->dropColumn('likes_count');
+            $table->dropColumn('histories_count');
+        });
     }
 };

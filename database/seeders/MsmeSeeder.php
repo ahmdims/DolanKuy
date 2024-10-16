@@ -34,7 +34,6 @@ class MsmeSeeder extends Seeder
                 'facilities' => $faker->sentence,
                 'contact' => $faker->phoneNumber,
                 'profile_photo' => $faker->imageUrl(640, 480, 'business', true, 'Faker'),
-                'rating' => $faker->numberBetween(1, 5),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

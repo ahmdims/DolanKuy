@@ -1,6 +1,6 @@
 @extends('layouts.detail')
 
-@section('title', $msme->name)
+@section('title', $detail->name)
 
 @section('content')
 <div class="container">
@@ -95,9 +95,9 @@
                         </div>
                     </div>
                     <div class="card-body pt-0">
-                        <h2 class="mb-3">{{ $msme->name }}</h2>
+                        <h2 class="mb-3">{{ $detail->name }}</h2>
                         <div>
-                            {{ $msme->description }}
+                            {{ $detail->description }}
                         </div>
                     </div>
                 </div>
@@ -110,20 +110,47 @@
                             <div class="row g-0">
                                 <div class="col-auto pe-3">
                                     <i data-acorn-icon="eye" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">421</span>
+                                    <span class="align-middle">{{ $detail->ViewCount() }}</span>
                                 </div>
+
                                 <div class="col-auto pe-3">
-                                    <i data-acorn-icon="like" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">421</span>
+                                    <form action="{{ route('msme.like', $detail->slug) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                            @if ($detail->likes()->where('user_id', auth()->id())->exists())
+                                                <i class="bi bi-hand-thumbs-up-fill text-primary me-1"
+                                                    data-acorn-size="20"></i>
+                                                <span class="align-middle">{{ $detail->likes()->count() }}</span>
+                                            @else
+                                                <i class="bi bi-hand-thumbs-up text-primary me-1" data-acorn-size="20"></i>
+                                                <span class="align-middle">{{ $detail->likes()->count() }}</span>
+                                            @endif
+                                        </button>
+                                    </form>
                                 </div>
+
                                 <div class="col-auto pe-3">
                                     <i data-acorn-icon="message" class="text-primary me-1" data-acorn-size="20"></i>
                                     <span class="align-middle">421</span>
                                 </div>
-                                <div class="col">
-                                    <i data-acorn-icon="bookmark" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">4</span>
+
+                                <div class="col-auto pe-3">
+                                    <form action="{{ route('msme.history', $detail->slug) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                            @if ($detail->histories()->where('user_id', auth()->id())->exists())
+                                                <i class="bi bi-bookmark-fill text-primary me-1" data-acorn-size="20"></i>
+                                                <span class="align-middle">{{ $detail->histories()->count() }}</span>
+                                            @else
+                                                <i class="bi bi-bookmark text-primary me-1" data-acorn-size="20"></i>
+                                                <span class="align-middle">{{ $detail->histories()->count() }}</span>
+                                            @endif
+                                        </button>
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                         <!-- Social Buttons End -->
@@ -138,13 +165,14 @@
                     <div class="card-body h-50">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <h5 class="mb-3">{{ $msme->address }}, {{ $msme->city }}, {{ $msme->province }}</h5>
+                                <h5 class="mb-3">{{ $detail->address }}, {{ $detail->city }}, {{ $detail->province }}
+                                </h5>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="small-title">Peta Lokasi</label>
-                            <div class="map-detail" id="map-detail-{{ $msme->id }}"></div>
+                            <div class="map-detail" id="map-detail-{{ $detail->id }}"></div>
                         </div>
 
                     </div>
@@ -164,8 +192,8 @@
                             <div class="col-6 mb-3 pe-2">
                                 <div class="card" style="height: 100px;">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                        <h5 class="text-gradient text-primary mb-0">{{ $msme->city }}</h5>
-                                        <p class="mb-0 text-dark">{{ $msme->province }}</p>
+                                        <h5 class="text-gradient text-primary mb-0">{{ $detail->city }}</h5>
+                                        <p class="mb-0 text-dark">{{ $detail->province }}</p>
                                     </div>
                                 </div>
                             </div>

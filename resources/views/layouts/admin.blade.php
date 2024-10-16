@@ -160,7 +160,7 @@
                             </a>
                             <ul id="users">
                                 <li>
-                                    <a href="{{ asset('admin/adminwisata') }}">
+                                    <a href="{{ asset('admin/destination-admin') }}">
                                         <span class="label">Admin Wisata</span>
                                     </a>
                                 </li>

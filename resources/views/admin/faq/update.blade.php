@@ -17,8 +17,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="answer" class="form-label">Jawaban</label>
-                        <textarea placeholder="answer" type="text" class="form-control" name="answer"
-                            rows="3">{{ $faq_data->answer }}</textarea>
+                        <div class="html-editor sh-19" id="quillEdit-{{ $faq_data->id }}"></div>
+                        <input type="hidden" name="answer" id="answer-{{ $faq_data->id }}">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -29,3 +29,32 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Initialize Quill only when the modal is shown
+    $('#updateModal-{{ $faq_data->id }}').on('shown.bs.modal', function () {
+        // Initialize Quill for this modal
+        const quillEdit{{ $faq_data->id }} = new Quill('#quillEdit-{{ $faq_data->id }}', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    ['blockquote', 'code-block'],
+                    ['link']
+                ]
+            }
+        });
+
+        // Set the initial content of the Quill editor from the server-side data
+        quillEdit{{ $faq_data->id }}.root.innerHTML = `{!! $faq_data->answer !!}`;
+
+        // Form submission handling for the Quill editor content
+        $('#updateModal-{{ $faq_data->id }} form').on('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+            const answerContent = quillEdit{{ $faq_data->id }}.root.innerHTML; // Get the content from the Quill editor
+            $('#answer-{{ $faq_data->id }}').val(answerContent); // Set the content to the hidden input
+            this.submit(); // Submit the form
+        });
+    });
+</script>

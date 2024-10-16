@@ -32,7 +32,6 @@ class DestinationSeeder extends Seeder
                 'ticket_price' => $faker->numberBetween(10000, 50000),
                 'facilities' => implode(', ', $faker->words(3)), // Menghilangkan $asText
                 'contact' => $faker->phoneNumber,
-                'rating' => $faker->numberBetween(1, 5),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

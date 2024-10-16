@@ -24,7 +24,7 @@
                             <div id="collapseTwoCards{{ $faq_data->id }}" class="collapse" data-bs-parent="#accordionCards">
                                 <div class="card-body accordion-content pt-0">
                                     <div class="mb-2">
-                                        <p>{{ $faq_data->answer }}</p>
+                                        {!! $faq_data->answer !!}
                                     </div>
                                     <div class="row">
                                         <div class="col">

@@ -65,4 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->attributes['role'] = $value;
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function historys()
+    {
+        return $this->hasMany(History::class);
+    }
 }

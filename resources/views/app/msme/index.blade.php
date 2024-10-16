@@ -41,15 +41,15 @@
                                 <div>
                                     <div class="row g-0">
                                         <div class="col-auto pe-3">
-                                            <i data-acorn-icon="eye" class="text-primary me-0" data-acorn-size="15"></i>
-                                            <span class="align-middle">421</span>
+                                            <i data-acorn-icon="eye" class="text-primary me-1" data-acorn-size="20"></i>
+                                            <span class="align-middle">{{ $msme_data->viewCount() }}</span>
                                         </div>
                                         <div class="col-auto pe-3">
-                                            <i data-acorn-icon="like" class="text-primary me-0" data-acorn-size="15"></i>
-                                            <span class="align-middle">34</span>
+                                            <i data-acorn-icon="like" class="text-primary me-0" data-acorn-size="20"></i>
+                                            <span class="align-middle">{{ $msme_data->likeCount() }}</span>
                                         </div>
                                         <div class="col-auto pe-3">
-                                            <i data-acorn-icon="message" class="text-primary me-0" data-acorn-size="15"></i>
+                                            <i data-acorn-icon="message" class="text-primary me-0" data-acorn-size="20"></i>
                                             <span class="align-middle">15</span>
                                         </div>
                                     </div>

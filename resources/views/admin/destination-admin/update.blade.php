@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="Modal">Ubah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('adminwisata.update', $user_data->id) }}"
+            <form method="POST" action="{{ route('destination-admin.update', $user_data->id) }}"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

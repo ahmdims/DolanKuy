@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Msme;
+use App\Models\Like;
+use App\Models\History;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -17,10 +19,12 @@ class MsmeController extends Controller
 
     public function show($slug)
     {
-        $msme = Msme::where('slug', $slug)->firstOrFail();
+        $detail = Msme::where('slug', $slug)->firstOrFail();
+
+        $detail->increment('view_count');
 
         $apiKey = env('WEATHER_API_KEY');
-        $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$msme->city}&aqi=no";
+        $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
 
         $client = new Client();
         try {
@@ -30,7 +34,75 @@ class MsmeController extends Controller
             $weatherData = null;
         }
 
-        return view('app.msme.detail', compact('msme', 'weatherData'));
+        return view('app.msme.detail', compact('detail', 'weatherData'));
+    }
+
+    public function like($slug)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $msme = Msme::where('slug', $slug)->firstOrFail();
+
+        $likeExists = Like::where('user_id', auth()->id())
+            ->where('entity_id', $msme->id)
+            ->where('entity_type', 'msme')
+            ->exists();
+
+        if (!$likeExists) {
+            Like::create([
+                'user_id' => auth()->id(),
+                'entity_id' => $msme->id,
+                'entity_type' => 'msme',
+            ]);
+
+            $msme->likes_count = $msme->likes()->count(); // Hitung jumlah likes
+        } else {
+            Like::where('user_id', auth()->id())
+                ->where('entity_id', $msme->id)
+                ->where('entity_type', 'msme')
+                ->delete();
+
+            $msme->likes_count = $msme->likes()->count(); // Hitung ulang jumlah likes setelah penghapusan
+        }
+
+        $msme->save();
+        return back();
+    }
+
+    public function history($slug)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $msme = Msme::where('slug', $slug)->firstOrFail();
+
+        $historyExists = History::where('user_id', auth()->id())
+            ->where('entity_id', $msme->id)
+            ->where('entity_type', 'msme')
+            ->exists();
+
+        if (!$historyExists) {
+            History::create([
+                'user_id' => auth()->id(),
+                'entity_id' => $msme->id,
+                'entity_type' => 'msme',
+            ]);
+
+            $msme->histories_count = $msme->histories()->count(); // Hitung jumlah histories
+        } else {
+            History::where('user_id', auth()->id())
+                ->where('entity_id', $msme->id)
+                ->where('entity_type', 'msme')
+                ->delete();
+
+            $msme->histories_count = $msme->histories()->count(); // Hitung ulang jumlah histories setelah penghapusan
+        }
+
+        $msme->save();
+        return back();
     }
 
     public function admin()
