@@ -13,6 +13,22 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label class="form-label">Gambar Destinasi</label>
+                        <div class="row">
+                            @if($destinasi_data->images->isNotEmpty())
+                                @foreach($destinasi_data->images as $image)
+                                    <div class="col-6 mb-2">
+                                        <img src="{{ asset('storage/' . $image->path) }}" alt="Gambar Destinasi" class="img-fluid" style="max-height: 200px;">
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>Tidak ada gambar tersedia untuk destinasi ini.</p>
+                            @endif
+                        </div>
+                        <input type="file" class="form-control" id="image" name="images[]" accept="image/*" onchange="previewImage(event)" multiple>
+                        <div id="image-preview-container" class="mt-2"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
                         <input type="text" class="form-control" id="name" name="name"
                             value="{{ $destinasi_data->name }}" required>
@@ -138,5 +154,29 @@
             });
         });
     });
+
+    // Preview Image
+
+function previewImage(event) {
+    const previewContainer = document.getElementById('image-preview-container');
+    previewContainer.innerHTML = ""; // Clear previous previews
+    const files = event.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.classList.add("img-fluid");
+            img.style.maxHeight = "200px";
+            previewContainer.appendChild(img);
+        }
+
+        reader.readAsDataURL(file);
+    }
+}
+
 </script>
 <!-- Page Update Scripts End -->

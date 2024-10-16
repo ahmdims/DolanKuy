@@ -126,9 +126,13 @@
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('destination.store') }}" enctype="multipart/form-data">
+            <form class="dropzone" id="my-dropzone" method="POST" action="{{ route('destination.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
+                <div class="mb-3">
+                    <label for="images" class="form-label">Upload Images</label>
+                    <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
+                </div>
                 <div class="mb-3">
                   <label for="name" class="form-label">Nama Destinasi</label>
                   <input type="text" class="form-control" name="name" required>
@@ -285,5 +289,4 @@
   });
 </script>
 <!-- Page Insert Scripts End -->
-
 @endsection

@@ -14,7 +14,6 @@ class Destination extends Model
     protected $fillable = [
         'name',
         'slug',
-        'msmes_type',
         'description',
         'address',
         'city',
@@ -26,7 +25,12 @@ class Destination extends Model
         'ticket_price',
         'facilities',
         'contact',
-        'rating',
-        'id_destination'
+        'rating'
     ];
+
+    // Polymorphic relation with Image
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }
