@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->time('opening_time');
             $table->time('closing_time');
             $table->integer('ticket_price')->nullable();
-            $table->text('facilities');
+            $table->json('facilities');
             $table->string('contact', 255);
             $table->text('profile_photo');
             $table->integer('view_count')->default(0);

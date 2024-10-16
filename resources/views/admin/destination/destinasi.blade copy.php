@@ -120,7 +120,7 @@
                   <th class="text-center">Jam Buka</th>
                   <th class="text-center">Jam Tutup</th>
                   <th class="text-center">Harga Tiket</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -166,7 +166,7 @@
                   <th class="text-center">Jam Buka</th>
                   <th class="text-center">Jam Tutup</th>
                   <th class="text-center">Harga Tiket</th>
-                  <th class="text-center">Action</th>
+                  <th class="text-center">Aksi</th>
                 </tr>
               </tfoot>
             </table>

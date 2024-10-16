@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Pengguna
@@ -21,6 +22,8 @@ Route::middleware('auth')->post('/msme/{slug}/history', [MsmeController::class, 
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 
 // Profil
 Route::middleware('auth')->group(function () {

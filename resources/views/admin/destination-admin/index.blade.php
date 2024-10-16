@@ -66,7 +66,7 @@
             <th class="text-muted text-small text-uppercase">Email</th>
             <th class="text-muted text-small text-uppercase">Username</th>
             <th class="text-muted text-small text-uppercase">Name</th>
-            <th class="text-muted text-small text-uppercase">Action</th>
+            <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
         </thead>
         <tbody>

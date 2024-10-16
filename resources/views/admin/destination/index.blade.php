@@ -10,12 +10,12 @@
 <style src="{{ asset('leaflet/leaflet.css') }}"></style>
 <script src="{{ asset('leaflet/leaflet.js') }}"></script>
 <script src="{{ asset('leaflet/leaflet.js.map') }}"></script>
+
 <!-- Include jQuery -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-geosearch/dist/leaves.js"></script>
 <script src="https://unpkg.com/leaflet-geosearch/dist/geosearch.umd.js"></script>
-
 
 <section class="scroll-section" id="hover">
   <div class="card mb-5">
@@ -77,10 +77,9 @@
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
             <th class="text-muted text-small text-uppercase">Nama Destinasi</th>
-            <th class="text-muted text-small text-uppercase">Alamat</th>
             <th class="text-muted text-small text-uppercase">Kota</th>
             <th class="text-muted text-small text-uppercase">Provinsi</th>
-            <th class="text-muted text-small text-uppercase">Action</th>
+            <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +88,6 @@
         <tr>
         <td>{{ $loop->iteration }}.</td>
         <td>{{ $destinasi_data->name }}</td>
-        <td>{{ $destinasi_data->address }}</td>
         <td>{{ $destinasi_data->city }}</td>
         <td>{{ $destinasi_data->province }}</td>
         <td>
@@ -120,7 +118,7 @@
       <!-- Create Modal -->
       <div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
@@ -289,4 +287,5 @@
   });
 </script>
 <!-- Page Insert Scripts End -->
+
 @endsection

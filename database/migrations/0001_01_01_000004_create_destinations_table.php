@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('slug', 255)->unique();
             $table->string('name', 255);
-            $table->string('msmes_type', 255)->nullable();
+            $table->string('destinations_type', 255)->nullable();
             $table->text('description');
             $table->string('address', 255);
             $table->string('city', 255);
@@ -26,6 +26,9 @@ return new class extends Migration {
             $table->integer('ticket_price')->nullable();
             $table->text('facilities');
             $table->string('contact', 255);
+            $table->integer('view_count')->default(0);
+            $table->unsignedInteger('likes_count')->default(0);
+            $table->unsignedInteger('histories_count')->default(0);
             $table->integer('rating')->nullable();
             $table->timestamps();
         });
@@ -37,5 +40,14 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('destinations');
+
+        Schema::table('destinations', function (Blueprint $table) {
+            $table->dropColumn('view_count');
+        });
+
+        Schema::table('destinations', function (Blueprint $table) {
+            $table->dropColumn('likes_count');
+            $table->dropColumn('histories_count');
+        });
     }
 };

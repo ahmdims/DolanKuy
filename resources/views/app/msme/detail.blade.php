@@ -244,20 +244,26 @@
 
                 <!-- Kategori -->
                 <div class="col-12">
-                    <h2 class="small-title">Kategori Terkait</h2>
+                    <its class="small-title">Fasilitas</its>
                     <div class="card mb-5">
                         <div class="card-body row g-0">
                             <div class="col-12">
-                                <div class="cta-3">Pilih Kategori</div>
-                                <div class="text-muted mb-3">Jelajahi kategori sesuai minat Anda</div>
+                                <div class="cta-3">Fasilitas Tersedia</div>
+                                <div class="text-muted mb-3">Fasilitas yang tersedia di {{ $detail->name }}</div>
+
                                 <!-- Kategori Bersebelahan -->
                                 <div class="d-flex justify-content-start">
-                                    <div class="category-item me-2">
-                                        <a href="budaya.html" class="btn btn-outline-primary">Budaya</a>
-                                    </div>
-                                    <div class="category-item">
-                                        <a href="wisata.html" class="btn btn-outline-primary">Wisata</a>
-                                    </div>
+                                    @php
+                                        $facilities = json_decode($detail->facilities, true);
+                                    @endphp
+
+                                    @foreach ($facilities as $facility => $available)
+                                        @if ($available)
+                                            <div class="category-item me-2">
+                                                <a href="#" class="btn btn-outline-primary">{{ ucfirst($facility) }}</a>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

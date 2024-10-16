@@ -169,13 +169,18 @@
                 <!-- Icons Menu Start -->
                 <ul class="list-unstyled list-inline text-center menu-icons">
                     <li class="list-inline-item">
-                        <a href="#" id="pinButton" class="pin-button">
+                        <a type="button" href="{{ asset('search') }}">
+                            <i data-acorn-icon="search" data-acorn-size="18"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a id="pinButton" class="pin-button">
                             <i data-acorn-icon="lock-on" class="unpin" data-acorn-size="18"></i>
                             <i data-acorn-icon="lock-off" class="pin" data-acorn-size="18"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" id="colorButton">
+                        <a id="colorButton">
                             <i data-acorn-icon="light-on" class="light" data-acorn-size="18"></i>
                             <i data-acorn-icon="light-off" class="dark" data-acorn-size="18"></i>
                         </a>

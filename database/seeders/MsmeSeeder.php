@@ -31,7 +31,12 @@ class MsmeSeeder extends Seeder
                 'opening_time' => $faker->time('H:i:s'),
                 'closing_time' => $faker->time('H:i:s'),
                 'ticket_price' => $faker->numberBetween(10000, 50000),
-                'facilities' => $faker->sentence,
+                'facilities' => json_encode([
+                    'wifi' => $faker->boolean,
+                    'parking' => $faker->boolean,
+                    'toilet' => $faker->boolean,
+                    'air_conditioner' => $faker->boolean,
+                ]),
                 'contact' => $faker->phoneNumber,
                 'profile_photo' => $faker->imageUrl(640, 480, 'business', true, 'Faker'),
                 'created_at' => now(),
