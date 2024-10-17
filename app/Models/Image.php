@@ -12,9 +12,9 @@ class Image extends Model
     protected $table = 'images';
 
     protected $fillable = [
-        'imageable_type', // Polymorphic type
-        'imageable_id',   // Polymorphic id
-        'path',           // Image path
+        'imageable_type',
+        'imageable_id',
+        'path',
     ];
 
     public function imageable()

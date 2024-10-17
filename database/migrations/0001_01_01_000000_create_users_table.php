@@ -19,6 +19,11 @@ return new class extends Migration {
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('profile')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('gender')->nullable();
+            $table->text('bio')->nullable();
             $table->string('password');
             $table->enum('utype', ['superadmin', 'admin_wisata', 'admin_umkm', 'admin_budaya', 'pengunjung'])->default('pengunjung');
             $table->rememberToken();

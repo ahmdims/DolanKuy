@@ -4,506 +4,310 @@
 
 @section('content')
 
-<div class="container px-5">
-    <section class="scroll-section" id="rekomendasi">
-        <div class="flex justify-between items-center mt-0 mb-0 pr-4">
-            <div class="flex flex-col">
-                <h3 class="card-title text-2xl font-bold">Rekomendasi Terbaik</h3>
-                <div class="card-text mb-2">Eksplorasi Wisata</div>
-            </div>
-        </div>
-        <div id="carouselRekomendasi" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-6.webp" class="card-img-top sh-19"
-                                    alt="Bread Making">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Basic Introduction to Bread Making
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            421</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            34</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 15</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 4
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-6.webp" class="card-img-top sh-19"
-                                    alt="Bread Making">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Basic Introduction to Bread Making
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            421</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            34</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 15</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 4
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-6.webp" class="card-img-top sh-19"
-                                    alt="Bread Making">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Basic Introduction to Bread Making
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            421</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            34</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 15</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 4
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="container">
 
-                </div>
+    <style>
+        .hero {
+            position: relative;
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-2.webp" class="card-img-top sh-19"
-                                    alt="Chocolate Recipes">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Amazing Chocolate Recipes
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            100</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            20</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 8</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 5
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-2.webp" class="card-img-top sh-19"
-                                    alt="Chocolate Recipes">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Amazing Chocolate Recipes
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            100</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            20</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 8</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 5
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-2.webp" class="card-img-top sh-19"
-                                    alt="Chocolate Recipes">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-wisata.html" class="body-link stretched-link">
-                                            Amazing Chocolate Recipes
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            100</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            20</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 8</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 5
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        .hero img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
 
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselRekomendasi"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselRekomendasi"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        .hero .btn-scroll {
+            color: #ffffff;
+            text-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
+            display: block;
+            margin-top: 20px;
+            animation: btn-up-down 1s ease-in-out infinite alternate-reverse both;
+        }
+
+        .hero .btn-scroll i {
+            font-size: 48px;
+        }
+
+        .hero .btn-scroll:hover {
+            color: #cfcfcf;
+        }
+
+        @keyframes btn-up-down {
+            0% {
+                transform: translateY(5px);
+            }
+
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero .btn-scroll i {
+                font-size: 32px;
+            }
+        }
+    </style>
+
+    <section id="hero" class="hero mb-3">
+        <img src="img/product/small/product-3.webp" class="img-fluid w-100 rounded" alt="DolanKuy">
+        <div class="position-absolute top-50 start-50 translate-middle text-center">
+            <h1 class="display-4 text-white">DolanKuy</h1>
+            <a href="#next-section" class="btn-scroll text-white">
+                <i class="bi bi-arrow-down-short"></i>
+            </a>
         </div>
     </section>
 
-    <!-- Carousel Budaya -->
-    <section class="scroll-section mt-6" id="rekomendasi-budaya">
-        <div class="flex justify-between items-center mt-6 mb-0 pr-4">
-            <div class="flex flex-col">
-                <div class="card-text mb-2">Eksplorasi Budaya</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="scroll-section" id="destination">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-3">
+            <div>
+                <h1 class="font-weight-bold mb-0"><span class="text-primary">Destinasi</span> Populer 🔥🌍</h1>
+                <h5 class="mb-2 mb-sm-0">Cek Beragam Destinasi Keren di Malang yang Lagi Hits di DolanKuy, sobat!
+                </h5>
             </div>
+            <a href="{{ asset('destination') }}"
+                class="btn btn-primary rounded-pill d-flex align-items-center mt-3 mt-sm-0 btn-sm">
+                Lihat Lainnya <i class="bi bi-arrow-right ms-2"></i>
+            </a>
         </div>
-        <div id="carouselBudaya" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-7.webp" class="card-img-top sh-19"
-                                    alt="Traditional Dance">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Discover Traditional Dance
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            500</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            45</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 20</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 10
-                                        </div>
+        <div class="row">
+            <div class="col-12 p-0 mb-5">
+                <div class="glide" id="glideBasic">
+                    <div class="glide__track" data-glide-el="track">
+                        <div class="glide__slides">
+                            <div class="glide__slide">
+                                <div class="card mb-4">
+                                    <img src="img/product/small/product-3.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 1</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-7.webp" class="card-img-top sh-19"
-                                    alt="Traditional Dance">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Discover Traditional Dance
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            500</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            45</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 20</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 10
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-7.webp" class="card-img-top sh-19"
-                                    alt="Traditional Dance">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Discover Traditional Dance
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            500</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            45</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 20</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 10
-                                        </div>
+                            <div class="glide__slide">
+                                <div class="card mb-4">
+                                    <img src="img/product/small/product-3.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 2</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-8.webp" class="card-img-top sh-19"
-                                    alt="Cultural Festivals">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Cultural Festivals Around the World
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            300</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            30</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 12</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 8
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-8.webp" class="card-img-top sh-19"
-                                    alt="Cultural Festivals">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Cultural Festivals Around the World
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            300</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            30</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 12</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 8
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-8.webp" class="card-img-top sh-19"
-                                    alt="Cultural Festivals">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-budaya.html" class="body-link stretched-link">
-                                            Cultural Festivals Around the World
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            300</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            30</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 12</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 8
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <span class="glide__arrows slider-nav" data-glide-el="controls">
+                            <button class="btn btn-icon btn-icon-only btn-outline-primary" data-glide-dir="<">
+                                <i data-acorn-icon="chevron-left"></i>
+                            </button>
+                        </span>
+                        <span class="glide__bullets" data-glide-el="controls[nav]"></span>
+                        <span class="glide__arrows slider-nav" data-glide-el="controls">
+                            <button class="btn btn-icon btn-icon-only btn-outline-primary" data-glide-dir=">">
+                                <i data-acorn-icon="chevron-right"></i>
+                            </button>
+                        </span>
                     </div>
                 </div>
             </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselBudaya" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselBudaya" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
-    <!-- Carousel UMKM -->
-    <section class="scroll-section mt-6 mb-7" id="rekomendasi-umkm">
-        <div class="flex justify-between items-center mt-6 mb-0 pr-4">
-            <div class="flex flex-col">
-                <div class="card-text mb-2">Eksplorasi UMKM</div>
+    <section class="scroll-section" id="msme">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-3">
+            <div>
+                <h1 class="font-weight-bold mb-0">UMKM <span class="text-primary">Kekinian 🌟🏪</span></h1>
+                <h5 class="mb-2 mb-sm-0">Cek berbagai UMKM khas Malang yang super menarik di DolanKuy!!</h5>
+            </div>
+            <a href="{{ asset('msme') }}"
+                class="btn btn-primary rounded-pill d-flex align-items-center mt-3 mt-sm-0 btn-sm">
+                Lihat Lainnya <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="glide" id="glideCenter">
+                    <div class="glide__track" data-glide-el="track">
+                        <div class="glide__slides">
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 1</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 2</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 3</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 4</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 5</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-10.webp" class="card-img-top"
+                                        alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 6</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="glide__arrows slider-nav" data-glide-el="controls">
+                            <button class="btn btn-icon btn-icon-only btn-outline-primary" data-glide-dir="<">
+                                <i data-acorn-icon="chevron-left"></i>
+                            </button>
+                        </span>
+                        <span class="glide__bullets" data-glide-el="controls[nav]"></span>
+                        <span class="glide__arrows slider-nav" data-glide-el="controls">
+                            <button class="btn btn-icon btn-icon-only btn-outline-primary" data-glide-dir=">">
+                                <i data-acorn-icon="chevron-right"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="carouselUMKM" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-10.webp" class="card-img-top sh-19"
-                                    alt="Local Craft">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            Supporting Local Craft Businesses
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            400</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            35</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 18</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 6
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-10.webp" class="card-img-top sh-19"
-                                    alt="Food Startups">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            Food Startups Thriving Locally
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            520</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            42</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 19</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 8
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-10.webp" class="card-img-top sh-19"
-                                    alt="Handmade Products">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            Unique Handmade Products
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            450</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            37</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 15</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 9
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    </section>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="row gx-3">
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-9.webp" class="card-img-top sh-19"
-                                    alt="Eco-Friendly Products">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            Eco-Friendly Products to Watch
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            380</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            28</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 10</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 7
-                                        </div>
+    <section class="scroll-section" id="culture">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-3">
+            <div>
+                <h1 class="font-weight-bold mb-0"><span class="text-primary">Budaya</span> Menarik</h1>
+                <h5 class="mb-2 mb-sm-0">Cek Beragam Budaya Keren asli Malang di DolanKuy, yuk! 🔥</h5>
+            </div>
+            <a href="{{ asset('culture') }}"
+                class="btn btn-primary rounded-pill d-flex align-items-center mt-3 mt-sm-0 btn-sm">
+                Lihat Lainnya <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+        </div>
+        <div class="row">
+            <div class="col-12 p-0 mb-5">
+                <div class="glide" id="glideNoControls">
+                    <div class="glide__track" data-glide-el="track">
+                        <div class="glide__slides">
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 1</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-9.webp" class="card-img-top sh-19"
-                                    alt="Organic Coffee">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            Organic Coffee and Small Producers
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            410</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            32</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 14</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 8
-                                        </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 2</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card h-100">
-                                <img src="img/product/small/product-9.webp" class="card-img-top sh-19"
-                                    alt="Local Fashion">
-                                <div class="card-body">
-                                    <h5 class="heading mb-3">
-                                        <a href="blog-umkm.html" class="body-link stretched-link">
-                                            The Rise of Local Fashion Brands
-                                        </a>
-                                    </h5>
-                                    <div class="row g-0">
-                                        <div class="col-auto pe-3"><i data-acorn-icon="eye" class="text-primary"></i>
-                                            470</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="like" class="text-primary"></i>
-                                            40</div>
-                                        <div class="col-auto pe-3"><i data-acorn-icon="message"
-                                                class="text-primary"></i> 16</div>
-                                        <div class="col-auto"><i data-acorn-icon="bookmark" class="text-primary"></i> 9
-                                        </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 3</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 4</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 5</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 6</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glide__slide">
+                                <div class="card mb-5">
+                                    <img src="img/product/small/product-1.webp" class="card-img-top" alt="card image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title 7</h5>
+                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
                                     </div>
                                 </div>
                             </div>
@@ -511,35 +315,165 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselUMKM" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselUMKM" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+    <section class="scroll-section mb-5" id="gallery">
+        <div class="row">
+            <div class="col-12">
+                <div class="glide" id="glideGallery">
+                    <!-- Large Images Start -->
+                    <div class="glide glide-large shadow rounded mb-4">
+                        <div class="glide__track mb-0" data-glide-el="track">
+                            <ul class="glide__slides gallery-glide-custom mb-0">
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-1.webp">
+                                        <img alt="detail" src="img/product/large/product-1.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-2.webp">
+                                        <img alt="detail" src="img/product/large/product-2.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-3.webp">
+                                        <img alt="detail" src="img/product/large/product-3.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-4.webp">
+                                        <img alt="detail" src="img/product/large/product-4.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-5.webp">
+                                        <img alt="detail" src="img/product/large/product-5.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <a href="img/product/large/product-6.webp">
+                                        <img alt="detail" src="img/product/large/product-6.webp"
+                                            class="responsive border-0 rounded img-fluid sh-50 w-100" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Large Images End -->
+                    <!-- Thumbs Start -->
+                    <div class="glide glide-thumb mb-3">
+                        <div class="glide__track" data-glide-el="track">
+                            <ul class="glide__slides">
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-1.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-2.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-3.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-4.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-5.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                                <li class="glide__slide p-0">
+                                    <img alt="thumb" src="img/product/small/product-6.webp"
+                                        class="responsive rounded-md img-fluid shadow" />
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="glide__arrows" data-glide-el="controls">
+                            <button class="btn btn-icon btn-icon-only btn-foreground-alternate shadow left-arrow"
+                                data-glide-dir="<">
+                                <i data-acorn-icon="chevron-left"></i>
+                            </button>
+                            <button class="btn btn-icon btn-icon-only btn-foreground-alternate shadow right-arrow"
+                                data-glide-dir=">">
+                                <i data-acorn-icon="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Thumbs End -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scroll-section" id="about">
+        <div class="container text-center mb-5">
+            <h2 class="font-weight-bold mb-2">Kategori Menarik <span class="text-primary">di DolanKuy!</span></h2>
+            <h5 class="mb-4 mb-sm-0">Temukan berbagai Destinasi seru, UMKM, dan Budaya menarik hanya di
+                DolanKuy. Mari eksplorasi bersama!</h5>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <div class="card">
+                        <img src="img/product/large/product-1.webp" class="card-img-top" alt="Fitur 1"
+                            style="object-fit: cover; height: 200px;" />
+                        <div class="card-body">
+                            <h5 class="card-title">Destinasi Menarik</h5>
+                            <p class="card-text">Jelajahi berbagai tempat wisata yang hits dan penuh warna di Malang dan
+                                sekitarnya.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <div class="card">
+                        <img src="img/product/large/product-1.webp" class="card-img-top" alt="Fitur 2"
+                            style="object-fit: cover; height: 200px;" />
+                        <div class="card-body">
+                            <h5 class="card-title">UMKM Lokal</h5>
+                            <p class="card-text">Dukung pelaku UMKM lokal dengan menemukan produk-produk unik dan
+                                berkualitas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-4 mb-4">
+                    <div class="card">
+                        <img src="img/product/large/product-1.webp" class="card-img-top" alt="Fitur 3"
+                            style="object-fit: cover; height: 200px;" />
+                        <div class="card-body">
+                            <h5 class="card-title">Budaya Kekinian</h5>
+                            <p class="card-text">Temukan beragam budaya dan acara kekinian yang seru dan menarik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
 
     <!-- Gambar Atas -->
+    <section>
     <div class="container mt-5 mb-3">
         <div class="col-12 gx-4 mb-5 mt-7">
             <div class="card w-100 mb-5 position-relative">
-                <img src="img/banner/cta-wide-3.webp" class="card-img img-fluid h-100" alt="card image" />
-                <div
-                    class="card-img-overlay d-flex flex-column justify-content-center align-items-start bg-transparent">
+                <img src="img/banner/cta-wide-3.webp" class="card-img img-fluid h-100" alt="card image" style="object-fit: cover;">
+                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-start bg-transparent">
                     <div class="row">
-                        <h3 class="card-title text-black">Lorem Ipsum</h3>
+                        <h3 class="card-title text-black display-6">Lorem Ipsum</h3>
                         <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
 
 
     <!-- Galeri Start -->

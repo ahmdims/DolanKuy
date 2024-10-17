@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class DestinationAdminController extends Controller
 {
@@ -28,6 +30,7 @@ class DestinationAdminController extends Controller
             ],
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
+            'profile' => 'image|mimes:jpeg,png,jpg|max:2048',
             'utype' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
             'password' => 'required|string|min:8|max:255',
         ], [
@@ -40,7 +43,24 @@ class DestinationAdminController extends Controller
             'email.unique' => 'Waduh, email udah terdaftar. Cari email lain deh!',
             'password.required' => 'Password-nya kudu diisi, sob!',
             'password.min' => 'Password minimal 8 karakter biar aman, oke!',
+            'profile.image' => 'File yang diunggah harus berupa gambar.',
+            'profile.mimes' => 'Hanya mendukung format JPEG, PNG, JPG.',
+            'profile.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB.',
         ]);
+
+        $imageName = null;
+
+        if ($request->hasFile('profile')) {
+            $image = $request->file('profile');
+
+            $imageDimensions = getimagesize($image);
+            if ($imageDimensions[0] !== $imageDimensions[1]) {
+                return back()->withErrors(['profile' => 'Gambar harus memiliki rasio 1:1 (kotak).']);
+            }
+
+            $imageName = time() . '.' . $image->extension();
+            $path = $image->storeAs('', $imageName, 'public');
+        }
 
         $user = User::create([
             'username' => strtolower($request->username),
@@ -48,6 +68,7 @@ class DestinationAdminController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'utype' => $request->utype,
+            'profile' => $imageName,
         ]);
 
         event(new Registered($user));
@@ -68,6 +89,7 @@ class DestinationAdminController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'utype' => 'nullable|string',
+            'profile' => 'image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'username.required' => 'Nama Pengguna wajib diisi, cuy!',
             'username.unique' => 'Aduh, username udah dipakai yang lain.',
@@ -82,7 +104,20 @@ class DestinationAdminController extends Controller
 
         $user = User::find($id);
         if ($user) {
-            $user->update($request->all());
+            if ($request->hasFile('profile')) {
+                $image = $request->file('profile');
+
+                $imageDimensions = getimagesize($image);
+                if ($imageDimensions[0] !== $imageDimensions[1]) {
+                    return back()->withErrors(['profile' => 'Gambar harus memiliki rasio 1:1 (kotak).']);
+                }
+
+                $imageName = time() . '.' . $image->extension();
+                $request->file('profile')->storeAs('', $imageName, 'public');
+                $user->profile = $imageName;
+            }
+
+            $user->update($request->except('profile'));
             return redirect()->route('admin.destination-admin.index')->with('success', 'Berhasil diperbarui, cuy!');
         } else {
             return redirect()->route('admin.destination-admin.index')->with('error', 'Pengguna tidak ditemukan, cuy!');

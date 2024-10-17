@@ -10,76 +10,31 @@
             <div class="card mb-5">
                 <!-- Content Start -->
                 <div class="card-body p-0">
+
                     <div class="glide glide-gallery" id="glideBlogDetail">
                         <div class="glide glide-large">
                             <div class="glide__track" data-glide-el="track">
                                 <ul class="glide__slides gallery-glide-custom">
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-1.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-1.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-2.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-2.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-3.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-3.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-4.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-4.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-5.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-5.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <a href="{{ asset('img/product/large/product-6.webp') }}">
-                                            <img alt="detail" src="{{ asset('img/product/large/product-6.webp') }}"
-                                                class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                        </a>
-                                    </li>
+                                    @foreach($detail->images as $image)
+                                        <li class="glide__slide p-0">
+                                            <a href="{{ asset('storage/' . $image->path) }}">
+                                                <img alt="detail" src="{{ asset('storage/' . $image->path) }}"
+                                                    class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                         <div class="glide glide-thumb mb-3">
                             <div class="glide__track" data-glide-el="track">
                                 <ul class="glide__slides">
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-1.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-2.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-3.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-4.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-5.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
-                                    <li class="glide__slide p-0">
-                                        <img alt="thumb" src="{{ asset('img/product/small/product-6.webp') }}"
-                                            class="responsive rounded-md img-fluid" />
-                                    </li>
+                                    @foreach($detail->images as $image)
+                                        <li class="glide__slide p-0">
+                                            <img alt="thumb" src="{{ asset('storage/' . $image->path) }}"
+                                                class="responsive rounded-md img-fluid" />
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="glide__arrows" data-glide-el="controls">
@@ -94,6 +49,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card-body pt-0">
                         <h2 class="mb-3">{{ $detail->name }}</h2>
                         <div>

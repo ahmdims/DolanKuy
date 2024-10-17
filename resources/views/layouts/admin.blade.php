@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>@yield('title') | DolanKuy</title>
+    <title>@yield('title') - DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/dropzone.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     <!-- Vendor Styles End -->
 
@@ -80,9 +81,11 @@
                 <div class="user-container d-flex">
                     <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img class="profile" alt="profile" src="{{ asset('img/profile/profile-9.webp') }}" />
+                        <img class="profile"
+                            src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
                         <div class="name">{{ Auth::user()->name }}</div>
                     </a>
+
                     <div class="dropdown-menu dropdown-menu-end user-menu wide">
                         <div class="row mb-1 ms-0 me-0">
                             <div class="col-6 ps-1 pe-1">
@@ -104,7 +107,7 @@
                             <div class="col-6 pe-1 ps-1">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="{{ route('profile.update') }}">
+                                        <a href="{{ route('profile.index', Auth::user()->username) }}">
                                             <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                                             <span class="align-middle">Profil</span>
                                         </a>
@@ -165,12 +168,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Apps.Chat.html">
+                                    <a href="{{ asset('admin/msme-admin') }}">
                                         <span class="label">Admin UMKM</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="Apps.Contacts.html">
+                                    <a href="{{ asset('admin/culture-admin') }}">
                                         <span class="label">Admin Budaya</span>
                                     </a>
                                 </li>
@@ -188,22 +191,27 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ asset('admin/destination') }}">
+                            <a href="#sites">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Destinasi Wisata</span>
+                                <span class="label">Sites</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#pages">
-                                <i data-acorn-icon="destination" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Budaya</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#pages">
-                                <i data-acorn-icon="help" class="icon" data-acorn-size="18"></i>
-                                <span class="label">UMKM</span>
-                            </a>
+                            <ul id="sites">
+                                <li>
+                                    <a href="{{ asset('admin/destination') }}">
+                                        <span class="label">Destinasi Wisata</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#pages">
+                                        <span class="label">Budaya</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#pages">
+                                        <span class="label">UMKM</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#settings">
@@ -313,21 +321,26 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-sm-6">
-                            <p class="mb-0 text-muted text-medium">Colored Strategies 2021</p>
+                            <p class="mb-0 text-muted text-medium">karya DigitalDream
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                            </p>
                         </div>
                         <div class="col-sm-6 d-none d-sm-block">
                             <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://1.envato.market/BX5oGy" target="_blank" class="btn-link">Review</a>
+                                    <a href="mailto:digitaldream320@gmail.com" target="_blank" class="btn-link">
+                                        <i data-acorn-icon="email" class="text-primary me-1" data-acorn-size="15"></i>
+                                        Email
+                                    </a>
                                 </li>
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://1.envato.market/BX5oGy" target="_blank"
-                                        class="btn-link">Purchase</a>
-                                </li>
-                                <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://acorn-html-docs.coloredstrategies.com/" target="_blank"
-                                        class="btn-link">Docs</a>
-                                </li>
+                                    <a href="https://www.instagram.com/digitalndream" target="_blank" class="btn-link">
+                                        <i data-acorn-icon="instagram" class="text-primary me-1"
+                                            data-acorn-size="15"></i>
+                                        Instagram
+                                    </a>
                             </ul>
                         </div>
                     </div>
@@ -689,6 +702,8 @@
 
     <script src="{{ asset('js/cs/scrollspy.js') }}"></script>
 
+    <script src="{{ asset('js/vendor/dropzone.min.js') }}"></script>
+
     <script src="{{ asset('js/vendor/datatables.min.js') }}"></script>
     <!-- Vendor Scripts End -->
 
@@ -703,6 +718,9 @@
     <!-- Page Specific Scripts Start -->
     <script src="{{ asset('js/cs/datatable.extend.js') }}"></script>
     <script src="{{ asset('js/plugins/datatable.boxedvariations.js') }}"></script>
+
+    <script src="{{ asset('js/cs/dropzone.templates.js') }}"></script>
+    <script src="{{ asset('js/forms/controls.dropzone.js') }}"></script>
 
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>

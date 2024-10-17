@@ -64,7 +64,7 @@
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
             <th class="text-muted text-small text-uppercase">Email</th>
-            <th class="text-muted text-small text-uppercase">Username</th>
+            <th class="text-muted text-small text-uppercase">Nama Pengguna</th>
             <th class="text-muted text-small text-uppercase">Name</th>
             <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
@@ -95,9 +95,9 @@
         </div>
       </td>
       </tr>
-      @include('admin.destination-admin.detail', ['user_data' => $user_data])
-      @include('admin.destination-admin.update', ['user_data' => $user_data])
-      @include('admin.destination-admin.delete', ['user_data' => $user_data])
+      @include('admin.tourist.detail', ['user_data' => $user_data])
+      @include('admin.tourist.update', ['user_data' => $user_data])
+      @include('admin.tourist.delete', ['user_data' => $user_data])
       @php    $iteration++; @endphp
     @endif
       @endforeach
@@ -113,33 +113,37 @@
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('destination-admin.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
+                <div class="mb-3">
+                  <label for="profile" class="form-label">Foto Profil</label>
+                  <small class="text-danger">*Rasio gambar 1:1 (kotak)</small>
+                  <input type="file" class="form-control" name="profile" accept="image/*">
 
-                <input type="hidden" id="utype" name="utype" value="admin_wisata">
+                  <input type="hidden" id="utype" name="utype" value="pengunjung">
 
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Nama Pengguna</label>
+                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                  </div>
                 </div>
-                <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="password" required>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-              </div>
             </form>
           </div>
         </div>

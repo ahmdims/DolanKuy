@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengunjung')
+@section('title', 'Admin UMKM')
 
 @section('content')
 
@@ -72,7 +72,7 @@
         <tbody>
           @php $iteration = 1; @endphp
           @foreach($users as $user_data)
-        @if($user_data->utype === 'pengunjung')
+        @if($user_data->utype === 'admin_umkm')
       <tr>
       <td>{{ $iteration }}.</td>
       <td>{{ $user_data->email }}</td>

@@ -7,6 +7,8 @@ use App\Http\Controllers\TouristController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CultureAdminController;
+use App\Http\Controllers\MsmeAdminController;
 use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -21,13 +23,15 @@ Route::middleware('auth')->post('/msme/{slug}/like', [MsmeController::class, 'li
 Route::middleware('auth')->post('/msme/{slug}/history', [MsmeController::class, 'history'])->name('msme.history');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 
 // Profil
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -56,6 +60,24 @@ Route::middleware('auth.admin')->group(function () {
         Route::get('/admin/destination-admin/{id}', [DestinationAdminController::class, 'show'])->name('destination-admin.detail');
         Route::put('/admin/destination-admin/{id}', [DestinationAdminController::class, 'update'])->name('destination-admin.update');
         Route::delete('/admin/destination-admin/{id}', [DestinationAdminController::class, 'destroy'])->name('destination-admin.destroy');
+    });
+
+    //Admin UMKM
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/msme-admin', [MsmeAdminController::class, 'admin'])->name('admin.msme-admin.index');
+        Route::post('/admin/msme-admin', [MsmeAdminController::class, 'store'])->name('msme-admin.store');
+        Route::get('/admin/msme-admin/{id}', [MsmeAdminController::class, 'show'])->name('msme-admin.detail');
+        Route::put('/admin/msme-admin/{id}', [MsmeAdminController::class, 'update'])->name('msme-admin.update');
+        Route::delete('/admin/msme-admin/{id}', [MsmeAdminController::class, 'destroy'])->name('msme-admin.destroy');
+    });
+
+    //Admin Budaya
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/culture-admin', [CultureAdminController::class, 'admin'])->name('admin.culture-admin.index');
+        Route::post('/admin/culture-admin', [CultureAdminController::class, 'store'])->name('culture-admin.store');
+        Route::get('/admin/culture-admin/{id}', [CultureAdminController::class, 'show'])->name('culture-admin.detail');
+        Route::put('/admin/culture-admin/{id}', [CultureAdminController::class, 'update'])->name('culture-admin.update');
+        Route::delete('/admin/culture-admin/{id}', [CultureAdminController::class, 'destroy'])->name('culture-admin.destroy');
     });
 
     // Kategori

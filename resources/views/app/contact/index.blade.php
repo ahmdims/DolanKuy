@@ -8,6 +8,23 @@
     <div class="container-fluid px-0">
         <!-- Kirim Pesan -->
         <section class="main-content">
+
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                            class="fa fa-close"></i></button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                            class="fa fa-close"></i></button>
+                </div>
+            @endif
+
             <div class="container-fluid p-0">
                 <div class="section-header mb-4">
                     <h3 class="section-title">Kirim Pesan</h3>
@@ -17,25 +34,26 @@
                     <div class="col-lg-8">
                         <div class="card mb-0 me-4 ms-0">
                             <div class="card-body">
-                                <form class="row g-3">
+                                <form class="row g-3" method="POST" action="{{ route('contact.send') }}">
+                                    @csrf
                                     <div class="col-md-6">
                                         <label for="inputName" class="form-label">Nama</label>
-                                        <input type="text" class="form-control" id="inputName"
+                                        <input type="text" class="form-control" id="inputName" name="name"
                                             placeholder="Masukkan Nama" required />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail"
+                                        <input type="email" class="form-control" id="inputEmail" name="email"
                                             placeholder="Masukkan Email" required />
                                     </div>
                                     <div class="col-12">
                                         <label for="inputSubject" class="form-label">Subjek</label>
-                                        <input type="text" class="form-control" id="inputSubject"
+                                        <input type="text" class="form-control" id="inputSubject" name="subject"
                                             placeholder="Masukkan Subjek" required />
                                     </div>
                                     <div class="col-12">
                                         <label for="inputMessage" class="form-label">Pesan</label>
-                                        <textarea class="form-control" id="inputMessage" rows="4"
+                                        <textarea class="form-control" id="inputMessage" name="message" rows="4"
                                             placeholder="Masukkan Pesan" required></textarea>
                                     </div>
                                     <div class="col-12">

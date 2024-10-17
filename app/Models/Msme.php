@@ -76,4 +76,9 @@ class Msme extends Model
     {
         return $this->likes()->count();
     }
+
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

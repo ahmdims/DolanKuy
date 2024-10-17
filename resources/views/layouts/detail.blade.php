@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>@yield('title') | DolanKuy</title>
+    <title>@yield('title') - DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
@@ -40,8 +40,6 @@
 
     <!-- Font Tags Start -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('font/CS-Interface/style.css') }}" />
     <!-- Font Tags End -->
 
@@ -53,7 +51,9 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/select2-bootstrap4.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/plyr.css') }}" />
-    <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
+    <script src="{{ asset('js/vendor/isotope/isotope.pkgd.min.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/vendor/baguetteBox.min.css') }}" />
     <!-- Vendor Styles End -->
 
     <!-- Template Base Styles Start -->
@@ -67,6 +67,7 @@
     <style>
         {{ $detail->style }}
     </style>
+
 </head>
 
 <body>
@@ -89,7 +90,7 @@
                 <div class="user-container d-flex">
 
                     @guest
-                        <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+                        <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <img class="profile" alt="profile" src="{{ asset('img/profile/profile.svg') }}" />
                             <div class="name">Daftar</div>
@@ -116,56 +117,57 @@
                     @endguest
 
                     @auth
-                        <a href="#" class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+                        <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                            <img class="profile" alt="profile" src="{{ asset('img/profile/profile-9.webp') }}" />
+                            <img class="profile"
+                                src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
                             <div class="name">{{ Auth::user()->name }}</div>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end user-menu wide">
                             <div class="row mb-1 ms-0 me-0">
                                 @if (Route::has('login'))
-                                        @if (Auth::user()->utype === 'superadmin')
-                                            <div class="col-6 ps-1 pe-1">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="{{ route('admin.dashboard.index') }}">
-                                                            <i data-acorn-icon="home" class="me-2" data-acorn-size="17"></i>
-                                                            <span class="align-middle">Beranda</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
-                                                            <span class="align-middle">Setelan</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        @endif
-                                        <div class="col-6 pe-1 ps-1">
+                                    @if (Auth::user()->utype === 'superadmin')
+                                        <div class="col-6 ps-1 pe-1">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <a href="{{ route('profile.update') }}">
-                                                        <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
-                                                        <span class="align-middle">Profil</span>
+                                                    <a href="{{ route('admin.dashboard.index') }}">
+                                                        <i data-acorn-icon="home" class="me-2" data-acorn-size="17"></i>
+                                                        <span class="align-middle">Beranda</span>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('logout') }}"
-                                                        onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
-                                                        <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                                                        <span class="align-middle">Keluar</span>
+                                                    <a href="#">
+                                                        <i data-acorn-icon="gear" class="me-2" data-acorn-size="17"></i>
+                                                        <span class="align-middle">Setelan</span>
                                                     </a>
-                                                    <form action="{{ route('logout') }}" id="frmlogout" method="POST"
-                                                        style="display: none;">
-                                                        @csrf
-                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>
+                                    @endif
+                                    <div class="col-6 pe-1 ps-1">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="{{ route('profile.index', Auth::user()->username) }}">
+                                                    <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
+                                                    <span class="align-middle">Profil</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
+                                                    <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
+                                                    <span class="align-middle">Keluar</span>
+                                                </a>
+                                                <form action="{{ route('logout') }}" id="frmlogout" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
                                     </div>
                                 @endif
+                            </div>
                         </div>
                     @endauth
                 </div>
@@ -174,13 +176,18 @@
                 <!-- Icons Menu Start -->
                 <ul class="list-unstyled list-inline text-center menu-icons">
                     <li class="list-inline-item">
-                        <a href="#" id="pinButton" class="pin-button">
+                        <a type="button" href="{{ asset('search') }}">
+                            <i data-acorn-icon="search" data-acorn-size="18"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a id="pinButton" class="pin-button">
                             <i data-acorn-icon="lock-on" class="unpin" data-acorn-size="18"></i>
                             <i data-acorn-icon="lock-off" class="pin" data-acorn-size="18"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#" id="colorButton">
+                        <a id="colorButton">
                             <i data-acorn-icon="light-on" class="light" data-acorn-size="18"></i>
                             <i data-acorn-icon="light-off" class="dark" data-acorn-size="18"></i>
                         </a>
@@ -198,11 +205,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#apps" data-href="Apps.html">
+                            <a href="#jelajahi">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Jelajahi</span>
                             </a>
-                            <ul id="Jelajahi">
+                            <ul id="jelajahi">
                                 <li>
                                     <a href="wisata.html">
                                         <span class="label">Wisata</span>
@@ -274,21 +281,26 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-sm-6">
-                            <p class="mb-0 text-muted text-medium">Colored Strategies 2021</p>
+                            <p class="mb-0 text-muted text-medium">karya DigitalDream
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>
+                            </p>
                         </div>
                         <div class="col-sm-6 d-none d-sm-block">
                             <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://1.envato.market/BX5oGy" target="_blank" class="btn-link">Review</a>
+                                    <a href="mailto:digitaldream320@gmail.com" target="_blank" class="btn-link">
+                                        <i data-acorn-icon="email" class="text-primary me-1" data-acorn-size="15"></i>
+                                        Email
+                                    </a>
                                 </li>
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://1.envato.market/BX5oGy" target="_blank"
-                                        class="btn-link">Purchase</a>
-                                </li>
-                                <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://acorn-html-docs.coloredstrategies.com/" target="_blank"
-                                        class="btn-link">Docs</a>
-                                </li>
+                                    <a href="https://www.instagram.com/digitalndream" target="_blank" class="btn-link">
+                                        <i data-acorn-icon="instagram" class="text-primary me-1"
+                                            data-acorn-size="15"></i>
+                                        Instagram
+                                    </a>
                             </ul>
                         </div>
                     </div>
@@ -853,6 +865,8 @@
     <script src="{{ asset('js/vendor/select2.full.min.js') }}"></script>
 
     <script src="{{ asset('js/vendor/plyr.min.js') }}"></script>
+    <script src="{{ asset('js/cs/scrollspy.js') }}"></script>
+    <script src="{{ asset('js/vendor/baguetteBox.min.js') }}"></script>
     <!-- Vendor Scripts End -->
 
     <!-- Template Base Scripts Start -->
@@ -864,32 +878,21 @@
     <!-- Template Base Scripts End -->
 
     <!-- Page Specific Scripts Start -->
+    <script src="{{ asset('js/main.js') }}" defer></script>
     <script src="{{ asset('js/cs/glide.custom.js') }}"></script>
 
+    <script src="{{ asset('js/pages/blog.detail.js') }}"></script>
+
     <script src="{{ asset('js/cs/charts.extend.js') }}"></script>
+    <script src="{{ asset('js/plugins/carousels.js') }}"></script>
+    <script src="{{ asset('js/pages/blocks.thumbnails.js') }}"></script>
 
     <script src="{{ asset('js/pages/dashboard.default.js') }}"></script>
 
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
-    <script src="{{ asset('leaflet/leaflet.js') }}"></script>
     <!-- Page Specific Scripts End -->
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let latitude = "{{ $detail->latitude }}" || -6.24186355;
-            let longitude = "{{ $detail->longitude }}" || 106.99991249;
-
-            var map = L.map('map-detail-{{ $detail->id }}').setView([latitude, longitude], 15);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© DolanKuy'
-            }).addTo(map);
-
-            var marker = L.marker([latitude, longitude]).addTo(map);
-        });
-    </script>
 </body>
 
 </html>
