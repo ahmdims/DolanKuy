@@ -126,6 +126,8 @@
     </section>
 
     <!-- Page Insert Scripts Start -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
     <script>
         var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
 
