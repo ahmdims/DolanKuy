@@ -12,9 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth.admin' => \App\Http\Middleware\AuthAdmin::class,
+            'auth' => \App\Http\Middleware\AuthMiddleware::class,
+            'auth.admin' => \App\Http\Middleware\AuthAdminMiddleware::class,
+            'auth.admin.destination' => \App\Http\Middleware\AuthAdminDestinationMiddleware::class,
+            'auth.admin.msme' => \App\Http\Middleware\AuthAdminMsmeMiddleware::class,
+            'auth.admin.culture' => \App\Http\Middleware\AuthAdminCultureMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
     })->create();
