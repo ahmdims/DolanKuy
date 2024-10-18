@@ -1,4 +1,4 @@
-<div class="modal fade modal-close-out" id="deleteModal-{{ $destinasi_data->id }}" tabindex="-1" role="dialog"
+<div class="modal fade modal-close-out" id="deleteModal-{{ $destination_data->id }}" tabindex="-1" role="dialog"
     aria-labelledby="Modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="Modal">Hapus @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('destination.destroy', $destinasi_data->id) }}">
+            <form method="POST" action="{{ route('destination.destroy', $destination_data->id) }}">
                 @csrf <!-- Token CSRF -->
                 @method('DELETE') <!-- Metode DELETE -->
                 <div class="modal-body">

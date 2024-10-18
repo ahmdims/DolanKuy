@@ -36,17 +36,18 @@ class FaqController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'question' => 'nullable|string|max:255',
-            'answer' => 'nullable|string',
-        ]);
+{
+    $request->validate([
+        'question' => 'required|string|max:255',
+        'answer' => 'required|string',
+    ]);
 
-        $faq = Faq::findOrFail($id);
-        $faq->update($request->all());
+    $faq = Faq::findOrFail($id);
+    $faq->update($request->only(['question', 'answer'])); // Hanya ambil yang diperlukan
 
-        return redirect()->route('admin.faq.index')->with('success', 'Faq updated successfully.');
-    }
+    return redirect()->route('admin.faq.index')->with('success', 'FAQ berhasil diperbarui!');
+}
+
 
     public function destroy($id)
     {

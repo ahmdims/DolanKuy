@@ -16,10 +16,12 @@
                             readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="created_at" class="form-label">Jawaban</label>
-                        <textarea placeholder="answer" type="text" class="form-control" name="answer" rows="3"
-                            readonly>{{ $faq_data->answer }}</textarea>
+                        <label for="answer" class="form-label">Jawaban</label>
+                        <div class="form-control" readonly id="quillAnswer">
+                            {!! $faq_data->answer !!}
+                        </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="created_at" class="form-label">Waktu Unggah</label>
                         <input type="text" class="form-control" name="created_at" value="{{ $faq_data->created_at }}"

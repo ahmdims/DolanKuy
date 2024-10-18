@@ -43,9 +43,35 @@ class ContactController extends Controller
         }
     }
 
-    public function admin()
+    public function update(Request $request)
     {
-        $contact = Contact::all();
-        return view('admin.contact.index', compact('contact'));
+        $request->validate([
+            'phone' => 'required|string|max:255',
+            'email' => 'required|email',
+            'address' => 'required|string|max:255',
+        ]);
+
+        // Ambil entri contact pertama
+        $contact = Contact::first();
+
+        if ($contact) {
+            // Perbarui data contact yang sudah ada
+            $contact->phone = $request->phone;
+            $contact->email = $request->email;
+            $contact->address = $request->address;
+            $contact->save();
+
+            return redirect()->route('admin.contact.index')->with('success', 'Kontak berhasil diperbarui!');
+        } else {
+            return back()->with('error', 'Tidak ada data kontak yang ditemukan untuk diperbarui.');
+        }
     }
+
+    public function admin()
+{
+    // Get the first contact entry
+    $contact = Contact::first(); // This returns a single instance, not a collection
+    return view('admin.contact.index', compact('contact'));
+}
+
 }
