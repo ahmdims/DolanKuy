@@ -4,13 +4,140 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Destination;
+use App\Models\Like;
+use App\Models\History;
+use App\Models\Comment;
 use App\Models\Image;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
+    public function index()
+    {
+        $destination = Destination::all();
+        return view('app.destination.index', compact('destination'));
+    }
+
+    public function show($slug)
+    {
+        $detail = Destination::where('slug', $slug)->firstOrFail();
+
+        $detail->increment('view_count');
+
+        $apiKey = env('WEATHER_API_KEY');
+        $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
+
+        $client = new Client();
+        try {
+            $response = $client->get($url);
+            $weatherData = json_decode($response->getBody(), true);
+        } catch (\Exception $e) {
+            $weatherData = null;
+        }
+
+        $comments = $detail->comments()->with('user')->get();
+
+        return view('app.destination.detail', [
+            'detail' => $detail,
+            'weatherData' => $weatherData,
+            'comments' => $comments,
+            'isLoggedIn' => auth()->check()
+        ]);
+    }
+
+    public function storeComment(Request $request, $slug)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to comment.');
+        }
+
+        $request->validate([
+            'comment' => 'required|string|max:500',
+        ]);
+
+        $destination = Destination::where('slug', $slug)->firstOrFail();
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'commentable_id' => $destination->id,
+            'commentable_type' => Destination::class,
+            'comment' => $request->comment,
+        ]);
+
+        return back()->with('success', 'Comment added successfully!');
+    }
+
+    public function like($slug)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $destination = Destination::where('slug', $slug)->firstOrFail();
+
+        $likeExists = Like::where('user_id', auth()->id())
+            ->where('entity_id', $destination->id)
+            ->where('entity_type', 'destination')
+            ->exists();
+
+        if (!$likeExists) {
+            Like::create([
+                'user_id' => auth()->id(),
+                'entity_id' => $destination->id,
+                'entity_type' => 'destination',
+            ]);
+
+            $destination->likes_count = $destination->likes()->count();
+        } else {
+            Like::where('user_id', auth()->id())
+                ->where('entity_id', $destination->id)
+                ->where('entity_type', 'destination')
+                ->delete();
+
+            $destination->likes_count = $destination->likes()->count();
+        }
+
+        $destination->save();
+        return back();
+    }
+
+    public function history($slug)
+    {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
+
+        $destination = Destination::where('slug', $slug)->firstOrFail();
+
+        $historyExists = History::where('user_id', auth()->id())
+            ->where('entity_id', $destination->id)
+            ->where('entity_type', 'destination')
+            ->exists();
+
+        if (!$historyExists) {
+            History::create([
+                'user_id' => auth()->id(),
+                'entity_id' => $destination->id,
+                'entity_type' => 'destination',
+            ]);
+
+            $destination->histories_count = $destination->histories()->count();
+        } else {
+            History::where('user_id', auth()->id())
+                ->where('entity_id', $destination->id)
+                ->where('entity_type', 'destination')
+                ->delete();
+
+            $destination->histories_count = $destination->histories()->count();
+        }
+
+        $destination->save();
+        return back();
+    }
+
     public function admin()
     {
         $destination = Destination::with('images')->get();
@@ -32,13 +159,30 @@ class DestinationController extends Controller
             'ticket_price' => 'required|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+        ], [
+            'name.required' => 'Nama destinasi wajib diisi.',
+            'description.required' => 'Deskripsi wajib diisi.',
+            'address.required' => 'Alamat wajib diisi.',
+            'city.required' => 'Kota wajib diisi.',
+            'province.required' => 'Provinsi wajib diisi.',
+            'latitude.numeric' => 'Latitude harus berupa angka.',
+            'longitude.numeric' => 'Longitude harus berupa angka.',
+            'opening_time.required' => 'Jam buka wajib diisi.',
+            'closing_time.required' => 'Jam tutup wajib diisi.',
+            'ticket_price.required' => 'Harga tiket wajib diisi.',
+            'ticket_price.numeric' => 'Harga tiket harus berupa angka.',
+            'images.required' => 'Setidaknya satu gambar harus diunggah.',
+            'images.*.image' => 'File yang diunggah harus berupa gambar.',
+            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
+            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
         ]);
 
         $slug = Str::slug($request->name);
+
         $destination = Destination::create(array_merge($request->all(), ['slug' => $slug]));
 
-        // Handle image uploads
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
@@ -68,7 +212,13 @@ class DestinationController extends Controller
             'ticket_price' => 'nullable|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'required_without:existing_images',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+        ], [
+            'images.required_without' => 'Setidaknya satu gambar harus diunggah.',
+            'images.*.image' => 'File yang diunggah harus berupa gambar.',
+            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
+            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
         ]);
 
         $destination = Destination::findOrFail($id);
@@ -79,7 +229,6 @@ class DestinationController extends Controller
 
         $destination->update($request->except(['images', 'existing_images']));
 
-        // Handle image uploads
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $path = $imageFile->store('', 'public');
@@ -91,40 +240,26 @@ class DestinationController extends Controller
     }
 
     public function deleteImage($id)
-{
-    // Cari gambar berdasarkan ID
-    $image = Image::findOrFail($id);
-
-    // Akses file dari storage 'public/storage'
-    $filePath = storage_path('app/public/' . $image->path);
-
-    // Cek apakah file ada di sistem
-    if (file_exists($filePath)) {
-        // Hapus file dari storage
-        unlink($filePath);
-    } else {
-        // Jika file tidak ditemukan, kirim pesan error
-        return response()->json([
-            'success' => false,
-            'message' => 'File not found in storage'
-        ], 404);
-    }
-
-    // Hapus record gambar dari database
-    $image->delete();
-
-    // Kirimkan respons sukses
-    return response()->json([
-        'success' => true,
-        'message' => 'Image successfully deleted'
-    ]);
-}
-
-
-    public function show($id)
     {
-        $destinasi_data = Destination::with('images')->findOrFail($id);
-        return view('admin.destination.show', compact('destinasi_data'));
+        $image = Image::findOrFail($id);
+
+        $filePath = storage_path('app/public/' . $image->path);
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'File not found in storage'
+            ], 404);
+        }
+
+        $image->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Image successfully deleted'
+        ]);
     }
 
     public function destroy($id)
@@ -133,9 +268,9 @@ class DestinationController extends Controller
 
         foreach ($destination->images as $image) {
             if (file_exists(public_path($image->path))) {
-                unlink(public_path($image->path)); // Hapus file fisik
+                unlink(public_path($image->path));
             }
-            $image->delete(); // Hapus record dari database
+            $image->delete();
         }
 
         $destination->delete();

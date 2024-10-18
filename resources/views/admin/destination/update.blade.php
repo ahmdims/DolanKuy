@@ -14,30 +14,37 @@
                     <div class="mb-3">
                         <label class="form-label">Foto Destinasi</label>
                         <div class="row">
+
                             @if($destination_data->images->isNotEmpty())
                                 @foreach($destination_data->images as $image)
                                     <div class="col-6 mb-2 position-relative image-container-{{ $image->id }}">
-                                        <img src="{{ asset('storage/' . $image->path) }}" alt="Gambar Destinasi" class="img-fluid" style="max-height: 200px;">
-                                        <button type="button" class="btn-close position-absolute top-0 end-0" onclick="removeImage({{ $image->id }})" aria-label="Close"></button>
+                                        <img src="{{ asset('storage/' . $image->path) }}" alt="Gambar Destinasi"
+                                            class="img-fluid" style="max-height: 200px;">
+                                        <button type="button" class="btn-close position-absolute top-0 end-0"
+                                            onclick="removeImage({{ $image->id }})" aria-label="Close"></button>
                                         <input type="hidden" name="existing_images[]" value="{{ $image->id }}">
                                     </div>
                                 @endforeach
+
                             @else
-                                <p>Tidak ada gambar tersedia untuk destinasi ini.</p>
                             @endif
+
                         </div>
+
                         <label for="new_images-{{ $destination_data->id }}" class="form-label">Tambah Foto Baru</label>
+
                         <div class="d-flex align-items-center">
-                            <!-- Button untuk trigger file input -->
-                            <button type="button" class="btn btn-outline-secondary addImageButton" data-dest-id="{{ $destination_data->id }}">
+                            <button type="button" class="btn btn-outline-secondary addImageButton"
+                                data-dest-id="{{ $destination_data->id }}">
                                 <i class="bi bi-plus-circle"></i> Tambah Foto
                             </button>
-                            <!-- Input file -->
-                            <input type="file" class="form-control d-none" id="new_images-{{ $destination_data->id }}" name="images[]" accept="image/*" onchange="previewImage(event, '{{ $destination_data->id }}')" multiple>
+                            <input type="file" class="form-control d-none" id="new_images-{{ $destination_data->id }}"
+                                name="images[]" accept="image/*"
+                                onchange="previewImage(event, '{{ $destination_data->id }}')" multiple>
                         </div>
                         <div id="image-preview-container-{{ $destination_data->id }}" class="mt-2"></div>
                     </div>
-                    <!-- Fields lainnya -->
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
                         <input type="text" class="form-control" id="name" name="name"
@@ -45,13 +52,10 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Jawaban</label>
-                        <div class="html-editor sh-19" id="quillEditor-{{ $destination_data->id }}">
-                            {!! $destination_data->description !!}
-                        </div>
-                        <input type="hidden" name="description" id="description-{{ $destination_data->id }}">
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <div id="quillEditor-{{ $destination_data->id }}"></div>
+                        <input type="hidden" id="description-{{ $destination_data->id }}" name="description">
                     </div>
-
 
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat</label>
@@ -198,24 +202,39 @@
 
     // Script untuk menghapus gambar menggunakan AJAX
     function removeImage(imageId) {
-    if (confirm('Anda yakin ingin menghapus gambar ini?')) {
-        $.ajax({
-            url: '/delete-image/' + imageId,
-            type: 'DELETE',
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function (response) {
-                if (response.success) {
-                    console.log('Image successfully deleted');
-                    document.querySelector('.image-container-' + imageId).remove();
-                } else {
-                    console.error('Error deleting image:', response.message);
+        if (confirm('Anda yakin ingin menghapus gambar ini?')) {
+            $.ajax({
+                url: '/delete-image/' + imageId,
+                type: 'DELETE',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                success: function (response) {
+                    if (response.success) {
+                        console.log('Image successfully deleted');
+                        document.querySelector('.image-container-' + imageId).remove();
+                    } else {
+                        console.error('Error deleting image:', response.message);
+                    }
+                },
+                error: function (err) {
+                    console.error('Error deleting image:', err.responseJSON.message || err);
                 }
-            },
-            error: function (err) {
-                console.error('Error deleting image:', err.responseJSON.message || err);
-            }
-        });
+            });
+        }
     }
-}
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var quill = new Quill('#quillEditor-{{ $destination_data->id }}', {
+            theme: 'snow'
+        });
+
+        quill.root.innerHTML = {!! json_encode($destination_data->description) !!};
+
+        document.getElementById('destinationForm-{{ $destination_data->id }}').addEventListener('submit', function (event) {
+            var description = document.getElementById('description-{{ $destination_data->id }}');
+            description.value = quill.root.innerHTML;
+        });
+    });
 </script>
 <!-- Page Update Scripts End -->

@@ -19,8 +19,6 @@ class MsmeController extends Controller
 
     public function show($slug)
     {
-        // $detail = MSME::with('images')->find($id);
-
         $detail = Msme::where('slug', $slug)->firstOrFail();
 
         $detail->increment('view_count');

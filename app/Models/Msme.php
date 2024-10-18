@@ -39,6 +39,11 @@ class Msme extends Model
         return $this->belongsTo(Destination::class, 'id_destination');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
     public function viewCount()
     {
         return number_format($this->view_count, 0, ',', '.');

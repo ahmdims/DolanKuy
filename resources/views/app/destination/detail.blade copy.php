@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-auto pe-3">
-                                    <form action="{{ route('msme.like', $detail->slug) }}" method="POST"
+                                    <form action="{{ route('destination.like', $detail->slug) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         <button type="submit" style="background: none; border: none; cursor: pointer;">
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="col-auto pe-3">
-                                    <form action="{{ route('msme.history', $detail->slug) }}" method="POST"
+                                    <form action="{{ route('destination.history', $detail->slug) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         <button type="submit" style="background: none; border: none; cursor: pointer;">
@@ -137,29 +137,128 @@
         </div>
 
 
+                      <!-- Comments Start -->
+                      <h2 class="small-title">Comments</h2>
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center border-bottom border-separator-light pb-3 mt-3">
+                    <div class="row g-0 w-100">
+                      <div class="col-auto">
+                        <div class="sw-5 me-3">
+                          <img src="img/profile/profile-1.webp" class="img-fluid rounded-xl" alt="thumb" />
+                        </div>
+                      </div>
+                      <div class="col pe-3">
+                        <a href="#">Cherish Kerr</a>
+                        <div class="text-muted text-small mb-2">2 days ago</div>
+                        <div class="text-medium text-alternate lh-1-25">Nice job!</div>
+                      </div>
+                      <div class="col-auto justify-self-end">
+                        <div>
+                          <span class="text-muted">4</span>
+                          <button class="btn btn-icon btn-icon-only btn-foreground hover-outline mb-1" type="button">
+                            <i data-acorn-icon="heart"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center border-bottom border-separator-light pb-3 mt-3">
+                    <div class="row g-0 w-100">
+                      <div class="col-auto">
+                        <div class="sw-5 me-3">
+                          <img src="img/profile/profile-2.webp" class="img-fluid rounded-xl" alt="thumb" />
+                        </div>
+                      </div>
+                      <div class="col pe-3">
+                        <a href="#">Olli Hawkins</a>
+                        <div class="text-muted text-small mb-2">3 days ago</div>
+                        <div class="text-medium text-alternate lh-1-25">Beautiful combination of colors!</div>
+                      </div>
+                      <div class="col-auto justify-self-end">
+                        <div>
+                          <span class="text-muted">8</span>
+                          <button class="btn btn-icon btn-icon-only btn-foreground hover-outline mb-1" type="button">
+                            <i data-acorn-icon="heart"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center border-bottom border-separator-light pb-3 mt-3">
+                    <div class="row g-0 w-100">
+                      <div class="col-auto">
+                        <div class="sw-5 me-3">
+                          <img src="img/profile/profile-3.webp" class="img-fluid rounded-xl" alt="thumb" />
+                        </div>
+                      </div>
+                      <div class="col pe-3">
+                        <a href="#">Kirby Peters</a>
+                        <div class="text-muted text-small mb-2">3 days ago</div>
+                        <div class="text-medium text-alternate lh-1-25">Nice, clear design.</div>
+                      </div>
+                      <div class="col-auto justify-self-end">
+                        <div>
+                          <span class="text-muted">15</span>
+                          <button class="btn btn-icon btn-icon-only btn-foreground hover-outline mb-1" type="button">
+                            <i data-acorn-icon="heart"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center pb-3 mt-3">
+                    <div class="row g-0 w-100">
+                      <div class="col-auto">
+                        <div class="sw-5 me-3">
+                          <img src="img/profile/profile-4.webp" class="img-fluid rounded-xl" alt="thumb" />
+                        </div>
+                      </div>
+                      <div class="col pe-3">
+                        <a href="#">Zayn Hartley</a>
+                        <div class="text-muted text-small mb-2">1 week ago</div>
+                        <div class="text-medium text-alternate lh-1-25">Loved the typography!</div>
+                      </div>
+                      <div class="col-auto justify-self-end">
+                        <div>
+                          <span class="text-muted">6</span>
+                          <button class="btn btn-icon btn-icon-only btn-foreground hover-outline mb-1" type="button">
+                            <i data-acorn-icon="heart"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="input-group mt-5">
+                    <input type="text" class="form-control" placeholder="Add a comment" aria-label="Add a comment" />
+                    <button class="btn btn-icon btn-icon-end btn-outline-primary" type="button">
+                      <span>Add</span>
+                      <i data-acorn-icon="send"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- Comments End -->
 
         <h3>Comments</h3>
-        @foreach($destination->comments as $comment)
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @foreach($comments as $comment)
             <div>
                 <strong>{{ $comment->user->name }}</strong>: {{ $comment->comment }}
             </div>
         @endforeach
 
         <h4>Add a Comment</h4>
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <form action="{{ route('comments.store') }}" method="POST">
+        <form action="{{ route('destination.comments.store', $detail->slug) }}" method="POST">
             @csrf
-            <input type="hidden" name="commentable_type" value="App\Models\Destination">
-            <input type="hidden" name="commentable_id" value="{{ $destination->id }}">
-            <div class="form-group">
-                <textarea name="comment" class="form-control" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Comment</button>
+            <textarea name="comment" required></textarea>
+            <button type="submit">Kirim Komentar</button>
         </form>
+
 
 
 
@@ -236,17 +335,7 @@
 
                                 <!-- Kategori Bersebelahan -->
                                 <div class="d-flex justify-content-start">
-                                    @php
-                                        $facilities = json_decode($detail->facilities, true);
-                                    @endphp
 
-                                    @foreach ($facilities as $facility => $available)
-                                        @if ($available)
-                                            <div class="category-item me-2">
-                                                <a href="#" class="btn btn-outline-primary">{{ ucfirst($facility) }}</a>
-                                            </div>
-                                        @endif
-                                    @endforeach
                                 </div>
                             </div>
                         </div>

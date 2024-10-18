@@ -7,6 +7,23 @@
     <title>@yield('title') - DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        document.getElementById('contentForm').addEventListener('submit', function (event) {
+            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            var form = event.target;
+            var method = form.method.toUpperCase();
+
+            if (method === 'POST') {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '_token';
+                input.value = token;
+                form.appendChild(input);
+            }
+        });
+    </script>
+
     <!-- Favicon Tags Start -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57"
         href="{{ asset('img/favicon/apple-touch-icon-57x57.png') }}" />

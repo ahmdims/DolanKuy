@@ -1,19 +1,16 @@
-<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
-    aria-hidden="true">
+<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="dropzone" id="my-dropzone" method="POST" action="{{ route('destination.store') }}"
-                enctype="multipart/form-data" id="createDestinationForm">
+            <form id="createDestinationForm" method="POST" action="{{ route('destination.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="images" class="form-label">Unggah Foto</label>
-                        <input class="form-control" type="file" name="images[]" id="images" multiple
-                            accept="image/*">
+                        <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
@@ -21,9 +18,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Jawaban</label>
-                        <div class="html-editor sh-19" id="quillEditor"></div>
-                        <input type="hidden" name="description" id="description">
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <div id="quillEditor"></div>
+                        <input type="hidden" id="description" name="description">
                     </div>
 
                     <div class="mb-3">

@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-auto pe-3">
-                                    <form action="{{ route('msme.like', $detail->slug) }}" method="POST"
+                                    <form action="{{ route('destination.like', $detail->slug) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         <button type="submit" style="background: none; border: none; cursor: pointer;">
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="col-auto pe-3">
-                                    <form action="{{ route('msme.history', $detail->slug) }}" method="POST"
+                                    <form action="{{ route('destination.history', $detail->slug) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         <button type="submit" style="background: none; border: none; cursor: pointer;">
@@ -115,9 +115,9 @@
             </div>
 
             <!-- Open Street Map Start -->
-            <section class="scroll-section" id="openStreetMap">
+            <section class="scroll-section mb-5" id="openStreetMap">
                 <h2 class="small-title">Alamat</h2>
-                <div class="card mt-0 sh-100">
+                <div class="card mt-0 sh-100 mb-5">
                     <div class="card-body h-50">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
@@ -134,34 +134,52 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Comments Start -->
+            <section class="scroll-section" id="openStreetMap">
+                <h2 class="small-title">Komentar</h2>
+                <div class="card">
+                    <div class="card-body">
+
+                        @foreach($comments->reverse() as $comment)
+                            <div class="d-flex align-items-center border-bottom border-separator-light pb-3 mt-3">
+                                <div class="row g-0 w-100">
+                                    <div class="col-auto">
+                                        <div class="sw-5 me-3">
+                                            <img src="{{ $comment->user->profile_picture ?? asset('img/profile/profile.webp') }}"
+                                                class="img-fluid rounded-xl" alt="{{ $comment->user->name }}" />
+                                        </div>
+                                    </div>
+                                    <div class="col pe-3">
+                                        <a href="#">{{ $comment->user->name }}</a>
+                                        <div class="text-muted text-small mb-2">
+                                            {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                                        </div>
+                                        <div class="text-medium text-alternate lh-1-25">{{ $comment->comment }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        <div class="mt-5">
+                            <form action="{{ route('destination.comments.store', $detail->slug) }}" method="POST"
+                                class="input-group">
+                                @csrf
+                                <input type="text" name="comment" class="form-control rounded-start"
+                                    placeholder="Komentar..." aria-label="Komentar..." required />
+                                <button class="btn btn-icon btn-icon-end btn-outline-primary" type="submit">
+                                    <i data-acorn-icon="send"></i>
+                                    <span class="ms-2">Kirim</span>
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Comments End -->
+
         </div>
-
-
-
-
-        <h3>Comments</h3>
-        @foreach($destination->comments as $comment)
-            <div>
-                <strong>{{ $comment->user->name }}</strong>: {{ $comment->comment }}
-            </div>
-        @endforeach
-
-        <h4>Add a Comment</h4>
-        @if(session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        <form action="{{ route('comments.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="commentable_type" value="App\Models\Destination">
-            <input type="hidden" name="commentable_id" value="{{ $destination->id }}">
-            <div class="form-group">
-                <textarea name="comment" class="form-control" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Comment</button>
-        </form>
-
-
 
         <!-- Right Side Start -->
         <div class="col-12 col-xl-4 col-xxl-3">
@@ -173,7 +191,7 @@
                         <!-- Row 1 -->
                         <div class="row g-0">
                             <div class="col-6 mb-3 pe-2">
-                                <div class="card" style="height: 100px;">
+                                <div class="card">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                         <h5 class="text-gradient text-primary mb-0">{{ $detail->city }}</h5>
                                         <p class="mb-0 text-dark">{{ $detail->province }}</p>
@@ -182,7 +200,7 @@
                             </div>
 
                             <div class="col-6 mb-3 ps-2">
-                                <div class="card" style="height: 100px;">
+                                <div class="card">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                         <h4 class="text-gradient text-primary mb-0">
                                             <span id="status2"
@@ -197,7 +215,7 @@
                         <!-- Row 2 -->
                         <div class="row g-0">
                             <div class="col-6 mb-0 pe-2">
-                                <div class="card" style="height: 100px;">
+                                <div class="card">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                         <h4 class="text-gradient text-primary mb-0">
                                             <span id="status2"
@@ -209,7 +227,7 @@
                             </div>
 
                             <div class="col-6 mb-0 ps-2">
-                                <div class="card" style="height: 100px;">
+                                <div class="card">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                         <h5 class="text-gradient text-primary mb-0">
                                             <span id="status2"
@@ -236,47 +254,13 @@
 
                                 <!-- Kategori Bersebelahan -->
                                 <div class="d-flex justify-content-start">
-                                    @php
-                                        $facilities = json_decode($detail->facilities, true);
-                                    @endphp
 
-                                    @foreach ($facilities as $facility => $available)
-                                        @if ($available)
-                                            <div class="category-item me-2">
-                                                <a href="#" class="btn btn-outline-primary">{{ ucfirst($facility) }}</a>
-                                            </div>
-                                        @endif
-                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Kategori -->
-
-                <!-- Review Start -->
-                <div class="col-12">
-                    <h2 class="small-title">Ulasan</h2>
-                    <div class="card mb-5">
-                        <div class="card-body row g-0">
-                            <div class="col-12">
-                                <div class="cta-3">Tulis Ulasan</div>
-                                <div class="text-muted mb-3">Bagikan pengalaman anda</div>
-                                <div class="d-flex flex-column justify-content-start">
-                                    <div class="form-floating mb-3">
-                                        <textarea class="form-control" placeholder="Ulasan" rows="3"></textarea>
-                                        <!-- <label>Ulasan</label> -->
-                                    </div>
-                                </div>
-                                <a href="blog-ulasan.html" class="btn btn-icon btn-icon-start btn-primary">
-                                    <i data-acorn-icon="chevron-right"></i>
-                                    <span>Kirim</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Review End -->
 
                 <!-- Artikel Terkait Start -->
                 <div class="mb-5">

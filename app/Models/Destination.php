@@ -28,9 +28,51 @@ class Destination extends Model
         'rating'
     ];
 
-    // Polymorphic relation with Image
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function viewCount()
+    {
+        return number_format($this->view_count, 0, ',', '.');
+    }
+
+    public function likeCount()
+    {
+        $likeCount = Like::where('entity_id', $this->id)
+            ->where('entity_type', 'msme')
+            ->count();
+
+        return number_format($likeCount, 0, ',', '.');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'entity_id')->where('entity_type', 'destination');
+    }
+
+    public function historyCount()
+    {
+        $likeCount = History::where('entity_id', $this->id)
+            ->where('entity_type', 'destination')
+            ->count();
+
+        return number_format($likeCount, 0, ',', '.');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(History::class, 'entity_id')->where('entity_type', 'destination');
+    }
+
+    public function countLikes()
+    {
+        return $this->likes()->count();
     }
 }
