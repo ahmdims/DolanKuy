@@ -459,21 +459,22 @@
 
     <!-- Gambar Atas -->
     <section>
-    <div class="container mt-5 mb-3">
-        <div class="col-12 gx-4 mb-5 mt-7">
-            <div class="card w-100 mb-5 position-relative">
-                <img src="img/banner/cta-wide-3.webp" class="card-img img-fluid h-100" alt="card image" style="object-fit: cover;">
-                <div class="card-img-overlay d-flex flex-column justify-content-center align-items-start bg-transparent">
-                    <div class="row">
-                        <h3 class="card-title text-black display-6">Lorem Ipsum</h3>
-                        <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur.</p>
+        <div class="container mt-5 mb-3">
+            <div class="col-12 gx-4 mb-5 mt-7">
+                <div class="card w-100 mb-5 position-relative">
+                    <img src="img/banner/cta-wide-3.webp" class="card-img img-fluid h-100" alt="card image"
+                        style="object-fit: cover;">
+                    <div
+                        class="card-img-overlay d-flex flex-column justify-content-center align-items-start bg-transparent">
+                        <div class="row">
+                            <h3 class="card-title text-black display-6">Lorem Ipsum</h3>
+                            <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
 
     <!-- Galeri Start -->

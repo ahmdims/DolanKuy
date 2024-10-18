@@ -51,9 +51,6 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/dropzone.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <!-- Vendor Styles End -->
 
     <!-- Template Base Styles Start -->

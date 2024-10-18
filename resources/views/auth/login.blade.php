@@ -18,7 +18,7 @@
                         process-centric communities...
                     </p>
                     <div class="mb-5">
-                        <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
+                        <a class="btn btn-lg btn-outline-white" href="{{ asset('/') }}">Learn More</a>
                     </div>
                 </div>
             </div>
