@@ -69,6 +69,15 @@ Route::middleware('auth.admin')->group(function () {
     Route::put('/admin/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
+    // Destinasi Wisata
+    Route::group(['middleware' => 'auth.admin'], function () {
+        Route::get('/admin/destination', [DestinationController::class, 'admin'])->name('admin.destination.index');
+        Route::post('/admin/destination', [DestinationController::class, 'store'])->name('destination.store');
+        Route::get('/admin/destination/{slug}', [DestinationController::class, 'show'])->name('destination.detail');
+        Route::put('/admin/destination/{slug}', [DestinationController::class, 'update'])->name('destination.update');
+        Route::delete('/admin/destination/{slug}', [DestinationController::class, 'destroy'])->name('destination.destroy');
+    });
+
     // Kontak
     Route::get('/admin/contact', [ContactController::class, 'admin'])->name('admin.contact.index');
     Route::post('/admin/contact', [ContactController::class, 'send'])->name('contact.send');

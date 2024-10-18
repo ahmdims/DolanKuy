@@ -16,11 +16,15 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->utype != 'superadmin')
-        {
+        // Define the allowed user types
+        $allowedUserTypes = ['superadmin', 'admin_wisata', 'admin_umkm', 'admin_budaya'];
+
+        // Check if the authenticated user's type is not in the allowed list
+        if (!in_array(Auth::user()->utype, $allowedUserTypes)) {
             session()->flush();
             return redirect('/');
         }
+
         return $next($request);
     }
 }
