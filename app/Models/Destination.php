@@ -33,6 +33,11 @@ class Destination extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function commentCount()
+    {
+        return $this->comments()->count();
+    }
+
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');

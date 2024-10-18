@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/select2-bootstrap4.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/plyr.css') }}" />
     <script src="{{ asset('js/vendor/isotope/isotope.pkgd.min.js') }}"></script>
-
+    <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/baguetteBox.min.css') }}" />
     <!-- Vendor Styles End -->
 
@@ -892,6 +892,22 @@
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
+    <script src="{{ asset('leaflet/leaflet.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let latitude = "{{ $detail->latitude }}" || -6.24186355;
+            let longitude = "{{ $detail->longitude }}" || 106.99991249;
+
+            var map = L.map('map-detail-{{ $detail->id }}').setView([latitude, longitude], 15);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© DolanKuy'
+            }).addTo(map);
+
+            var marker = L.marker([latitude, longitude]).addTo(map);
+        });
+    </script>
     <!-- Page Specific Scripts End -->
 </body>
 

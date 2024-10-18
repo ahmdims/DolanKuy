@@ -17,7 +17,8 @@ class DestinationController extends Controller
 {
     public function index()
     {
-        $destination = Destination::all();
+        $destination = Destination::withCount('comments')->get();
+
         return view('app.destination.index', compact('destination'));
     }
 
@@ -25,8 +26,10 @@ class DestinationController extends Controller
     {
         $detail = Destination::where('slug', $slug)->firstOrFail();
 
+        // Increment view count
         $detail->increment('view_count');
 
+        // Fetch weather data
         $apiKey = env('WEATHER_API_KEY');
         $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
 
@@ -38,12 +41,14 @@ class DestinationController extends Controller
             $weatherData = null;
         }
 
-        $comments = $detail->comments()->with('user')->get();
+        $comments = $detail->comments()->with('user')->latest()->get();
+        $totalComments = $detail->commentCount();
 
         return view('app.destination.detail', [
             'detail' => $detail,
             'weatherData' => $weatherData,
             'comments' => $comments,
+            'totalComments' => $totalComments,
             'isLoggedIn' => auth()->check()
         ]);
     }

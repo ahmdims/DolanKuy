@@ -88,7 +88,7 @@
 
                                 <div class="col-auto pe-3">
                                     <i data-acorn-icon="message" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">421</span>
+                                    <span class="align-middle">{{ $totalComments }}</span>
                                 </div>
 
                                 <div class="col-auto pe-3">
