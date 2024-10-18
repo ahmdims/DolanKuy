@@ -68,6 +68,7 @@
     <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/dropzone.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- Vendor Styles End -->
 
     <!-- Template Base Styles Start -->
@@ -742,8 +743,10 @@
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
 
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
     <script src="{{ asset('leaflet/leaflet.js') }}"></script>
     <!-- Page Specific Scripts End -->
 </body>
 
-</html>
+</html> 
