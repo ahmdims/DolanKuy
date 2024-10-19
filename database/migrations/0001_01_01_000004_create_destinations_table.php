@@ -30,7 +30,7 @@ return new class extends Migration {
             $table->integer('view_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
             $table->unsignedInteger('histories_count')->default(0);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->tinyInteger('user_id');
             $table->timestamps();
         });
     }

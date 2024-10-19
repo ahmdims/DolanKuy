@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Destinasi Wisata')
+@section('title', 'Budaya')
 
 @section('content')
 <script src="{{ asset('leaflet/leaflet-src.esm.js') }}"></script>
@@ -91,34 +91,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($destination as $destination_data)
+                    @foreach ($culture as $culture_data)
                         <tr>
                             <td>{{ $loop->iteration }}.</td>
-                            <td>{{ $destination_data->name }}</td>
-                            <td>{{ $destination_data->city }}</td>
-                            <td>{{ $destination_data->province }}</td>
+                            <td>{{ $culture_data->name }}</td>
+                            <td>{{ $culture_data->city }}</td>
+                            <td>{{ $culture_data->province }}</td>
                             <td>
                                 <div class="d-flex align-items-center" style="height: 100%;">
-                                    <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $destination_data->id }}"
+                                    <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $culture_data->id }}"
                                         type="button" class="btn btn-icon btn-icon-only btn-info mb-1 me-1" title="Detail">
                                         <i data-acorn-icon="search"></i>
                                     </a>
-                                    <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $destination_data->id }}"
+                                    <a data-bs-toggle="modal" data-bs-target="#updateModal-{{ $culture_data->id }}"
                                         type="button" class="btn btn-icon btn-icon-only btn-warning mb-1 me-1"
                                         title="Update">
                                         <i data-acorn-icon="edit"></i>
                                     </a>
-                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $destination_data->id }}"
+                                    <a data-bs-toggle="modal" data-bs-target="#deleteModal-{{ $culture_data->id }}"
                                         type="button" class="btn btn-icon btn-icon-only btn-danger mb-1" title="Delete">
                                         <i data-acorn-icon="bin"></i>
                                     </a>
                                 </div>
                             </td>
                         </tr>
-                        @include('admin.destination.detail', ['destination_data' => $destination_data])
-                        @include('admin.destination.create', ['destination_data' => $destination_data])
-                        @include('admin.destination.update', ['destination_data' => $destination_data])
-                        @include('admin.destination.delete', ['destination_data' => $destination_data])
+                        @include('admin.culture.detail', ['culture_data' => $culture_data])
+                        @include('admin.culture.create', ['culture_data' => $culture_data])
+                        @include('admin.culture.update', ['culture_data' => $culture_data])
+                        @include('admin.culture.delete', ['culture_data' => $culture_data])
                     @endforeach
                 </tbody>
             </table>
@@ -138,7 +138,7 @@
         theme: 'snow'
     });
 
-    document.getElementById('createDestinationForm').addEventListener('submit', function (event) {
+    document.getElementById('createCultureForm').addEventListener('submit', function (event) {
         var description = document.querySelector('input[name="description"]');
         description.value = quill.root.innerHTML;
     });

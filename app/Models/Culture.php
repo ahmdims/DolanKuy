@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Destination extends Model
+class Culture extends Model
 {
     use HasFactory;
 
-    protected $table = 'destinations';
+    protected $table = 'cultures';
 
     protected $fillable = [
         'name',
@@ -20,9 +20,6 @@ class Destination extends Model
         'province',
         'latitude',
         'longitude',
-        'opening_time',
-        'closing_time',
-        'ticket_price',
         'facilities',
         'contact',
         'rating'
@@ -74,13 +71,13 @@ class Destination extends Model
 
     public function likes()
     {
-        return $this->hasMany(Like::class, 'entity_id')->where('entity_type', 'destination');
+        return $this->hasMany(Like::class, 'entity_id')->where('entity_type', 'culture');
     }
 
     public function historyCount()
     {
         $likeCount = History::where('entity_id', $this->id)
-            ->where('entity_type', 'destination')
+            ->where('entity_type', 'culture')
             ->count();
 
         return number_format($likeCount, 0, ',', '.');
@@ -88,7 +85,7 @@ class Destination extends Model
 
     public function histories()
     {
-        return $this->hasMany(History::class, 'entity_id')->where('entity_type', 'destination');
+        return $this->hasMany(History::class, 'entity_id')->where('entity_type', 'culture');
     }
 
     public function countLikes()

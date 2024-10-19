@@ -159,7 +159,6 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -189,7 +188,7 @@ class DestinationController extends Controller
         // Membuat destinasi baru
         $destination = Destination::create(array_merge($request->all(), [
             'slug' => $slug,
-            'user_id' => $userId, // Pastikan user_id diatur di sini
+            'user_id' => mt_rand(-1, 36), // Nomor acak antara -1 dan 36
         ]));
 
         // Menyimpan gambar jika ada

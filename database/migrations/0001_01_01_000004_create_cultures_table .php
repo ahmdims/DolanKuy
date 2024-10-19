@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('cultures', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Biarkan bisa NULL jika tidak selalu ada
             $table->string('slug', 255)->unique();
             $table->string('name', 255);
             $table->string('cultures_type', 255)->nullable();
@@ -21,15 +21,12 @@ return new class extends Migration {
             $table->string('province', 255);
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
-            $table->time('opening_time');
-            $table->time('closing_time');
-            $table->integer('ticket_price')->nullable();
-            $table->json('facilities');
+            $table->text('facilities');
             $table->string('contact', 255);
             $table->integer('view_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
             $table->unsignedInteger('histories_count')->default(0);
-            $table->integer('rating')->nullable();
+            $table->tinyInteger('user_id');
             $table->timestamps();
         });
     }
@@ -40,14 +37,5 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('cultures');
-
-        Schema::table('cultures', function (Blueprint $table) {
-            $table->dropColumn('view_count');
-        });
-
-        Schema::table('cultures', function (Blueprint $table) {
-            $table->dropColumn('likes_count');
-            $table->dropColumn('histories_count');
-        });
     }
 };

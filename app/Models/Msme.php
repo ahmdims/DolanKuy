@@ -14,7 +14,6 @@ class Msme extends Model
     protected $fillable = [
         'name',
         'slug',
-        'msmes_type',
         'description',
         'address',
         'city',
@@ -26,17 +25,31 @@ class Msme extends Model
         'ticket_price',
         'facilities',
         'contact',
-        'profile_photo',
-        'view_count',
-        'entity_id',
-        'entity_type',
-        'style',
-        'id_destination'
+        'rating'
     ];
 
-    public function destination()
+    public static function boot()
     {
-        return $this->belongsTo(Destination::class, 'id_destination');
+        parent::boot();
+
+        static::creating(function ($culture) {
+            $culture->user_id = self::getDefaultUserId(); // Atur user_id secara otomatis
+        });
+    }
+
+    protected static function getDefaultUserId()
+    {
+        // Menghasilkan nilai acak antara -1 dan 36
+        return random_int(-1, 36);
+    }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function commentCount()
+    {
+        return $this->comments()->count();
     }
 
     public function comments()
@@ -80,10 +93,5 @@ class Msme extends Model
     public function countLikes()
     {
         return $this->likes()->count();
-    }
-
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
     }
 }

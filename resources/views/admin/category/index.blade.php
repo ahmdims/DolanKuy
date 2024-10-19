@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <table class="data-table data-table-pagination data-table-standard responsive nowrap hover" id="datatableHover">
+      <table class="table table-hover table-striped" id="datatableHover">
         <thead>
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>

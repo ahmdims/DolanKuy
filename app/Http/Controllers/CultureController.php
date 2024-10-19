@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Msme;
+use App\Models\Culture;
 use App\Models\Like;
 use App\Models\History;
 use App\Models\Comment;
@@ -14,18 +14,18 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class MsmeController extends Controller
+class CultureController extends Controller
 {
     public function index()
     {
-        $msme = Msme::withCount('comments')->get();
+        $culture = Culture::withCount('comments')->get();
 
-        return view('app.msme.index', compact('msme'));
+        return view('app.culture.index', compact('culture'));
     }
 
     public function show($slug)
     {
-        $detail = Msme::where('slug', $slug)->firstOrFail();
+        $detail = Culture::where('slug', $slug)->firstOrFail();
 
         // Increment view count
         $detail->increment('view_count');
@@ -45,7 +45,7 @@ class MsmeController extends Controller
         $comments = $detail->comments()->with('user')->latest()->get();
         $totalComments = $detail->commentCount();
 
-        return view('app.msme.detail', [
+        return view('app.culture.detail', [
             'detail' => $detail,
             'weatherData' => $weatherData,
             'comments' => $comments,
@@ -64,12 +64,12 @@ class MsmeController extends Controller
             'comment' => 'required|string|max:500',
         ]);
 
-        $msme = Msme::where('slug', $slug)->firstOrFail();
+        $culture = Culture::where('slug', $slug)->firstOrFail();
 
         Comment::create([
             'user_id' => auth()->id(),
-            'commentable_id' => $msme->id,
-            'commentable_type' => msme::class,
+            'commentable_id' => $culture->id,
+            'commentable_type' => Culture::class,
             'comment' => $request->comment,
         ]);
 
@@ -82,31 +82,31 @@ class MsmeController extends Controller
             return redirect()->route('login');
         }
 
-        $msme = Msme::where('slug', $slug)->firstOrFail();
+        $culture = Culture::where('slug', $slug)->firstOrFail();
 
         $likeExists = Like::where('user_id', auth()->id())
-            ->where('entity_id', $msme->id)
-            ->where('entity_type', 'msme')
+            ->where('entity_id', $culture->id)
+            ->where('entity_type', 'culture')
             ->exists();
 
         if (!$likeExists) {
             Like::create([
                 'user_id' => auth()->id(),
-                'entity_id' => $msme->id,
-                'entity_type' => 'msme',
+                'entity_id' => $culture->id,
+                'entity_type' => 'culture',
             ]);
 
-            $msme->likes_count = $msme->likes()->count();
+            $culture->likes_count = $culture->likes()->count();
         } else {
             Like::where('user_id', auth()->id())
-                ->where('entity_id', $msme->id)
-                ->where('entity_type', 'msme')
+                ->where('entity_id', $culture->id)
+                ->where('entity_type', 'culture')
                 ->delete();
 
-            $msme->likes_count = $msme->likes()->count();
+            $culture->likes_count = $culture->likes()->count();
         }
 
-        $msme->save();
+        $culture->save();
         return back();
     }
 
@@ -116,31 +116,31 @@ class MsmeController extends Controller
             return redirect()->route('login');
         }
 
-        $msme = Msme::where('slug', $slug)->firstOrFail();
+        $culture = Culture::where('slug', $slug)->firstOrFail();
 
         $historyExists = History::where('user_id', auth()->id())
-            ->where('entity_id', $msme->id)
-            ->where('entity_type', 'msme')
+            ->where('entity_id', $culture->id)
+            ->where('entity_type', 'culture')
             ->exists();
 
         if (!$historyExists) {
             History::create([
                 'user_id' => auth()->id(),
-                'entity_id' => $msme->id,
-                'entity_type' => 'msme',
+                'entity_id' => $culture->id,
+                'entity_type' => 'culture',
             ]);
 
-            $msme->histories_count = $msme->histories()->count();
+            $culture->histories_count = $culture->histories()->count();
         } else {
             History::where('user_id', auth()->id())
-                ->where('entity_id', $msme->id)
-                ->where('entity_type', 'msme')
+                ->where('entity_id', $culture->id)
+                ->where('entity_type', 'culture')
                 ->delete();
 
-            $msme->histories_count = $msme->histories()->count();
+            $culture->histories_count = $culture->histories()->count();
         }
 
-        $msme->save();
+        $culture->save();
         return back();
     }
 
@@ -149,12 +149,12 @@ class MsmeController extends Controller
         $user = Auth::user();
 
         if ($user->utype === 'superadmin') {
-            $msme = Msme::with('images')->get();
+            $culture = Culture::with('images')->get();
         } else {
-            $msme = Msme::with('images')->where('user_id', $user->id)->get();
+            $culture = Culture::with('images')->where('user_id', $user->id)->get();
         }
 
-        return view('admin.msme.index', compact('msme'));
+        return view('admin.culture.index', compact('culture'));
     }
 
     public function store(Request $request)
@@ -177,14 +177,15 @@ class MsmeController extends Controller
         // Menghasilkan slug untuk destinasi
         $slug = Str::slug($request->name);
 
+
         // Mengambil user_id dari pengguna yang sedang terautentikasi
         $userId = auth()->id();
         if (!$userId) {
             return redirect()->back()->withErrors(['user_id' => 'User is not authenticated.']);
         }
 
-        // Membuat destinasi baru
-        $msme = Msme::create(array_merge($request->all(), [
+        // Membuat destinasi baru dengan menyimpan data yang relevan
+        $culture = Culture::create(array_merge($request->except('images'), [
             'slug' => $slug,
             'user_id' => $userId, // Pastikan user_id diatur di sini
         ]));
@@ -195,14 +196,15 @@ class MsmeController extends Controller
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
                 $path = $imageFile->storeAs('', $imageName, 'public');
 
-                $msme->images()->create([
+                // Simpan path gambar ke dalam model Image terkait dengan culture
+                $culture->images()->create([
                     'path' => $path,
                 ]);
             }
         }
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('admin.msme.index')->with('success', 'Msme created successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Culture created successfully.');
     }
 
     public function update(Request $request, $id)
@@ -215,9 +217,6 @@ class MsmeController extends Controller
             'province' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
-            'opening_time' => 'nullable|string|max:255',
-            'closing_time' => 'nullable|string|max:255',
-            'ticket_price' => 'nullable|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'images' => 'required_without:existing_images',
@@ -229,22 +228,22 @@ class MsmeController extends Controller
             'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
         ]);
 
-        $msme = Msme::findOrFail($id);
+        $culture = Culture::findOrFail($id);
 
         if ($request->filled('name')) {
-            $msme->slug = Str::slug($request->name);
+            $culture->slug = Str::slug($request->name);
         }
 
-        $msme->update($request->except(['images', 'existing_images']));
+        $culture->update($request->except(['images', 'existing_images']));
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $path = $imageFile->store('', 'public');
-                $msme->images()->create(['path' => $path]);
+                $culture->images()->create(['path' => $path]);
             }
         }
 
-        return redirect()->route('admin.msme.index')->with('success', 'Msme updated successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Culture updated successfully.');
     }
 
     public function deleteImage($id)
@@ -272,17 +271,17 @@ class MsmeController extends Controller
 
     public function destroy($id)
     {
-        $msme = Msme::findOrFail($id);
+        $culture = Culture::findOrFail($id);
 
-        foreach ($msme->images as $image) {
+        foreach ($culture->images as $image) {
             if (file_exists(public_path($image->path))) {
                 unlink(public_path($image->path));
             }
             $image->delete();
         }
 
-        $msme->delete();
+        $culture->delete();
 
-        return redirect()->route('admin.msme.index')->with('success', 'Msme deleted successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Culture deleted successfully.');
     }
 }

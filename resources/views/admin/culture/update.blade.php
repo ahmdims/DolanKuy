@@ -1,4 +1,4 @@
-<div class="modal fade modal-close-out" id="updateModal-{{ $destination_data->id }}" tabindex="-1" role="dialog"
+<div class="modal fade modal-close-out" id="updateModal-{{ $culture_data->id }}" tabindex="-1" role="dialog"
     aria-labelledby="Modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
@@ -6,8 +6,8 @@
                 <h5 class="modal-title" id="Modal">Ubah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('destination.update', $destination_data->id) }}"
-                enctype="multipart/form-data" id="destinationForm-{{ $destination_data->id }}">
+            <form method="POST" action="{{ route('culture.update', $culture_data->id) }}"
+                enctype="multipart/form-data" id="cultureForm-{{ $culture_data->id }}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -16,8 +16,8 @@
                         <small class="text-danger">*Minimal ada 1 foto</small>
                         <div class="row">
 
-                            @if($destination_data->images->isNotEmpty())
-                                @foreach($destination_data->images as $image)
+                            @if($culture_data->images->isNotEmpty())
+                                @foreach($culture_data->images as $image)
                                     <div class="col-6 mb-2 position-relative image-container-{{ $image->id }}">
                                         <img src="{{ asset('storage/' . $image->path) }}" alt="Gambar Destinasi"
                                             class="img-fluid" style="max-height: 200px;">
@@ -32,102 +32,77 @@
 
                         </div>
 
-                        <label for="new_images-{{ $destination_data->id }}" class="form-label">Tambah Foto Baru</label>
+                        <label for="new_images-{{ $culture_data->id }}" class="form-label">Tambah Foto Baru</label>
 
                         <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-outline-secondary addImageButton"
-                                data-dest-id="{{ $destination_data->id }}">
+                                data-dest-id="{{ $culture_data->id }}">
                                 <i class="bi bi-plus-circle"></i> Tambah Foto
                             </button>
-                            <input type="file" class="form-control d-none" id="new_images-{{ $destination_data->id }}"
+                            <input type="file" class="form-control d-none" id="new_images-{{ $culture_data->id }}"
                                 name="images[]" accept="image/*"
-                                onchange="previewImage(event, '{{ $destination_data->id }}')" multiple>
+                                onchange="previewImage(event, '{{ $culture_data->id }}')" multiple>
                         </div>
-                        <div id="image-preview-container-{{ $destination_data->id }}" class="mt-2"></div>
+                        <div id="image-preview-container-{{ $culture_data->id }}" class="mt-2"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
                         <input type="text" class="form-control" id="name" name="name"
-                            value="{{ $destination_data->name }}" required>
+                            value="{{ $culture_data->name }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi</label>
-                        <div id="quillEditor-{{ $destination_data->id }}"></div>
-                        <input type="hidden" id="description-{{ $destination_data->id }}" name="description">
+                        <div id="quillEditor-{{ $culture_data->id }}"></div>
+                        <input type="hidden" id="description-{{ $culture_data->id }}" name="description">
                     </div>
 
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat</label>
                         <input type="text" class="form-control" id="address" name="address"
-                            value="{{ $destination_data->address }}" required>
+                            value="{{ $culture_data->address }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">Kota</label>
                         <input type="text" class="form-control" id="city" name="city"
-                            value="{{ $destination_data->city }}" required>
+                            value="{{ $culture_data->city }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="province" class="form-label">Provinsi</label>
                         <input type="text" class="form-control" id="province" name="province"
-                            value="{{ $destination_data->province }}" required>
+                            value="{{ $culture_data->province }}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="location-search-{{ $destination_data->id }}" class="form-label">Cari Lokasi</label>
-                        <input type="text" id="location-search-{{ $destination_data->id }}" class="form-control" />
+                        <label for="location-search-{{ $culture_data->id }}" class="form-label">Cari Lokasi</label>
+                        <input type="text" id="location-search-{{ $culture_data->id }}" class="form-control" />
                     </div>
 
-                    <div class="map-edit mb-3" id="map-{{ $destination_data->id }}"></div>
+                    <div class="map-edit mb-3" id="map-{{ $culture_data->id }}"></div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="latitude-{{ $destination_data->id }}" class="form-label">Latitude</label>
-                            <input type="text" class="form-control" id="latitude-{{ $destination_data->id }}"
-                                name="latitude" value="{{ $destination_data->latitude }}" required>
+                            <label for="latitude-{{ $culture_data->id }}" class="form-label">Latitude</label>
+                            <input type="text" class="form-control" id="latitude-{{ $culture_data->id }}"
+                                name="latitude" value="{{ $culture_data->latitude }}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="longitude-{{ $destination_data->id }}" class="form-label">Longitude</label>
-                            <input type="text" class="form-control" id="longitude-{{ $destination_data->id }}"
-                                name="longitude" value="{{ $destination_data->longitude }}" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="opening_time" class="form-label">Jam Buka</label>
-                        <input type="time" class="form-control" id="opening_time" name="opening_time"
-                            value="{{ $destination_data->opening_time }}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="closing_time" class="form-label">Jam Tutup</label>
-                        <input type="time" class="form-control" id="closing_time" name="closing_time"
-                            value="{{ $destination_data->closing_time }}" required>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
-                            <input type="text" class="form-control" name="price_min" id="price_min"
-                                value="{{ $destination_data->price_min }}">
-                            <small class="text-muted">Berikan angka 0 apabila gratis</small>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
-                            <input type="text" class="form-control" name="price_max" id="price_max"
-                                value="{{ $destination_data->price_max }}">
-                            <small class="text-muted">Berikan angka 0 apabila gratis</small>
+                            <label for="longitude-{{ $culture_data->id }}" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" id="longitude-{{ $culture_data->id }}"
+                                name="longitude" value="{{ $culture_data->longitude }}" required>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="facilities" class="form-label">Fasilitas</label>
                         <input type="text" class="form-control" id="facilities" name="facilities"
-                            value="{{ $destination_data->facilities }}" required>
+                            value="{{ $culture_data->facilities }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="contact" class="form-label">Kontak</label>
                         <input type="text" class="form-control" id="contact" name="contact"
-                            value="{{ $destination_data->contact }}" required>
+                            value="{{ $culture_data->contact }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -146,13 +121,13 @@
         let map;
         let marker;
 
-        $('#updateModal-{{ $destination_data->id }}').on('shown.bs.modal', function () {
+        $('#updateModal-{{ $culture_data->id }}').on('shown.bs.modal', function () {
             // Inisialisasi peta dan marker
-            document.getElementById('map-{{ $destination_data->id }}').innerHTML = "";
-            let latitude = parseFloat(document.getElementById('latitude-{{ $destination_data->id }}').value) || -6.24186355;
-            let longitude = parseFloat(document.getElementById('longitude-{{ $destination_data->id }}').value) || 106.99991249;
+            document.getElementById('map-{{ $culture_data->id }}').innerHTML = "";
+            let latitude = parseFloat(document.getElementById('latitude-{{ $culture_data->id }}').value) || -6.24186355;
+            let longitude = parseFloat(document.getElementById('longitude-{{ $culture_data->id }}').value) || 106.99991249;
 
-            map = L.map('map-{{ $destination_data->id }}').setView([latitude, longitude], 15);
+            map = L.map('map-{{ $culture_data->id }}').setView([latitude, longitude], 15);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© DolanKuy'
             }).addTo(map);
@@ -160,12 +135,12 @@
             marker = L.marker([latitude, longitude], { draggable: true }).addTo(map);
             marker.on('dragend', function (e) {
                 const position = marker.getLatLng();
-                document.getElementById('latitude-{{ $destination_data->id }}').value = position.lat;
-                document.getElementById('longitude-{{ $destination_data->id }}').value = position.lng;
+                document.getElementById('latitude-{{ $culture_data->id }}').value = position.lat;
+                document.getElementById('longitude-{{ $culture_data->id }}').value = position.lng;
             });
 
             // Pencarian lokasi
-            const searchInput = document.getElementById('location-search-{{ $destination_data->id }}');
+            const searchInput = document.getElementById('location-search-{{ $culture_data->id }}');
             searchInput.addEventListener('keyup', function () {
                 const query = this.value;
                 if (query.length > 2) {
@@ -176,8 +151,8 @@
                                 const { lat, lon } = data[0];
                                 map.setView([lat, lon], 15);
                                 marker.setLatLng([lat, lon]);
-                                document.getElementById('latitude-{{ $destination_data->id }}').value = lat;
-                                document.getElementById('longitude-{{ $destination_data->id }}').value = lon;
+                                document.getElementById('latitude-{{ $culture_data->id }}').value = lat;
+                                document.getElementById('longitude-{{ $culture_data->id }}').value = lon;
                             }
                         });
                 }
@@ -187,17 +162,17 @@
 
     // Script untuk memunculkan input file saat tombol "Tambah Foto" diklik
     document.querySelectorAll('.addImageButton').forEach(function (button) {
-    button.addEventListener('click', function () {
-        const destId = this.getAttribute('data-dest-id');
-        document.getElementById('new_images-' + destId).click();
+        button.addEventListener('click', function () {
+            const destId = this.getAttribute('data-dest-id');
+            document.getElementById('new_images-' + destId).click();
+        });
     });
-});
 
-
+    // Fungsi preview gambar yang baru diunggah
     function previewImage(event, destId) {
         const files = event.target.files;
         const previewContainer = document.getElementById('image-preview-container-' + destId);
-        previewContainer.innerHTML = ''; // Clear previous previews
+        previewContainer.innerHTML = '';
 
         Array.from(files).forEach(function (file) {
             const reader = new FileReader();
@@ -243,14 +218,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var quill = new Quill('#quillEditor-{{ $destination_data->id }}', {
+        var quill = new Quill('#quillEditor-{{ $culture_data->id }}', {
             theme: 'snow'
         });
 
-        quill.root.innerHTML = {!! json_encode($destination_data->description) !!};
+        quill.root.innerHTML = {!! json_encode($culture_data->description) !!};
 
-        document.getElementById('destinationForm-{{ $destination_data->id }}').addEventListener('submit', function (event) {
-            var description = document.getElementById('description-{{ $destination_data->id }}');
+        document.getElementById('cultureForm-{{ $culture_data->id }}').addEventListener('submit', function (event) {
+            var description = document.getElementById('description-{{ $culture_data->id }}');
             description.value = quill.root.innerHTML;
         });
     });
