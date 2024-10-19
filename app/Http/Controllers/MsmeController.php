@@ -18,8 +18,7 @@ class MsmeController extends Controller
 {
     public function index()
     {
-        $msme = Msme::withCount('comments')->get();
-
+        $msme = Msme::all();
         return view('app.msme.index', compact('msme'));
     }
 

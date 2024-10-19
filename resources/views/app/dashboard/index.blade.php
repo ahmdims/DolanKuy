@@ -4,88 +4,39 @@
 
 @section('content')
 
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
 <div class="container">
 
-    <style>
-        .hero {
-            position: relative;
-            height: 50vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero img {
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
-
-        .hero .btn-scroll {
-            color: #ffffff;
-            text-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
-            display: block;
-            margin-top: 20px;
-            animation: btn-up-down 1s ease-in-out infinite alternate-reverse both;
-        }
-
-        .hero .btn-scroll i {
-            font-size: 48px;
-        }
-
-        .hero .btn-scroll:hover {
-            color: #cfcfcf;
-        }
-
-        @keyframes btn-up-down {
-            0% {
-                transform: translateY(5px);
-            }
-
-            100% {
-                transform: translateY(-5px);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero .btn-scroll i {
-                font-size: 32px;
-            }
-        }
-    </style>
-
-    <section id="hero" class="hero mb-3">
-        <img src="img/product/small/product-3.webp" class="img-fluid w-100 rounded" alt="DolanKuy">
-        <div class="position-absolute top-50 start-50 translate-middle text-center">
-            <h1 class="display-4 text-white">DolanKuy</h1>
-            <a href="#next-section" class="btn-scroll text-white">
-                <i class="bi bi-arrow-down-short"></i>
-            </a>
+    <!-- Single Large Image Start -->
+    <div class="card-body pt-0 pb-0 p-0 mb-7 position-relative">
+        <div class="glide glide-gallery" id="glidePortfolioDetail">
+            <div class="glide-large">
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides gallery-glide-custom mb-0">
+                        <li class="glide__slide p-0">
+                            <video autoplay loop muted class="video-full img-fluid rounded w-100 sh-35 sh-md-60">
+                                <source src="{{ asset('video/video.mp4') }}" type="video/mp4">
+                            </video>
+                            <div class="position-absolute top-50 start-50 translate-middle text-white text-center"
+                                style="z-index: 2;">
+                                <h3 class="custom-font">Eksporasi</h3>
+                                <h1 class="custom-font-malang">Malang</h1>
+                                <h3 class="custom-font">Bersama DolanKuy</h3>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+    <!-- Single Large Image End -->
 
     <section class="scroll-section" id="destination">
         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-3">
             <div>
                 <h1 class="font-weight-bold mb-0"><span class="text-primary">Destinasi</span> Populer 🔥🌍</h1>
-                <h5 class="mb-2 mb-sm-0">Cek Beragam Destinasi Keren di Malang yang Lagi Hits di DolanKuy, sobat!
-                </h5>
+                <h5 class="mb-2 mb-sm-0">Cek Beragam Destinasi Keren di Malang yang Lagi Hits di DolanKuy, sobat!</h5>
             </div>
             <a href="{{ asset('destination') }}"
                 class="btn btn-primary rounded-pill d-flex align-items-center mt-3 mt-sm-0 btn-sm">
@@ -97,24 +48,31 @@
                 <div class="glide" id="glideBasic">
                     <div class="glide__track" data-glide-el="track">
                         <div class="glide__slides">
+
+                            @foreach ($topDestinations as $destination)
                             <div class="glide__slide">
                                 <div class="card mb-4">
-                                    <img src="img/product/small/product-3.webp" class="card-img-top" alt="card image" />
+
+                                    @php
+                                    $firstImage = $destination->images->first();
+                                    @endphp
+
+                                    <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                        alt="Card image" class="card-img-top" />
+
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title 1</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                        <a href="{{ route('destination.detail', $destination->slug) }}"
+                                            class="body-link stretched-link">
+                                            <span class="clamp-line sh-5" data-line="2">{{ $destination->name }}</span>
+                                        </a>
+                                        <p class="card-text">
+                                            {{ \Illuminate\Support\Str::words($destination->description, 5, '...') }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glide__slide">
-                                <div class="card mb-4">
-                                    <img src="img/product/small/product-3.webp" class="card-img-top" alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 2</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                     <div class="text-center">
@@ -151,66 +109,29 @@
                 <div class="glide" id="glideCenter">
                     <div class="glide__track" data-glide-el="track">
                         <div class="glide__slides">
+                            @foreach ($topMsmes as $msme)
                             <div class="glide__slide">
                                 <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
+
+                                    @php
+                                    $firstImage = $msme->images->first();
+                                    @endphp
+
+                                    <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                        alt="Card image" class="card-img-top" />
+                                        
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title 1</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
+                                        <a href="{{ route('msme.detail', $msme->slug) }}"
+                                            class="body-link stretched-link">
+                                            <span class="clamp-line sh-5" data-line="2">{{ $msme->name }}</span>
+                                        </a>
+                                        <p class="card-text">
+                                            {{ \Illuminate\Support\Str::words($msme->description, 5, '...') }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glide__slide">
-                                <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 2</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="glide__slide">
-                                <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 3</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="glide__slide">
-                                <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 4</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="glide__slide">
-                                <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 5</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="glide__slide">
-                                <div class="card mb-5">
-                                    <img src="img/product/small/product-10.webp" class="card-img-top"
-                                        alt="card image" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title 6</h5>
-                                        <p class="card-text">Liquorice caramels apple pie chupa.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -476,6 +397,7 @@
         </div>
     </section>
 
+
     <!-- card bawah -->
     <div class="container mt-5 mb-5">
         <div class="row gy-5 align-items-stretch">
@@ -554,7 +476,6 @@
             <!-- Cards Section End -->
         </div>
     </div>
-
 
 </div>
 

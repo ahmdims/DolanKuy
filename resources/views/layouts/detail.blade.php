@@ -176,11 +176,6 @@
                 <!-- Icons Menu Start -->
                 <ul class="list-unstyled list-inline text-center menu-icons">
                     <li class="list-inline-item">
-                        <a type="button" href="{{ asset('search') }}">
-                            <i data-acorn-icon="search" data-acorn-size="18"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
                         <a id="pinButton" class="pin-button">
                             <i data-acorn-icon="lock-on" class="unpin" data-acorn-size="18"></i>
                             <i data-acorn-icon="lock-off" class="pin" data-acorn-size="18"></i>
@@ -216,7 +211,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="budaya.html">
+                                    <a href="{{ asset('culture') }}">
                                         <span class="label">Budaya</span>
                                     </a>
                                 </li>

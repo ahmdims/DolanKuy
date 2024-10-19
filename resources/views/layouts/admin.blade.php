@@ -174,63 +174,72 @@
                                 <span class="label">Beranda</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#users">
-                                <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Pengguna</span>
-                            </a>
-                            <ul id="users">
-                                <li>
-                                    <a href="{{ asset('admin/destination-admin') }}">
-                                        <span class="label">Admin Wisata</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('admin/msme-admin') }}">
-                                        <span class="label">Admin UMKM</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('admin/culture-admin') }}">
-                                        <span class="label">Admin Budaya</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('admin/tourist') }}">
-                                        <span class="label">Pengunjung</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
+                        @if (Auth::user()->utype === 'superadmin')
+                            <li>
+                                <a href="#users">
+                                    <i data-acorn-icon="user" class="icon" data-acorn-size="18"></i>
+                                    <span class="label">Pengguna</span>
+                                </a>
+                                <ul id="users">
+                                    <li>
+                                        <a href="{{ asset('admin/destination-admin') }}">
+                                            <span class="label">Admin Wisata</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ asset('admin/msme-admin') }}">
+                                            <span class="label">Admin UMKM</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ asset('admin/culture-admin') }}">
+                                            <span class="label">Admin Budaya</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ asset('admin/tourist') }}">
+                                            <span class="label">Pengunjung</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        <!-- <li>
                             <a href="{{ asset('admin/category') }}">
                                 <i data-acorn-icon="category" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Kategori</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#sites">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Sites</span>
                             </a>
                             <ul id="sites">
-                                <li>
-                                    <a href="{{ asset('admin/destination') }}">
-                                        <span class="label">Destinasi Wisata</span>
-                                    </a>
-                                </li>
+                                @if (Auth::user()->utype === 'superadmin' || Auth::user()->utype === 'admin_wisata')
+                                    <li>
+                                        <a href="{{ asset('admin/destination') }}">
+                                            <span class="label">Destinasi Wisata</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if (Auth::user()->utype === 'superadmin' || Auth::user()->utype === 'admin_budaya')
                                 <li>
                                     <a href="{{ asset('admin/culture') }}">
                                         <span class="label">Budaya</span>
                                     </a>
                                 </li>
+                                @endif
+                                @if (Auth::user()->utype === 'superadmin' || Auth::user()->utype === 'admin_umkm')
                                 <li>
                                     <a href="{{ asset('admin/msme') }}">
                                         <span class="label">UMKM</span>
                                     </a>
                                 </li>
+                                @endif
                             </ul>
                         </li>
+                        @if (Auth::user()->utype === 'superadmin')
                         <li>
                             <a href="#settings">
                                 <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
@@ -249,6 +258,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- Menu End -->
@@ -749,4 +759,4 @@
     <!-- Page Specific Scripts End -->
 </body>
 
-</html> 
+</html>

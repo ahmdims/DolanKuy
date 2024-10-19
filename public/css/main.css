@@ -13,3 +13,30 @@
     border-radius: 15px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.custom-font-malang {
+    font-family: "Dancing Script", cursive;
+    font-size: 6.5rem;
+    color: #ffffff;
+}
+
+.custom-font {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to left, #3a86ff, transparent);
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.video-full {
+    object-fit: cover;
+}
