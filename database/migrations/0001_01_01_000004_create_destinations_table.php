@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration {
     /**
@@ -29,7 +30,7 @@ return new class extends Migration {
             $table->integer('view_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
             $table->unsignedInteger('histories_count')->default(0);
-            $table->integer('rating')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -39,6 +40,10 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::table('destinations', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
         Schema::dropIfExists('destinations');
 
         Schema::table('destinations', function (Blueprint $table) {
@@ -48,6 +53,10 @@ return new class extends Migration {
         Schema::table('destinations', function (Blueprint $table) {
             $table->dropColumn('likes_count');
             $table->dropColumn('histories_count');
+        });
+
+        Schema::table('destinations', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
         });
     }
 };

@@ -11,6 +11,7 @@ use App\Models\Image;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
@@ -145,7 +146,14 @@ class DestinationController extends Controller
 
     public function admin()
     {
-        $destination = Destination::with('images')->get();
+        $user = Auth::user();
+
+        if ($user->utype === 'superadmin') {
+            $destination = Destination::with('images')->get();
+        } else {
+            $destination = Destination::with('images')->where('user_id', $user->id)->get();
+        }
+
         return view('admin.destination.index', compact('destination'));
     }
 
@@ -168,25 +176,44 @@ class DestinationController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
         ], [
             'name.required' => 'Nama destinasi wajib diisi.',
+            'name.string' => 'Nama destinasi harus berupa string.',
+            'name.max' => 'Nama destinasi tidak boleh lebih dari 255 karakter.',
             'description.required' => 'Deskripsi wajib diisi.',
+            'description.string' => 'Deskripsi harus berupa string.',
             'address.required' => 'Alamat wajib diisi.',
+            'address.string' => 'Alamat harus berupa string.',
+            'address.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
             'city.required' => 'Kota wajib diisi.',
+            'city.string' => 'Kota harus berupa string.',
+            'city.max' => 'Kota tidak boleh lebih dari 255 karakter.',
             'province.required' => 'Provinsi wajib diisi.',
+            'province.string' => 'Provinsi harus berupa string.',
+            'province.max' => 'Provinsi tidak boleh lebih dari 255 karakter.',
             'latitude.numeric' => 'Latitude harus berupa angka.',
             'longitude.numeric' => 'Longitude harus berupa angka.',
-            'opening_time.required' => 'Jam buka wajib diisi.',
-            'closing_time.required' => 'Jam tutup wajib diisi.',
+            'opening_time.required' => 'Waktu buka wajib diisi.',
+            'opening_time.string' => 'Waktu buka harus berupa string.',
+            'opening_time.max' => 'Waktu buka tidak boleh lebih dari 255 karakter.',
+            'closing_time.required' => 'Waktu tutup wajib diisi.',
+            'closing_time.string' => 'Waktu tutup harus berupa string.',
+            'closing_time.max' => 'Waktu tutup tidak boleh lebih dari 255 karakter.',
             'ticket_price.required' => 'Harga tiket wajib diisi.',
             'ticket_price.numeric' => 'Harga tiket harus berupa angka.',
-            'images.required' => 'Setidaknya satu gambar harus diunggah.',
-            'images.*.image' => 'File yang diunggah harus berupa gambar.',
-            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
-        ]);
+            'facilities.string' => 'Fasilitas harus berupa string.',
+            'contact.string' => 'Kontak harus berupa string.',
+            'contact.max' => 'Kontak tidak boleh lebih dari 255 karakter.',
+            'images.required' => 'Gambar wajib diunggah.',
+            'images.*.image' => 'File harus berupa gambar.',
+            'images.*.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif.',
+            'images.*.max' => 'Ukuran gambar tidak boleh lebih dari 10 MB.',
+        ]);        
 
         $slug = Str::slug($request->name);
 
-        $destination = Destination::create(array_merge($request->all(), ['slug' => $slug]));
+        $destination = Destination::create(array_merge($request->all(), [
+            'slug' => $slug,
+            'user_id' => auth()->id(),
+        ]));
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {

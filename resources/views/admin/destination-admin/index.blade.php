@@ -95,9 +95,9 @@
         </div>
       </td>
       </tr>
-      @include('admin.tourist.detail', ['user_data' => $user_data])
-      @include('admin.tourist.update', ['user_data' => $user_data])
-      @include('admin.tourist.delete', ['user_data' => $user_data])
+      @include('admin.destination-admin.detail', ['user_data' => $user_data])
+      @include('admin.destination-admin.update', ['user_data' => $user_data])
+      @include('admin.destination-admin.delete', ['user_data' => $user_data])
       @php    $iteration++; @endphp
     @endif
       @endforeach
@@ -113,7 +113,7 @@
               <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('tourist.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('destination-admin.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="modal-body">
                 <div class="mb-3">

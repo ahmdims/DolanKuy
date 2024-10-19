@@ -220,12 +220,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#pages">
+                                    <a href="{{ asset('admin/culture') }}">
                                         <span class="label">Budaya</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#pages">
+                                    <a href="{{ asset('admin/msme') }}">
                                         <span class="label">UMKM</span>
                                     </a>
                                 </li>

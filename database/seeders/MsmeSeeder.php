@@ -38,7 +38,7 @@ class MsmeSeeder extends Seeder
                     'air_conditioner' => $faker->boolean,
                 ]),
                 'contact' => $faker->phoneNumber,
-                'profile_photo' => $faker->imageUrl(640, 480, 'business', true, 'Faker'),
+                'user_id' => 1, 
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

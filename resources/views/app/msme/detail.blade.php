@@ -140,7 +140,7 @@
 
 
         <h3>Comments</h3>
-        @foreach($destination->comments as $comment)
+        @foreach($msme->comments as $comment)
             <div>
                 <strong>{{ $comment->user->name }}</strong>: {{ $comment->comment }}
             </div>
@@ -153,8 +153,8 @@
 
         <form action="{{ route('comments.store') }}" method="POST">
             @csrf
-            <input type="hidden" name="commentable_type" value="App\Models\Destination">
-            <input type="hidden" name="commentable_id" value="{{ $destination->id }}">
+            <input type="hidden" name="commentable_type" value="App\Models\Msme">
+            <input type="hidden" name="commentable_id" value="{{ $msme->id }}">
             <div class="form-group">
                 <textarea name="comment" class="form-control" rows="3" required></textarea>
             </div>

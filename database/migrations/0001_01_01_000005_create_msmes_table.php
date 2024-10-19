@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration {
     /**
@@ -24,16 +25,12 @@ return new class extends Migration {
             $table->time('opening_time');
             $table->time('closing_time');
             $table->integer('ticket_price')->nullable();
-            $table->json('facilities');
+            $table->text('facilities');
             $table->string('contact', 255);
-            $table->text('profile_photo');
             $table->integer('view_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
             $table->unsignedInteger('histories_count')->default(0);
-            $table->text('style')->nullable();
-            $table->unsignedBigInteger('id_destination')->nullable();
-
-            $table->foreign('id_destination')->references('id')->on('destinations')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -43,6 +40,10 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::table('msmes', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
         Schema::dropIfExists('msmes');
 
         Schema::table('msmes', function (Blueprint $table) {
@@ -52,6 +53,10 @@ return new class extends Migration {
         Schema::table('msmes', function (Blueprint $table) {
             $table->dropColumn('likes_count');
             $table->dropColumn('histories_count');
+        });
+
+        Schema::table('msmes', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('user_id');
         });
     }
 };

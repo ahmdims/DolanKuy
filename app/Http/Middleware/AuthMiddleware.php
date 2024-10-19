@@ -21,6 +21,12 @@ class AuthMiddleware
             return redirect()->route('login');
         }
 
+        $allowedUtypes = ['superadmin', 'admin_wisata', 'admin_umkm', 'admin_budaya'];
+
+        if (!in_array(Auth::user()->utype, $allowedUtypes)) {
+            return redirect('/admin/dashboard');
+        }
+
         return $next($request);
     }
 }

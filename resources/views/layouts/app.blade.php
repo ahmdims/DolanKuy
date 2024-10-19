@@ -206,7 +206,7 @@
                             </a>
                             <ul id="jelajahi">
                                 <li>
-                                    <a href="wisata.html">
+                                    <a href="{{ asset('destination') }}">
                                         <span class="label">Wisata</span>
                                     </a>
                                 </li>
@@ -862,6 +862,7 @@
     <script src="{{ asset('js/vendor/plyr.min.js') }}"></script>
     <script src="{{ asset('js/cs/scrollspy.js') }}"></script>
     <script src="{{ asset('js/vendor/baguetteBox.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/list.js') }}"></script>
     <!-- Vendor Scripts End -->
 
     <!-- Template Base Scripts Start -->
@@ -881,6 +882,8 @@
     <script src="{{ asset('js/pages/blocks.thumbnails.js') }}"></script>
 
     <script src="{{ asset('js/pages/dashboard.default.js') }}"></script>
+
+    <script src="{{ asset('js/plugins/lists.js') }}"></script>
 
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>

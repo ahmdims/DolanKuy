@@ -30,8 +30,9 @@ class DestinationSeeder extends Seeder
                 'opening_time' => $faker->time('H:i:s'),
                 'closing_time' => $faker->time('H:i:s'),
                 'ticket_price' => $faker->numberBetween(10000, 50000),
-                'facilities' => implode(', ', $faker->words(3)), // Menghilangkan $asText
+                'facilities' => implode(', ', $faker->words(3)),
                 'contact' => $faker->phoneNumber,
+                'user_id' => 1, 
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
