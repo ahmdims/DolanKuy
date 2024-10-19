@@ -103,11 +103,6 @@
                         <input type="time" class="form-control" id="closing_time" name="closing_time"
                             value="{{ $destination_data->closing_time }}" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="ticket_price" class="form-label">Harga Tiket</label>
-                        <input type="text" class="form-control" id="ticket_price" name="ticket_price"
-                            value="{{ $destination_data->ticket_price }}" required>
-                    </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">

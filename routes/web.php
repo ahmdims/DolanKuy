@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
     // Kontak
     Route::get('/admin/contact', [ContactController::class, 'admin'])->name('admin.contact.index');
+    Route::post('/admin/contact', [ContactController::class, 'update'])->name('contact.update');
 
     // Bantuan
     Route::get('/admin/faq', [FaqController::class, 'admin'])->name('admin.faq.index');
