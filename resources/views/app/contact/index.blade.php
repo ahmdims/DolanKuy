@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container px-5 my-5">
+<div class="container">
     <div class="container-fluid px-0">
         <!-- Kirim Pesan -->
         <section class="main-content">
@@ -32,7 +32,7 @@
                 <div class="row g-0">
                     <!-- Kirim Pesan -->
                     <div class="col-lg-8">
-                        <div class="card mb-0 me-4 ms-0">
+                        <div class="card mb-0 mb-4 me-md-4">
                             <div class="card-body">
                                 <form class="row g-3" method="POST" action="{{ route('contact.send') }}">
                                     @csrf

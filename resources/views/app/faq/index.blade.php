@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container px-5 my-5">
+<div class="container">
     <div class="container-fluid px-0">
         <section class="main-content">
             <div class="container-fluid p-0">

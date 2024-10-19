@@ -9,7 +9,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Pengguna
@@ -30,10 +29,12 @@ Route::get('/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail')
 Route::middleware('auth')->post('/msme/{slug}/like', [MsmeController::class, 'like'])->name('msme.like');
 Route::middleware('auth')->post('/msme/{slug}/history', [MsmeController::class, 'history'])->name('msme.history');
 
+//Kontak
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+//Bantuan
+Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
 // Profil
 Route::middleware('auth')->group(function () {
@@ -77,8 +78,6 @@ Route::middleware('auth')->group(function () {
 
     // Kontak
     Route::get('/admin/contact', [ContactController::class, 'admin'])->name('admin.contact.index');
-    Route::post('/admin/contact', [ContactController::class, 'send'])->name('contact.send');
-    Route::post('/admin/contact', [ContactController::class, 'update'])->name('contact.update');
 
     // Bantuan
     Route::get('/admin/faq', [FaqController::class, 'admin'])->name('admin.faq.index');

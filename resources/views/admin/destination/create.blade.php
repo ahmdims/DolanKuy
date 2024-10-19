@@ -1,15 +1,18 @@
-<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="createDestinationForm" method="POST" action="{{ route('destination.store') }}" enctype="multipart/form-data">
+            <form id="createDestinationForm" method="POST" action="{{ route('destination.store') }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="images" class="form-label">Unggah Foto</label>
+                        <small class="text-danger">*Unggah minimal 1 foto</small>
                         <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
                     </div>
                     <div class="mb-3">
@@ -62,17 +65,26 @@
                         <label for="closing_time" class="form-label">Jam Tutup</label>
                         <input type="time" class="form-control" name="closing_time" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="ticket_price" class="form-label">Harga Tiket</label>
-                        <input type="number" class="form-control" name="ticket_price" required>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
+                            <input type="text" class="form-control" name="price_min" id="price_min" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
+                            <input type="text" class="form-control" name="price_max" id="price_max" required>
+                        </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="facilities" class="form-label">Fasilitas</label>
-                        <input type="text" class="form-control" name="facilities" placeholder="Optional">
+                        <small class="text-danger">*Berikan "," untuk setiap yang berbeda</small>
+                        <input type="text" class="form-control" name="facilities" placeholder="Toilet, WiFi">
                     </div>
                     <div class="mb-3">
                         <label for="contact" class="form-label">Kontak</label>
-                        <input type="text" class="form-control" name="contact" placeholder="Optional">
+                        <input type="text" class="form-control" name="contact">
                     </div>
                 </div>
                 <div class="modal-footer">

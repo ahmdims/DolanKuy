@@ -32,7 +32,8 @@
                 <div class="mb-3">
                     <label for="description" class="form-label">Deskripsi</label>
                     <div type="text" class="form-control" name="description" id="quillDescription" readonly>
-                        {!! $destination_data->description !!}"</div>
+                        {!! $destination_data->description !!}"
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -75,11 +76,20 @@
                     <input type="time" class="form-control" name="closing_time"
                         value="{{ $destination_data->closing_time }}" readonly>
                 </div>
-                <div class="mb-3">
-                    <label for="ticket_price" class="form-label">Harga Tiket</label>
-                    <input type="text" class="form-control" name="ticket_price"
-                        value="{{ $destination_data->ticket_price }}" readonly>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
+                        <input type="text" class="form-control" name="price_min" id="price_min"
+                            value="Rp. {{ $destination_data->price_min }}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
+                        <input type="text" class="form-control" name="price_max" id="price_max"
+                            value="Rp. {{ $destination_data->price_max }}" readonly>
+                    </div>
                 </div>
+
                 <div class="mb-3">
                     <label for="facilities" class="form-label">Fasilitas</label>
                     <input type="text" class="form-control" name="facilities"

@@ -211,7 +211,7 @@
                             </a>
                             <ul id="jelajahi">
                                 <li>
-                                    <a href="wisata.html">
+                                    <a href="{{ asset('destination') }}">
                                         <span class="label">Wisata</span>
                                     </a>
                                 </li>
@@ -226,12 +226,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="galeri.html" data-href="Pages.html">
-                                <i data-acorn-icon="image" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Galeri</span>
-                            </a>
                         </li>
                         <li>
                             <a href="{{ asset('contact') }}">
@@ -851,6 +845,7 @@
 
     <script src="{{ asset('icon/acorn-icons.js') }}"></script>
     <script src="{{ asset('icon/acorn-icons-interface.js') }}"></script>
+    <script src="{{ asset('icon/acorn-icons-commerce.js') }}"></script>
 
     <script src="{{ asset('js/vendor/Chart.bundle.min.js') }}"></script>
 

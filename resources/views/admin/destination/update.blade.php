@@ -13,6 +13,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label class="form-label">Foto Destinasi</label>
+                        <small class="text-danger">*Minimal ada 1 foto</small>
                         <div class="row">
 
                             @if($destination_data->images->isNotEmpty())
@@ -107,6 +108,22 @@
                         <input type="text" class="form-control" id="ticket_price" name="ticket_price"
                             value="{{ $destination_data->ticket_price }}" required>
                     </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
+                            <input type="text" class="form-control" name="price_min" id="price_min"
+                                value="{{ $destination_data->price_min }}">
+                            <small class="text-muted">Berikan angka 0 apabila gratis</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
+                            <input type="text" class="form-control" name="price_max" id="price_max"
+                                value="{{ $destination_data->price_max }}">
+                            <small class="text-muted">Berikan angka 0 apabila gratis</small>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="facilities" class="form-label">Fasilitas</label>
                         <input type="text" class="form-control" id="facilities" name="facilities"

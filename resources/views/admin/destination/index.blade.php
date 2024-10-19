@@ -111,6 +111,7 @@
                             </td>
                         </tr>
                         @include('admin.destination.detail', ['destination_data' => $destination_data])
+                        @include('admin.destination.create', ['destination_data' => $destination_data])
                         @include('admin.destination.update', ['destination_data' => $destination_data])
                         @include('admin.destination.delete', ['destination_data' => $destination_data])
                     @endforeach
@@ -120,8 +121,6 @@
         </div>
     </div>
 </section>
-
-@include('admin.destination.create')
 
 <!-- Quill CSS -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">

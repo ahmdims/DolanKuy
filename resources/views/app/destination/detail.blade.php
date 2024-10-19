@@ -6,8 +6,9 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-12 col-xl-8 col-xxl-9 mb-5">
-            <div class="card mb-5">
+        <div class="col-12 col-xl-8 col-xxl-9 mb-4">
+            <div class="card mb-4">
+
                 <!-- Content Start -->
                 <div class="card-body p-0">
 
@@ -52,77 +53,81 @@
 
                     <div class="card-body pt-0">
                         <h2 class="mb-3">{{ $detail->name }}</h2>
+
+                        <div class="card-footer border-0 pt-0">
+                            <div class="row align-items-center">
+                                <!-- Social Buttons Start -->
+                                <div class="col-6 text-muted">
+                                    <div class="row g-0">
+                                        <div class="col-auto pe-3">
+                                            <i data-acorn-icon="eye" class="text-primary me-1" data-acorn-size="20"></i>
+                                            <span class="align-middle">{{ $detail->ViewCount() }}</span>
+                                        </div>
+
+                                        <div class="col-auto pe-3">
+                                            <form action="{{ route('destination.like', $detail->slug) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    style="background: none; border: none; cursor: pointer;">
+                                                    @if ($detail->likes()->where('user_id', auth()->id())->exists())
+                                                        <i class="bi bi-hand-thumbs-up-fill text-primary me-1"
+                                                            data-acorn-size="20"></i>
+                                                        <span class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
+                                                    @else
+                                                        <i class="bi bi-hand-thumbs-up text-primary me-1"
+                                                            data-acorn-size="20"></i>
+                                                        <span class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
+                                                    @endif
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        <div class="col-auto pe-3">
+                                            <form action="{{ route('destination.history', $detail->slug) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    style="background: none; border: none; cursor: pointer;">
+                                                    @if ($detail->histories()->where('user_id', auth()->id())->exists())
+                                                        <i class="bi bi-bookmark-fill text-primary me-1"
+                                                            data-acorn-size="20"></i>
+                                                        <span
+                                                            class="align-middle text-muted">{{ $detail->histories()->count() }}</span>
+                                                    @else
+                                                        <i class="bi bi-bookmark text-primary me-1"
+                                                            data-acorn-size="20"></i>
+                                                        <span
+                                                            class="align-middle text-muted">{{ $detail->histories()->count() }}</span>
+                                                    @endif
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- Social Buttons End -->
+                            </div>
+                        </div>
+
                         <div>
                             {{ $detail->description }}
                         </div>
                     </div>
                 </div>
                 <!-- Content End -->
-
-                <div class="card-footer border-0 pt-0">
-                    <div class="row align-items-center">
-                        <!-- Social Buttons Start -->
-                        <div class="col-6 text-muted">
-                            <div class="row g-0">
-                                <div class="col-auto pe-3">
-                                    <i data-acorn-icon="eye" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">{{ $detail->ViewCount() }}</span>
-                                </div>
-
-                                <div class="col-auto pe-3">
-                                    <form action="{{ route('destination.like', $detail->slug) }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                            @if ($detail->likes()->where('user_id', auth()->id())->exists())
-                                                <i class="bi bi-hand-thumbs-up-fill text-primary me-1"
-                                                    data-acorn-size="20"></i>
-                                                <span class="align-middle">{{ $detail->likes()->count() }}</span>
-                                            @else
-                                                <i class="bi bi-hand-thumbs-up text-primary me-1" data-acorn-size="20"></i>
-                                                <span class="align-middle">{{ $detail->likes()->count() }}</span>
-                                            @endif
-                                        </button>
-                                    </form>
-                                </div>
-
-                                <div class="col-auto pe-3">
-                                    <i data-acorn-icon="message" class="text-primary me-1" data-acorn-size="20"></i>
-                                    <span class="align-middle">{{ $totalComments }}</span>
-                                </div>
-
-                                <div class="col-auto pe-3">
-                                    <form action="{{ route('destination.history', $detail->slug) }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                            @if ($detail->histories()->where('user_id', auth()->id())->exists())
-                                                <i class="bi bi-bookmark-fill text-primary me-1" data-acorn-size="20"></i>
-                                                <span class="align-middle">{{ $detail->histories()->count() }}</span>
-                                            @else
-                                                <i class="bi bi-bookmark text-primary me-1" data-acorn-size="20"></i>
-                                                <span class="align-middle">{{ $detail->histories()->count() }}</span>
-                                            @endif
-                                        </button>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- Social Buttons End -->
-                    </div>
-                </div>
+                 
             </div>
 
-            <!-- Open Street Map Start -->
-            <section class="scroll-section mb-5" id="openStreetMap">
-                <h2 class="small-title">Alamat</h2>
-                <div class="card mt-0 sh-100 mb-5">
+            <!-- Map -->
+            <section class="scroll-section mb-4">
+                <div class="card mt-0 sh-100 mb-4">
                     <div class="card-body h-50">
+                        <div class="cta-3">Alamat</div>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
-                                <h5 class="mb-3">{{ $detail->address }}, {{ $detail->city }}, {{ $detail->province }}
-                                </h5>
+                                <p class="text-muted mb-3">{{ $detail->address }}, {{ $detail->city }},
+                                    {{ $detail->province }}
+                                </p>
                             </div>
                         </div>
 
@@ -134,12 +139,13 @@
                     </div>
                 </div>
             </section>
+            <!-- Map -->
 
             <!-- Comments Start -->
             <section class="scroll-section" id="openStreetMap">
-                <h2 class="small-title">Komentar</h2>
                 <div class="card">
                     <div class="card-body">
+                        <div class="cta-3"><span>{{ $totalComments }}</span> Komentar</div>
 
                         @foreach($comments->reverse() as $comment)
                             <div class="d-flex align-items-center border-bottom border-separator-light pb-3 mt-3">
@@ -184,75 +190,71 @@
         <!-- Right Side Start -->
         <div class="col-12 col-xl-4 col-xxl-3">
             <div class="row">
-                <!-- cuaca -->
-                <div class="container mt-0">
-                    <h2 class="small-title">Cuaca</h2>
-                    <div class="card mb-5" style="border: none; background: transparent;">
-                        <!-- Row 1 -->
-                        <div class="row g-0">
-                            <div class="col-6 mb-3 pe-2">
-                                <div class="card">
-                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                        <h5 class="text-gradient text-primary mb-0">{{ $detail->city }}</h5>
-                                        <p class="mb-0 text-dark">{{ $detail->province }}</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-6 mb-3 ps-2">
-                                <div class="card">
-                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                        <h4 class="text-gradient text-primary mb-0">
-                                            <span id="status2"
-                                                class="text-lg ms-n1">{{ $weatherData['current']['temp_c'] ?? 'N/A' }}°C</span>
-                                        </h4>
-                                        <p class="mb-0 text-dark">Suhu</p>
-                                    </div>
+                <!-- Cuaca -->
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-body row g-0">
+                            <div class="col-12">
+                                <div class="cta-3">Cuaca</div>
+                                <div class="text-muted mb-3">Perkiraan cuaca yang sedang terjadi di {{ $detail->name }}
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Row 2 -->
-                        <div class="row g-0">
-                            <div class="col-6 mb-0 pe-2">
-                                <div class="card">
-                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                        <h4 class="text-gradient text-primary mb-0">
-                                            <span id="status2"
-                                                class="text-lg ms-n1">{{ $weatherData['current']['humidity'] ?? 'N/A' }}%</span>
-                                        </h4>
-                                        <p class="mb-0 text-dark">Kelembapan</p>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                            <h5 class="text-gradient text-primary mb-0">{{ $detail->city }}</h5>
+                                            <p class="mb-0 text-dark">{{ $detail->province }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="col-6 mb-0 ps-2">
-                                <div class="card">
-                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                                        <h5 class="text-gradient text-primary mb-0">
-                                            <span id="status2"
-                                                class="text-lg ms-n1">{{ $weatherData['current']['wind_kph'] ?? 'N/A' }}
-                                                km/h</span>
-                                        </h5>
-                                        <p class="mb-0 text-dark">Angin</p>
+                                    <div class="col-6 mb-3">
+                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                            <h4 class="text-gradient text-primary mb-0">
+                                                {{ $weatherData['current']['temp_c'] ?? 'N/A' }}°C
+                                            </h4>
+                                            <p class="mb-0 text-dark">Suhu</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                            <h4 class="text-gradient text-primary mb-0">
+                                                {{ $weatherData['current']['humidity'] ?? 'N/A' }}%
+                                            </h4>
+                                            <p class="mb-0 text-dark">Kelembapan</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
+                                            <h5 class="text-gradient text-primary mb-0">
+                                                {{ $weatherData['current']['wind_kph'] ?? 'N/A' }} km/h
+                                            </h5>
+                                            <p class="mb-0 text-dark">Angin</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- cuaca -->
+                <!-- Cuaca -->
 
-                <!-- Kategori -->
+                <!-- Fasilitas -->
                 <div class="col-12">
-                    <its class="small-title">Fasilitas</its>
-                    <div class="card mb-5">
+                    <div class="card mb-4">
                         <div class="card-body row g-0">
                             <div class="col-12">
                                 <div class="cta-3">Fasilitas Tersedia</div>
                                 <div class="text-muted mb-3">Fasilitas yang tersedia di {{ $detail->name }}</div>
 
-                                <!-- Kategori Bersebelahan -->
+                                <ol class="list-group list-group-numbered mb-0">
+                                    <?php $facilities = explode(', ', $detail->facilities); ?>
+                                    @foreach ($facilities as $facility)
+                                        <li class="list-group-item table-color">{{ $facility }}</li>
+                                    @endforeach
+                                </ol>
                                 <div class="d-flex justify-content-start">
 
                                 </div>
@@ -260,110 +262,32 @@
                         </div>
                     </div>
                 </div>
-                <!-- Kategori -->
+                <!-- Fasilitas -->
 
-                <!-- Artikel Terkait Start -->
-                <div class="mb-5">
-                    <div class="row mb-n2">
-                        <a href="budaya.html" class="text-decoration-none">
-                            <h2 class="small-title">Budaya Terkait</h2>
-                        </a>
-                        <div class="col-12 col-md-6 col-xl-12">
-                            <div class="card sh-11 sh-sm-14 mb-4">
-                                <div class="row g-0 h-100">
-                                    <div class="col-auto">
-                                        <img src="img/product/small/product-1.webp" alt="alternate text"
-                                            class="card-img card-img-horizontal sw-10 sw-sm-14" />
-                                    </div>
-                                    <div class="col position-static">
-                                        <div
-                                            class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
-                                            <div class="d-flex flex-column">
-                                                <a href="blog-budaya.html" class="stretched-link body-link">
-                                                    <div class="clamp-line" data-line="2">A Complete Guide to Mix Dough
-                                                        for the Molds</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-xl-12">
-                            <div class="card sh-11 sh-sm-14 mb-4">
-                                <div class="row g-0 h-100">
-                                    <div class="col-auto">
-                                        <img src="img/product/small/product-2.webp" alt="alternate text"
-                                            class="card-img card-img-horizontal sw-10 sw-sm-14" />
-                                    </div>
-                                    <div class="col position-static">
-                                        <div
-                                            class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
-                                            <div class="d-flex flex-column">
-                                                <a href="blog-budaya.html" class="stretched-link body-link">
-                                                    <div class="clamp-line" data-line="2">Apple Cake Recipe for Starters
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <a href="wisata.html" class="text-decoration-none">
-                            <h2 class="small-title">Wisata Terkait</h2>
-                        </a>
-                        <div class="col-12 col-md-6 col-xl-12">
-                            <div class="card sh-11 sh-sm-14 mb-4">
-                                <div class="row g-0 h-100">
-                                    <div class="col-auto">
-                                        <img src="img/product/small/product-3.webp" alt="alternate text"
-                                            class="card-img card-img-horizontal sw-10 sw-sm-14" />
-                                    </div>
-                                    <div class="col position-static">
-                                        <div
-                                            class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
-                                            <div class="d-flex flex-column">
-                                                <a href="blog-wisata.html" class="stretched-link body-link">
-                                                    <div class="clamp-line" data-line="2">Basic Introduction to Bread
-                                                        Making</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-xl-12">
-                            <div class="card sh-11 sh-sm-14 mb-5">
-                                <div class="row g-0 h-100">
-                                    <div class="col-auto">
-                                        <img src="img/product/small/product-4.webp" alt="alternate text"
-                                            class="card-img card-img-horizontal sw-10 sw-sm-14" />
-                                    </div>
-                                    <div class="col position-static">
-                                        <div
-                                            class="card-body d-flex flex-column pt-0 pb-0 h-100 justify-content-center">
-                                            <div class="d-flex flex-column">
-                                                <a href="blog-wisata.html" class="stretched-link body-link">
-                                                    <div class="clamp-line" data-line="2">Easy and Efficient Tricks for
-                                                        Baking Crispy Breads
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
+                <!-- Harga -->
+                @if ($detail->price_min != 0 && $detail->price_max != 0)
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-body row g-0">
+                                    <div class="col-12">
+                                        <div class="cta-3 mb-3">Rentang Harga</div>
+                                        <p>
+                                            <i class="bi bi-cash-stack fs-4 primary-text-color border-end pe-3 me-3"></i>
+                                            <span>Rp {{ number_format($detail->price_min, 0, '.', '.') }} <span
+                                                    class="mx-2">-</span>
+                                                {{ number_format($detail->price_max, 0, '.', '.') }}</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Artikel End -->
-            </div>
+                @else
+                @endif
+            <!-- Harga -->
+
         </div>
         <!-- Right Side End -->
     </div>
-
 </div>
 @endsection

@@ -223,12 +223,6 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="galeri.html" data-href="Pages.html">
-                                <i data-acorn-icon="image" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Galeri</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ asset('contact') }}">
                                 <i data-acorn-icon="phone" class="icon" data-acorn-size="18"></i>
                                 <span class="label">Kontak</span>

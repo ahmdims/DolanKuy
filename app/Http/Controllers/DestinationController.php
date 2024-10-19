@@ -159,6 +159,7 @@ class DestinationController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -174,47 +175,24 @@ class DestinationController extends Controller
             'contact' => 'nullable|string|max:255',
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
-        ], [
-            'name.required' => 'Nama destinasi wajib diisi.',
-            'name.string' => 'Nama destinasi harus berupa string.',
-            'name.max' => 'Nama destinasi tidak boleh lebih dari 255 karakter.',
-            'description.required' => 'Deskripsi wajib diisi.',
-            'description.string' => 'Deskripsi harus berupa string.',
-            'address.required' => 'Alamat wajib diisi.',
-            'address.string' => 'Alamat harus berupa string.',
-            'address.max' => 'Alamat tidak boleh lebih dari 255 karakter.',
-            'city.required' => 'Kota wajib diisi.',
-            'city.string' => 'Kota harus berupa string.',
-            'city.max' => 'Kota tidak boleh lebih dari 255 karakter.',
-            'province.required' => 'Provinsi wajib diisi.',
-            'province.string' => 'Provinsi harus berupa string.',
-            'province.max' => 'Provinsi tidak boleh lebih dari 255 karakter.',
-            'latitude.numeric' => 'Latitude harus berupa angka.',
-            'longitude.numeric' => 'Longitude harus berupa angka.',
-            'opening_time.required' => 'Waktu buka wajib diisi.',
-            'opening_time.string' => 'Waktu buka harus berupa string.',
-            'opening_time.max' => 'Waktu buka tidak boleh lebih dari 255 karakter.',
-            'closing_time.required' => 'Waktu tutup wajib diisi.',
-            'closing_time.string' => 'Waktu tutup harus berupa string.',
-            'closing_time.max' => 'Waktu tutup tidak boleh lebih dari 255 karakter.',
-            'ticket_price.required' => 'Harga tiket wajib diisi.',
-            'ticket_price.numeric' => 'Harga tiket harus berupa angka.',
-            'facilities.string' => 'Fasilitas harus berupa string.',
-            'contact.string' => 'Kontak harus berupa string.',
-            'contact.max' => 'Kontak tidak boleh lebih dari 255 karakter.',
-            'images.required' => 'Gambar wajib diunggah.',
-            'images.*.image' => 'File harus berupa gambar.',
-            'images.*.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif.',
-            'images.*.max' => 'Ukuran gambar tidak boleh lebih dari 10 MB.',
-        ]);        
+        ]);
 
+        // Menghasilkan slug untuk destinasi
         $slug = Str::slug($request->name);
 
+        // Mengambil user_id dari pengguna yang sedang terautentikasi
+        $userId = auth()->id();
+        if (!$userId) {
+            return redirect()->back()->withErrors(['user_id' => 'User is not authenticated.']);
+        }
+
+        // Membuat destinasi baru
         $destination = Destination::create(array_merge($request->all(), [
             'slug' => $slug,
-            'user_id' => auth()->id(),
+            'user_id' => $userId, // Pastikan user_id diatur di sini
         ]));
 
+        // Menyimpan gambar jika ada
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
@@ -226,6 +204,7 @@ class DestinationController extends Controller
             }
         }
 
+        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.destination.index')->with('success', 'Destination created successfully.');
     }
 
