@@ -9,30 +9,14 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label class="form-label">Foto Destinasi</label>
-                    <div class="row">
-                        @if($msme_data->images->isNotEmpty())
-                            @foreach($msme_data->images as $image)
-                                <div class="col-6 mb-2">
-                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Foto Destinasi" class="img-fluid"
-                                        style="width: 100%; height: auto;">
-                                </div>
-                            @endforeach
-
-                        @else
-                        @endif
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nama Destinasi</label>
+                    <label for="name" class="form-label">Nama UMKM</label>
                     <input type="text" class="form-control" name="name" value="{{ $msme_data->name }}" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Deskripsi</label>
                     <div type="text" class="form-control" name="description" id="quillDescription" readonly>
-                        {!! $msme_data->description !!}"
+                        {!! $msme_data->description !!}
                     </div>
                 </div>
 
@@ -66,15 +50,9 @@
                     <label for="map" class="form-label">Peta Lokasi</label>
                     <div class="map-edit" id="map-detail-{{ $msme_data->id }}" style="height: 300px;"></div>
                 </div>
-                <div class="mb-3">
-                    <label for="opening_time" class="form-label">Jam Buka</label>
-                    <input type="time" class="form-control" name="opening_time"
-                        value="{{ $msme_data->opening_time }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="closing_time" class="form-label">Jam Tutup</label>
-                    <input type="time" class="form-control" name="closing_time"
-                        value="{{ $msme_data->closing_time }}" readonly>
+
+                <div class="d-grid gap-2 mb-3">
+                    <a href="{{ $msme_data->link }}" target="_blank" class="btn btn-primary">Buka di Maps</a>
                 </div>
 
                 <div class="row mb-3">
@@ -87,6 +65,19 @@
                         <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
                         <input type="text" class="form-control" name="price_max" id="price_max"
                             value="Rp. {{ $msme_data->price_max }}" readonly>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="opening_time" class="form-label">Jam Buka</label>
+                        <input type="time" class="form-control" name="opening_time"
+                            value="{{ $msme_data->opening_time }}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="closing_time" class="form-label">Jam Tutup</label>
+                        <input type="time" class="form-control" name="closing_time"
+                            value="{{ $msme_data->closing_time }}" readonly>
                     </div>
                 </div>
 

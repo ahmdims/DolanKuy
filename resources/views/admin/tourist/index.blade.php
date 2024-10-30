@@ -4,15 +4,16 @@
 
 @section('content')
 
-<section class="scroll-section" id="hover">
+<section class="scroll-section" id="stripe">
   <div class="card mb-5">
     <div class="card-body">
+
       <div class="row">
         <div class="col-12 col-sm-5 col-lg-3 col-xxl-2 mb-1">
           <div
             class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 border border-separator bg-foreground search-sm">
             <input class="form-control form-control-sm datatable-search" placeholder="Cari"
-              data-datatable="#datatableHover" />
+              data-datatable="#datatableStripe" />
             <span class="search-magnifier-icon">
               <i data-acorn-icon="search"></i>
             </span>
@@ -28,56 +29,61 @@
               <i data-acorn-icon="plus"></i>
               <span>Tambah @yield('title')</span>
             </button>
+
             <button class="btn btn-icon btn-icon-only btn-outline-muted btn-sm datatable-print" type="button"
-              data-datatable="#datatableHover">
+              data-datatable="#datatableStripe">
               <i data-acorn-icon="print"></i>
             </button>
 
-            <div class="d-inline-block datatable-export" data-datatable="#datatableHover">
+            <div class="d-inline-block datatable-export" data-datatable="#datatableStripe">
               <button class="btn btn-icon btn-icon-only btn-outline-muted btn-sm dropdown" data-bs-toggle="dropdown"
                 type="button" data-bs-offset="0,3">
                 <i data-acorn-icon="download"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                <button class="dropdown-item export-copy" type="button">Salin</button>
+                <button class="dropdown-item export-copy" type="button">Copy</button>
                 <button class="dropdown-item export-excel" type="button">Excel</button>
                 <button class="dropdown-item export-cvs" type="button">Cvs</button>
               </div>
             </div>
-            <div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#datatableHover">
+            <div class="dropdown-as-select d-inline-block datatable-length" data-datatable="#datatableStripe">
               <button class="btn btn-outline-muted btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" data-bs-offset="0,3">
-                10 Item
+                10 Items
               </button>
               <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                <a class="dropdown-item active" href="#">5 Item</a>
-                <a class="dropdown-item" href="#">10 Item</a>
-                <a class="dropdown-item" href="#">20 Item</a>
+                <a class="dropdown-item" href="#">5 Items</a>
+                <a class="dropdown-item active" href="#">10 Items</a>
+                <a class="dropdown-item" href="#">20 Items</a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- Stripe Controls End -->
 
-      <table class="table table-hover table-striped" id="datatableHover">
+      <!-- Stripe Table Start -->
+      <table class="data-table data-table-pagination data-table-standard responsive nowrap stripe" id="datatableStripe">
         <thead>
           <tr>
             <th class="text-muted text-small text-uppercase">#</th>
-            <th class="text-muted text-small text-uppercase">Email</th>
             <th class="text-muted text-small text-uppercase">Nama Pengguna</th>
             <th class="text-muted text-small text-uppercase">Name</th>
+            <th class="text-muted text-small text-uppercase">Email</th>
             <th class="text-muted text-small text-uppercase">Aksi</th>
           </tr>
         </thead>
         <tbody>
+
           @php $iteration = 1; @endphp
           @foreach($users as $user_data)
         @if($user_data->utype === 'pengunjung')
+
       <tr>
       <td>{{ $iteration }}.</td>
-      <td>{{ $user_data->email }}</td>
       <td>{{ $user_data->username }}</td>
       <td>{{ $user_data->name }}</td>
+      <td>{{ $user_data->email }}</td>
       <td>
         <div class="d-flex align-items-center" style="height: 100%;">
         <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $user_data->id }}" type="button"
@@ -95,12 +101,14 @@
         </div>
       </td>
       </tr>
+
       @include('admin.tourist.detail', ['user_data' => $user_data])
       @include('admin.tourist.update', ['user_data' => $user_data])
       @include('admin.tourist.delete', ['user_data' => $user_data])
       @php    $iteration++; @endphp
     @endif
       @endforeach
+
         </tbody>
       </table>
 
@@ -119,24 +127,24 @@
                 <div class="mb-3">
                   <label for="profile" class="form-label">Foto Profil</label>
                   <small class="text-danger">*Rasio gambar 1:1 (kotak)</small>
-                  <input type="file" class="form-control" name="profile" accept="image/*">
+                  <input type="file" class="form-control mb-3" name="profile" accept="image/*">
 
                   <input type="hidden" id="utype" name="utype" value="pengunjung">
 
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email <small class="text-danger">*</small></label>
                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                   </div>
                   <div class="mb-3">
-                    <label for="username" class="form-label">Nama Pengguna</label>
+                    <label for="username" class="form-label">Nama Pengguna <small class="text-danger">*</small></label>
                     <input type="text" class="form-control" name="username" value="{{ old('username') }}" required>
                   </div>
                   <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label">Name <small class="text-danger">*</small></label>
                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                   </div>
                   <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Password <small class="text-danger">*</small></label>
                     <input type="password" class="form-control" name="password" required>
                   </div>
                 </div>

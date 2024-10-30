@@ -158,12 +158,13 @@ class DestinationController extends Controller
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'province' => 'required|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'link' => 'required|string',
             'opening_time' => 'required|string|max:255',
             'closing_time' => 'required|string|max:255',
-            'price_min' => 'required|numeric',
-            'price_max' => 'required|numeric',
+            'price_min' => 'required|integer',
+            'price_max' => 'required|integer',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -197,10 +198,11 @@ class DestinationController extends Controller
             'province' => 'nullable|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
+            'link' => 'nullable|string',
             'opening_time' => 'nullable|string|max:255',
             'closing_time' => 'nullable|string|max:255',
-            'price_min' => 'nullable|numeric',
-            'price_max' => 'nullable|numeric',
+            'price_min' => 'nullable|integer',
+            'price_max' => 'nullable|integer',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -239,29 +241,6 @@ class DestinationController extends Controller
         }
 
         return redirect()->route('admin.destination.index')->with('success', 'Destination updated successfully.');
-    }
-
-    public function deleteImage($id)
-    {
-        $image = Image::findOrFail($id);
-
-        $filePath = storage_path('app/public/' . $image->path);
-
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'File not found in storage'
-            ], 404);
-        }
-
-        $image->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Image successfully deleted'
-        ]);
     }
 
     public function destroy($id)

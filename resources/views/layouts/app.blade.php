@@ -8,7 +8,12 @@
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->
-    <link rel="icon" href="{{ asset('img/favicon/favicon.ico') }}" type="image/png">
+    <link href="{{ asset('img/favicon/favicon.png') }}" rel="icon">
+    <link href="{{ asset('img/favicon/favicon.png') }}" rel="apple-touch-icon">
+
+    <meta property="og:image" content="{{ asset('img/banner/dolankuy.jpg') }}">
+    <meta name="keywords" content="DolanKuy, Malang, Malang City, Kota Malang, budaya, pariwisata, UMKM, kuliner, Indonesia, Jawa Timur" />
+    <meta name="author" content="DigitalDream">
     <!-- Favicon Tags End -->
 
     <!-- Font Tags Start -->
@@ -19,6 +24,7 @@
     <!-- Vendor Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/glide.core.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/introjs.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/select2.min.css') }}" />
@@ -36,6 +42,12 @@
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <script src="{{ asset('js/base/loader.js') }}"></script>
+
+    @if(isset($detail) && !empty($detail->style))
+        <style>
+            {{ $detail->style }}
+        </style>
+    @endif
 </head>
 
 <body>
@@ -104,15 +116,15 @@
                             <div class="row mb-1 ms-0 me-0">
                                 @if (Route::has('login'))
                                     <!-- <div class="col-6 ps-1 pe-1">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="{{ route('profile.index', Auth::user()->username) }}">
-                                                    <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
-                                                    <span class="align-middle">Profil</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div> -->
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a href="{{ route('profile.index', Auth::user()->username) }}">
+                                                                    <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
+                                                                    <span class="align-middle">Profil</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
 
                                     <div class="col-6 pe-1 ps-1">
                                         <ul class="list-unstyled">
@@ -335,6 +347,7 @@
     <script src="{{ asset('js/vendor/OverlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('js/vendor/autoComplete.min.js') }}"></script>
     <script src="{{ asset('js/vendor/clamp.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/datatables.min.js') }}"></script>
 
     <script src="{{ asset('icon/acorn-icons.js') }}"></script>
     <script src="{{ asset('icon/acorn-icons-interface.js') }}"></script>
@@ -368,6 +381,10 @@
 
     <!-- Page Specific Scripts Start -->
     <script src="{{ asset('js/main.js') }}" defer></script>
+
+    <script src="{{ asset('js/cs/datatable.extend.js') }}"></script>
+    <script src="{{ asset('js/plugins/datatable.boxedvariations.js') }}"></script>
+
     <script src="{{ asset('js/cs/glide.custom.js') }}"></script>
 
     <script src="{{ asset('js/pages/blog.detail.js') }}"></script>

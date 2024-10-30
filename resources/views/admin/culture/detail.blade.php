@@ -9,30 +9,14 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label class="form-label">Foto Budaya</label>
-                    <div class="row">
-                        @if($culture_data->images->isNotEmpty())
-                            @foreach($culture_data->images as $image)
-                                <div class="col-6 mb-2">
-                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Foto Budaya" class="img-fluid"
-                                        style="width: 100%; height: auto;">
-                                </div>
-                            @endforeach
-
-                        @else
-                        @endif
-                    </div>
-                </div>
-
-                <div class="mb-3">
                     <label for="name" class="form-label">Nama Budaya</label>
                     <input type="text" class="form-control" name="name" value="{{ $culture_data->name }}" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Deskripsi</label>
-                    <div type="text" class="form-control" name="description" id="quillDescription" readonly>
-                        {!! $culture_data->description !!}"
+                    <div type="text" class="form-control" name="description" readonly>
+                        {!! $culture_data->description !!}
                     </div>
                 </div>
 

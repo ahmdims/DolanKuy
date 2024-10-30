@@ -184,7 +184,7 @@ class CultureController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $culture = Culture::findOrFail($id);
+        $culture = culture::findOrFail($id);
 
         // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
@@ -216,7 +216,7 @@ class CultureController extends Controller
             }
         }
 
-        return redirect()->route('admin.culture.index')->with('success', 'Culture updated successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'culture updated successfully.');
     }
 
     public function deleteImage($id)

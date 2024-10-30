@@ -27,6 +27,7 @@ class DestinationSeeder extends Seeder
                 'province' => $faker->state,
                 'latitude' => $faker->latitude(-90, 90),
                 'longitude' => $faker->longitude(-180, 180),
+                'link' => 'https://maps.app.goo.gl/7AfLs5fiodWRkVLj9',
                 'opening_time' => $faker->time('H:i:s'),
                 'closing_time' => $faker->time('H:i:s'),
                 'price_min' => $faker->numberBetween(1000, 50000),

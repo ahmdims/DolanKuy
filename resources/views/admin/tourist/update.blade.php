@@ -24,18 +24,18 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="username" class="form-label">Nama Pengguna</label>
+                        <label for="username" class="form-label">Nama Pengguna <small class="text-danger">*</small></label>
                         <input type="text" class="form-control" id="username" name="username"
                             value="{{ $user_data->username }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama</label>
+                        <label for="name" class="form-label">Nama <small class="text-danger">*</small></label>
                         <input type="text" class="form-control" id="name" name="name" value="{{ $user_data->name }}"
                             required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="utype" class="form-label">Tipe Pengguna</label>
+                        <label for="utype" class="form-label">Tipe Pengguna <small class="text-danger">*</small></label>
                         <select class="form-select" id="utype" name="utype" required>
                             <option value="pengunjung" {{ $user_data->utype == 'pengunjung' ? 'selected' : '' }}>
                                 Pengunjung

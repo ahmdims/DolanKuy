@@ -14,13 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->string('slug', 255)->unique();
             $table->string('name', 255);
-            $table->string('msmes_type', 255)->nullable();
             $table->text('description');
             $table->string('address', 255);
             $table->string('city', 255);
             $table->string('province', 255);
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
+            $table->string('link', 255);
             $table->time('opening_time');
             $table->time('closing_time');
             $table->integer('price_min')->default(0);

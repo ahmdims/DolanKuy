@@ -18,7 +18,7 @@ class CultureSeeder extends Seeder
 
         for ($i = 1; $i <= 20; $i++) {
             $name = $faker->company;
-            DB::table('culutres')->insert([
+            DB::table('cultures')->insert([
                 'name' => $name,
                 'slug' => Str::slug($name),
                 'description' => $faker->paragraph,

@@ -11,19 +11,17 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="name" class="form-label">Nama Budaya <small class="text-danger">*</small></label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="images" class="form-label">Unggah Foto</label>
-                        <small class="text-danger">*Unggah minimal 1 foto</small>
                         <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nama Budaya</label>
-                        <input type="text" class="form-control" name="name" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Deskripsi</label>
-                        <div id="quillEditor"></div>
-                        <input type="hidden" id="description" name="description">
+                        <label for="description" class="form-label">Deskripsi <small
+                                class="text-danger">*</small></label>
+                        <textarea rows="3" class="form-control" name="description" required></textarea>
                     </div>
 
                 </div>

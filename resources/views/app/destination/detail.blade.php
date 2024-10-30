@@ -13,42 +13,46 @@
                 <div class="card-body p-0">
 
                     <div class="glide glide-gallery" id="glideBlogDetail">
-                        <div class="glide glide-large">
-                            <div class="glide__track" data-glide-el="track">
-                                <ul class="glide__slides gallery-glide-custom">
-                                    @foreach($detail->images as $image)
-                                        <li class="glide__slide p-0">
-                                            <a href="{{ asset('storage/' . $image->path) }}">
-                                                <img alt="detail" src="{{ asset('storage/' . $image->path) }}"
-                                                    class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                        @if($detail->images->isNotEmpty())
+                            <div class="glide glide-large">
+                                <div class="glide__track" data-glide-el="track">
+                                    <ul class="glide__slides gallery-glide-custom">
+                                        @foreach($detail->images as $image)
+                                            <li class="glide__slide p-0">
+                                                <a href="{{ asset('storage/' . $image->path) }}">
+                                                    <img alt="detail" src="{{ asset('storage/' . $image->path) }}"
+                                                        class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="glide glide-thumb mb-3">
-                            <div class="glide__track" data-glide-el="track">
-                                <ul class="glide__slides">
-                                    @foreach($detail->images as $image)
-                                        <li class="glide__slide p-0">
-                                            <img alt="thumb" src="{{ asset('storage/' . $image->path) }}"
-                                                class="responsive rounded-md img-fluid" />
-                                        </li>
-                                    @endforeach
-                                </ul>
+                            <div class="glide glide-thumb mb-3">
+                                <div class="glide__track" data-glide-el="track">
+                                    <ul class="glide__slides">
+                                        @foreach($detail->images as $image)
+                                            <li class="glide__slide p-0">
+                                                <img alt="thumb" src="{{ asset('storage/' . $image->path) }}"
+                                                    class="responsive rounded-md img-fluid" />
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="glide__arrows" data-glide-el="controls">
+                                    <button class="btn btn-icon btn-icon-only btn-foreground hover-outline left-arrow"
+                                        data-glide-dir="<">
+                                        <i data-acorn-icon="chevron-left"></i>
+                                    </button>
+                                    <button class="btn btn-icon btn-icon-only btn-foreground hover-outline right-arrow"
+                                        data-glide-dir=">">
+                                        <i data-acorn-icon="chevron-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="glide__arrows" data-glide-el="controls">
-                                <button class="btn btn-icon btn-icon-only btn-foreground hover-outline left-arrow"
-                                    data-glide-dir="<">
-                                    <i data-acorn-icon="chevron-left"></i>
-                                </button>
-                                <button class="btn btn-icon btn-icon-only btn-foreground hover-outline right-arrow"
-                                    data-glide-dir=">">
-                                    <i data-acorn-icon="chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
+                        @else
+                            <img src="{{ asset('img/banner/no_images.svg') }}" class="responsive border-0 rounded-top-end rounded-top-start img-fluid mb-3 sh-50 w-100" />
+                        @endif
                     </div>
 
                     <div class="card-body pt-0">
