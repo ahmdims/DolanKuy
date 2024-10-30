@@ -6,8 +6,8 @@
                 <h5 class="modal-title" id="Modal">Ubah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('msme.update', $msme_data->id) }}"
-                enctype="multipart/form-data" id="msmeForm-{{ $msme_data->id }}">
+            <form method="POST" action="{{ route('msme.update', $msme_data->id) }}" enctype="multipart/form-data"
+                id="msmeForm-{{ $msme_data->id }}">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -40,16 +40,16 @@
                                 <i class="bi bi-plus-circle"></i> Tambah Foto
                             </button>
                             <input type="file" class="form-control d-none" id="new_images-{{ $msme_data->id }}"
-                                name="images[]" accept="image/*"
-                                onchange="previewImage(event, '{{ $msme_data->id }}')" multiple>
+                                name="images[]" accept="image/*" onchange="previewImage(event, '{{ $msme_data->id }}')"
+                                multiple>
                         </div>
                         <div id="image-preview-container-{{ $msme_data->id }}" class="mt-2"></div>
                     </div>
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
-                        <input type="text" class="form-control" id="name" name="name"
-                            value="{{ $msme_data->name }}" required>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $msme_data->name }}"
+                            required>
                     </div>
 
                     <div class="mb-3">
@@ -65,8 +65,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="city" class="form-label">Kota</label>
-                        <input type="text" class="form-control" id="city" name="city"
-                            value="{{ $msme_data->city }}" required>
+                        <input type="text" class="form-control" id="city" name="city" value="{{ $msme_data->city }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="province" class="form-label">Provinsi</label>
@@ -84,13 +84,13 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="latitude-{{ $msme_data->id }}" class="form-label">Latitude</label>
-                            <input type="text" class="form-control" id="latitude-{{ $msme_data->id }}"
-                                name="latitude" value="{{ $msme_data->latitude }}" required>
+                            <input type="text" class="form-control" id="latitude-{{ $msme_data->id }}" name="latitude"
+                                value="{{ $msme_data->latitude }}" required>
                         </div>
                         <div class="col-md-6">
                             <label for="longitude-{{ $msme_data->id }}" class="form-label">Longitude</label>
-                            <input type="text" class="form-control" id="longitude-{{ $msme_data->id }}"
-                                name="longitude" value="{{ $msme_data->longitude }}" required>
+                            <input type="text" class="form-control" id="longitude-{{ $msme_data->id }}" name="longitude"
+                                value="{{ $msme_data->longitude }}" required>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -214,31 +214,31 @@
 
     // Script untuk menghapus gambar menggunakan AJAX
     function removeImage(imageId) {
-    if (confirm('Anda yakin ingin menghapus gambar ini?')) {
-        $.ajax({
-            url: '/delete-image/' + imageId,
-            type: 'DELETE',
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function (response) {
-                if (response.success) {
-                    console.log('Image successfully deleted');
-                    document.querySelector('.image-container-' + imageId).remove();
+        if (confirm('Anda yakin ingin menghapus gambar ini?')) {
+            $.ajax({
+                url: '/delete-image/' + imageId,
+                type: 'DELETE',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                success: function (response) {
+                    if (response.success) {
+                        console.log('Image successfully deleted');
+                        document.querySelector('.image-container-' + imageId).remove();
 
-                    // Hapus ID gambar dari input hidden
-                    const existingImagesInput = document.querySelector(`input[name="existing_images[]"][value="${imageId}"]`);
-                    if (existingImagesInput) {
-                        existingImagesInput.remove();
+                        // Hapus ID gambar dari input hidden
+                        const existingImagesInput = document.querySelector(`input[name="existing_images[]"][value="${imageId}"]`);
+                        if (existingImagesInput) {
+                            existingImagesInput.remove();
+                        }
+                    } else {
+                        console.error('Error deleting image:', response.message);
                     }
-                } else {
-                    console.error('Error deleting image:', response.message);
+                },
+                error: function (err) {
+                    console.error('Error deleting image:', err.responseJSON.message || err);
                 }
-            },
-            error: function (err) {
-                console.error('Error deleting image:', err.responseJSON.message || err);
-            }
-        });
+            });
+        }
     }
-}
 </script>
 
 <script>

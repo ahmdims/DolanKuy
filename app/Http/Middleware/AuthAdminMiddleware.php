@@ -23,7 +23,7 @@ class AuthAdminMiddleware
         }
 
         if (Auth::user()->utype !== 'superadmin') {
-            return redirect('/admin/dashboard');
+            return redirect('/');
         }
 
         return $next($request);

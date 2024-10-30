@@ -1,3 +1,4 @@
+<!-- Create Modal -->
 <div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -6,26 +7,22 @@
                 <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="createDestinationForm" method="POST" action="{{ route('destination.store') }}"
+            <form method="POST" action="{{ route('destination.store') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="images" class="form-label">Unggah Foto</label>
-                        <small class="text-danger">*Unggah minimal 1 foto</small>
+                        <label for="images" class="form-label">Upload Images</label>
                         <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama Destinasi</label>
                         <input type="text" class="form-control" name="name" required>
                     </div>
-
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi</label>
-                        <div id="quillEditor"></div>
-                        <input type="hidden" id="description" name="description">
+                        <textarea class="form-control" name="description" required></textarea>
                     </div>
-
                     <div class="mb-3">
                         <label for="address" class="form-label">Alamat</label>
                         <input type="text" class="form-control" name="address" required>
@@ -79,12 +76,11 @@
 
                     <div class="mb-3">
                         <label for="facilities" class="form-label">Fasilitas</label>
-                        <small class="text-danger">*Berikan "," untuk setiap yang berbeda</small>
-                        <input type="text" class="form-control" name="facilities" placeholder="Toilet, WiFi">
+                        <input type="text" class="form-control" name="facilities" placeholder="Optional">
                     </div>
                     <div class="mb-3">
                         <label for="contact" class="form-label">Kontak</label>
-                        <input type="text" class="form-control" name="contact">
+                        <input type="text" class="form-control" name="contact" placeholder="Optional">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -95,3 +91,88 @@
         </div>
     </div>
 </div>
+
+<!-- Page Insert Scripts Start -->
+<script>
+    var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© DolanKuy'
+    }).addTo(map);
+
+    var marker;
+
+    map.on('click', function (e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        document.getElementById('latitude').value = lat;
+        document.getElementById('longitude').value = lng;
+    });
+
+    var createModal = document.getElementById('createModal');
+    createModal.addEventListener('shown.bs.modal', function () {
+        setTimeout(function () {
+            map.invalidateSize();
+        }, 500);
+    });
+
+    document.getElementById('location-search').addEventListener('keyup', function () {
+        var query = this.value;
+        if (query.length > 2) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear previous markers
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+
+                    if (data.length > 0) {
+                        var lat = data[0].lat;
+                        var lon = data[0].lon;
+
+                        map.setView([lat, lon], 13);
+                        marker = L.marker([lat, lon]).addTo(map);
+
+                        document.getElementById('latitude').value = lat;
+                        document.getElementById('longitude').value = lon;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#datatableHover').DataTable({
+            paging: true,
+            searching: true,
+            order: [],
+            lengthMenu: [5, 10, 20],
+            language: {
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ item",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Selanjutnya",
+                    previous: "Sebelumnya"
+                }
+            }
+        });
+
+        $('.datatable-search').on('keyup change', function () {
+            table.search(this.value).draw();
+        });
+    });
+</script>
+<!-- Page Insert Scripts End -->

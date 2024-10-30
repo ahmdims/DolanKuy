@@ -66,7 +66,7 @@ class Destination extends Model
     public function likeCount()
     {
         $likeCount = Like::where('entity_id', $this->id)
-            ->where('entity_type', 'msme')
+            ->where('entity_type', 'destination')
             ->count();
 
         return number_format($likeCount, 0, ',', '.');

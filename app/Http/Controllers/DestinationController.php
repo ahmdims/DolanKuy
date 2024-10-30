@@ -146,14 +146,7 @@ class DestinationController extends Controller
 
     public function admin()
     {
-        $user = Auth::user();
-
-        if ($user->utype === 'superadmin') {
-            $destination = Destination::with('images')->get();
-        } else {
-            $destination = Destination::with('images')->where('user_id', $user->id)->get();
-        }
-
+        $destination = Destination::with('images')->get();
         return view('admin.destination.index', compact('destination'));
     }
 
@@ -169,32 +162,20 @@ class DestinationController extends Controller
             'longitude' => 'nullable|numeric',
             'opening_time' => 'required|string|max:255',
             'closing_time' => 'required|string|max:255',
-            'ticket_price' => 'required|numeric',
+            'price_min' => 'required|numeric',
+            'price_max' => 'required|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Menghasilkan slug untuk destinasi
         $slug = Str::slug($request->name);
+        $destination = Destination::create(array_merge($request->all(), ['slug' => $slug]));
 
-        // Mengambil user_id dari pengguna yang sedang terautentikasi
-        $userId = auth()->id();
-        if (!$userId) {
-            return redirect()->back()->withErrors(['user_id' => 'User is not authenticated.']);
-        }
-
-        // Membuat destinasi baru
-        $destination = Destination::create(array_merge($request->all(), [
-            'slug' => $slug,
-            'user_id' => mt_rand(-1, 36), // Nomor acak antara -1 dan 36
-        ]));
-
-        // Menyimpan gambar jika ada
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
+
                 $path = $imageFile->storeAs('', $imageName, 'public');
 
                 $destination->images()->create([
@@ -203,7 +184,6 @@ class DestinationController extends Controller
             }
         }
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.destination.index')->with('success', 'Destination created successfully.');
     }
 
@@ -219,30 +199,42 @@ class DestinationController extends Controller
             'longitude' => 'nullable|numeric',
             'opening_time' => 'nullable|string|max:255',
             'closing_time' => 'nullable|string|max:255',
-            'ticket_price' => 'nullable|numeric',
+            'price_min' => 'nullable|numeric',
+            'price_max' => 'nullable|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images' => 'required_without:existing_images',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
-        ], [
-            'images.required_without' => 'Setidaknya satu gambar harus diunggah.',
-            'images.*.image' => 'File yang diunggah harus berupa gambar.',
-            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $destination = Destination::findOrFail($id);
 
+        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $destination->slug = Str::slug($request->name);
         }
 
-        $destination->update($request->except(['images', 'existing_images']));
+        // Update detail destinasi, kecuali images
+        $destination->update($request->except(['images']));
 
+        // Handle image uploads
         if ($request->hasFile('images')) {
+            // Delete old images
+            foreach ($destination->images as $image) {
+                if (file_exists(public_path($image->path))) {
+                    unlink(public_path($image->path));
+                }
+                $image->delete();
+            }
+
+            // Store new images
             foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('', 'public');
-                $destination->images()->create(['path' => $path]);
+                // Simpan gambar ke storage/public
+                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+
+                // Simpan path gambar menggunakan relasi polymorphic
+                $destination->images()->create([
+                    'path' => $path,  // Simpan path relatif ke storage
+                ]);
             }
         }
 

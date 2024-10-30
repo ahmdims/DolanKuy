@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             case 'admin_wisata':
             case 'admin_umkm':
             case 'admin_budaya':
-                return redirect('/admin/dashboard');
+                return redirect('/');
             default:
                 return redirect('/');
         }

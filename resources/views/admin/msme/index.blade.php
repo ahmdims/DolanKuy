@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', 'UMKM')
 
@@ -204,29 +204,29 @@
 
 <script>
     $(document).ready(function () {
-    var table = $('#datatableHover').DataTable({
-        paging: true,  // Mengaktifkan pagination
-        searching: true,  // Mengaktifkan fitur pencarian
-        ordering: true,  // Mengaktifkan pengurutan kolom
-        lengthMenu: [5, 10, 20],  // Opsi jumlah item yang ditampilkan
-        language: {
-            search: "Cari:",
-            lengthMenu: "Tampilkan _MENU_ item",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Selanjutnya",
-                previous: "Sebelumnya"
+        var table = $('#datatableHover').DataTable({
+            paging: true,  // Mengaktifkan pagination
+            searching: true,  // Mengaktifkan fitur pencarian
+            ordering: true,  // Mengaktifkan pengurutan kolom
+            lengthMenu: [5, 10, 20],  // Opsi jumlah item yang ditampilkan
+            language: {
+                search: "Cari:",
+                lengthMenu: "Tampilkan _MENU_ item",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Selanjutnya",
+                    previous: "Sebelumnya"
+                }
             }
-        }
-    });
+        });
 
-    // Memastikan input pencarian bekerja dengan baik
-    $('.datatable-search').on('keyup change', function () {
-        table.search(this.value).draw();
+        // Memastikan input pencarian bekerja dengan baik
+        $('.datatable-search').on('keyup change', function () {
+            table.search(this.value).draw();
+        });
     });
-});
 
 </script>
 

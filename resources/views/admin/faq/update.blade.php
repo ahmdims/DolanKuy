@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="answer" class="form-label">Deskripsi</label>
+                        <label for="answer" class="form-label">Jawaban</label>
                         <div id="quillEditor-{{ $faq_data->id }}"></div>
                         <input type="hidden" id="answer-{{ $faq_data->id }}" name="answer">
                     </div>

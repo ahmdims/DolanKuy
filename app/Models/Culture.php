@@ -14,15 +14,6 @@ class Culture extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
-        'address',
-        'city',
-        'province',
-        'latitude',
-        'longitude',
-        'facilities',
-        'contact',
-        'rating'
     ];
 
     public static function boot()
@@ -63,7 +54,7 @@ class Culture extends Model
     public function likeCount()
     {
         $likeCount = Like::where('entity_id', $this->id)
-            ->where('entity_type', 'msme')
+            ->where('entity_type', 'culutre')
             ->count();
 
         return number_format($likeCount, 0, ',', '.');

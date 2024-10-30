@@ -18,7 +18,8 @@ class MsmeController extends Controller
 {
     public function index()
     {
-        $msme = Msme::all();
+        $msme = Msme::withCount('comments')->get();
+
         return view('app.msme.index', compact('msme'));
     }
 
@@ -68,7 +69,7 @@ class MsmeController extends Controller
         Comment::create([
             'user_id' => auth()->id(),
             'commentable_id' => $msme->id,
-            'commentable_type' => msme::class,
+            'commentable_type' => Msme::class,
             'comment' => $request->comment,
         ]);
 
@@ -145,20 +146,12 @@ class MsmeController extends Controller
 
     public function admin()
     {
-        $user = Auth::user();
-
-        if ($user->utype === 'superadmin') {
-            $msme = Msme::with('images')->get();
-        } else {
-            $msme = Msme::with('images')->where('user_id', $user->id)->get();
-        }
-
+        $msme = Msme::with('images')->get();
         return view('admin.msme.index', compact('msme'));
     }
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -167,31 +160,22 @@ class MsmeController extends Controller
             'province' => 'required|string|max:255',
             'latitude' => 'nullable|numeric',
             'longitude' => 'nullable|numeric',
+            'opening_time' => 'required|string|max:255',
+            'closing_time' => 'required|string|max:255',
+            'price_min' => 'required|numeric',
+            'price_max' => 'required|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Menghasilkan slug untuk destinasi
         $slug = Str::slug($request->name);
+        $msme = Msme::create(array_merge($request->all(), ['slug' => $slug]));
 
-        // Mengambil user_id dari pengguna yang sedang terautentikasi
-        $userId = auth()->id();
-        if (!$userId) {
-            return redirect()->back()->withErrors(['user_id' => 'User is not authenticated.']);
-        }
-
-        // Membuat destinasi baru
-        $msme = Msme::create(array_merge($request->all(), [
-            'slug' => $slug,
-            'user_id' => $userId, // Pastikan user_id diatur di sini
-        ]));
-
-        // Menyimpan gambar jika ada
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
+
                 $path = $imageFile->storeAs('', $imageName, 'public');
 
                 $msme->images()->create([
@@ -200,7 +184,6 @@ class MsmeController extends Controller
             }
         }
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.msme.index')->with('success', 'Msme created successfully.');
     }
 
@@ -216,36 +199,47 @@ class MsmeController extends Controller
             'longitude' => 'nullable|numeric',
             'opening_time' => 'nullable|string|max:255',
             'closing_time' => 'nullable|string|max:255',
-            'ticket_price' => 'nullable|numeric',
+            'price_min' => 'nullable|numeric',
+            'price_max' => 'nullable|numeric',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'images' => 'required_without:existing_images',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
-        ], [
-            'images.required_without' => 'Setidaknya satu gambar harus diunggah.',
-            'images.*.image' => 'File yang diunggah harus berupa gambar.',
-            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $msme = Msme::findOrFail($id);
 
+        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $msme->slug = Str::slug($request->name);
         }
 
-        $msme->update($request->except(['images', 'existing_images']));
+        // Update detail destinasi, kecuali images
+        $msme->update($request->except(['images']));
 
+        // Handle image uploads
         if ($request->hasFile('images')) {
+            // Delete old images
+            foreach ($msme->images as $image) {
+                if (file_exists(public_path($image->path))) {
+                    unlink(public_path($image->path));
+                }
+                $image->delete();
+            }
+
+            // Store new images
             foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('', 'public');
-                $msme->images()->create(['path' => $path]);
+                // Simpan gambar ke storage/public
+                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+
+                // Simpan path gambar menggunakan relasi polymorphic
+                $msme->images()->create([
+                    'path' => $path,  // Simpan path relatif ke storage
+                ]);
             }
         }
 
         return redirect()->route('admin.msme.index')->with('success', 'Msme updated successfully.');
     }
-
     public function deleteImage($id)
     {
         $image = Image::findOrFail($id);

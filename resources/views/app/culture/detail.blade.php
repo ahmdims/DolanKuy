@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-12 col-xl-8 col-xxl-9 mb-4">
+        <div class="col-12 mb-4">
             <div class="card mb-4">
 
                 <!-- Content Start -->
@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="col-auto pe-3">
-                                            <form action="{{ route('msme.like', $detail->slug) }}" method="POST">
+                                            <form action="{{ route('culture.like', $detail->slug) }}" method="POST">
                                                 @csrf
                                                 <button type="submit"
                                                     style="background: none; border: none; cursor: pointer;">
@@ -85,7 +85,7 @@
                                         </div>
 
                                         <div class="col-auto pe-3">
-                                            <form action="{{ route('msme.history', $detail->slug) }}"
+                                            <form action="{{ route('culture.history', $detail->slug) }}"
                                                 method="POST">
                                                 @csrf
                                                 <button type="submit"
@@ -120,29 +120,6 @@
 
             </div>
 
-            <!-- Map -->
-            <section class="scroll-section mb-4">
-                <div class="card mt-0 sh-100 mb-4">
-                    <div class="card-body h-50">
-                        <div class="cta-3">Alamat</div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex align-items-center">
-                                <p class="text-muted mb-3">{{ $detail->address }}, {{ $detail->city }},
-                                    {{ $detail->province }}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="small-title">Peta Lokasi</label>
-                            <div class="map-detail" id="map-detail-{{ $detail->id }}"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <!-- Map -->
-
             <!-- Comments Start -->
             <section class="scroll-section" id="openStreetMap">
                 <div class="card">
@@ -170,7 +147,7 @@
                         @endforeach
 
                         <div class="mt-5">
-                            <form action="{{ route('msme.comments.store', $detail->slug) }}" method="POST"
+                            <form action="{{ route('culture.comments.store', $detail->slug) }}" method="POST"
                                 class="input-group">
                                 @csrf
                                 <input type="text" name="comment" class="form-control rounded-start"
@@ -189,116 +166,7 @@
 
         </div>
 
-        <!-- Right Side Start -->
-        <div class="col-12 col-xl-4 col-xxl-3">
-            <div class="row">
-
-                <!-- Cuaca -->
-                <div class="col-12">
-                    <div class="card mb-4">
-                        <div class="card-body row g-0">
-                            <div class="col-12">
-                                <div class="cta-3">Cuaca</div>
-                                <div class="text-muted mb-3">Perkiraan cuaca yang sedang terjadi di {{ $detail->name }}
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6 mb-3">
-                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
-                                            <h5 class="text-gradient text-primary mb-0">{{ $detail->city }}</h5>
-                                            <p class="mb-0 text-dark">{{ $detail->province }}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6 mb-3">
-                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
-                                            <h4 class="text-gradient text-primary mb-0">
-                                                {{ $weatherData['current']['temp_c'] ?? 'N/A' }}&deg;C
-                                            </h4>
-                                            <p class="mb-0 text-dark">Suhu</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6 mb-3">
-                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
-                                            <h4 class="text-gradient text-primary mb-0">
-                                                {{ $weatherData['current']['humidity'] ?? 'N/A' }}%
-                                            </h4>
-                                            <p class="mb-0 text-dark">Kelembapan</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6 mb-3">
-                                        <div class="d-flex flex-column justify-content-center align-items-center p-3">
-                                            <h5 class="text-gradient text-primary mb-0">
-                                                {{ $weatherData['current']['wind_kph'] ?? 'N/A' }} km/h
-                                            </h5>
-                                            <p class="mb-0 text-dark">Angin</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Cuaca -->
-
-                <!-- Harga -->
-                @if ($detail->price_min != 0 && $detail->price_max != 0)
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-body row g-0">
-                                    <div class="col-12">
-                                        <div class="cta-3 mb-3">Rentang Harga</div>
-                                        <p>
-                                            <i class="bi bi-cash-stack fs-4 primary-text-color border-end pe-3 me-3"></i>
-                                            <span>Rp {{ number_format($detail->price_min, 0, '.', '.') }} <span
-                                                    class="mx-2">-</span>
-                                                {{ number_format($detail->price_max, 0, '.', '.') }}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                @endif
-            <!-- Harga -->
-
-                        <!-- Kontak -->
-                        <div class="col-12">
-                <div class="card mb-4">
-                    <div class="card-body row g-0">
-                        <div class="col-12">
-                            <div class="cta-3 mb-3">Kontak</div>
-                            <p>
-                                <i class="bi bi-phone fs-4 primary-text-color border-end pe-3 me-3"></i>
-                                <span>{{ $detail->contact }}</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Kontak -->
-
-        </div>
-        <!-- Right Side End -->
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let latitude = "{{ $detail->latitude }}" || -6.24186355;
-        let longitude = "{{ $detail->longitude }}" || 106.99991249;
-
-        var map = L.map('map-detail-{{ $detail->id }}').setView([latitude, longitude], 15);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© DolanKuy'
-        }).addTo(map);
-
-        var marker = L.marker([latitude, longitude]).addTo(map);
-    });
-</script>
 
 @endsection

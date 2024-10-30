@@ -9,12 +9,12 @@
             <div class="modal-body">
 
                 <div class="mb-3">
-                    <label class="form-label">Foto Destinasi</label>
+                    <label class="form-label">Foto Budaya</label>
                     <div class="row">
                         @if($culture_data->images->isNotEmpty())
                             @foreach($culture_data->images as $image)
                                 <div class="col-6 mb-2">
-                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Foto Destinasi" class="img-fluid"
+                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Foto Budaya" class="img-fluid"
                                         style="width: 100%; height: auto;">
                                 </div>
                             @endforeach
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nama Destinasi</label>
+                    <label for="name" class="form-label">Nama Budaya</label>
                     <input type="text" class="form-control" name="name" value="{{ $culture_data->name }}" readonly>
                 </div>
 
@@ -36,70 +36,6 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="address" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="address" value="{{ $culture_data->address }}"
-                        readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="city" class="form-label">Kota</label>
-                    <input type="text" class="form-control" name="city" value="{{ $culture_data->city }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="province" class="form-label">Provinsi</label>
-                    <input type="text" class="form-control" name="province" value="{{ $culture_data->province }}"
-                        readonly>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="latitude" class="form-label">Latitude</label>
-                        <input type="text" class="form-control" name="latitude"
-                            value="{{ $culture_data->latitude }}" readonly>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="longitude" class="form-label">Longitude</label>
-                        <input type="text" class="form-control" name="longitude"
-                            value="{{ $culture_data->longitude }}" readonly>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="map" class="form-label">Peta Lokasi</label>
-                    <div class="map-edit" id="map-detail-{{ $culture_data->id }}" style="height: 300px;"></div>
-                </div>
-                <div class="mb-3">
-                    <label for="opening_time" class="form-label">Jam Buka</label>
-                    <input type="time" class="form-control" name="opening_time"
-                        value="{{ $culture_data->opening_time }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="closing_time" class="form-label">Jam Tutup</label>
-                    <input type="time" class="form-control" name="closing_time"
-                        value="{{ $culture_data->closing_time }}" readonly>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
-                        <input type="text" class="form-control" name="price_min" id="price_min"
-                            value="Rp. {{ $culture_data->price_min }}" readonly>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="price_max" class="form-label">Rentan Harga Terbesar</label>
-                        <input type="text" class="form-control" name="price_max" id="price_max"
-                            value="Rp. {{ $culture_data->price_max }}" readonly>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="facilities" class="form-label">Fasilitas</label>
-                    <input type="text" class="form-control" name="facilities"
-                        value="{{ $culture_data->facilities }}" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="contact" class="form-label">Kontak</label>
-                    <input type="text" class="form-control" name="contact" value="{{ $culture_data->contact }}"
-                        readonly>
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -107,22 +43,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#detailModal-{{ $culture_data->id }}').on('shown.bs.modal', function () {
-            document.getElementById('map-detail-{{ $culture_data->id }}').innerHTML = "";
-
-            let latitude = "{{ $culture_data->latitude }}" || -6.24186355;
-            let longitude = "{{ $culture_data->longitude }}" || 106.99991249;
-
-            var map = L.map('map-detail-{{ $culture_data->id }}').setView([latitude, longitude], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© DolanKuy'
-            }).addTo(map);
-
-            var marker = L.marker([latitude, longitude]).addTo(map);
-        });
-    });
-</script>

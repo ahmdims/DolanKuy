@@ -1,22 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', 'Budaya')
 
 @section('content')
-<script src="{{ asset('leaflet/leaflet-src.esm.js') }}"></script>
-<script src="{{ asset('leaflet/leaflet-src.esm.js.map') }}"></script>
-<script src="{{ asset('leaflet/leaflet-src.js') }}"></script>
-<script src="{{ asset('leaflet/leaflet-src.js.map') }}"></script>
-<style src="{{ asset('leaflet/leaflet.css') }}"></style>
-<script src="{{ asset('leaflet/leaflet.js') }}"></script>
-<script src="{{ asset('leaflet/leaflet.js.map') }}"></script>
-
-<!-- Include jQuery -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-geosearch/dist/leaves.js"></script>
-<script src="https://unpkg.com/leaflet-geosearch/dist/geosearch.umd.js"></script>
-
 <!-- DataTables CSS -->
 <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
 
@@ -84,9 +70,8 @@
                 <thead>
                     <tr>
                         <th class="text-muted text-small text-uppercase">#</th>
-                        <th class="text-muted text-small text-uppercase">Nama Destinasi</th>
-                        <th class="text-muted text-small text-uppercase">Kota</th>
-                        <th class="text-muted text-small text-uppercase">Provinsi</th>
+                        <th class="text-muted text-small text-uppercase">Nama Budaya</th>
+                        <th class="text-muted text-small text-uppercase">Deskripsi</th>
                         <th class="text-muted text-small text-uppercase">Aksi</th>
                     </tr>
                 </thead>
@@ -95,8 +80,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}.</td>
                             <td>{{ $culture_data->name }}</td>
-                            <td>{{ $culture_data->city }}</td>
-                            <td>{{ $culture_data->province }}</td>
+                            <td>{!! $culture_data->description !!}</td>
                             <td>
                                 <div class="d-flex align-items-center" style="height: 100%;">
                                     <a data-bs-toggle="modal" data-bs-target="#detailModal-{{ $culture_data->id }}"
@@ -142,92 +126,6 @@
         var description = document.querySelector('input[name="description"]');
         description.value = quill.root.innerHTML;
     });
-</script>
-
-<!-- Page Insert Scripts Start -->
-<script>
-    var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© DolanKuy'
-    }).addTo(map);
-
-    var marker;
-
-    map.on('click', function (e) {
-        var lat = e.latlng.lat;
-        var lng = e.latlng.lng;
-
-        if (marker) {
-            marker.setLatLng(e.latlng);
-        } else {
-            marker = L.marker(e.latlng).addTo(map);
-        }
-
-        document.getElementById('latitude').value = lat;
-        document.getElementById('longitude').value = lng;
-    });
-
-    var createModal = document.getElementById('createModal');
-    createModal.addEventListener('shown.bs.modal', function () {
-        setTimeout(function () {
-            map.invalidateSize();
-        }, 500);
-    });
-
-    document.getElementById('location-search').addEventListener('keyup', function () {
-        var query = this.value;
-        if (query.length > 2) {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Clear previous markers
-                    if (marker) {
-                        map.removeLayer(marker);
-                    }
-
-                    if (data.length > 0) {
-                        var lat = data[0].lat;
-                        var lon = data[0].lon;
-
-                        map.setView([lat, lon], 13);
-                        marker = L.marker([lat, lon]).addTo(map);
-
-                        document.getElementById('latitude').value = lat;
-                        document.getElementById('longitude').value = lon;
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        }
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-    var table = $('#datatableHover').DataTable({
-        paging: true,  // Mengaktifkan pagination
-        searching: true,  // Mengaktifkan fitur pencarian
-        ordering: true,  // Mengaktifkan pengurutan kolom
-        lengthMenu: [5, 10, 20],  // Opsi jumlah item yang ditampilkan
-        language: {
-            search: "Cari:",
-            lengthMenu: "Tampilkan _MENU_ item",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
-            paginate: {
-                first: "Pertama",
-                last: "Terakhir",
-                next: "Selanjutnya",
-                previous: "Sebelumnya"
-            }
-        }
-    });
-
-    // Memastikan input pencarian bekerja dengan baik
-    $('.datatable-search').on('keyup change', function () {
-        table.search(this.value).draw();
-    });
-});
-
 </script>
 
 @endsection

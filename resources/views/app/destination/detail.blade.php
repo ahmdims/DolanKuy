@@ -1,4 +1,4 @@
-@extends('layouts.detail')
+@extends('layouts.app')
 
 @section('title', $detail->name)
 
@@ -72,11 +72,13 @@
                                                     @if ($detail->likes()->where('user_id', auth()->id())->exists())
                                                         <i class="bi bi-hand-thumbs-up-fill text-primary me-1"
                                                             data-acorn-size="20"></i>
-                                                        <span class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
+                                                        <span
+                                                            class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
                                                     @else
                                                         <i class="bi bi-hand-thumbs-up text-primary me-1"
                                                             data-acorn-size="20"></i>
-                                                        <span class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
+                                                        <span
+                                                            class="align-middle text-muted">{{ $detail->likes()->count() }}</span>
                                                     @endif
                                                 </button>
                                             </form>
@@ -110,12 +112,12 @@
                         </div>
 
                         <div>
-                            {{ $detail->description }}
+                            {!! $detail->description !!}
                         </div>
                     </div>
                 </div>
                 <!-- Content End -->
-                 
+
             </div>
 
             <!-- Map -->
@@ -211,7 +213,7 @@
                                     <div class="col-6 mb-3">
                                         <div class="d-flex flex-column justify-content-center align-items-center p-3">
                                             <h4 class="text-gradient text-primary mb-0">
-                                                {{ $weatherData['current']['temp_c'] ?? 'N/A' }}°C
+                                                {{ $weatherData['current']['temp_c'] ?? 'N/A' }}&deg;C
                                             </h4>
                                             <p class="mb-0 text-dark">Suhu</p>
                                         </div>
@@ -286,8 +288,40 @@
                 @endif
             <!-- Harga -->
 
+            <!-- Kontak -->
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-body row g-0">
+                        <div class="col-12">
+                            <div class="cta-3 mb-3">Kontak</div>
+                            <p>
+                                <i class="bi bi-phone fs-4 primary-text-color border-end pe-3 me-3"></i>
+                                <span>{{ $detail->contact }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kontak -->
+
         </div>
         <!-- Right Side End -->
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let latitude = "{{ $detail->latitude }}" || -6.24186355;
+        let longitude = "{{ $detail->longitude }}" || 106.99991249;
+
+        var map = L.map('map-detail-{{ $detail->id }}').setView([latitude, longitude], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© DolanKuy'
+        }).addTo(map);
+
+        var marker = L.marker([latitude, longitude]).addTo(map);
+    });
+</script>
+
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Destination;
 use App\Models\Msme;
+use App\Models\Culture;
 
 class DashboardController extends Controller
 {
@@ -33,6 +34,18 @@ class DashboardController extends Controller
             ->take(6)
             ->get();
 
-        return view('app.dashboard.index', compact('topDestinations', 'topMsmes'));
+        $topCultures = Culture::with([
+            'images' => function ($query) {
+                $query->take(1);
+            }
+        ])
+            ->withCount(['comments', 'likes'])
+            ->orderBy('view_count', 'desc')
+            ->orderBy('likes_count', 'desc')
+            ->orderBy('comments_count', 'desc')
+            ->take(6)
+            ->get();
+
+        return view('app.dashboard.index', compact('topDestinations', 'topMsmes', 'topCultures'));
     }
 }

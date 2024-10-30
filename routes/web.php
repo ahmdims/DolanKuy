@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CultureController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MsmeAdminController;
 use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,21 @@ Route::post('/destination/{slug}/comments', [DestinationController::class, 'stor
 
 // UMKM Pengguna
 Route::get('/msme', [MsmeController::class, 'index'])->name('admin.msme.index');
-Route::get('/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
+Route::get('/msme/{slug}', [MsmeController::class, 'show'])->name('app.msme.detail');
 Route::middleware('auth')->post('/msme/{slug}/like', [MsmeController::class, 'like'])->name('msme.like');
 Route::middleware('auth')->post('/msme/{slug}/history', [MsmeController::class, 'history'])->name('msme.history');
+
+// Komentar UMKM
+Route::post('/msme/{slug}/comments', [MsmeController::class, 'storeComment'])->name('msme.comments.store');
+
+// Budaya Pengguna
+Route::get('/culture', [CultureController::class, 'index'])->name('admin.culture.index');
+Route::get('/culture/{slug}', [CultureController::class, 'show'])->name('app.culture.detail');
+Route::middleware('auth')->post('/culture/{slug}/like', [CultureController::class, 'like'])->name('culture.like');
+Route::middleware('auth')->post('/culture/{slug}/history', [CultureController::class, 'history'])->name('culture.history');
+
+// Komentar UMKM
+Route::post('/culture/{slug}/comments', [CultureController::class, 'storeComment'])->name('culture.comments.store');
 
 //Kontak
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -65,21 +78,21 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/destination/{slug}', [DestinationController::class, 'update'])->name('destination.update');
     Route::delete('/admin/destination/{slug}', [DestinationController::class, 'destroy'])->name('destination.destroy');
 
-        // Kelola Budaya
-        Route::get('/admin/culture', [CultureController::class, 'admin'])->name('admin.culture.index');
-        Route::post('/admin/culture', [CultureController::class, 'store'])->name('culture.store');
-        Route::get('/admin/culture/{slug}', [CultureController::class, 'show'])->name('culture.detail');
-        Route::put('/admin/culture/{slug}', [CultureController::class, 'update'])->name('culture.update');
-        Route::delete('/admin/culture/{slug}', [CultureController::class, 'destroy'])->name('culture.destroy');
-        Route::delete('/delete-image/{id}', [CultureController::class, 'deleteImage'])->name('image.delete');
-    
-        // Kelola UMKM
-        Route::get('/admin/msme', [MsmeController::class, 'admin'])->name('admin.msme.index');
-        Route::post('/admin/msme', [MsmeController::class, 'store'])->name('msme.store');
-        Route::get('/admin/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
-        Route::put('/admin/msme/{slug}', [MsmeController::class, 'update'])->name('msme.update');
-        Route::delete('/admin/msme/{slug}', [MsmeController::class, 'destroy'])->name('msme.destroy');
-        Route::delete('/delete-image/{id}', [MsmeController::class, 'deleteImage'])->name('image.delete');
+    // Kelola Budaya
+    Route::get('/admin/culture', [CultureController::class, 'admin'])->name('admin.culture.index');
+    Route::post('/admin/culture', [CultureController::class, 'store'])->name('culture.store');
+    Route::get('/admin/culture/{slug}', [CultureController::class, 'show'])->name('culture.detail');
+    Route::put('/admin/culture/{slug}', [CultureController::class, 'update'])->name('culture.update');
+    Route::delete('/admin/culture/{slug}', [CultureController::class, 'destroy'])->name('culture.destroy');
+    Route::delete('/delete-image/{id}', [CultureController::class, 'deleteImage'])->name('image.delete');
+
+    // Kelola UMKM
+    Route::get('/admin/msme', [MsmeController::class, 'admin'])->name('admin.msme.index');
+    Route::post('/admin/msme', [MsmeController::class, 'store'])->name('msme.store');
+    Route::get('/admin/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
+    Route::put('/admin/msme/{slug}', [MsmeController::class, 'update'])->name('msme.update');
+    Route::delete('/admin/msme/{slug}', [MsmeController::class, 'destroy'])->name('msme.destroy');
+    Route::delete('/delete-image/{id}', [MsmeController::class, 'deleteImage'])->name('image.delete');
 
     // Pengunjung
     Route::get('/admin/tourist', [TouristController::class, 'admin'])->name('admin.tourist.index');
@@ -93,6 +106,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/destination-admin/{id}', [DestinationAdminController::class, 'show'])->name('destination-admin.detail');
     Route::put('/admin/destination-admin/{id}', [DestinationAdminController::class, 'update'])->name('destination-admin.update');
     Route::delete('/admin/destination-admin/{id}', [DestinationAdminController::class, 'destroy'])->name('destination-admin.destroy');
+
+    // Admin UMKM
+    Route::get('/admin/msme-admin', [MsmeAdminController::class, 'admin'])->name('admin.msme-admin.index');
+    Route::post('/admin/msme-admin', [MsmeAdminController::class, 'store'])->name('msme-admin.store');
+    Route::get('/admin/msme-admin/{id}', [MsmeAdminController::class, 'show'])->name('msme-admin.detail');
+    Route::put('/admin/msme-admin/{id}', [MsmeAdminController::class, 'update'])->name('msme-admin.update');
+    Route::delete('/admin/msme-admin/{id}', [MsmeAdminController::class, 'destroy'])->name('msme-admin.destroy');
 
     // Kontak
     Route::get('/admin/contact', [ContactController::class, 'admin'])->name('admin.contact.index');

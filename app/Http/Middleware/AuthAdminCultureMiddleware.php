@@ -22,7 +22,7 @@ class AuthAdminCultureMiddleware
         }
 
         if (Auth::user()->utype !== 'admin_budaya') {
-            return redirect('/admin/dashboard');
+            return redirect('/');
         }
 
         return $next($request);

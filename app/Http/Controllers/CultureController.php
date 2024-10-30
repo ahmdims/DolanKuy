@@ -146,64 +146,33 @@ class CultureController extends Controller
 
     public function admin()
     {
-        $user = Auth::user();
-
-        if ($user->utype === 'superadmin') {
-            $culture = Culture::with('images')->get();
-        } else {
-            $culture = Culture::with('images')->where('user_id', $user->id)->get();
-        }
-
+        $culture = Culture::with('images')->get();
         return view('admin.culture.index', compact('culture'));
     }
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'facilities' => 'nullable|string',
-            'contact' => 'nullable|string|max:255',
-            'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Menghasilkan slug untuk destinasi
         $slug = Str::slug($request->name);
+        $culture = Culture::create(array_merge($request->all(), ['slug' => $slug]));
 
-
-        // Mengambil user_id dari pengguna yang sedang terautentikasi
-        $userId = auth()->id();
-        if (!$userId) {
-            return redirect()->back()->withErrors(['user_id' => 'User is not authenticated.']);
-        }
-
-        // Membuat destinasi baru dengan menyimpan data yang relevan
-        $culture = Culture::create(array_merge($request->except('images'), [
-            'slug' => $slug,
-            'user_id' => $userId, // Pastikan user_id diatur di sini
-        ]));
-
-        // Menyimpan gambar jika ada
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
                 $imageName = time() . '-' . $imageFile->getClientOriginalName();
+
                 $path = $imageFile->storeAs('', $imageName, 'public');
 
-                // Simpan path gambar ke dalam model Image terkait dengan culture
                 $culture->images()->create([
                     'path' => $path,
                 ]);
             }
         }
 
-        // Redirect ke halaman index dengan pesan sukses
         return redirect()->route('admin.culture.index')->with('success', 'Culture created successfully.');
     }
 
@@ -212,34 +181,38 @@ class CultureController extends Controller
         $request->validate([
             'name' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'address' => 'nullable|string|max:255',
-            'city' => 'nullable|string|max:255',
-            'province' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'facilities' => 'nullable|string',
-            'contact' => 'nullable|string|max:255',
-            'images' => 'required_without:existing_images',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240',
-        ], [
-            'images.required_without' => 'Setidaknya satu gambar harus diunggah.',
-            'images.*.image' => 'File yang diunggah harus berupa gambar.',
-            'images.*.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-            'images.*.max' => 'Ukuran gambar maksimal adalah 10MB.',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $culture = Culture::findOrFail($id);
 
+        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $culture->slug = Str::slug($request->name);
         }
 
-        $culture->update($request->except(['images', 'existing_images']));
+        // Update detail destinasi, kecuali images
+        $culture->update($request->except(['images']));
 
+        // Handle image uploads
         if ($request->hasFile('images')) {
+            // Delete old images
+            foreach ($culture->images as $image) {
+                if (file_exists(public_path($image->path))) {
+                    unlink(public_path($image->path));
+                }
+                $image->delete();
+            }
+
+            // Store new images
             foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('', 'public');
-                $culture->images()->create(['path' => $path]);
+                // Simpan gambar ke storage/public
+                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+
+                // Simpan path gambar menggunakan relasi polymorphic
+                $culture->images()->create([
+                    'path' => $path,  // Simpan path relatif ke storage
+                ]);
             }
         }
 

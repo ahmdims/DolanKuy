@@ -30,6 +30,11 @@ class Like extends Model
         return $this->belongsTo(Msme::class, 'entity_id')->where('entity_type', 'msme');
     }
 
+    public function culure()
+    {
+        return $this->belongsTo(Culture::class, 'entity_id')->where('entity_type', 'culure');
+    }
+
     public function scopeForEntity($query, $entityId, $entityType)
     {
         return $query->where('entity_id', $entityId)->where('entity_type', $entityType);

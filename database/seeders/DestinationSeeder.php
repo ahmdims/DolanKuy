@@ -33,7 +33,6 @@ class DestinationSeeder extends Seeder
                 'price_max' => $faker->numberBetween(50000, 100000),
                 'facilities' => implode(', ', $faker->words(5)),
                 'contact' => $faker->phoneNumber,
-                'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

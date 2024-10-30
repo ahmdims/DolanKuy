@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', 'Kontak')
 
@@ -32,18 +32,19 @@
                                         <label for="inputPhone" class="form-label">Phone</label>
                                         <input type="text" class="form-control" id="inputPhone" name="phone"
                                             placeholder="Masukkan Nomer" required
-                                            value="{{ old('phone', $contact->phone ?? '') }}"/>
+                                            value="{{ old('phone', $contact->phone ?? '') }}" />
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="inputEmail" name="email"
                                             placeholder="Masukkan Email" required
-                                            value="{{ old('email', $contact->email ?? '') }}"/>
+                                            value="{{ old('email', $contact->email ?? '') }}" />
                                     </div>
                                     <div class="col-12">
                                         <label for="inputAddress" class="form-label">Address</label>
                                         <textarea class="form-control" id="inputAddress" name="address" rows="4"
-                                            placeholder="Masukkan Alamat" required>{{ old('address', $contact->address ?? '') }}</textarea>
+                                            placeholder="Masukkan Alamat"
+                                            required>{{ old('address', $contact->address ?? '') }}</textarea>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">Update Kontak</button>

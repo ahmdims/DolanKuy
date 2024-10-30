@@ -22,7 +22,7 @@ class AuthAdminDestinationMiddleware
         }
 
         if (Auth::user()->utype !== 'admin_wisata') {
-            return redirect('/admin/dashboard');
+            return redirect('/');
         }
 
         return $next($request);

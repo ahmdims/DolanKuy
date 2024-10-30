@@ -22,7 +22,7 @@ class AuthAdminMsmeMiddleware
         }
 
         if (Auth::user()->utype !== 'admin_umkm') {
-            return redirect('/admin/dashboard');
+            return redirect('/');
         }
 
         return $next($request);

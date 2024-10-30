@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             DestinationSeeder::class,
             MsmeSeeder::class,
+            CultureSeeder::class,
         ]);
     }
 }

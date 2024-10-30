@@ -9,16 +9,14 @@
             <div class="w-100 w-lg-75 w-xxl-50">
                 <div>
                     <div class="mb-5">
-                        <h1 class="display-3 text-white">Multiple Niches</h1>
-                        <h1 class="display-3 text-white">Ready for Your Project</h1>
+                        <h1 class="display-3 text-white">Eksplorasi Malang</h1>
+                        <h1 class="display-3 text-white">Wisata, UMKM, dan Budaya</h1>
                     </div>
                     <p class="h6 text-white lh-1-5 mb-5">
-                        Dynamically target high-payoff intellectual capital for customized technologies. Objectively
-                        integrate emerging core competencies before
-                        process-centric communities...
+                        Jelajahi pesona wisata di Malang, dukung UMKM lokal, dan kenali kekayaan budaya yang memikat. Bergabunglah dengan DolanKuy untuk pengalaman yang tak terlupakan!
                     </p>
                     <div class="mb-5">
-                        <a class="btn btn-lg btn-outline-white" href="{{ asset('/') }}">Learn More</a>
+                        <a class="btn btn-lg btn-outline-white" href="{{ asset('/') }}">Pelajari Lebih Lanjut</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +28,7 @@
             class="sw-lg-70 min-h-100 bg-foreground d-flex justify-content-center align-items-center shadow-deep py-5 full-page-content-right-border">
             <div class="sw-lg-50 px-5">
                 <div class="sh-11">
-                    <a href="index.html">
+                    <a href="{{ asset('/') }}">
                         <div class="logo-default"></div>
                     </a>
                 </div>
