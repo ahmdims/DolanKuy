@@ -8,7 +8,6 @@
     <div class="row gx-5">
         <!-- Side Left -->
         <div class="col-xl-8">
-            <h2 class="small-title">Profil</h2>
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
@@ -62,28 +61,11 @@
             </div>
 
             <section class="scroll-section">
-                <!-- About -->
-                <div class="card" style="margin-bottom: 50px;">
-                    <div class="card-body d-flex flex-column scroll-out">
-                        <div class="scroll sh-20">
-                            <h2 class="small-title">Lorem Ipsum</h2>
+                <div class="card mb-3">
+                    <div class="card-body d-flex flex-column">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam ipsam placeat
-                                corporis veniam. Dolor quaerat voluptates quam repudiandae libero ducimus!
+                                {{ $user->bio }}
                             </p>
-                            <h2 class="small-title">Lorem Ipsum</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate doloribus
-                                consequuntur corrupti aliquam vel, distinctio iusto cum! Quibusdam culpa
-                                ullam vitae temporibus aliquam fuga pariatur suscipit! Delectus magnam eius
-                                illum.</p>
-                            <blockquote class="blockquote text-center">
-                                <p class="mb-0">Chups caramels sesame snaps wafer gummies.</p>
-                                <footer class="blockquote-footer">
-                                    Someone famous in
-                                    <cite title="Source Title">Source Title</cite>
-                                </footer>
-                            </blockquote>
-                        </div>
                     </div>
                 </div>
 
