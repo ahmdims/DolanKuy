@@ -11,16 +11,16 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="question" class="form-label">Pertanyaan</label>
+                        <label for="question" class="form-label">Pertanyaan <small
+                        class="text-danger">*</small></label>
                         <input type="text" class="form-control" name="question" value="{{ old('question') }}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="answer" class="form-label">Jawaban</label>
-                        <div id="quillEditor"></div>
-                        <input type="hidden" name="answer" id="answer">
-                    </div>
-                </div>
+                                <label for="answer" class="form-label">Jawaban <small
+                                        class="text-danger">*</small></label>
+                                <textarea rows="3" class="form-control" name="answer" required></textarea>
+                            </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>

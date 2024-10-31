@@ -173,7 +173,7 @@ class CultureController extends Controller
             }
         }
 
-        return redirect()->route('admin.culture.index')->with('success', 'Culture created successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Berhasil dibuat, cuy!');
     }
 
     public function update(Request $request, $id)
@@ -216,7 +216,7 @@ class CultureController extends Controller
             }
         }
 
-        return redirect()->route('admin.culture.index')->with('success', 'culture updated successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
 
     public function deleteImage($id)
@@ -255,6 +255,6 @@ class CultureController extends Controller
 
         $culture->delete();
 
-        return redirect()->route('admin.culture.index')->with('success', 'Culture deleted successfully.');
+        return redirect()->route('admin.culture.index')->with('success', 'Berhasil dihapus, sob!');
     }
 }

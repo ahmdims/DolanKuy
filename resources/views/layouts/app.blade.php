@@ -106,46 +106,44 @@
                     @endguest
 
                     @auth
-                        <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <img class="profile"
-                                src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
-                            <div class="name">{{ Auth::user()->name }}</div>
+    <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <img class="profile"
+            src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
+        <div class="name">{{ Auth::user()->name }}</div>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-end user-menu wide">
+        <div class="row mb-1 ms-0 me-0">
+            <div class="col-6 ps-1 pe-1">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ route('profile.index', Auth::user()->username) }}">
+                            <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
+                            <span class="align-middle">Profil</span>
                         </a>
+                    </li>
+                </ul>
+            </div>
 
-                        <div class="dropdown-menu dropdown-menu-end user-menu wide">
-                            <div class="row mb-1 ms-0 me-0">
-                                @if (Route::has('login'))
-                                    <div class="col-6 ps-1 pe-1">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="{{ route('profile.index', Auth::user()->username) }}">
-                                                    <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
-                                                    <span class="align-middle">Profil</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+            <div class="col-6 pe-1 ps-1">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('frmlogout').submit();">
+                            <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
+                            <span class="align-middle">Keluar</span>
+                        </a>
+                        <form action="{{ route('logout') }}" method="POST" id="frmlogout" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+@endauth
 
-                                    <div class="col-6 pe-1 ps-1">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();document.querySelector('#frmlogout').submit();">
-                                                    <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                                                    <span class="align-middle">Keluar</span>
-                                                </a>
-                                                <form action="{{ route('logout') }}" id="frmlogout" method="POST"
-                                                    style="display: none;">
-                                                    @csrf
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    @endauth
                 </div>
                 <!-- User Menu End -->
 

@@ -12,16 +12,17 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="question" class="form-label">Pertanyaan</label>
+                        <label for="question" class="form-label">Pertanyaan <small
+                        class="text-danger">*</small></label>
                         <input type="text" class="form-control" id="question" name="question"
                             value="{{ $faq_data->question }}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="answer" class="form-label">Jawaban</label>
-                        <div id="quillEditor-{{ $faq_data->id }}"></div>
-                        <input type="hidden" id="answer-{{ $faq_data->id }}" name="answer">
-                    </div>
+                                <label for="answer" class="form-label">Jawaban <small
+                                        class="text-danger">*</small></label>
+                                <textarea rows="3" class="form-control" name="answer" required>{{ $faq_data->answer }}</textarea>
+                            </div>
 
                 </div>
                 <div class="modal-footer">

@@ -20,6 +20,7 @@ class Destination extends Model
         'province',
         'latitude',
         'longitude',
+        'link',
         'opening_time',
         'closing_time',
         'ticket_price',

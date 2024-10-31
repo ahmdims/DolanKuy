@@ -185,7 +185,7 @@ class DestinationController extends Controller
             }
         }
 
-        return redirect()->route('admin.destination.index')->with('success', 'Destination created successfully.');
+        return redirect()->route('admin.destination.index')->with('success', 'Berhasil dibuat, cuy!');
     }
 
     public function update(Request $request, $id)
@@ -240,7 +240,7 @@ class DestinationController extends Controller
             }
         }
 
-        return redirect()->route('admin.destination.index')->with('success', 'Destination updated successfully.');
+        return redirect()->route('admin.destination.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
 
     public function destroy($id)
@@ -256,6 +256,6 @@ class DestinationController extends Controller
 
         $destination->delete();
 
-        return redirect()->route('admin.destination.index')->with('success', 'Destination deleted successfully.');
+        return redirect()->route('admin.destination.index')->with('success', 'Berhasil dihapus, sob!');
     }
 }

@@ -181,27 +181,5 @@
             });
         });
     });
-
-    // Preview Image
-    function previewImage(event) {
-        const previewContainer = document.getElementById('image-preview-container');
-        previewContainer.innerHTML = "";
-        const files = event.target.files;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.classList.add("img-fluid");
-                img.style.maxHeight = "200px";
-                previewContainer.appendChild(img);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
 </script>
 <!-- Page Update Scripts End -->
