@@ -21,12 +21,6 @@ class AuthMiddleware
             return redirect()->route('login');
         }
 
-        $allowedUtypes = ['superadmin'];
-
-        if (!in_array(Auth::user()->utype, $allowedUtypes)) {
-            return redirect('/');
-        }
-
         return $next($request);
     }
 }

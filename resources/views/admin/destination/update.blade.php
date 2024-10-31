@@ -32,7 +32,8 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi <small
                                         class="text-danger">*</small></label>
-                                <textarea rows="3" class="form-control" name="description" required>{{ $destination_data->description }}</textarea>
+                                <textarea rows="3" class="form-control" name="description"
+                                    required>{{ $destination_data->description }}</textarea>
                             </div>
 
                             <div class="row mb-3">
@@ -74,6 +75,11 @@
                                         class="text-danger">*</small></label>
                                 <input type="text" class="form-control" id="contact" name="contact"
                                     value="{{ $destination_data->contact }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="styles" class="form-label">Kustom CSS</label>
+                                <textarea rows="3" class="form-control"
+                                    name="styles">{{ $destination_data->styles }}</textarea>
                             </div>
                         </div>
 

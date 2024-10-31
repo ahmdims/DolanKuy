@@ -44,9 +44,9 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <script src="{{ asset('js/base/loader.js') }}"></script>
 
-    @if (isset($detail) && !empty($detail->style))
+    @if (isset($detail) && !empty($detail->styles))
         <style>
-            {{ $detail->style }}
+            {{ $detail->styles }}
         </style>
     @endif
 </head>
@@ -106,43 +106,44 @@
                     @endguest
 
                     @auth
-    <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        <img class="profile"
-            src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
-        <div class="name">{{ Auth::user()->name }}</div>
-    </a>
-
-    <div class="dropdown-menu dropdown-menu-end user-menu wide">
-        <div class="row mb-1 ms-0 me-0">
-            <div class="col-6 ps-1 pe-1">
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="{{ route('profile.index', Auth::user()->username) }}">
-                            <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
-                            <span class="align-middle">Profil</span>
+                        <a class="d-flex user position-relative" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="profile"
+                                src="{{ Auth::user()->profile ? Storage::url(Auth::user()->profile) : asset('img/profile/profile.webp') }}" />
+                            <div class="name">{{ Auth::user()->name }}</div>
                         </a>
-                    </li>
-                </ul>
-            </div>
 
-            <div class="col-6 pe-1 ps-1">
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('frmlogout').submit();">
-                            <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
-                            <span class="align-middle">Keluar</span>
-                        </a>
-                        <form action="{{ route('logout') }}" method="POST" id="frmlogout" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-@endauth
+                        <div class="dropdown-menu dropdown-menu-end user-menu wide">
+                            <div class="row mb-1 ms-0 me-0">
+                                <div class="col-6 ps-1 pe-1">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{{ route('profile.index', Auth::user()->username) }}">
+                                                <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
+                                                <span class="align-middle">Profil</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-6 pe-1 ps-1">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('frmlogout').submit();">
+                                                <i data-acorn-icon="logout" class="me-2" data-acorn-size="17"></i>
+                                                <span class="align-middle">Keluar</span>
+                                            </a>
+                                            <form action="{{ route('logout') }}" method="POST" id="frmlogout"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
 
                 </div>
                 <!-- User Menu End -->
@@ -205,46 +206,48 @@
                         </li>
 
                         @auth
-                            @if (Auth::user()->utype === 'superadmin')
-                                <li>
-                                    <a href="#admin">
-                                        <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
-                                        <span class="label">Kelola Admin</span>
-                                    </a>
-                                    <ul id="admin">
-                                        <li>
-                                            <a href="{{ asset('admin/destination') }}">
-                                                <span class="label">Kelola Wisata</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('admin/msme') }}">
-                                                <span class="label">Kelola UMKM</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('admin/culture') }}">
-                                                <span class="label">Kelola Budaya</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('admin/tourist') }}">
-                                                <span class="label">Kelola Pengunjung</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('admin/contact') }}">
-                                                <span class="label">Kelola Kontak</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ asset('admin/faq') }}">
-                                                <span class="label">Kelola Bantuan</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endif
+                            @isset(Auth::user()->utype)
+                                @if (Auth::user()->utype === 'superadmin')
+                                    <li>
+                                        <a href="#admin">
+                                            <i data-acorn-icon="gear" class="icon" data-acorn-size="18"></i>
+                                            <span class="label">Kelola Admin</span>
+                                        </a>
+                                        <ul id="admin">
+                                            <li>
+                                                <a href="{{ url('admin/destination') }}">
+                                                    <span class="label">Kelola Wisata</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('admin/msme') }}">
+                                                    <span class="label">Kelola UMKM</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('admin/culture') }}">
+                                                    <span class="label">Kelola Budaya</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('admin/tourist') }}">
+                                                    <span class="label">Kelola Pengunjung</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('admin/contact') }}">
+                                                    <span class="label">Kelola Kontak</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('admin/faq') }}">
+                                                    <span class="label">Kelola Bantuan</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endisset
                         @endauth
 
                     </ul>
@@ -316,18 +319,17 @@
                             <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
                                 <li class="breadcrumb-item mb-0 text-medium">
                                     <a href="mailto:digitaldream320@gmail.com" target="_blank" class="btn-link">
-                                        <i data-acorn-icon="email" class="text-primary me-1"
-                                            data-acorn-size="15"></i>
+                                        <i data-acorn-icon="email" class="text-primary me-1" data-acorn-size="15"></i>
                                         Email
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://www.instagram.com/digitalndream" target="_blank"
-                                        class="btn-link">
+                                    <a href="https://www.instagram.com/digitalndream" target="_blank" class="btn-link">
                                         <i data-acorn-icon="instagram" class="text-primary me-1"
                                             data-acorn-size="15"></i>
                                         Instagram
                                     </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

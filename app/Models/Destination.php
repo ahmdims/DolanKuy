@@ -26,7 +26,8 @@ class Destination extends Model
         'ticket_price',
         'facilities',
         'contact',
-        'rating'
+        'rating',
+        'styles'
     ];
 
     protected static function getDefaultUserId()

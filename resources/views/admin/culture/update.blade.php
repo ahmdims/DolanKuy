@@ -29,7 +29,10 @@
                         <textarea rows="3" class="form-control" name="description"
                             required>{{ $culture_data->description }}</textarea>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="styles" class="form-label">Kustom CSS</label>
+                        <textarea rows="3" class="form-control" name="styles">{{ $culture_data->styles }}</textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>

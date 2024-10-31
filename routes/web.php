@@ -52,14 +52,12 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
 // Profil
-Route::middleware('auth')->group(function () {
-    Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile.index');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile.index');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 // Admin
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'auth.admin'])->group(function () {
 
     // Dashboard Admin
     Route::get('/admin/dashboard', [AdminController::class, 'admin'])->name('admin.dashboard.index');

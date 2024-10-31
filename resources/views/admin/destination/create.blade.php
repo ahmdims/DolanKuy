@@ -25,7 +25,7 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi <small
                                         class="text-danger">*</small></label>
-                                <textarea rows="3" class="form-control" name="description" required></textarea>
+                                <textarea rows="5" class="form-control" name="description" required></textarea>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-6">
@@ -62,6 +62,10 @@
                                 <label for="contact" class="form-label">Kontak <small
                                         class="text-danger">*</small></label>
                                 <input type="text" class="form-control" name="contact" placeholder="Optional">
+                            </div>
+                            <div class="mb-3">
+                                <label for="styles" class="form-label">Kustom CSS</label>
+                                <textarea rows="3" class="form-control" name="styles" required></textarea>
                             </div>
                         </div>
 

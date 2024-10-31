@@ -63,6 +63,10 @@
                                         class="text-danger">*</small></label>
                                 <input type="text" class="form-control" name="contact" placeholder="Optional">
                             </div>
+                            <div class="mb-3">
+                                <label for="styles" class="form-label">Kustom CSS</label>
+                                <textarea rows="3" class="form-control" name="styles" required></textarea>
+                            </div>
                         </div>
 
                         <div class="col-md-6">

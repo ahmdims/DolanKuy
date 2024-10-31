@@ -15,16 +15,18 @@
                         <input type="text" class="form-control" name="name" required>
                     </div>
                     <div class="mb-3">
-                                <label for="images" class="form-label">Unggah Gambar</label>
-                                <input class="form-control" type="file" name="images[]" id="images" multiple
-                                    accept="image/*">
-                            </div>
+                        <label for="images" class="form-label">Unggah Gambar</label>
+                        <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
+                    </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi <small
                                 class="text-danger">*</small></label>
                         <textarea rows="3" class="form-control" name="description" required></textarea>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="styles" class="form-label">Kustom CSS</label>
+                        <textarea rows="3" class="form-control" name="styles" required></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>

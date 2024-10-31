@@ -30,7 +30,7 @@ return new class extends Migration {
             $table->integer('view_count')->default(0);
             $table->unsignedInteger('likes_count')->default(0);
             $table->unsignedInteger('histories_count')->default(0);
-            $table->tinyInteger('user_id');
+            $table->text('styles')->nullable();
             $table->timestamps();
         });
     }

@@ -155,6 +155,7 @@ class CultureController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'styles' => 'string',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -181,6 +182,7 @@ class CultureController extends Controller
         $request->validate([
             'name' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'styles' => 'string',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

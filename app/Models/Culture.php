@@ -15,6 +15,7 @@ class Culture extends Model
         'name',
         'slug',
         'description',
+        'styles'
     ];
 
     protected static function getDefaultUserId()

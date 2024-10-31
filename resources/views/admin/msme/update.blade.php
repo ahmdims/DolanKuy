@@ -7,8 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form method="POST" action="{{ route('msme.update', $msme_data->id) }}"
-                enctype="multipart/form-data" id="msmeForm-{{ $msme_data->id }}">
+            <form method="POST" action="{{ route('msme.update', $msme_data->id) }}" enctype="multipart/form-data"
+                id="msmeForm-{{ $msme_data->id }}">
 
                 @csrf
                 @method('PUT')
@@ -31,7 +31,8 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi <small
                                         class="text-danger">*</small></label>
-                                <textarea rows="3" class="form-control" name="description" required>{{ $msme_data->description }}</textarea>
+                                <textarea rows="3" class="form-control" name="description"
+                                    required>{{ $msme_data->description }}</textarea>
                             </div>
 
                             <div class="row mb-3">
@@ -74,14 +75,18 @@
                                 <input type="text" class="form-control" id="contact" name="contact"
                                     value="{{ $msme_data->contact }}" required>
                             </div>
+                            <div class="mb-3">
+                                <label for="styles" class="form-label">Kustom CSS</label>
+                                <textarea rows="3" class="form-control"
+                                    name="styles">{{ $msme_data->styles }}</textarea>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="location-search-{{ $msme_data->id }}" class="form-label">Cari
                                     Lokasi <small class="text-danger">*</small></label>
-                                <input type="text" id="location-search-{{ $msme_data->id }}"
-                                    class="form-control" />
+                                <input type="text" id="location-search-{{ $msme_data->id }}" class="form-control" />
                             </div>
                             <div class="map-edit mb-3" id="map-{{ $msme_data->id }}"></div>
                             <div class="row mb-3">

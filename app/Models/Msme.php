@@ -27,7 +27,8 @@ class Msme extends Model
         'price_max',
         'facilities',
         'contact',
-        'rating'
+        'rating',
+        'styles'
     ];
 
     protected static function getDefaultUserId()

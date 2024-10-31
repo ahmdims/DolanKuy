@@ -167,6 +167,7 @@ class MsmeController extends Controller
             'price_max' => 'required|integer',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
+            'styles' => 'string',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -190,49 +191,50 @@ class MsmeController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'name' => 'nullable|string|max:255',
-        'description' => 'nullable|string',
-        'address' => 'nullable|string|max:255',
-        'city' => 'nullable|string|max:255',
-        'province' => 'nullable|string|max:255',
-        'latitude' => 'nullable|numeric',
-        'longitude' => 'nullable|numeric',
-        'link' => 'nullable|string',
-        'opening_time' => 'nullable|string|max:255',
-        'closing_time' => 'nullable|string|max:255',
-        'price_min' => 'nullable|integer',
-        'price_max' => 'nullable|integer',
-        'facilities' => 'nullable|string',
-        'contact' => 'nullable|string|max:255',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'address' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'link' => 'nullable|string',
+            'opening_time' => 'nullable|string|max:255',
+            'closing_time' => 'nullable|string|max:255',
+            'price_min' => 'nullable|integer',
+            'price_max' => 'nullable|integer',
+            'facilities' => 'nullable|string',
+            'contact' => 'nullable|string|max:255',
+            'styles' => 'string',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    $msme = Msme::findOrFail($id);
+        $msme = Msme::findOrFail($id);
 
-    // Update slug hanya jika nama diisi
-    if ($request->filled('name')) {
-        $msme->slug = Str::slug($request->name);
-    }
-
-    // Update detail destinasi, kecuali images
-    $msme->update($request->except(['images']));
-
-    // Menambahkan gambar baru tanpa menghapus yang sudah ada
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $imageFile) {
-            $imageName = time() . '-' . $imageFile->getClientOriginalName();
-            $path = $imageFile->storeAs('', $imageName, 'public');
-            
-            // Simpan path gambar ke tabel images terkait MSME
-            $msme->images()->create(['path' => $path]);
+        // Update slug hanya jika nama diisi
+        if ($request->filled('name')) {
+            $msme->slug = Str::slug($request->name);
         }
-    
-    }
 
-    return redirect()->route('admin.msme.index')->with('success', 'Berhasil diperbarui, cuy!');
-}
+        // Update detail destinasi, kecuali images
+        $msme->update($request->except(['images']));
+
+        // Menambahkan gambar baru tanpa menghapus yang sudah ada
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $imageName = time() . '-' . $imageFile->getClientOriginalName();
+                $path = $imageFile->storeAs('', $imageName, 'public');
+
+                // Simpan path gambar ke tabel images terkait MSME
+                $msme->images()->create(['path' => $path]);
+            }
+
+        }
+
+        return redirect()->route('admin.msme.index')->with('success', 'Berhasil diperbarui, cuy!');
+    }
 
     public function deleteImage($id)
     {
