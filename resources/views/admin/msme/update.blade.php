@@ -24,9 +24,8 @@
                                         value="{{ $msme_data->name }}" required>
                                 </div>
                                 <label class="form-label">Unggah Gambar</label>
-                                <input type="file" class="form-control" id="image" name="images[]" accept="image/*"
+                                <input type="file" class="form-control" id="images" name="images[]" accept="image/*"
                                     onchange="previewImage(event)" multiple>
-                                <div id="image-preview-container" class="mt-2"></div>
                             </div>
 
                             <div class="mb-3">
@@ -181,27 +180,5 @@
             });
         });
     });
-
-    // Preview Image
-    function previewImage(event) {
-        const previewContainer = document.getElementById('image-preview-container');
-        previewContainer.innerHTML = "";
-        const files = event.target.files;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                img.classList.add("img-fluid");
-                img.style.maxHeight = "200px";
-                previewContainer.appendChild(img);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
 </script>
 <!-- Page Update Scripts End -->

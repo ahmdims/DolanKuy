@@ -14,6 +14,7 @@ class Culture extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
     ];
 
     public static function boot()
@@ -30,7 +31,6 @@ class Culture extends Model
         // Menghasilkan nilai acak antara -1 dan 36
         return random_int(-1, 36);
     }
-
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
@@ -54,7 +54,7 @@ class Culture extends Model
     public function likeCount()
     {
         $likeCount = Like::where('entity_id', $this->id)
-            ->where('entity_type', 'culutre')
+            ->where('entity_type', 'culture')
             ->count();
 
         return number_format($likeCount, 0, ',', '.');

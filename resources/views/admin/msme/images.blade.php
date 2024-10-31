@@ -7,11 +7,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-
                 <div class="mb-3">
                     <div class="row">
                         @if($msme_data->images->isNotEmpty())
-                            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                            <div id="carouselExample-{{ $msme_data->id }}" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     @foreach($msme_data->images as $index => $image)
                                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
@@ -24,12 +23,12 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample-{{ $msme_data->id }}"
                                     data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample-{{ $msme_data->id }}"
                                     data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
@@ -45,7 +44,6 @@
                         @endif
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

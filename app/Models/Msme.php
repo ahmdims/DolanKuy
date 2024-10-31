@@ -20,9 +20,11 @@ class Msme extends Model
         'province',
         'latitude',
         'longitude',
+        'link',
         'opening_time',
         'closing_time',
-        'ticket_price',
+        'price_min',
+        'price_max',
         'facilities',
         'contact',
         'rating'

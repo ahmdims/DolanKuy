@@ -173,30 +173,4 @@
         }
     });
 </script>
-
-<script>
-    $(document).ready(function () {
-        var table = $('#datatableHover').DataTable({
-            paging: true,
-            searching: true,
-            order: [],
-            lengthMenu: [5, 10, 20],
-            language: {
-                search: "Cari:",
-                lengthMenu: "Tampilkan _MENU_ item",
-                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ item",
-                paginate: {
-                    first: "Pertama",
-                    last: "Terakhir",
-                    next: "Selanjutnya",
-                    previous: "Sebelumnya"
-                }
-            }
-        });
-
-        $('.datatable-search').on('keyup change', function () {
-            table.search(this.value).draw();
-        });
-    });
-</script>
 <!-- Page Insert Scripts End -->

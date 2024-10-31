@@ -15,9 +15,10 @@
                         <input type="text" class="form-control" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="images" class="form-label">Unggah Foto</label>
-                        <input class="form-control" type="file" name="images[]" id="images" multiple accept="image/*">
-                    </div>
+                                <label for="images" class="form-label">Unggah Gambar</label>
+                                <input class="form-control" type="file" name="images[]" id="images" multiple
+                                    accept="image/*">
+                            </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi <small
                                 class="text-danger">*</small></label>
