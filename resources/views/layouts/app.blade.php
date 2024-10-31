@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>@yield('title') - DolanKuy</title>
+    <title>DolanKuy - @yield('title')</title>
     <meta name="description" content="@yield('title')" />
 
     <!-- Favicon Tags Start -->

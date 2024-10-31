@@ -17,15 +17,6 @@ class Culture extends Model
         'description',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($culture) {
-            $culture->user_id = self::getDefaultUserId(); // Atur user_id secara otomatis
-        });
-    }
-
     protected static function getDefaultUserId()
     {
         // Menghasilkan nilai acak antara -1 dan 36
