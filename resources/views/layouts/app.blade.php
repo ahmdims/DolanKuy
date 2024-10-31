@@ -34,6 +34,7 @@
     <script src="{{ asset('js/vendor/isotope/isotope.pkgd.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/baguetteBox.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap-datepicker3.standalone.min.css') }}" />
     <!-- Vendor Styles End -->
 
     <!-- Template Base Styles Start -->
@@ -357,6 +358,9 @@
     <script src="{{ asset('icon/acorn-icons-commerce.js') }}"></script>
     <script src="{{ asset('icon/acorn-icons-learning.js') }}"></script>
 
+    <script src="{{ asset('js/vendor/movecontent.js') }}"></script>
+    <script src="{{ asset('js/vendor/datepicker/bootstrap-datepicker.min.js') }}"></script>
+
     <script src="{{ asset('js/vendor/Chart.bundle.min.js') }}"></script>
 
     <script src="{{ asset('js/vendor/chartjs-plugin-datalabels.js') }}"></script>
@@ -385,6 +389,7 @@
     <!-- Template Base Scripts End -->
 
     <!-- Page Specific Scripts Start -->
+    <script src="{{ asset('js/pages/profile.settings.js') }}"></script>
     <script src="{{ asset('js/main.js') }}" defer></script>
 
     <script src="{{ asset('js/cs/datatable.extend.js') }}"></script>

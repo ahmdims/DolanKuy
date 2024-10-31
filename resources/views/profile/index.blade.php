@@ -26,7 +26,7 @@
                                 </div>
 
                                 @if (Auth::user()->id === $user->id)
-                                    <button class="btn btn-outline-primary btn-icon btn-icon-start" type="button">
+                                    <a href="{{ route('profile.edit', ['username' => $user->username]) }}" class="btn btn-outline-primary btn-icon btn-icon-start" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                             fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round" class="acorn-icons acorn-icons-edit undefined">
@@ -35,7 +35,7 @@
                                             </path>
                                         </svg>
                                         <span>Ubah</span>
-                                    </button>
+                                    </a>
                                 @endif
                             </div>
                             <div class="d-flex mb-1">
