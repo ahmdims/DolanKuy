@@ -24,9 +24,8 @@
                                         value="{{ $destination_data->name }}" required>
                                 </div>
                                 <label class="form-label">Unggah Gambar</label>
-                                <input type="file" class="form-control" id="image" name="images[]" accept="image/*"
+                                <input type="file" class="form-control" id="images" name="images[]" accept="image/*"
                                     onchange="previewImage(event)" multiple>
-                                <div id="image-preview-container" class="mt-2"></div>
                             </div>
 
                             <div class="mb-3">

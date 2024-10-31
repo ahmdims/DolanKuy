@@ -186,7 +186,7 @@ class CultureController extends Controller
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $culture = culture::findOrFail($id);
+        $culture = Culture::findOrFail($id);
 
         // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
@@ -196,24 +196,15 @@ class CultureController extends Controller
         // Update detail destinasi, kecuali images
         $culture->update($request->except(['images']));
 
-        // Handle image uploads
+        // Tambahkan gambar baru tanpa menghapus gambar lama
         if ($request->hasFile('images')) {
-            // Delete old images
-            foreach ($culture->images as $image) {
-                if (file_exists(public_path($image->path))) {
-                    unlink(public_path($image->path));
-                }
-                $image->delete();
-            }
-
-            // Store new images
             foreach ($request->file('images') as $imageFile) {
                 // Simpan gambar ke storage/public
-                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+                $path = $imageFile->store('', 'public');
 
                 // Simpan path gambar menggunakan relasi polymorphic
                 $culture->images()->create([
-                    'path' => $path,  // Simpan path relatif ke storage
+                    'path' => $path,
                 ]);
             }
         }

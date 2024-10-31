@@ -221,30 +221,22 @@ class MsmeController extends Controller
         // Update detail destinasi, kecuali images
         $msme->update($request->except(['images']));
 
-        // Handle image uploads
+        // Tambah foto baru tanpa menghapus foto lama
         if ($request->hasFile('images')) {
-            // Delete old images
-            foreach ($msme->images as $image) {
-                if (file_exists(public_path($image->path))) {
-                    unlink(public_path($image->path));
-                }
-                $image->delete();
-            }
-
-            // Store new images
             foreach ($request->file('images') as $imageFile) {
-                // Simpan gambar ke storage/public
-                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+                // Simpan gambar ke storage/public/images
+                $path = $imageFile->store('images', 'public');
 
                 // Simpan path gambar menggunakan relasi polymorphic
                 $msme->images()->create([
-                    'path' => $path,  // Simpan path relatif ke storage
+                    'path' => $path,
                 ]);
             }
         }
 
         return redirect()->route('admin.msme.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
+
 
     public function deleteImage($id)
     {

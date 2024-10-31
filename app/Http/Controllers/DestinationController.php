@@ -188,7 +188,6 @@ class DestinationController extends Controller
 
         return redirect()->route('admin.destination.index')->with('success', 'Berhasil dibuat, cuy!');
     }
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -220,30 +219,22 @@ class DestinationController extends Controller
         // Update detail destinasi, kecuali images
         $destination->update($request->except(['images']));
 
-        // Handle image uploads
+        // Tambahkan gambar baru tanpa menghapus gambar lama
         if ($request->hasFile('images')) {
-            // Delete old images
-            foreach ($destination->images as $image) {
-                if (file_exists(public_path($image->path))) {
-                    unlink(public_path($image->path));
-                }
-                $image->delete();
-            }
-
-            // Store new images
             foreach ($request->file('images') as $imageFile) {
                 // Simpan gambar ke storage/public
-                $path = $imageFile->store('', 'public'); // Menyimpan gambar langsung ke storage/public
+                $path = $imageFile->store('', 'public');
 
                 // Simpan path gambar menggunakan relasi polymorphic
                 $destination->images()->create([
-                    'path' => $path,  // Simpan path relatif ke storage
+                    'path' => $path,
                 ]);
             }
         }
 
         return redirect()->route('admin.destination.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
+
 
     public function destroy($id)
     {
