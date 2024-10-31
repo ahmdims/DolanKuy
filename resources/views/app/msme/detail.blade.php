@@ -138,6 +138,10 @@
                             <div class="map-detail" id="map-detail-{{ $detail->id }}"></div>
                         </div>
 
+                        <div class="d-grid gap-2 mb-3">
+                            <a href="{{ $detail->link }}" target="_blank" class="btn btn-primary">Buka di Maps</a>
+                        </div>
+
                     </div>
                 </div>
             </section>

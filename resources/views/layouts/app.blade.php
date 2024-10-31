@@ -176,27 +176,22 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#jelajahi">
+                            <a href="{{ asset('destination') }}">
                                 <i data-acorn-icon="plane" class="icon" data-acorn-size="18"></i>
-                                <span class="label">Jelajahi</span>
+                                <span class="label">Wisata</span>
                             </a>
-                            <ul id="jelajahi">
-                                <li>
-                                    <a href="{{ asset('destination') }}">
-                                        <span class="label">Wisata</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('culture') }}">
-                                        <span class="label">Budaya</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ asset('msme') }}">
-                                        <span class="label">UMKM</span>
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ asset('msme') }}">
+                                <i data-acorn-icon="shop" class="icon" data-acorn-size="18"></i>
+                                <span class="label">UMKM</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ asset('culture') }}">
+                                <i data-acorn-icon="books" class="icon" data-acorn-size="18"></i>
+                                <span class="label">Budaya</span>
+                            </a>
                         </li>
                         <li>
                             <a href="{{ asset('contact') }}">
@@ -354,6 +349,8 @@
 
     <script src="{{ asset('icon/acorn-icons.js') }}"></script>
     <script src="{{ asset('icon/acorn-icons-interface.js') }}"></script>
+    <script src="{{ asset('icon/acorn-icons-commerce.js') }}"></script>
+    <script src="{{ asset('icon/acorn-icons-learning.js') }}"></script>
 
     <script src="{{ asset('js/vendor/Chart.bundle.min.js') }}"></script>
 
