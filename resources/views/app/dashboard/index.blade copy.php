@@ -61,13 +61,9 @@
                                     <div class="card-body">
                                         <a href="{{ route('app.destination.detail', $destination->slug) }}"
                                             class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $destination->name }}</h5>
-                                            <p class="card-text">
-                                                {!! Str::limit($destination->description, 50, '...') !!}</p>
+                                            <span class="clamp-line sh-5" data-line="2">{{ $destination->name }}</span>
                                         </a>
                                     </div>
-
-
                                 </div>
                             </div>
                             @endforeach
@@ -122,8 +118,7 @@
                                     <div class="card-body">
                                         <a href="{{ route('app.msme.detail', $msme->slug) }}"
                                             class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $msme->name }}</h5>
-                                            <p class="card-text">{!! Str::limit($msme->description, 50, '...') !!}</p>
+                                            <span class="clamp-line sh-5" data-line="2">{{ $msme->name }}</span>
                                         </a>
                                     </div>
                                 </div>
@@ -177,14 +172,8 @@
                                     <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
                                         alt="Card image" class="card-img-top" />
 
-
                                     <div class="card-body">
-                                        <a href="{{ route('app.culture.detail', $culture->slug) }}"
-                                            class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $culture->name }}</h5>
-                                            <p class="card-text">{!! Str::limit($culture->description, 50, '...') !!}
-                                            </p>
-                                        </a>
+                                        <h5 class="card-title">{{ $culture->name }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -193,50 +182,22 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="scroll-section" id="contact">
-        <div class="col-12 col-xxl-6 mb-5 h-100-card">
-            <div class="card h-100 bg-gradient-light">
-                <div class="card-body row g-0">
-                    <div class="col-12">
-                        <div class="cta-3 text-white">Bagikan Rekomendasi!</div>
-                        <div class="mb-3 cta-3 text-white">Bantu Orang Lain Menemukan Keunikan Malang!</div>
-                        <div class="row gx-2">
-                            <div class="col">
-                                <div class="text-muted mb-3 mb-sm-0 pe-3 text-white">
-                                    Yuk, bagikan rekomendasi Destinasi Wisata, UMKM, atau Budaya menarik di Malang! Biar lebih banyak orang tahu dan bisa nikmatin keunikan kota ini!
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-auto d-flex align-items-center position-relative">
-                                <a href="{{ asset('contact') }}" class="btn btn-icon btn-icon-start btn-white">
-                                    <i data-acorn-icon="send"></i>
-                                    <span>Kontak</span>
-                                </a>
-                            </div>
+            <section class="scroll-section" id="about">
+                <div class="container text-center mb-5">
+                    <h2 class="font-weight-bold mb-2">Kenalin <span class="text-primary">DolanKuy!</span>
+                    </h2>
+                    <h5 class="mb-4 mb-sm-0">Temukan berbagai Destinasi seru, UMKM, dan Budaya menarik hanya di
+                        DolanKuy. Mari eksplorasi bersama!</h5>
+
+                    <div class="row">
+                        <div class="card h-100-card sh-md-50 bg-transparent mt-3">
+                            <video class="player cover" poster="{{ asset('img/banner/malang.jpg') }}" id="videoGuide">
+                                <source src="https://www.youtube.com/watch?v=nWNjqkZxiMA" type="video/mp4" />
+                            </video>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <section class="scroll-section" id="about">
-        <div class="container text-center mb-5">
-            <h2 class="font-weight-bold mb-2">Kenalin <span class="text-primary">DolanKuy!</span>
-            </h2>
-            <h5 class="mb-4 mb-sm-0">Temukan berbagai Destinasi seru, UMKM, dan Budaya menarik hanya di
-                DolanKuy. Mari eksplorasi bersama!</h5>
-
-            <div class="row">
-                <div class="card h-100-card sh-md-50 bg-transparent mt-3">
-                    <video class="player cover" poster="{{ asset('img/banner/malang.jpg') }}" id="videoGuide">
-                        <source src="https://www.youtube.com/watch?v=nWNjqkZxiMA" type="video/mp4" />
-                    </video>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    @endsection
+            @endsection

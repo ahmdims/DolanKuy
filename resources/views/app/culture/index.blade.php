@@ -21,38 +21,33 @@
 
     <div class="row mb-5">
         <div class="col-12">
-            <div class="isotope-container row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gx-4 gy-4">
+            <div class="isotope-container row row-cols-1 row-cols-sm-2 gx-4 gy-4">
                 @foreach($culture as $culture_data)
-                <div class="col mb-4 isotope-item">
-                    <div class="card h-100">
+                <div class="col">
+                    <div class="card">
+                        <div class="row g-0 h-auto sh-sm-19">
+                            <div class="col-12 col-sm-auto h-100">
 
-                        @php
-                        $firstImage = $culture_data->images->first();
-                        @endphp
+                                @php
+                                $firstImage = $culture_data->images->first();
+                                @endphp
 
-                        <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                            class="card-img-top sh-19" alt="Card image" />
+                                <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                    class="card-img card-img-horizontal-sm sh-22 h-sm-100 sw-sm-16 sw-lg-19" />
+                            </div>
+                            <div class="col-12 col-sm p-0 h-100">
+                                <div class="card-body d-flex align-items-center h-100 h6">
+                                    <div class="mb-0 d-flex flex-column">
+                                        <h5>
+                                                <span class="clamp-line sh-3"
+                                                    data-line="2">{{ $culture_data->name }}</span>
+                                        </h5>
+                                        <p class="card-text mb-2 text-muted">
+                                            {!! Str::limit($culture_data->description, 75, '...') !!}
+                                        </p>
+                                        <a href="{{ route('app.culture.detail', $culture_data->slug) }}" type="button" class="btn btn-primary btn-sm mt-2">Lihat Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                                    </div>
 
-                        <div class="card-body">
-                            <h5 class="heading mb-3">
-                                <a href="{{ route('app.culture.detail', $culture_data->slug) }}" class="body-link stretched-link">
-                                    <span class="clamp-line sh-5" data-line="2">{{ $culture_data->name }}</span>
-                                </a>
-                            </h5>
-                            <div>
-                                <div class="row g-0">
-                                    <div class="col-auto pe-3">
-                                        <i data-acorn-icon="eye" class="text-primary me-1" data-acorn-size="20"></i>
-                                        <span class="align-middle">{{ $culture_data->viewCount() }}</span>
-                                    </div>
-                                    <div class="col-auto pe-3">
-                                        <i data-acorn-icon="like" class="text-primary me-0" data-acorn-size="20"></i>
-                                        <span class="align-middle">{{ $culture_data->likeCount() }}</span>
-                                    </div>
-                                    <div class="col-auto pe-3">
-                                        <i data-acorn-icon="message" class="text-primary me-0" data-acorn-size="20"></i>
-                                        <span class="align-middle">15</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

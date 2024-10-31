@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-footer="true">
+<html lang="en" data-footer="true" data-override='{"attributes":{"layout": "boxed"}}'>
 
 <head>
     <meta charset="UTF-8" />
@@ -46,7 +46,11 @@
 
     @if (isset($detail) && !empty($detail->styles))
         <style>
-            {{ $detail->styles }}
+            {
+                    {
+                    $detail->styles
+                }
+            }
         </style>
     @endif
 </head>
@@ -303,6 +307,7 @@
 
             @yield('content')
         </main>
+
         <!-- Layout Footer Start -->
         <footer>
             <div class="footer-content">
@@ -388,6 +393,7 @@
     <script src="{{ asset('js/cs/glide.custom.js') }}"></script>
 
     <script src="{{ asset('js/pages/blog.detail.js') }}"></script>
+    <script src="{{ asset('js/pages/blog.home.js') }}"></script>
 
     <script src="{{ asset('js/cs/charts.extend.js') }}"></script>
     <script src="{{ asset('js/plugins/carousels.js') }}"></script>
