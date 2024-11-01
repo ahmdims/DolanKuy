@@ -127,7 +127,7 @@
                         </tr>
 
                         @include('admin.destination.detail', ['destination_data' => $destination_data])
-                        @include('admin.destination.create', ['destination_data' => $destination_data])
+
                         @include('admin.destination.update', ['destination_data' => $destination_data])
                         @include('admin.destination.delete', ['destination_data' => $destination_data])
                         @include('admin.destination.images', ['destination_data' => $destination_data])
@@ -140,7 +140,7 @@
         </div>
     </div>
 </section>
-
+@include('admin.destination.create')
 <!-- Page Insert Scripts Start -->
 <script>
     var map = L.map('map').setView([-6.24186355, 106.99991249], 15);

@@ -110,7 +110,7 @@
                         </tr>
 
                         @include('admin.culture.detail', ['culture_data' => $culture_data])
-                        @include('admin.culture.create', ['culture_data' => $culture_data])
+
                         @include('admin.culture.update', ['culture_data' => $culture_data])
                         @include('admin.culture.delete', ['culture_data' => $culture_data])
                         @include('admin.culture.images', ['culture_data' => $culture_data])
@@ -122,5 +122,5 @@
         </div>
     </div>
 </section>
-
+@include('admin.culture.create')
 @endsection

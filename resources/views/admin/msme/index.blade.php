@@ -127,7 +127,7 @@
                         </tr>
 
                         @include('admin.msme.detail', ['msme_data' => $msme_data])
-                        @include('admin.msme.create', ['msme_data' => $msme_data])
+
                         @include('admin.msme.update', ['msme_data' => $msme_data])
                         @include('admin.msme.delete', ['msme_data' => $msme_data])
                         @include('admin.msme.images', ['msme_data' => $msme_data])
@@ -140,7 +140,7 @@
         </div>
     </div>
 </section>
-
+@include('admin.msme.create')
 <!-- Page Insert Scripts Start -->
 <script>
     var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
