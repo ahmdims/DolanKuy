@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', '404')
+@section('title', '500')
 
 @section('content')
 <div class="row g-0 h-100">

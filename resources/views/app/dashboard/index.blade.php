@@ -48,28 +48,29 @@
                         <div class="glide__slides">
 
                             @foreach ($topDestinations as $destination)
-                            <div class="glide__slide">
-                                <div class="card mb-4">
+                                                        <div class="glide__slide">
+                                                            <div class="card mb-4">
 
-                                    @php
-                                    $firstImage = $destination->images->first();
-                                    @endphp
+                                                                @php
+                                                                    $firstImage = $destination->images->first();
+                                                                @endphp
 
-                                    <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                        alt="Card image" class="card-img-top" />
+                                                                <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                                                    alt="Card image" class="card-img-top" />
 
-                                    <div class="card-body">
-                                        <a href="{{ route('app.destination.detail', $destination->slug) }}"
-                                            class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $destination->name }}</h5>
-                                            <p class="card-text">
-                                                {!! Str::limit($destination->description, 50, '...') !!}</p>
-                                        </a>
-                                    </div>
+                                                                <div class="card-body">
+                                                                    <a href="{{ route('app.destination.detail', $destination->slug) }}"
+                                                                        class="body-link stretched-link">
+                                                                        <h5 class="card-title">{{ $destination->name }}</h5>
+                                                                        <p class="card-text">
+                                                                            {!! Str::limit($destination->description, 50, '...') !!}
+                                                                        </p>
+                                                                    </a>
+                                                                </div>
 
 
-                                </div>
-                            </div>
+                                                            </div>
+                                                        </div>
                             @endforeach
 
                         </div>
@@ -109,25 +110,25 @@
                     <div class="glide__track" data-glide-el="track">
                         <div class="glide__slides">
                             @foreach ($topMsmes as $msme)
-                            <div class="glide__slide">
-                                <div class="card mb-5">
+                                                        <div class="glide__slide">
+                                                            <div class="card mb-5">
 
-                                    @php
-                                    $firstImage = $msme->images->first();
-                                    @endphp
+                                                                @php
+                                                                    $firstImage = $msme->images->first();
+                                                                @endphp
 
-                                    <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                        alt="Card image" class="card-img-top" />
+                                                                <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                                                    alt="Card image" class="card-img-top" />
 
-                                    <div class="card-body">
-                                        <a href="{{ route('app.msme.detail', $msme->slug) }}"
-                                            class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $msme->name }}</h5>
-                                            <p class="card-text">{!! Str::limit($msme->description, 50, '...') !!}</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="card-body">
+                                                                    <a href="{{ route('app.msme.detail', $msme->slug) }}"
+                                                                        class="body-link stretched-link">
+                                                                        <h5 class="card-title">{{ $msme->name }}</h5>
+                                                                        <p class="card-text">{!! Str::limit($msme->description, 50, '...') !!}</p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                             @endforeach
                         </div>
                     </div>
@@ -167,27 +168,27 @@
                     <div class="glide__track" data-glide-el="track">
                         <div class="glide__slides">
                             @foreach ($topCultures as $culture)
-                            <div class="glide__slide">
-                                <div class="card mb-5">
+                                                        <div class="glide__slide">
+                                                            <div class="card mb-5">
 
-                                    @php
-                                    $firstImage = $msme->images->first();
-                                    @endphp
+                                                                @php
+                                                                    $firstImage = $msme->images->first();
+                                                                @endphp
 
-                                    <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                        alt="Card image" class="card-img-top" />
+                                                                <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                                                    alt="Card image" class="card-img-top" />
 
 
-                                    <div class="card-body">
-                                        <a href="{{ route('app.culture.detail', $culture->slug) }}"
-                                            class="body-link stretched-link">
-                                            <h5 class="card-title">{{ $culture->name }}</h5>
-                                            <p class="card-text">{!! Str::limit($culture->description, 50, '...') !!}
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                                                                <div class="card-body">
+                                                                    <a href="{{ route('app.culture.detail', $culture->slug) }}"
+                                                                        class="body-link stretched-link">
+                                                                        <h5 class="card-title">{{ $culture->name }}</h5>
+                                                                        <p class="card-text">{!! Str::limit($culture->description, 50, '...') !!}
+                                                                        </p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                             @endforeach
                         </div>
                     </div>
@@ -206,7 +207,8 @@
                         <div class="row gx-2">
                             <div class="col">
                                 <div class="text-muted mb-3 mb-sm-0 pe-3 text-white">
-                                    Yuk, bagikan rekomendasi Destinasi Wisata, UMKM, atau Budaya menarik di Malang! Biar lebih banyak orang tahu dan bisa nikmatin keunikan kota ini!
+                                    Yuk, bagikan rekomendasi Destinasi Wisata, UMKM, atau Budaya menarik di Malang! Biar
+                                    lebih banyak orang tahu dan bisa nikmatin keunikan kota ini!
                                 </div>
                             </div>
                             <div class="col-12 col-sm-auto d-flex align-items-center position-relative">
@@ -229,11 +231,14 @@
             <h5 class="mb-4 mb-sm-0">Temukan berbagai Destinasi seru, UMKM, dan Budaya menarik hanya di
                 DolanKuy. Mari eksplorasi bersama!</h5>
 
-            <div class="row">
-                <div class="card h-100-card sh-md-50 bg-transparent mt-3">
-                    <video class="player cover" poster="{{ asset('img/banner/malang.jpg') }}" id="videoGuide">
-                        <source src="https://www.youtube.com/watch?v=nWNjqkZxiMA" type="video/mp4" />
-                    </video>
+            <div class="order-sm-2 mt-4">
+                <div class="rounded-3 overflow-hidden">
+                    <div class="ratio ratio-16x9">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nWNjqkZxiMA"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen=""></iframe>
+                    </div>
                 </div>
             </div>
         </div>
