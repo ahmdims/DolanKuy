@@ -41,24 +41,56 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $user = $request->user();
 
-        if ($user->id !== $request->input('user_id')) {
-            return Redirect::route('profile.edit', [$user->username])->withErrors(['Unauthorized' => 'Anda tidak memiliki izin untuk memperbarui profil ini.']);
-        }
+     public function update(Request $request): RedirectResponse
+{
+    // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users,username,' . auth()->id(),
+        'phone_number' => 'nullable|string|max:15',
+        'birth_date' => 'nullable|date',
+        'gender' => 'required|in:male,female,other',
+        'bio' => 'nullable|string',
+    ], [
+        'name.required' => 'Nama harus diisi.',
+        'name.string' => 'Nama harus berupa teks.',
+        'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
 
-        $user->fill($request->validated());
+        'username.required' => 'Username harus diisi.',
+        'username.string' => 'Username harus berupa teks.',
+        'username.max' => 'Username tidak boleh lebih dari :max karakter.',
+        'username.unique' => 'Username sudah digunakan, silakan pilih username lain.',
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
+        'phone_number.string' => 'Nomor telepon harus berupa teks.',
+        'phone_number.max' => 'Nomor telepon tidak boleh lebih dari :max karakter.',
 
-        $user->save();
+        'birth_date.date' => 'Tanggal lahir tidak valid.',
 
-        return Redirect::route('profile.edit', [$user->username])->with('status', 'profile-updated');
+        'gender.required' => 'Jenis kelamin harus dipilih.',
+        'gender.in' => 'Jenis kelamin tidak valid.',
+
+        'bio.string' => 'Biografi harus berupa teks.',
+    ]);
+
+    // Ambil data user yang sedang login
+    $user = Auth::user();
+    $user->fill($request->only([
+        'name', 'username', 'phone_number', 'birth_date', 'gender', 'bio'
+    ]));
+
+    // Reset verifikasi email jika email diubah
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null;
     }
+
+    $user->save();
+
+    // Kembali ke halaman edit dengan status sukses
+    // Kembali ke halaman edit dengan status sukses
+return Redirect::route('profile.edit', [$user->username])->with('status', 'Profil berhasil diperbarui.');
+
+}
 
     /**
      * Authorize the user.
@@ -72,16 +104,16 @@ class ProfileController extends Controller
      * Define validation rules for profile update.
      */
     public function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $this->user()->id,
-            'phone_number' => 'nullable|string|max:15',
-            'birth_date' => 'nullable|date',
-            'gender' => 'required|in:male,female,other',
-            'bio' => 'nullable|string',
-        ];
-    }
+{
+    return [
+        'name' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users,username,' . auth()->id(),
+        'phone_number' => 'nullable|string|max:15',
+        'birth_date' => 'nullable|date',
+        'gender' => 'required|in:male,female,other',
+        'bio' => 'nullable|string',
+    ];
+}
 
     public function messages()
     {

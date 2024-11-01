@@ -45,13 +45,9 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <script src="{{ asset('js/base/loader.js') }}"></script>
 
-    @if (isset($detail) && !empty($detail->styles))
+    @if(isset($detail) && !empty($detail->style))
         <style>
-            {
-                    {
-                    $detail->styles
-                }
-            }
+            {{ $detail->style }}
         </style>
     @endif
 </head>

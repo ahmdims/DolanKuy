@@ -65,7 +65,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="styles" class="form-label">Kustom CSS</label>
-                                <textarea rows="3" class="form-control" name="styles" required></textarea>
+                                <textarea rows="3" class="form-control" name="styles"></textarea>
                             </div>
                         </div>
 

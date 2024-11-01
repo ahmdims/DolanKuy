@@ -167,7 +167,7 @@ class DestinationController extends Controller
             'price_max' => 'required|integer',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'styles' => 'string',
+            'styles' => 'nullable|string',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -205,7 +205,7 @@ class DestinationController extends Controller
             'price_max' => 'nullable|integer',
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
-            'styles' => 'string',
+            'styles' => 'nullable|string',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 

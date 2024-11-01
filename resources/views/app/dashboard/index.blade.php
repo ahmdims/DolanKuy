@@ -18,7 +18,7 @@
                             </video>
                             <div class="position-absolute top-50 start-50 translate-middle text-white text-center"
                                 style="z-index: 2;">
-                                <h3 class="custom-font">Eksporasi</h3>
+                                <h3 class="custom-font">Eksplorasi</h3>
                                 <h1 class="custom-font-malang">Malang</h1>
                                 <h3 class="custom-font">Bersama DolanKuy</h3>
                             </div>

@@ -15,6 +15,12 @@
         <div class="col">
                 <h1 class="mb-0 pb-0 display-4" id="title">@yield('title')</h1>
 
+                @if (session('status'))
+                <div class="alert alert-success mt-3">
+                    {{ session('status') }}
+                </div>
+            @endif
+            
             @include('layouts.profile')
 
             <div class="card mb-5">
@@ -48,14 +54,14 @@
                             <label class="col-lg-2 col-md-3 col-sm-4 col-form-label">Tanggal Lahir</label>
                             <div class="col-sm-8 col-md-9 col-lg-10">
                                 <input type="date" name="birth_date" class="form-control"
-                                    value="{{ old('birth_date', $user->birth_date) }}" />
+                                    value="{{ old('birth_date', $user->birth_date ? $user->birth_date->format('Y-m-d') : '') }}" />
                             </div>
                         </div>
+
                         <div class="mb-3 row">
                             <label class="col-lg-2 col-md-3 col-sm-4 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-8 col-md-9 col-lg-10">
-                                <select name="gender" class="select-single-no-search" data-width="100%"
-                                    id="genderSelect">
+                                <select name="gender" class="select-single-no-search form-control" id="genderSelect">
                                     <option label="&nbsp;"></option>
                                     <option value="male" {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}>
                                         Laki-laki</option>
