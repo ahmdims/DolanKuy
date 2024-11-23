@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-auto pe-3">
                                         <i data-acorn-icon="message" class="text-primary me-0" data-acorn-size="20"></i>
-                                        <span class="align-middle">15</span>
+                                        <span class="align-middle">{{ $msme_data->comments_count }}</span>
                                     </div>
                                 </div>
                             </div>

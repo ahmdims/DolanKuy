@@ -198,7 +198,7 @@
     </section>
 
     <section class="scroll-section" id="contact">
-        <div class="col-12 col-xxl-6 mb-5 h-100-card">
+        <div class="col-12 mb-5 h-100-card">
             <div class="card h-100 bg-gradient-light">
                 <div class="card-body row g-0">
                     <div class="col-12">

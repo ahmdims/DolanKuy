@@ -119,7 +119,7 @@
                                 <div class="col-6 ps-1 pe-1">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a href="{{ route('profile.index', Auth::user()->username) }}">
+                                            <a href="{{ route('profile.edit', Auth::user()->username) }}">
                                                 <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                                                 <span class="align-middle">Profil</span>
                                             </a>
