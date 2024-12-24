@@ -145,15 +145,16 @@ class CultureController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $slug = Str::slug($request->name);
-        $culture = Culture::create(array_merge($request->all(), ['slug' => $slug]));
+        $culture = Culture::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'styles' => $request->styles,
+            'slug' => Str::slug($request->name),
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $imageName = time() . '-' . $imageFile->getClientOriginalName();
-
-                $path = $imageFile->storeAs('', $imageName, 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('culture', 'public');
                 $culture->images()->create([
                     'path' => $path,
                 ]);
@@ -179,17 +180,15 @@ class CultureController extends Controller
         ]);
 
         $culture = Culture::findOrFail($id);
-
-        if ($request->filled('name')) {
-            $culture->slug = Str::slug($request->name);
-        }
-
-        $culture->update($request->except(['images']));
+        $culture->update([
+            'name' => $request->name ?? $culture->name,
+            'description' => $request->description ?? $culture->description,
+            'styles' => $request->styles ?? $culture->styles,
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('', 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('culture', 'public');
                 $culture->images()->create([
                     'path' => $path,
                 ]);
@@ -197,29 +196,6 @@ class CultureController extends Controller
         }
 
         return redirect()->route('admin.culture.index')->with('success', 'Berhasil diperbarui, cuy!');
-    }
-
-    public function deleteImage($id)
-    {
-        $image = Image::findOrFail($id);
-
-        $filePath = storage_path('app/public/' . $image->path);
-
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'File not found in storage'
-            ], 404);
-        }
-
-        $image->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Image successfully deleted'
-        ]);
     }
 
     public function destroy($id)

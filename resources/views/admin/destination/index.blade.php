@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-12 col-sm-7 col-lg-9 col-xxl-10 text-end mb-1">
                         <div class="d-inline-block">
-                            <button data-bs-toggle="modal" data-bs-target="##formModal"
+                            <button data-bs-toggle="modal" data-bs-target="#formModal"
                                 class="btn btn-icon btn-outline-muted btn-sm datatable-print" type="button">
                                 <i data-acorn-icon="plus"></i>
                                 <span>Tambah @yield('title')</span>

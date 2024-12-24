@@ -176,13 +176,11 @@
                                             <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
                                                 alt="Card image" class="card-img-top" />
 
-
                                             <div class="card-body">
                                                 <a href="{{ route('app.culture.detail', $culture->slug) }}"
                                                     class="body-link stretched-link">
                                                     <h5 class="card-title">{{ $culture->name }}</h5>
-                                                    <p class="card-text">{!! Str::limit($culture->description, 50, '...') !!}
-                                                    </p>
+                                                    <p class="card-text">{!! Str::limit(strip_tags($culture->description), 50, '...') !!}</p>
                                                 </a>
                                             </div>
                                         </div>

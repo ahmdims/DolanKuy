@@ -169,15 +169,28 @@ class MsmeController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $slug = Str::slug($request->name);
-        $msme = Msme::create(array_merge($request->all(), ['slug' => $slug]));
+        $msme = Msme::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'link' => $request->link,
+            'opening_time' => $request->opening_time,
+            'closing_time' => $request->closing_time,
+            'price_min' => $request->price_min,
+            'price_max' => $request->price_max,
+            'facilities' => $request->facilities,
+            'contact' => $request->contact,
+            'styles' => $request->styles,
+            'slug' => Str::slug($request->name),
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $imageName = time() . '-' . $imageFile->getClientOriginalName();
-
-                $path = $imageFile->storeAs('', $imageName, 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('msme', 'public');
                 $msme->images()->create([
                     'path' => $path,
                 ]);
@@ -215,17 +228,28 @@ class MsmeController extends Controller
         ]);
 
         $msme = Msme::findOrFail($id);
-
-        if ($request->filled('name')) {
-            $msme->slug = Str::slug($request->name);
-        }
-
-        $msme->update($request->except(['images']));
+        $msme->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'link' => $request->link,
+            'opening_time' => $request->opening_time,
+            'closing_time' => $request->closing_time,
+            'price_min' => $request->price_min,
+            'price_max' => $request->price_max,
+            'facilities' => $request->facilities,
+            'contact' => $request->contact,
+            'styles' => $request->styles,
+            'slug' => Str::slug($request->name),
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('images', 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('msme', 'public');
                 $msme->images()->create([
                     'path' => $path,
                 ]);
@@ -234,7 +258,6 @@ class MsmeController extends Controller
 
         return redirect()->route('admin.msme.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
-
 
     public function deleteImage($id)
     {

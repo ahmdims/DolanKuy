@@ -168,15 +168,28 @@ class DestinationController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $slug = Str::slug($request->name);
-        $destination = Destination::create(array_merge($request->all(), ['slug' => $slug]));
+        $destination = destination::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'link' => $request->link,
+            'opening_time' => $request->opening_time,
+            'closing_time' => $request->closing_time,
+            'price_min' => $request->price_min,
+            'price_max' => $request->price_max,
+            'facilities' => $request->facilities,
+            'contact' => $request->contact,
+            'styles' => $request->styles,
+            'slug' => Str::slug($request->name),
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $imageName = time() . '-' . $imageFile->getClientOriginalName();
-
-                $path = $imageFile->storeAs('', $imageName, 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('destination', 'public');
                 $destination->images()->create([
                     'path' => $path,
                 ]);
@@ -213,18 +226,29 @@ class DestinationController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $destination = Destination::findOrFail($id);
-
-        if ($request->filled('name')) {
-            $destination->slug = Str::slug($request->name);
-        }
-
-        $destination->update($request->except(['images']));
+        $destination = destination::findOrFail($id);
+        $destination->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'address' => $request->address,
+            'city' => $request->city,
+            'province' => $request->province,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'link' => $request->link,
+            'opening_time' => $request->opening_time,
+            'closing_time' => $request->closing_time,
+            'price_min' => $request->price_min,
+            'price_max' => $request->price_max,
+            'facilities' => $request->facilities,
+            'contact' => $request->contact,
+            'styles' => $request->styles,
+            'slug' => Str::slug($request->name),
+        ]);
 
         if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $imageFile) {
-                $path = $imageFile->store('', 'public');
-
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('destination', 'public');
                 $destination->images()->create([
                     'path' => $path,
                 ]);
