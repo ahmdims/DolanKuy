@@ -8,7 +8,6 @@
     <div class="row">
         <div class="col-auto d-none d-lg-flex">
             <div class="nav flex-column sw-25 mt-n2" id="settingsColumn">
-                <!-- Content of this will be moved from #settingsMoveContent div based on the responsive breakpoint.  -->
             </div>
         </div>
 
@@ -19,7 +18,7 @@
 
             <div class="card mb-5">
                 <div class="card-body">
-                    
+
                 </div>
             </div>
 

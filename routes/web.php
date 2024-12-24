@@ -42,7 +42,7 @@ Route::get('/culture/{slug}', [CultureController::class, 'show'])->name('app.cul
 Route::middleware('auth')->post('/culture/{slug}/like', [CultureController::class, 'like'])->name('culture.like');
 Route::middleware('auth')->post('/culture/{slug}/history', [CultureController::class, 'history'])->name('culture.history');
 
-// Komentar UMKM
+// Komentar Budaya
 Route::post('/culture/{slug}/comments', [CultureController::class, 'storeComment'])->name('culture.comments.store');
 
 //Kontak

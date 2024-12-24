@@ -56,12 +56,8 @@
                 <div class="col-12 col-xl-8 col-xxl-9">
                     <ul class="nav nav-tabs nav-tabs-title nav-tabs-line-title responsive-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#rencanaTab" role="tab"
-                                aria-selected="true">Rencana Kunjungan</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#sukaTab" role="tab"
-                                aria-selected="false">Suka</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#markahTab" role="tab"
+                                aria-selected="true">Markah</a>
                         </li>
                         <li class="nav-item dropdown ms-auto d-none responsive-tab-dropdown">
                             <a class="btn btn-icon btn-icon-only btn-background pt-0" href="#" role="button"
@@ -72,104 +68,50 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane fade active show" id="rencanaTab" role="tabpanel">
+                        <div class="tab-pane fade active show" id="markahTab" role="tabpanel">
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-xxl-3 g-2 mb-5">
-                                <div class="col">
-                                    <div class="card sh-35 hover-img-scale-up hover-reveal">
-                                        <img src="img/product/small/product-1.webp" class="card-img h-100 scale"
-                                            alt="card image" />
-                                        <div
-                                            class="card-img-overlay d-flex flex-column justify-content-between reveal-content">
-                                            <div class="row g-0">
-                                                <div class="col-auto pe-3">
-                                                    <i data-acorn-icon="eye" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">153</span>
-                                                </div>
-                                                <div class="col-auto pe-3">
-                                                    <i data-acorn-icon="message" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">5</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i data-acorn-icon="like" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">29</span>
-                                                </div>
-                                            </div>
-                                            <div class="row g-0">
-                                                <div class="col pe-2">
-                                                    <a href="Pages.Portfolio.Detail.html" class="stretched-link">
-                                                        <h5 class="heading text-white mb-1">Introduction to Bread Making
-                                                        </h5>
-                                                    </a>
-                                                    <div class="d-inline-block">
-                                                        <div class="text-white">Blaine Cottrell</div>
+                                @foreach ($markahHistories as $history)
+                                    @php
+                                        $entity = null;
+                                        if ($history->entity_type === 'destination') {
+                                            $entity = $history->destination;
+                                        } elseif ($history->entity_type === 'msme') {
+                                            $entity = $history->msme;
+                                        } elseif ($history->entity_type === 'culture') {
+                                            $entity = $history->culture;
+                                        }
+                                    @endphp
+                                    @if ($entity)
+                                        <div class="col">
+                                            <div class="card sh-35 hover-img-scale-up hover-reveal">
+                                                <img src="{{ $history->firstImage ? asset('storage/' . $history->firstImage->path) : asset('img/banner/no_images.svg') }}"
+                                                    class="card-img h-100 scale" alt="card image" />
+                                                <div
+                                                    class="card-img-overlay d-flex flex-column justify-content-between reveal-content">
+                                                    <div class="row g-0">
+                                                        <div class="col pe-2">
+                                                            <a href="@if ($history->entity_type === 'destination') {{ route('app.destination.detail', ['slug' => $entity->slug]) }}
+                                                                     @elseif($history->entity_type === 'msme')
+                                                                         {{ route('app.msme.detail', ['slug' => $entity->slug]) }}
+                                                                     @elseif($history->entity_type === 'culture')
+                                                                         {{ route('app.culture.detail', ['slug' => $entity->slug]) }} @endif"
+                                                                class="stretched-link">
+                                                                <h5 class="heading text-white mb-1">
+                                                                    {{ $entity->name ?? 'Unknown Title' }}</h5>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-auto me-auto">
-                                                    <button class="btn btn-icon btn-icon-only btn-foreground mb-1"
-                                                        type="button">
-                                                        <i data-acorn-icon="like"></i>
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="sukaTab" role="tabpanel">
-                            <div class="row row-cols-1 row-cols-sm-2 row-cols-xxl-3 g-2 mb-5">
-                                <div class="col">
-                                    <div class="card sh-35 hover-img-scale-up hover-reveal">
-                                        <img src="img/product/small/product-1.webp" class="card-img h-100 scale"
-                                            alt="card image" />
-                                        <div
-                                            class="card-img-overlay d-flex flex-column justify-content-between reveal-content">
-                                            <div class="row g-0">
-                                                <div class="col-auto pe-3">
-                                                    <i data-acorn-icon="eye" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">153</span>
-                                                </div>
-                                                <div class="col-auto pe-3">
-                                                    <i data-acorn-icon="message" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">5</span>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i data-acorn-icon="like" class="text-white me-1"
-                                                        data-acorn-size="15"></i>
-                                                    <span class="align-middle text-white">29</span>
-                                                </div>
-                                            </div>
-                                            <div class="row g-0">
-                                                <div class="col pe-2">
-                                                    <a href="Pages.Portfolio.Detail.html" class="stretched-link">
-                                                        <h5 class="heading text-white mb-1">Introduction to Bread Making
-                                                        </h5>
-                                                    </a>
-                                                    <div class="d-inline-block">
-                                                        <div class="text-white">Blaine Cottrell</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto me-auto">
-                                                    <button class="btn btn-icon btn-icon-only btn-foreground mb-1"
-                                                        type="button">
-                                                        <i data-acorn-icon="like"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
 
                     </div>
                 </div>
+
             </div>
 
         @endsection

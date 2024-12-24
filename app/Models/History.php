@@ -22,17 +22,17 @@ class History extends Model
 
     public function destination()
     {
-        return $this->belongsTo(Destination::class, 'entity_id')->where('entity_type', 'destination');
+        return $this->belongsTo(Destination::class, 'entity_id');
     }
 
     public function msme()
     {
-        return $this->belongsTo(Msme::class, 'entity_id')->where('entity_type', 'msme');
+        return $this->belongsTo(Msme::class, 'entity_id');
     }
 
     public function culture()
     {
-        return $this->belongsTo(Msme::class, 'entity_id')->where('entity_type', 'culture');
+        return $this->belongsTo(Culture::class, 'entity_id');
     }
 
     public function scopeForEntity($query, $entityId, $entityType)

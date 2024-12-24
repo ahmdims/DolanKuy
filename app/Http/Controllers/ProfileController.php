@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\History;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,12 +13,27 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function index(Request $request, $username): View
+    public function index(Request $request, $username)
     {
         $user = User::where('username', $username)->firstOrFail();
 
+        $markahHistories = History::with(['destination', 'msme', 'culture'])
+            ->where('user_id', $user->id)
+            ->get();
+
+        foreach ($markahHistories as $history) {
+            if ($history->entity_type === 'destination') {
+                $history->firstImage = $history->destination->images()->first();
+            } elseif ($history->entity_type === 'msme') {
+                $history->firstImage = $history->msme->images()->first();
+            } elseif ($history->entity_type === 'culture') {
+                $history->firstImage = $history->culture->images()->first();
+            }
+        }
+
         return view('profile.index', [
             'user' => $user,
+            'markahHistories' => $markahHistories,
         ]);
     }
 
