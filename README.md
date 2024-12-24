@@ -2,7 +2,11 @@
 
 ## Introduction
 
-DolanKuy merupakan website informasi Destinasi Wisata
+Kota Malang dengan udara sejuk dan pesona alamnya menjadi destinasi favorit pelancong. Website DolanKuy hadir memberikan panduan lengkap tentang destinasi wisata, sejarah, budaya, dan UMKM lokal Malang.
+
+Jelajahi situs bersejarah, lokasi edukatif, dan pesona alam, serta temukan produk unggulan lokal yang mencerminkan kreativitas masyarakat Malang.
+
+Dengan DolanKuy, perjalananmu di Malang lebih seru, informatif, dan penuh pengalaman. Mulai eksplorasi sekarang!
 
 ## Installation
 
