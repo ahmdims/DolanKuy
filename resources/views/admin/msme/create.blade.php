@@ -1,4 +1,4 @@
-<div class="modal fade modal-close-out" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
+<div class="modal fade modal-close-out" id="formModal" tabindex="-1" role="dialog" aria-labelledby="Modal"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -6,7 +6,7 @@
                 <h5 class="modal-title" id="Modal">Tambah @yield('title')</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" action="{{ route('msme.store') }}" enctype="multipart/form-data">
+            <form action="{{ route('msme.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -15,18 +15,21 @@
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nama UMKM <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="name" required>
+                                <input type="text" class="form-control" name="name" id="name" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="images" class="form-label">Unggah Gambar</label>
-                                <input class="form-control" type="file" name="images[]" id="images" multiple
-                                    accept="image/*">
+                                <input class="form-control" type="file" name="images[]" multiple accept="image/*">
                             </div>
+
                             <div class="mb-3">
                                 <label for="description" class="form-label">Deskripsi <small
                                         class="text-danger">*</small></label>
-                                <textarea rows="3" class="form-control" name="description" required></textarea>
+                                <input type="hidden" class="form-control" id="description" name="description" required>
+                                <trix-editor input="description"></trix-editor>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="price_min" class="form-label">Rentan Harga Terkecil</label>
@@ -39,6 +42,7 @@
                                     <small class="text-muted">Berikan angka 0 apabila gratis</small>
                                 </div>
                             </div>
+
                             <div class="mb-3 row">
                                 <div class="col">
                                     <label for="opening_time" class="form-label">Jam Buka <small
@@ -53,19 +57,24 @@
                                         required step="1">
                                 </div>
                             </div>
+
                             <div class="mb-3">
                                 <label for="facilities" class="form-label">Fasilitas <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="facilities" placeholder="Optional">
+                                <input type="text" class="form-control" name="facilities" id="facilities"
+                                    placeholder="Optional">
                             </div>
+
                             <div class="mb-3">
                                 <label for="contact" class="form-label">Kontak <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="contact" placeholder="Optional">
+                                <input type="text" class="form-control" name="contact" id="contact"
+                                    placeholder="Optional">
                             </div>
+
                             <div class="mb-3">
                                 <label for="styles" class="form-label">Kustom CSS</label>
-                                <textarea rows="3" class="form-control" name="styles"></textarea>
+                                <textarea rows="3" class="form-control" name="styles" id="styles"></textarea>
                             </div>
                         </div>
 
@@ -81,33 +90,41 @@
                                 <div class="col-md-6">
                                     <label for="latitude" class="form-label">Garis Lintang <small
                                             class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" name="latitude" id="latitude" readonly>
+                                    <input type="text" class="form-control" name="latitude" id="latitude"
+                                        required>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label for="longitude" class="form-label">Garis Bujur <small
                                             class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" name="longitude" id="longitude" readonly>
+                                    <input type="text" class="form-control" name="longitude" id="longitude"
+                                        required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="link" class="form-label">Tautan GMaps <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="link" required>
+                                <input type="text" class="form-control" name="link" id="link" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="address" class="form-label">Alamat <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="address" required>
+                                <input type="text" class="form-control" name="address" id="address" required>
                             </div>
+
                             <div class="mb-3">
-                                <label for="city" class="form-label">Kota <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="city" required>
+                                <label for="city" class="form-label">Kota <small
+                                        class="text-danger">*</small></label>
+                                <input type="text" class="form-control" name="city" id="city" required>
                             </div>
+
                             <div class="mb-3">
                                 <label for="province" class="form-label">Provinsi <small
                                         class="text-danger">*</small></label>
-                                <input type="text" class="form-control" name="province" required>
+                                <input type="text" class="form-control" name="province" id="province" required>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -120,7 +137,6 @@
     </div>
 </div>
 
-<!-- Page Insert Scripts Start -->
 <script>
     var map = L.map('map').setView([-6.24186355, 106.99991249], 15);
 
@@ -130,7 +146,7 @@
 
     var marker;
 
-    map.on('click', function (e) {
+    map.on('click', function(e) {
         var lat = e.latlng.lat;
         var lng = e.latlng.lng;
 
@@ -145,13 +161,13 @@
     });
 
     var createModal = document.getElementById('createModal');
-    createModal.addEventListener('shown.bs.modal', function () {
-        setTimeout(function () {
+    createModal.addEventListener('shown.bs.modal', function() {
+        setTimeout(function() {
             map.invalidateSize();
         }, 500);
     });
 
-    document.getElementById('location-search').addEventListener('keyup', function () {
+    document.getElementById('location-search').addEventListener('keyup', function() {
         var query = this.value;
         if (query.length > 2) {
             fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
@@ -177,4 +193,3 @@
         }
     });
 </script>
-<!-- Page Insert Scripts End -->

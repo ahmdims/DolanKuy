@@ -27,10 +27,8 @@ class MsmeController extends Controller
     {
         $detail = Msme::where('slug', $slug)->firstOrFail();
 
-        // Increment view count
         $detail->increment('view_count');
 
-        // Fetch weather data
         $apiKey = env('WEATHER_API_KEY');
         $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
 
@@ -168,9 +166,8 @@ class MsmeController extends Controller
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
 
         $slug = Str::slug($request->name);
         $msme = Msme::create(array_merge($request->all(), ['slug' => $slug]));
@@ -188,6 +185,12 @@ class MsmeController extends Controller
         }
 
         return redirect()->route('admin.msme.index')->with('success', 'Berhasil dibuat, cuy!');
+    }
+
+    public function edit($id)
+    {
+        $msme = Msme::findOrFail($id);
+        return response()->json($msme);
     }
 
     public function update(Request $request, $id)
@@ -208,26 +211,21 @@ class MsmeController extends Controller
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $msme = Msme::findOrFail($id);
 
-        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $msme->slug = Str::slug($request->name);
         }
 
-        // Update detail destinasi, kecuali images
         $msme->update($request->except(['images']));
 
-        // Tambah foto baru tanpa menghapus foto lama
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
-                // Simpan gambar ke storage/public/images
                 $path = $imageFile->store('images', 'public');
 
-                // Simpan path gambar menggunakan relasi polymorphic
                 $msme->images()->create([
                     'path' => $path,
                 ]);

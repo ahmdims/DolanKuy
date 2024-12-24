@@ -30,7 +30,7 @@ class TouristController extends Controller
             ],
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'profile' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'utype' => 'required|string|in:superadmin,admin_wisata,admin_umkm,admin_budaya,pengunjung',
             'password' => 'required|string|min:8|max:255',
         ], [
@@ -89,7 +89,7 @@ class TouristController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'utype' => 'nullable|string',
-            'profile' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'profile' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'username.required' => 'Nama Pengguna wajib diisi, cuy!',
             'username.unique' => 'Aduh, username udah dipakai yang lain.',

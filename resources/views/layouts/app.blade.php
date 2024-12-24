@@ -2,12 +2,12 @@
 <html lang="en" data-footer="true" data-override='{"attributes":{"layout": "boxed"}}'>
 
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>DolanKuy - @yield('title')</title>
+    <title>@yield('title') - DolanKuy</title>
     <meta name="description" content="@yield('title')" />
 
-    <!-- Favicon Tags Start -->
     <link href="{{ asset('img/favicon/favicon.png') }}" rel="icon">
     <link href="{{ asset('img/favicon/favicon.png') }}" rel="apple-touch-icon">
 
@@ -15,14 +15,10 @@
     <meta name="keywords"
         content="DolanKuy, Malang, Malang City, Kota Malang, budaya, pariwisata, UMKM, kuliner, Indonesia, Jawa Timur" />
     <meta name="author" content="DigitalDream">
-    <!-- Favicon Tags End -->
 
-    <!-- Font Tags Start -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="{{ asset('font/CS-Interface/style.css') }}" />
-    <!-- Font Tags End -->
 
-    <!-- Vendor Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/OverlayScrollbars.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/datatables.min.css') }}" />
@@ -35,40 +31,31 @@
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/baguetteBox.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap-datepicker3.standalone.min.css') }}" />
-    <!-- Vendor Styles End -->
 
-    <!-- Template Base Styles Start -->
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-    <!-- Template Base Styles End -->
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <script src="{{ asset('js/base/loader.js') }}"></script>
 
-    @if(isset($detail) && !empty($detail->style))
+    @if (isset($detail) && !empty($detail->style))
         <style>
             {{ $detail->style }}
         </style>
     @endif
+
 </head>
 
 <body>
     <div id="root">
         <div id="nav" class="nav-container d-flex">
             <div class="nav-content d-flex">
-                <!-- Logo Start -->
                 <div class="logo position-relative">
                     <a href="{{ asset('/') }}">
-                        <!-- Logo can be added directly -->
-                        <!-- <img src="img/logo/logo-white.svg" alt="logo" /> -->
-
-                        <!-- Or added via css to provide different ones for different color themes -->
                         <div class="img"></div>
                     </a>
                 </div>
-                <!-- Logo End -->
 
-                <!-- User Menu Start -->
                 <div class="user-container d-flex">
 
                     @guest
@@ -119,7 +106,7 @@
                                 <div class="col-6 ps-1 pe-1">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a href="{{ route('profile.edit', Auth::user()->username) }}">
+                                            <a href="{{ route('profile.index', Auth::user()->username) }}">
                                                 <i data-acorn-icon="user" class="me-2" data-acorn-size="17"></i>
                                                 <span class="align-middle">Profil</span>
                                             </a>
@@ -147,9 +134,7 @@
                     @endauth
 
                 </div>
-                <!-- User Menu End -->
 
-                <!-- Icons Menu Start -->
                 <ul class="list-unstyled list-inline text-center menu-icons">
                     <li class="list-inline-item">
                         <a id="pinButton" class="pin-button">
@@ -164,9 +149,7 @@
                         </a>
                     </li>
                 </ul>
-                <!-- Icons Menu End -->
 
-                <!-- Menu Start -->
                 <div class="menu-container flex-grow-1">
                     <ul id="menu" class="menu">
                         <li>
@@ -236,8 +219,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ url('admin/contact') }}">
-                                                    <span class="label">Kelola Kontak</span>
+                                                <a href="{{ url('admin/website') }}">
+                                                    <span class="label">Kelola Website</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -253,33 +236,23 @@
 
                     </ul>
                 </div>
-                <!-- Menu End -->
 
-                <!-- Mobile Buttons Start -->
                 <div class="mobile-buttons-container">
-                    <!-- Scrollspy Mobile Button Start -->
                     <a href="#" id="scrollSpyButton" class="spy-button" data-bs-toggle="dropdown">
                         <i data-acorn-icon="menu-dropdown"></i>
                     </a>
-                    <!-- Scrollspy Mobile Button End -->
 
-                    <!-- Scrollspy Mobile Dropdown Start -->
                     <div class="dropdown-menu dropdown-menu-end" id="scrollSpyDropdown"></div>
-                    <!-- Scrollspy Mobile Dropdown End -->
 
-                    <!-- Menu Button Start -->
                     <a href="#" id="mobileMenuButton" class="menu-button">
                         <i data-acorn-icon="menu"></i>
                     </a>
-                    <!-- Menu Button End -->
                 </div>
-                <!-- Mobile Buttons End -->
             </div>
             <div class="nav-shadow"></div>
         </div>
 
         <main>
-            <!-- Check message -->
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -300,12 +273,10 @@
                     </button>
                 </div>
             @endif
-            <!-- End message -->
 
             @yield('content')
         </main>
 
-        <!-- Layout Footer Start -->
         <footer>
             <div class="footer-content">
                 <div class="container">
@@ -321,12 +292,14 @@
                             <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
                                 <li class="breadcrumb-item mb-0 text-medium">
                                     <a href="mailto:digitaldream320@gmail.com" target="_blank" class="btn-link">
-                                        <i data-acorn-icon="email" class="text-primary me-1" data-acorn-size="15"></i>
+                                        <i data-acorn-icon="email" class="text-primary me-1"
+                                            data-acorn-size="15"></i>
                                         Email
                                     </a>
                                 </li>
                                 <li class="breadcrumb-item mb-0 text-medium">
-                                    <a href="https://www.instagram.com/digitalndream" target="_blank" class="btn-link">
+                                    <a href="https://www.instagram.com/digitalndream" target="_blank"
+                                        class="btn-link">
                                         <i data-acorn-icon="instagram" class="text-primary me-1"
                                             data-acorn-size="15"></i>
                                         Instagram
@@ -338,7 +311,6 @@
                 </div>
             </div>
         </footer>
-        <!-- Layout Footer End -->
     </div>
 
     <!-- Vendor Scripts Start -->

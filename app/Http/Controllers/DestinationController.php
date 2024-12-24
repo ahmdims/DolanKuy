@@ -7,7 +7,6 @@ use App\Models\Destination;
 use App\Models\Like;
 use App\Models\History;
 use App\Models\Comment;
-use App\Models\Image;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,10 +26,8 @@ class DestinationController extends Controller
     {
         $detail = Destination::where('slug', $slug)->firstOrFail();
 
-        // Increment view count
         $detail->increment('view_count');
 
-        // Fetch weather data
         $apiKey = env('WEATHER_API_KEY');
         $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
 
@@ -168,7 +165,7 @@ class DestinationController extends Controller
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $slug = Str::slug($request->name);
@@ -188,6 +185,13 @@ class DestinationController extends Controller
 
         return redirect()->route('admin.destination.index')->with('success', 'Berhasil dibuat, cuy!');
     }
+
+    public function edit($id)
+    {
+        $destination = Destination::findOrFail($id);
+        return response()->json($destination);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -206,26 +210,21 @@ class DestinationController extends Controller
             'facilities' => 'nullable|string',
             'contact' => 'nullable|string|max:255',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $destination = Destination::findOrFail($id);
 
-        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $destination->slug = Str::slug($request->name);
         }
 
-        // Update detail destinasi, kecuali images
         $destination->update($request->except(['images']));
 
-        // Tambahkan gambar baru tanpa menghapus gambar lama
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
-                // Simpan gambar ke storage/public
                 $path = $imageFile->store('', 'public');
 
-                // Simpan path gambar menggunakan relasi polymorphic
                 $destination->images()->create([
                     'path' => $path,
                 ]);
@@ -234,7 +233,6 @@ class DestinationController extends Controller
 
         return redirect()->route('admin.destination.index')->with('success', 'Berhasil diperbarui, cuy!');
     }
-
 
     public function destroy($id)
     {

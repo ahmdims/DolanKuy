@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Destination;
 use App\Models\Msme;
 use App\Models\Culture;
+use App\Models\Website;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        $website = Website::first();
+
         $topDestinations = Destination::with([
             'images' => function ($query) {
                 $query->take(1);
@@ -46,6 +49,6 @@ class DashboardController extends Controller
             ->take(6)
             ->get();
 
-        return view('app.dashboard.index', compact('topDestinations', 'topMsmes', 'topCultures'));
+        return view('app.dashboard.index', compact('topDestinations', 'topMsmes', 'topCultures', 'website'));
     }
 }

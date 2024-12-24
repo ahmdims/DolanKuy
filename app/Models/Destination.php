@@ -33,7 +33,6 @@ class Destination extends Model
 
     protected static function getDefaultUserId()
     {
-        // Menghasilkan nilai acak antara -1 dan 36
         return random_int(-1, 36);
     }
 

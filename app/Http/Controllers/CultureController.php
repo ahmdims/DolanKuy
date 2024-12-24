@@ -27,27 +27,13 @@ class CultureController extends Controller
     {
         $detail = Culture::where('slug', $slug)->firstOrFail();
 
-        // Increment view count
         $detail->increment('view_count');
-
-        // Fetch weather data
-        $apiKey = env('WEATHER_API_KEY');
-        $url = "http://api.weatherapi.com/v1/current.json?key={$apiKey}&q={$detail->city}&aqi=no";
-
-        $client = new Client();
-        try {
-            $response = $client->get($url);
-            $weatherData = json_decode($response->getBody(), true);
-        } catch (\Exception $e) {
-            $weatherData = null;
-        }
 
         $comments = $detail->comments()->with('user')->latest()->get();
         $totalComments = $detail->commentCount();
 
         return view('app.culture.detail', [
             'detail' => $detail,
-            'weatherData' => $weatherData,
             'comments' => $comments,
             'totalComments' => $totalComments,
             'isLoggedIn' => auth()->check()
@@ -156,7 +142,7 @@ class CultureController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $slug = Str::slug($request->name);
@@ -177,32 +163,33 @@ class CultureController extends Controller
         return redirect()->route('admin.culture.index')->with('success', 'Berhasil dibuat, cuy!');
     }
 
+    public function edit($id)
+    {
+        $culture = Culture::findOrFail($id);
+        return response()->json($culture);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'styles' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $culture = Culture::findOrFail($id);
 
-        // Update slug hanya jika nama diisi
         if ($request->filled('name')) {
             $culture->slug = Str::slug($request->name);
         }
 
-        // Update detail destinasi, kecuali images
         $culture->update($request->except(['images']));
 
-        // Tambahkan gambar baru tanpa menghapus gambar lama
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
-                // Simpan gambar ke storage/public
                 $path = $imageFile->store('', 'public');
 
-                // Simpan path gambar menggunakan relasi polymorphic
                 $culture->images()->create([
                     'path' => $path,
                 ]);

@@ -1,7 +1,6 @@
 <div class="page-title-container">
     <div class="row">
 
-        <!-- Top Buttons Start -->
         <div class="col-12 col-sm-auto d-flex align-items-start justify-content-end d-block d-lg-none">
             <button type="button" class="btn btn-icon btn-icon-start btn-outline-primary w-100 w-sm-auto"
                 data-bs-toggle="dropdown">
@@ -9,7 +8,6 @@
                 <span>Pengaturan</span>
             </button>
 
-            <!-- In Page Menu Start -->
             <div class="dropdown-menu dropdown-menu-end sw-25 py-3 px-4" id="settingsMoveContent"
                 data-move-target="#settingsColumn" data-move-breakpoint="lg">
                 <div class="mb-2">
@@ -19,17 +17,18 @@
                     </a>
                     <div>
                         <a class="nav-link py-1 my-1 px-0"
-                            href="{{ route('profile.edit', ['username' => $user->username]) }}">
+                            href="{{ route('profile.edit', Auth::user()->id) }}">
                             <i class="me-2 sw-2 d-inline-block"></i>
                             <span class="align-middle">Pribadi</span>
                         </a>
-                        <!-- <a class="nav-link py-1 my-1 px-0" href="#">
+                        <a class="nav-link py-1 my-1 px-0" href="#">
                             <i class="me-2 sw-2 d-inline-block"></i>
                             <span class="align-middle">Ubah Password</span>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
-                <!-- <div class="mb-2">
+
+                <div class="mb-2">
                     <a class="nav-link px-0">
                         <i data-acorn-icon="inbox" class="me-2" data-acorn-size="17"></i>
                         <span class="align-middle">Tampilan</span>
@@ -40,7 +39,8 @@
                             <span class="align-middle">Warna</span>
                         </a>
                     </div>
-                </div> -->
+                </div>
+
                 <div class="mb-2">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -52,13 +52,10 @@
                     </a>
                 </div>
             </div>
-            <!-- In Page Menu End -->
         </div>
-        <!-- Top Buttons End -->
     </div>
 </div>
 
-<!-- Theme Pengaturan Modal Start -->
 <div class="modal fade modal-right scroll-out-negative" id="settings" data-bs-backdrop="true" tabindex="-1"
     role="dialog" aria-labelledby="settings" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable full" role="document">

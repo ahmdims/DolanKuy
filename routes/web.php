@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MsmeAdminController;
 use App\Http\Controllers\MsmeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
 // Pengguna
@@ -52,12 +53,13 @@ Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.
 Route::get('/faq', [FaqController::class, 'index'])->name('admin.faq.index');
 
 // Profil
-Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/profile/edit/{username}', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-Route::get('/profile/theme/{username}', [ProfileController::class, 'theme'])->name('profile.theme');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/{username}', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/theme/{id}', [ProfileController::class, 'theme'])->name('profile.theme');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/{id}', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 // Admin
 Route::middleware(['auth', 'auth.admin'])->group(function () {
@@ -76,6 +78,7 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/admin/destination', [DestinationController::class, 'admin'])->name('admin.destination.index');
     Route::post('/admin/destination', [DestinationController::class, 'store'])->name('destination.store');
     Route::get('/admin/destination/{slug}', [DestinationController::class, 'show'])->name('destination.detail');
+    Route::get('/admin/destination/{id}/get', [DestinationController::class, 'edit'])->name('faq.edit');
     Route::put('/admin/destination/{slug}', [DestinationController::class, 'update'])->name('destination.update');
     Route::delete('/admin/destination/{slug}', [DestinationController::class, 'destroy'])->name('destination.destroy');
 
@@ -83,17 +86,17 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/admin/culture', [CultureController::class, 'admin'])->name('admin.culture.index');
     Route::post('/admin/culture', [CultureController::class, 'store'])->name('culture.store');
     Route::get('/admin/culture/{slug}', [CultureController::class, 'show'])->name('culture.detail');
+    Route::get('/admin/culture/{id}/get', [CultureController::class, 'edit'])->name('faq.edit');
     Route::put('/admin/culture/{slug}', [CultureController::class, 'update'])->name('culture.update');
     Route::delete('/admin/culture/{slug}', [CultureController::class, 'destroy'])->name('culture.destroy');
-    Route::delete('/delete-image/{id}', [CultureController::class, 'deleteImage'])->name('image.delete');
 
     // Kelola UMKM
     Route::get('/admin/msme', [MsmeController::class, 'admin'])->name('admin.msme.index');
     Route::post('/admin/msme', [MsmeController::class, 'store'])->name('msme.store');
     Route::get('/admin/msme/{slug}', [MsmeController::class, 'show'])->name('msme.detail');
+    Route::get('/admin/msme/{id}/get', [MsmeController::class, 'edit'])->name('msme.edit');
     Route::put('/admin/msme/{slug}', [MsmeController::class, 'update'])->name('msme.update');
     Route::delete('/admin/msme/{slug}', [MsmeController::class, 'destroy'])->name('msme.destroy');
-    Route::delete('/delete-image/{id}', [MsmeController::class, 'deleteImage'])->name('image.delete');
 
     // Pengunjung
     Route::get('/admin/tourist', [TouristController::class, 'admin'])->name('admin.tourist.index');
@@ -115,14 +118,14 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::put('/admin/msme-admin/{id}', [MsmeAdminController::class, 'update'])->name('msme-admin.update');
     Route::delete('/admin/msme-admin/{id}', [MsmeAdminController::class, 'destroy'])->name('msme-admin.destroy');
 
-    // Kontak
-    Route::get('/admin/contact', [ContactController::class, 'admin'])->name('admin.contact.index');
-    Route::post('/admin/contact', [ContactController::class, 'update'])->name('contact.update');
+    // Website
+    Route::get('/admin/website', [WebsiteController::class, 'index'])->name('admin.website.index');
+    Route::post('/admin/website', [WebsiteController::class, 'update'])->name('website.update');
 
     // Bantuan
     Route::get('/admin/faq', [FaqController::class, 'admin'])->name('admin.faq.index');
     Route::post('/admin/faq', [FaqController::class, 'store'])->name('faq.store');
-    Route::get('/admin/faq/{id}', [FaqController::class, 'show'])->name('faq.detail');
+    Route::get('/admin/faq/{id}/get', [FaqController::class, 'edit'])->name('faq.edit');
     Route::put('/admin/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
     Route::delete('/admin/faq/{id}', [FaqController::class, 'destroy'])->name('faq.destroy');
 

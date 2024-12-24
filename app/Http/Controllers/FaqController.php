@@ -35,6 +35,12 @@ class FaqController extends Controller
         return redirect()->route('admin.faq.index')->with('success', 'FAQ berhasil ditambahkan!');
     }
 
+    public function edit($id)
+    {
+        $faq = Faq::findOrFail($id);
+        return response()->json($faq);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([

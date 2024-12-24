@@ -140,7 +140,6 @@
     </div>
 </div>
 
-<!-- Page Update Scripts Start -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let map;
@@ -187,4 +186,3 @@
         });
     });
 </script>
-<!-- Page Update Scripts End -->
