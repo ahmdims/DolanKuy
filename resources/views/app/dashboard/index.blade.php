@@ -54,7 +54,7 @@
                                             @endphp
 
                                             <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                                alt="Card image" class="card-img-top" />
+                                                alt="{{ $destination->name }}" class="card-img-top" />
 
                                             <div class="card-body">
                                                 <a href="{{ route('app.destination.detail', $destination->slug) }}"
@@ -116,7 +116,7 @@
                                             @endphp
 
                                             <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                                alt="Card image" class="card-img-top" />
+                                                alt="{{ $msme->name }}" class="card-img-top" />
 
                                             <div class="card-body">
                                                 <a href="{{ route('app.msme.detail', $msme->slug) }}"
@@ -170,11 +170,11 @@
                                         <div class="card mb-5">
 
                                             @php
-                                                $firstImage = $msme->images->first();
+                                                $firstImage = $culture->images->first();
                                             @endphp
 
                                             <img src="{{ $firstImage ? asset('storage/' . $firstImage->path) : asset('img/banner/no_images.svg') }}"
-                                                alt="Card image" class="card-img-top" />
+                                                alt="{{ $culture->name }}" class="card-img-top" />
 
                                             <div class="card-body">
                                                 <a href="{{ route('app.culture.detail', $culture->slug) }}"
