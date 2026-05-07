@@ -18,7 +18,7 @@ class DashboardController extends Controller
                 $query->take(1);
             }
         ])
-            ->withCount(['comments', 'likes'])
+            ->withCount(['comments'])
             ->orderBy('view_count', 'desc')
             ->orderBy('likes_count', 'desc')
             ->orderBy('comments_count', 'desc')
@@ -30,7 +30,7 @@ class DashboardController extends Controller
                 $query->take(1);
             }
         ])
-            ->withCount(['comments', 'likes'])
+            ->withCount(['comments'])
             ->orderBy('view_count', 'desc')
             ->orderBy('likes_count', 'desc')
             ->orderBy('comments_count', 'desc')
@@ -42,7 +42,7 @@ class DashboardController extends Controller
                 $query->take(1);
             }
         ])
-            ->withCount(['comments', 'likes'])
+            ->withCount(['comments'])
             ->orderBy('view_count', 'desc')
             ->orderBy('likes_count', 'desc')
             ->orderBy('comments_count', 'desc')
